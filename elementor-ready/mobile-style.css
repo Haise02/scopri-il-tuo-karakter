@@ -64,8 +64,8 @@ img{max-width:100%;display:block;}
 .rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}.rv-d4{transition-delay:.4s}.rv-d5{transition-delay:.5s}
 
 /* ══ SECTIONS ══ */
-.page-section{display:none;}
-.page-section.active{display:block;animation:fadeIn .4s ease;}
+.page-section{display:none!important;}
+.page-section.active{display:block!important;animation:fadeIn .4s ease;position:relative!important;z-index:1!important;}
 
 /* ══ DOT PATTERNS ══ */
 .dot-bg{
@@ -95,8 +95,12 @@ img{max-width:100%;display:block;}
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border-color:rgba(255,255,255,.08);
 }
-.k-nav.scrolled .k-nav-inner *{color:var(--k-white);}
+.k-nav.scrolled .k-nav-inner{color:var(--k-white);}
+.k-nav.scrolled .k-nav-logo{color:var(--k-white);}
+.k-nav.scrolled .k-nav-links a{color:rgba(255,255,255,.6);}
+.k-nav.scrolled .k-nav-links a:hover{color:var(--k-white);}
 .k-nav.scrolled .k-nav-cta{background:var(--k-white);color:var(--k-black);}
+.k-nav.scrolled .k-nav-cta svg{stroke:var(--k-black);}
 .k-nav-logo{font-family:var(--font-body);font-weight:700;font-size:17px;letter-spacing:-.02em;text-decoration:none;color:var(--k-black);}
 .k-nav-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--k-gradient);margin-left:1px;vertical-align:super;position:relative;top:2px;}
 .k-nav-links{display:flex;align-items:center;gap:28px;}
@@ -658,6 +662,13 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
 }
 
 @media(max-width:768px){
+  /* Nav — fixed, never cut off */
+  .k-nav{padding:6px 10px!important;position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:9999!important;}
+  .k-nav-inner{padding:6px 6px 6px 14px!important;}
+  .k-nav-links{display:none!important;}
+  .k-nav-cta{font-size:12px!important;padding:8px 16px!important;}
+
+  /* Hero */
   .hero{padding:80px 16px 24px!important;min-height:auto!important;}
   .hero-headline{font-size:clamp(40px,11vw,56px)!important;}
   .hero-headline span:first-child{font-size:clamp(36px,9vw,48px)!important;}
@@ -671,40 +682,62 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
   .hero-float-cards{grid-template-columns:1fr!important;gap:8px!important;}
   .hero-float-card{padding:12px!important;flex-direction:row!important;align-items:center!important;gap:10px!important;}
   .hfc-icon{width:28px!important;height:28px!important;margin-bottom:0!important;font-size:14px!important;}
-  .k-nav{padding:6px 10px!important;}
-  .k-nav-inner{padding:6px 6px 6px 14px!important;}
-  .k-nav-links{display:none!important;}
-  .k-nav-cta{font-size:12px!important;padding:8px 16px!important;}
+
+  /* Sections — headlines +10pt bigger */
   .sec{padding:56px 16px!important;}
-  .sec-headline{font-size:clamp(28px,7vw,44px)!important;}
-  .sec-sub{font-size:14px!important;}
+  .sec-headline{font-size:clamp(38px,9vw,54px)!important;}
+  .sec-sub{font-size:15px!important;}
   .sec-label{font-size:11px!important;}
+
+  /* Feature cards */
   .feat-card{width:240px!important;padding:20px 18px!important;}
   .feat-card h3{font-size:16px!important;}
   .feat-card p{font-size:12px!important;}
-  .feat2-text h3{font-size:clamp(24px,6vw,36px)!important;}
+
+  /* Feat2 headlines +10pt */
+  .feat2-text h3{font-size:clamp(32px,8vw,46px)!important;}
   .feat2-text p{font-size:14px!important;}
   .widget-radar{padding:20px!important;}
   .widget-stat{padding:14px!important;}
   .ws-value{font-size:24px!important;}
+
+  /* Diff section — headline +10pt */
   .diff{padding:40px 20px!important;border-radius:20px!important;margin:0 8px!important;}
-  .diff-head{font-size:clamp(20px,5vw,28px)!important;}
+  .diff-head{font-size:clamp(26px,6vw,36px)!important;}
   .diff-body{font-size:14px!important;}
   .diff-stats{grid-template-columns:repeat(2,1fr)!important;gap:8px!important;}
   .diff-stat-n{font-size:28px!important;}
   .diff-stat-l{font-size:11px!important;}
+
+  /* Testimonials */
   .testi-card{width:280px!important;padding:20px 18px!important;}
   .testi-q{font-size:14px!important;}
+
+  /* FAQ */
   .faq-q{font-size:15px!important;padding:16px 0!important;}
+
+  /* Footer CTA — headline +10pt */
   .footer-cta{padding:64px 16px!important;}
-  .footer-cta-inner h2{font-size:clamp(40px,10vw,80px)!important;}
-  .footer-cta-inner p:first-child{font-size:clamp(18px,4vw,28px)!important;}
-  #falling-container{height:280px!important;}
+  .footer-cta-inner h2{font-size:clamp(48px,12vw,90px)!important;}
+  .footer-cta-inner p:first-child{font-size:clamp(20px,5vw,32px)!important;}
+
+  /* Falling objects — HIDE on mobile */
+  #falling-container{display:none!important;}
+
+  /* QUIZ — ensure visible on mobile */
+  #sec-quiz{position:relative!important;z-index:400!important;}
+  #sec-quiz>div{padding:80px 16px 60px!important;}
   .quiz-opt{padding:16px 14px!important;font-size:14px!important;gap:10px!important;}
   .quiz-opt-letter{width:36px!important;height:36px!important;font-size:14px!important;border-radius:10px!important;}
   .btn-quiz-next,.btn-quiz-back{padding:16px 20px!important;font-size:15px!important;}
   #q-card{padding:24px 18px!important;}
   #q-text{font-size:15px!important;}
+
+  /* Form gate — visible on mobile */
+  #sec-form{position:relative!important;z-index:400!important;}
+  #sec-form>div{padding:80px 16px 60px!important;}
+
+  /* Form inputs — prevent zoom on iOS */
   #hs-form-container input[type=text],#hs-form-container input[type=email],#hs-form-container input[type=tel]{font-size:16px!important;padding:16px!important;}
 }
 
@@ -713,8 +746,11 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
   .hero-headline span:nth-child(2){font-size:clamp(56px,16vw,80px)!important;}
   .hero-proof{flex-direction:column!important;gap:6px!important;}
   .hero-proof-text{font-size:12px!important;}
+  .sec-headline{font-size:clamp(34px,9vw,48px)!important;}
+  .feat2-text h3{font-size:clamp(28px,8vw,40px)!important;}
   .diff{margin:0 4px!important;}
-  .footer-cta-inner h2{font-size:clamp(36px,10vw,56px)!important;}
+  .diff-head{font-size:clamp(24px,6vw,32px)!important;}
+  .footer-cta-inner h2{font-size:clamp(40px,11vw,64px)!important;}
   .footer-trust{flex-direction:column!important;align-items:center!important;gap:8px!important;}
   .testi-card{width:260px!important;}
   .feat-card{width:220px!important;}
