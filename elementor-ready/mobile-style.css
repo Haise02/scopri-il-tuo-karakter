@@ -64,8 +64,12 @@ img{max-width:100%;display:block;}
 .rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}.rv-d4{transition-delay:.4s}.rv-d5{transition-delay:.5s}
 
 /* ══ SECTIONS ══ */
-.page-section{display:none!important;}
-.page-section.active{display:block!important;animation:fadeIn .4s ease;position:relative!important;z-index:1!important;}
+.page-section{display:none!important;height:0!important;overflow:hidden!important;visibility:hidden!important;}
+.page-section.active{display:block!important;height:auto!important;overflow:visible!important;visibility:visible!important;animation:fadeIn .4s ease;position:relative!important;z-index:100!important;}
+#sec-quiz.active,#sec-form.active{z-index:9000!important;background:var(--k-bg)!important;min-height:100vh!important;width:100%!important;}
+/* Force Elementor parent containers to show quiz */
+#karakter-app{position:relative!important;}
+#karakter-app>.page-section.active{position:relative!important;}
 
 /* ══ DOT PATTERNS ══ */
 .dot-bg{

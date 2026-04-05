@@ -331,21 +331,39 @@ function calcResults(){
   return{top3:sorted.slice(0,3),scores:scores,sorted:sorted};
 }
 function showSection(id){
-  document.querySelectorAll('.page-section').forEach(function(s){s.classList.remove('active');});
+  /* Hide all sections aggressively */
+  document.querySelectorAll('.page-section').forEach(function(s){
+    s.classList.remove('active');
+    s.style.display='none';
+    s.style.height='0';
+    s.style.overflow='hidden';
+    s.style.visibility='hidden';
+  });
   var target=document.getElementById(id);
+  if(!target)return;
+  /* Show target section */
   target.classList.add('active');
-  /* Ensure visibility on mobile — force display and scroll */
   target.style.display='block';
+  target.style.height='auto';
+  target.style.overflow='visible';
+  target.style.visibility='visible';
   target.style.minHeight='100vh';
-  window.scrollTo({top:0,behavior:'smooth'});
-  /* Also scroll Elementor parent containers */
+  target.style.position='relative';
+  target.style.zIndex='9000';
+  target.style.background='var(--k-bg)';
+  /* Force ALL Elementor parent wrappers to allow overflow */
   var el=target;
   while(el.parentElement){
     el=el.parentElement;
+    el.style.overflow='visible';
     if(el.scrollTop>0)el.scrollTop=0;
   }
+  /* Scroll to top */
+  window.scrollTo(0,0);
   document.documentElement.scrollTop=0;
   document.body.scrollTop=0;
+  /* Fallback: ensure scroll after a tick (some mobile browsers delay) */
+  setTimeout(function(){window.scrollTo(0,0);},50);
 }
 function startQuiz(){currentQ=0;answers.fill(null);renderQ();showSection('sec-quiz');if(typeof gtag==='function')gtag('event','quiz_started',{event_category:'quiz'});if(typeof dataLayer!=='undefined')dataLayer.push({event:'quiz_started'});}
 function renderQ(){
