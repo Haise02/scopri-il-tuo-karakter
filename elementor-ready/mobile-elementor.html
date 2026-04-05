@@ -1,0 +1,566 @@
+<!-- KARAKTER COACHING SCHOOL — Landing Page Quiz "Scopri il tuo Karakter"
+     Template: Elementor Canvas → widget HTML full-width
+     Tema: CHIARO — Brand Karakter v1.3 — Echo-style redesign v3
+     Versione: 6.0 — Aprile 2026
+-->
+<div id="karakter-app">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/elementor-ready/mobile-style.css">
+
+<script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/embed/v2.js"></script>
+
+<!-- ══ NAV ══ -->
+<nav class="k-nav" id="k-nav">
+  <div class="k-nav-inner">
+    <a class="k-nav-logo" href="#">Karakter<span class="k-nav-dot"></span></a>
+    <div class="k-nav-links">
+      <a href="#come-funziona">Come funziona</a>
+      <a href="#testimonials">Testimonianze</a>
+      <a href="#faq-section">FAQ</a>
+    </div>
+    <button class="k-nav-cta" onclick="startQuiz()">
+      Fai il quiz
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     LANDING PAGE
+══════════════════════════════════════════════════════════════ -->
+<div id="sec-landing" class="page-section active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <p style="font-family:var(--font-body);font-size:14px;color:var(--k-gray-400);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) both;">Quanto conosci davvero cosa ti spinge a fare delle scelte?</p>
+    <h1 class="hero-headline">
+      <span style="display:block;font-size:clamp(48px,8vw,88px);font-weight:700;margin-bottom:4px;">Scopri Il Tuo</span>
+      <span style="font-size:clamp(96px,18vw,220px);">Karakter</span><span class="hero-dot-grad" style="display:inline-block;width:clamp(38px,5.6vw,72px);height:clamp(38px,5.6vw,72px);border-radius:50%;background:var(--k-gradient);background-size:200% 200%;animation:gradientShift 3s ease infinite;margin-left:4px;vertical-align:middle;position:relative;top:-.1em;"></span>
+    </h1>
+    <p class="hero-sub">
+      24 domande e una mappa delle <mark>12 motivazioni</mark> che guidano ogni scelta che fai.
+    </p>
+    <div class="hero-cta-wrap">
+      <button class="btn-main" onclick="startQuiz()">
+        <span>Inizia il quiz gratuito</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+    <div class="hero-proof">
+      <div class="hero-avatars">
+        <div class="hero-av" style="background:var(--k-petrol);">LD</div>
+        <div class="hero-av" style="background:var(--k-amber);color:var(--k-black);">MF</div>
+        <div class="hero-av" style="background:var(--k-green);">GR</div>
+      </div>
+      <span class="hero-proof-text"><strong>1.200+</strong> persone hanno scoperto il loro</span>
+    </div>
+
+    <!-- HERO MEDIA — floating widgets -->
+    <div class="hero-media">
+      <div class="hero-media-bg">
+        <!-- Search bar with typing animation -->
+        <div class="hero-search-bar">
+          <svg class="hero-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <div class="hero-search-text"><span id="hero-typewriter"></span></div>
+        </div>
+        <!-- Floating mini trait cards -->
+        <div class="hero-float-cards">
+          <div class="hero-float-card">
+            <div class="hfc-icon" style="background:var(--k-amber-light);">🔥</div>
+            <div class="hfc-title">Il Fuoco</div>
+            <div class="hfc-sub">Ambizione e spinta al risultato</div>
+          </div>
+          <div class="hero-float-card">
+            <div class="hfc-icon" style="background:#E0F5F5;">🧭</div>
+            <div class="hfc-title">La Bussola</div>
+            <div class="hfc-sub">Direzione e senso di scopo</div>
+          </div>
+          <div class="hero-float-card">
+            <div class="hfc-icon" style="background:#E4F5ED;">🛡️</div>
+            <div class="hfc-title">Lo Scudo</div>
+            <div class="hfc-sub">Stabilità e protezione</div>
+          </div>
+        </div>
+        <!-- Second row of trait cards with fade overlay -->
+        <div style="position:relative;">
+          <div class="hero-float-cards" style="margin-top:12px;">
+            <div class="hero-float-card" style="animation-delay:-2s;">
+              <div class="hfc-icon" style="background:#FDF0E0;">🌊</div>
+              <div class="hfc-title">L'Onda</div>
+              <div class="hfc-sub">Flessibilità e adattamento</div>
+            </div>
+            <div class="hero-float-card" style="animation-delay:-2.5s;">
+              <div class="hfc-icon" style="background:#E2EBF0;">🌿</div>
+              <div class="hfc-title">La Radice</div>
+              <div class="hfc-sub">Stabilità e appartenenza</div>
+            </div>
+            <div class="hero-float-card" style="animation-delay:-3s;">
+              <div class="hfc-icon" style="background:#E0F5F5;">🎯</div>
+              <div class="hfc-title">La Lente</div>
+              <div class="hfc-sub">Analisi e profondità</div>
+            </div>
+          </div>
+          <!-- Fade overlay from bottom matching widget bg -->
+          <div style="position:absolute;bottom:0;left:0;right:0;height:100%;background:linear-gradient(to top,#234456 0%,#234456 10%,transparent 70%);pointer-events:none;z-index:3;display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px;">
+            <button onclick="startQuiz()" style="position:relative;z-index:4;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:rgba(255,255,255,.8);font-family:var(--font-body);font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:10px 22px;cursor:pointer;transition:all .2s;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Fai Il Quiz e Scopri Tutti I Tratti
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COME FUNZIONA — feature cards carousel -->
+  <section class="sec" id="come-funziona" style="background:var(--k-white);">
+    <div class="sec-inner">
+      <div class="rv">
+        <div class="sec-label">// come funziona</div>
+        <h2 class="sec-headline">Tutto In <span class="hl">Tre Passi</span></h2>
+        <p class="sec-sub">Dal quiz alla tua mappa motivazionale. Nessun giro largo, nessuna complicazione.</p>
+      </div>
+      <div class="feat-cards-wrap rv rv-d2">
+
+        <div class="feat-cards" id="feat-cards">
+          <div class="feat-card fc-amber">
+            <div class="feat-card-badge">01 — Scenari</div>
+            <h3><strong>24 situazioni reali</strong></h3>
+            <p>Non troverai domande astratte. Troverai il progetto che si blocca, la decisione difficile, il collega che ti chiede aiuto. <strong>Rispondi istintivamente.</strong></p>
+          </div>
+          <div class="feat-card fc-teal">
+            <div class="feat-card-badge">02 — Analisi</div>
+            <h3>12 dimensioni emergono</h3>
+            <p>I tuoi punteggi vengono calcolati su <strong>12 driver motivazionali</strong> costruiti per il sistema Karakter. Non tratti migliori o peggiori — i tuoi.</p>
+          </div>
+          <div class="feat-card fc-green">
+            <div class="feat-card-badge">03 — Risultato</div>
+            <h3>Il tuo Karakter</h3>
+            <p>Tre tratti dominanti emergono insieme. Non una categoria, non un'etichetta: una combinazione tra <strong>220 possibili</strong> che è solo tua.</p>
+          </div>
+          <div class="feat-card fc-petrol">
+            <div class="feat-card-badge">04 — Profondita'</div>
+            <h3>Ogni tratto racconta</h3>
+            <p>Ogni tratto ha una storia: cosa ti spinge, dove metti l'energia, come reagisci sotto pressione. Tre tratti, <strong>una mappa precisa</strong>.</p>
+          </div>
+          <div class="feat-card fc-warm">
+            <div class="feat-card-badge">05 — Next step</div>
+            <h3>Da qui si parte</h3>
+            <p>La mappa è un punto di partenza. Chi vuole può approfondire con il <strong>Reiss Motivation Profile</strong> e un percorso individuale.</p>
+          </div>
+          <div class="feat-card fc-amber">
+            <div class="feat-card-badge">01 — Scenari</div>
+            <h3><strong>24 situazioni reali</strong></h3>
+            <p>Non troverai domande astratte. Troverai il progetto che si blocca, la decisione difficile, il collega che ti chiede aiuto. <strong>Rispondi istintivamente.</strong></p>
+          </div>
+          <div class="feat-card fc-teal">
+            <div class="feat-card-badge">02 — Analisi</div>
+            <h3>12 dimensioni emergono</h3>
+            <p>I tuoi punteggi vengono calcolati su <strong>12 driver motivazionali</strong> costruiti per il sistema Karakter. Non tratti migliori o peggiori — i tuoi.</p>
+          </div>
+          <div class="feat-card fc-green">
+            <div class="feat-card-badge">03 — Risultato</div>
+            <h3>Il tuo Karakter</h3>
+            <p>Tre tratti dominanti emergono insieme. Non una categoria, non un'etichetta: una combinazione tra <strong>220 possibili</strong> che è solo tua.</p>
+          </div>
+          <div class="feat-card fc-petrol">
+            <div class="feat-card-badge">04 — Profondita'</div>
+            <h3>Ogni tratto racconta</h3>
+            <p>Ogni tratto ha una storia: cosa ti spinge, dove metti l'energia, come reagisci sotto pressione. Tre tratti, <strong>una mappa precisa</strong>.</p>
+          </div>
+          <div class="feat-card fc-warm">
+            <div class="feat-card-badge">05 — Next step</div>
+            <h3>Da qui si parte</h3>
+            <p>La mappa è un punto di partenza. Chi vuole può approfondire con il <strong>Reiss Motivation Profile</strong> e un percorso individuale.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COSA SCOPRIRAI — with interactive widgets -->
+  <section class="sec" id="cosa-scoprirai" style="position:relative;">
+    <!-- Scattered decorative Karakter logo -->
+    <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/logo%20nero.png" alt="" style="position:absolute;width:24px;opacity:.04;top:8%;right:6%;transform:rotate(12deg);z-index:0;pointer-events:none;">
+    <div class="sec-inner">
+
+      <!-- Block 1: text left, widget right -->
+      <div class="feat2-block rv">
+        <div class="feat2-text">
+          <div class="sec-label">// cosa scoprirai</div>
+          <h3>Capisci Perché Fai<br>Quello Che <span class="hl">Fai</span></h3>
+          <p>Certe scelte sembrano razionali ma vengono da qualcosa di più profondo. La tua mappa ti mostra i <strong>driver invisibili</strong>.</p>
+        </div>
+        <div>
+          <!-- Widget: trait strength bars -->
+          <div class="widget-radar">
+            <div style="font-size:12px;font-weight:600;color:var(--k-gray-400);letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px;">I tuoi tratti dominanti</div>
+            <div class="wr-bar"><span class="wr-bar-label">Bussola</span><div class="wr-bar-track"><div class="wr-bar-fill" style="--bar-width:88%;background:var(--k-amber);"></div></div></div>
+            <div class="wr-bar"><span class="wr-bar-label">Fuoco</span><div class="wr-bar-track"><div class="wr-bar-fill delay-1" style="--bar-width:76%;background:var(--k-teal);"></div></div></div>
+            <div class="wr-bar"><span class="wr-bar-label">Scudo</span><div class="wr-bar-track"><div class="wr-bar-fill delay-2" style="--bar-width:65%;background:var(--k-green);"></div></div></div>
+            <div class="wr-bar"><span class="wr-bar-label">Ponte</span><div class="wr-bar-track"><div class="wr-bar-fill delay-3" style="--bar-width:42%;background:var(--k-petrol);"></div></div></div>
+            <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--k-gray-100);display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:var(--k-gray-400);">220 combinazioni possibili</span>
+              <span style="font-size:11px;font-family:var(--font-mono);color:var(--k-amber-dark);background:var(--k-amber-pale);padding:4px 10px;border-radius:100px;">Il tuo Karakter è unico</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Block 2: widget left, text right -->
+      <div class="feat2-block rv">
+        <div class="feat2-text">
+          <div class="sec-label">// il passo dopo</div>
+          <h3>Sai Dove Metti<br>L'<span class="hl">Energia</span></h3>
+          <p>I tuoi tratti dominanti sono attivi <strong>anche quando non li stai cercando</strong>. Riconoscerli cambia il modo in cui leggi le giornate.</p>
+        </div>
+        <div>
+          <!-- Widget: command palette -->
+          <div class="widget-cmd">
+            <div class="widget-cmd-top">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--k-gray-300)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span class="widget-cmd-search">I tuoi 3 tratti dominanti...</span>
+              <span class="widget-cmd-kbd">⌘K</span>
+            </div>
+            <div class="widget-cmd-items">
+              <div class="widget-cmd-item active">
+                <span class="wci-dot" style="background:var(--k-amber);"></span>
+                <span class="wci-text">La Bussola — Tratto dominante</span>
+                <span class="wci-meta">88%</span>
+              </div>
+              <div class="widget-cmd-item">
+                <span class="wci-dot" style="background:var(--k-teal);"></span>
+                <span class="wci-text">Il Fuoco — Secondo tratto</span>
+                <span class="wci-meta">76%</span>
+              </div>
+              <div class="widget-cmd-item">
+                <span class="wci-dot" style="background:var(--k-green);"></span>
+                <span class="wci-text">Lo Scudo — Terzo tratto</span>
+                <span class="wci-meta">65%</span>
+              </div>
+              <div class="widget-cmd-item">
+                <span class="wci-dot" style="background:var(--k-gray-200);"></span>
+                <span class="wci-text">Il Ponte — In crescita</span>
+                <span class="wci-meta">42%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Block 3: text left, stats widget right -->
+      <div class="feat2-block rv">
+        <div class="feat2-text">
+          <div class="sec-label">// i numeri</div>
+          <h3>Cosa Ti Tiene<br>In <span class="hl">Moto</span></h3>
+          <p>Non le tecniche. <strong>Le motivazioni profonde</strong> che reggono anche quando tutto il resto cede. Verificate su 14 anni di applicazione.</p>
+        </div>
+        <div>
+          <div class="widget-stats">
+            <div class="widget-stat" style="border-left:3px solid var(--k-amber);background:linear-gradient(135deg,rgba(242,183,5,.03) 0%,var(--k-white) 100%);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--k-amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:6px;"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+              <div class="ws-label">Tratti analizzati</div>
+              <div class="ws-value">12</div>
+              <div class="ws-change">Sistema completo</div>
+            </div>
+            <div class="widget-stat" style="border-left:3px solid var(--k-teal);background:linear-gradient(135deg,rgba(14,124,123,.03) 0%,var(--k-white) 100%);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--k-teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:6px;"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              <div class="ws-label">Combinazioni</div>
+              <div class="ws-value">220</div>
+              <div class="ws-change">Possibili Karakter</div>
+            </div>
+            <div class="widget-stat" style="border-left:3px solid var(--k-green);background:linear-gradient(135deg,rgba(32,147,92,.03) 0%,var(--k-white) 100%);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--k-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:6px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <div class="ws-label">Domande</div>
+              <div class="ws-value">24</div>
+              <div class="ws-change">Scenari reali</div>
+            </div>
+            <div class="widget-stat" style="border-left:3px solid var(--k-petrol);background:linear-gradient(135deg,rgba(44,74,90,.03) 0%,var(--k-white) 100%);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--k-petrol)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:6px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <div class="ws-label">Tempo medio</div>
+              <div class="ws-value">5'</div>
+              <div class="ws-change">Min. per completare</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LA DIFFERENZA -->
+  <section class="sec" style="padding-left:24px;padding-right:24px;">
+    <div style="max-width:1650px;margin:0 auto;width:100%;">
+      <div class="diff rv">
+        <div class="sec-label">// la differenza</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+          <div>
+            <div class="diff-head">Il quiz "Scopri il tuo Karakter" non è un test di personalità.</div>
+            <p class="diff-body">
+              La maggior parte degli strumenti lavora per categorie: ti assegna a un tipo. Il sistema Karakter parte da una domanda diversa: non come sei, ma <strong>cosa ti muove</strong>.
+            </p>
+            <p class="diff-body" style="margin-top:12px;">
+              12 Tratti. Driver motivazionali specifici, stabili nel tempo, verificati su anni di coaching professionale. Il risultato è una combinazione di tre tratti: la tua <strong>Karakter</strong>. <mark>Unica, come lo sei tu.</mark>
+            </p>
+            <button class="btn-main" onclick="startQuiz()" style="margin-top:28px;background:var(--k-white);color:var(--k-black);position:relative;overflow:hidden;">
+              <span>Scopri Il Tuo Karakter</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+          <div style="border-radius:20px;overflow:hidden;min-height:280px;display:flex;align-items:center;justify-content:center;">
+            <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/karakter%202.png" alt="Karakter traits illustration" style="width:100%;height:100%;object-fit:cover;border-radius:20px;">
+          </div>
+        </div>
+        <div class="diff-stats">
+          <div class="diff-stat-box" style="background:#ffc200;"><div class="diff-stat-n" style="color:#1e1e1e;" data-count="14">0</div><div class="diff-stat-l" style="color:rgba(30,30,30,.7);">Anni di<br>applicazione</div></div>
+          <div class="diff-stat-box" style="background:#3b9e54;"><div class="diff-stat-n" data-count="500" data-suffix="+">0</div><div class="diff-stat-l">Coach<br>formati</div></div>
+          <div class="diff-stat-box" style="background:#006674;"><div class="diff-stat-n" data-count="220">0</div><div class="diff-stat-l">Combinazioni<br>possibili</div></div>
+          <div class="diff-stat-box" style="background:#1e1e1e;border:1px solid rgba(255,255,255,.1);"><div class="diff-stat-n" data-count="12">0</div><div class="diff-stat-l">Tratti<br>motivazionali</div></div>
+        </div>
+        <!-- Partner logos banner — white bg, colored logos, fade edges, 8pt border -->
+        <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);">
+          <div style="background:#fff;border-radius:16px;border:8px solid rgba(255,255,255,.15);overflow:hidden;position:relative;padding:28px 0;">
+            <div style="position:absolute;left:0;top:0;bottom:0;width:80px;background:linear-gradient(90deg,#fff,transparent);z-index:2;pointer-events:none;"></div>
+            <div style="position:absolute;right:0;top:0;bottom:0;width:80px;background:linear-gradient(-90deg,#fff,transparent);z-index:2;pointer-events:none;"></div>
+            <div class="partner-track" style="display:flex;gap:56px;width:max-content;animation:slideCards 30s linear infinite;align-items:center;padding:0 28px;">
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/logo_asi_def.svg" alt="ASI" style="height:44px;object-fit:contain;">
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/Domus-de-luna-home-2019-copia-1-300x69.jpg" alt="Fondazione Domus de Luna" style="height:38px;object-fit:contain;">
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/8-1024x1024.png" alt="Partner" style="height:48px;object-fit:contain;">
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/Logo-Unimilano-piccolo-300x95.png" alt="Uni-Internazionale Milano" style="height:44px;object-fit:contain;">
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/RMP-certified-partner-1.jpg" alt="RMP Certified Partner" style="height:44px;object-fit:contain;">
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/SAEF_brand_page-0001-2-Copia-1-300x148.jpg" alt="SAEF" style="height:44px;object-fit:contain;">
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/LogoUAWdef-300x300.png" alt="Leonte Master School" style="height:48px;object-fit:contain;">
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/icf-logo-dark-1200x871.jpg" alt="ICF International Coaching Federation" style="height:48px;object-fit:contain;">
+              <!-- Duplicated for infinite loop -->
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/logo_asi_def.svg" alt="ASI" style="height:44px;object-fit:contain;">
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/Domus-de-luna-home-2019-copia-1-300x69.jpg" alt="Fondazione Domus de Luna" style="height:38px;object-fit:contain;">
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/8-1024x1024.png" alt="Partner" style="height:48px;object-fit:contain;">
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/Logo-Unimilano-piccolo-300x95.png" alt="Uni-Internazionale Milano" style="height:44px;object-fit:contain;">
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/RMP-certified-partner-1.jpg" alt="RMP Certified Partner" style="height:44px;object-fit:contain;">
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/SAEF_brand_page-0001-2-Copia-1-300x148.jpg" alt="SAEF" style="height:44px;object-fit:contain;">
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/LogoUAWdef-300x300.png" alt="Leonte Master School" style="height:48px;object-fit:contain;">
+              <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/loghi%20partner/icf-logo-dark-1200x871.jpg" alt="ICF International Coaching Federation" style="height:48px;object-fit:contain;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="sec" id="testimonials" style="background:var(--k-white);overflow:hidden;position:relative;">
+    <!-- Scattered decorative Karakter logo -->
+    <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/logo%20nero.png" alt="" style="position:absolute;width:20px;opacity:.035;bottom:12%;left:5%;transform:rotate(-18deg);z-index:0;pointer-events:none;">
+    <div class="sec-inner">
+      <div class="rv">
+        <div class="sec-label">// testimonials</div>
+        <h2 class="sec-headline">Chi L'Ha Fatto<br>Non Torna <span class="hl">Indietro</span></h2>
+      </div>
+    </div>
+    <div class="testi-track-wrap rv rv-d2">
+      <div class="testi-track">
+        <div class="testi-card">
+          <div style="color:var(--k-amber);font-size:14px;margin-bottom:12px;letter-spacing:2px;">★★★★★</div>
+          <div class="testi-q">"Pensavo di conoscermi abbastanza. <strong>Tre tratti su dodici</strong>, e mi sono ritrovata a rileggere gli ultimi due anni di lavoro con <strong>occhi completamente diversi</strong>."</div>
+          <div class="testi-author">
+            <div class="testi-av" style="background:var(--k-petrol);">LD</div>
+            <div><div class="testi-name">Laura D.</div><div class="testi-role">38 anni, Responsabile HR</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div style="color:var(--k-amber);font-size:14px;margin-bottom:12px;letter-spacing:2px;">★★★★★</div>
+          <div class="testi-q">"Quello che mi ha colpito è che <strong>non mi ha classificato</strong>. Mi ha dato <strong>un punto di vista, non un'etichetta</strong>. C'è differenza."</div>
+          <div class="testi-author">
+            <div class="testi-av" style="background:var(--k-green);">GR</div>
+            <div><div class="testi-name">Giulia R.</div><div class="testi-role">31 anni, Libera professionista</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div style="color:var(--k-amber);font-size:14px;margin-bottom:12px;letter-spacing:2px;">★★★★★</div>
+          <div class="testi-q">"Ho scoperto che <strong>il mio tratto dominante</strong> spiega perché ho sempre faticato in certi contesti. Non era un limite, era <strong>una motivazione diversa</strong>."</div>
+          <div class="testi-author">
+            <div class="testi-av" style="background:var(--k-amber);color:var(--k-black);">MF</div>
+            <div><div class="testi-name">Marco F.</div><div class="testi-role">44 anni, Imprenditore</div></div>
+          </div>
+        </div>
+        <!-- Duplicated for infinite loop -->
+        <div class="testi-card">
+          <div style="color:var(--k-amber);font-size:14px;margin-bottom:12px;letter-spacing:2px;">★★★★★</div>
+          <div class="testi-q">"Pensavo di conoscermi abbastanza. <strong>Tre tratti su dodici</strong>, e mi sono ritrovata a rileggere gli ultimi due anni di lavoro con <strong>occhi completamente diversi</strong>."</div>
+          <div class="testi-author">
+            <div class="testi-av" style="background:var(--k-petrol);">LD</div>
+            <div><div class="testi-name">Laura D.</div><div class="testi-role">38 anni, Responsabile HR</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div style="color:var(--k-amber);font-size:14px;margin-bottom:12px;letter-spacing:2px;">★★★★★</div>
+          <div class="testi-q">"Quello che mi ha colpito è che <strong>non mi ha classificato</strong>. Mi ha dato <strong>un punto di vista, non un'etichetta</strong>. C'è differenza."</div>
+          <div class="testi-author">
+            <div class="testi-av" style="background:var(--k-green);">GR</div>
+            <div><div class="testi-name">Giulia R.</div><div class="testi-role">31 anni, Libera professionista</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div style="color:var(--k-amber);font-size:14px;margin-bottom:12px;letter-spacing:2px;">★★★★★</div>
+          <div class="testi-q">"Ho scoperto che <strong>il mio tratto dominante</strong> spiega perché ho sempre faticato in certi contesti. Non era un limite, era <strong>una motivazione diversa</strong>."</div>
+          <div class="testi-author">
+            <div class="testi-av" style="background:var(--k-amber);color:var(--k-black);">MF</div>
+            <div><div class="testi-name">Marco F.</div><div class="testi-role">44 anni, Imprenditore</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec" id="faq-section" style="position:relative;">
+    <!-- Scattered decorative Karakter logo -->
+    <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/logo%20nero.png" alt="" style="position:absolute;width:28px;opacity:.04;top:15%;left:8%;transform:rotate(22deg);z-index:0;pointer-events:none;">
+    <div class="sec-inner" style="max-width:680px;">
+      <div class="rv">
+        <div class="sec-label">// faq</div>
+        <h2 class="sec-headline">Chiarezza Su<br>Tutto <span class="hl">Il Resto</span></h2>
+      </div>
+      <div class="rv rv-d1">
+        <div class="faq-tabs">
+          <button class="faq-tab active" onclick="filterFaq('all',this)">Tutti</button>
+          <button class="faq-tab" onclick="filterFaq('quiz',this)">Quiz</button>
+          <button class="faq-tab" onclick="filterFaq('risultati',this)">Risultati</button>
+          <button class="faq-tab" onclick="filterFaq('privacy',this)">Privacy</button>
+        </div>
+      </div>
+      <div id="faq-list">
+        <div class="faq-item rv rv-d1" data-cat="quiz">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Il quiz è davvero gratuito?</span><span class="faq-toggle">+</span></div>
+          <div class="faq-a">Sì, <strong>completamente</strong>. Non serve registrarsi, non ci sono step nascosti. Fai le 24 domande, ricevi la tua mappa motivazionale.</div>
+        </div>
+        <div class="faq-item rv rv-d2" data-cat="quiz">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Quanto tempo ci vuole?</span><span class="faq-toggle">+</span></div>
+          <div class="faq-a">Tra i 5 e gli 8 minuti. Le domande sono scenari brevi e concreti: rispondi in modo istintivo. È anche quello il punto.</div>
+        </div>
+        <div class="faq-item rv rv-d3" data-cat="risultati">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Cosa ottengo alla fine?</span><span class="faq-toggle">+</span></div>
+          <div class="faq-a">Ricevi la tua <strong>Karakter</strong>: i tre tratti Karakter dominanti, con una descrizione di come si combinano tra loro e cosa dicono di come lavori, scegli e ti relazioni.</div>
+        </div>
+        <div class="faq-item rv rv-d4" data-cat="risultati">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Il risultato può cambiare nel tempo?</span><span class="faq-toggle">+</span></div>
+          <div class="faq-a">I driver motivazionali profondi tendono a essere stabili. Quello che cambia, con la consapevolezza, è il modo in cui li riconosci e li usi.</div>
+        </div>
+        <div class="faq-item rv rv-d5" data-cat="quiz">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>C'è qualcosa di più approfondito dopo?</span><span class="faq-toggle">+</span></div>
+          <div class="faq-a">Sì. Alla fine del quiz troverai la possibilità di andare più a fondo: un percorso individuale con restituzione personalizzata da un <strong>coach certificato Karakter</strong>.</div>
+        </div>
+        <div class="faq-item rv rv-d5" data-cat="privacy">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>I miei dati sono al sicuro?</span><span class="faq-toggle">+</span></div>
+          <div class="faq-a">Assolutamente. I tuoi dati vengono trattati nel rispetto della normativa GDPR. Nessuno spam, mai. Li usiamo solo per inviarti i risultati del quiz.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA -->
+  <section class="footer-cta">
+    <!-- Scattered decorative logos -->
+    <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/logo%20bianco.png" alt="" style="position:absolute;width:28px;opacity:.06;top:15%;left:8%;transform:rotate(-15deg);z-index:0;pointer-events:none;">
+    <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/logo%20bianco.png" alt="" style="position:absolute;width:20px;opacity:.04;top:30%;right:12%;transform:rotate(10deg);z-index:0;pointer-events:none;">
+    <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/logo%20bianco.png" alt="" style="position:absolute;width:35px;opacity:.05;bottom:25%;left:15%;transform:rotate(25deg);z-index:0;pointer-events:none;">
+    <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/logo%20bianco.png" alt="" style="position:absolute;width:22px;opacity:.04;top:20%;right:25%;transform:rotate(-8deg);z-index:0;pointer-events:none;">
+    <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/logo%20bianco.png" alt="" style="position:absolute;width:18px;opacity:.05;bottom:35%;right:8%;transform:rotate(20deg);z-index:0;pointer-events:none;">
+    <img src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/logo%20bianco.png" alt="" style="position:absolute;width:24px;opacity:.03;top:45%;left:5%;transform:rotate(35deg);z-index:0;pointer-events:none;">
+    <div class="footer-cta-inner rv">
+      <p style="font-family:var(--font-display);font-size:clamp(24px,3.5vw,40px);font-style:italic;color:var(--k-white);margin-bottom:12px;">Il Tuo Karakter Esiste Già.</p>
+      <h2 style="font-family:var(--font-headline);font-weight:800;font-size:clamp(64px,12vw,130px);line-height:.9;letter-spacing:-.03em;margin-bottom:16px;color:var(--k-white);">Adesso Puoi<br><span style="position:relative;display:inline-block;">Vederlo<span style="position:absolute;left:-4px;right:-4px;bottom:0;height:35%;background:#ffc200;border-radius:3px;z-index:-1;opacity:.6;"></span></span></h2>
+      <p style="font-size:clamp(16px,2vw,22px);color:rgba(255,255,255,.5);margin-bottom:40px;"><strong style="color:var(--k-white);">24 domande</strong>. 5 minuti. Nessun costo.</p>
+      <button class="btn-main" onclick="startQuiz()" style="background:var(--k-amber);color:var(--k-black);margin:0 auto;">
+        <span>Fai il quiz gratuito</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <div class="footer-trust" style="margin-top:20px;">
+        <span style="color:rgba(255,255,255,.4);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Dati protetti</span>
+        <span style="color:rgba(255,255,255,.4);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Risultato immediato</span>
+        <span style="color:rgba(255,255,255,.4);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/></svg> 100% gratuito</span>
+      </div>
+    </div>
+    <div id="falling-container" style="position:relative;width:100%;max-width:2560px;height:450px;margin:40px auto 0;overflow:hidden;touch-action:none;cursor:grab;opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease;"></div>
+  </section>
+
+  <!-- BRAND FOOTER -->
+  <footer class="brand-footer">
+    <div>
+      <span style="font-weight:700;font-size:14px;color:var(--k-gray-600);">Karakter<span class="k-nav-dot"></span></span>
+      <span style="margin-left:8px;color:var(--k-gray-300);">Coaching School</span>
+    </div>
+    <div style="display:flex;gap:20px;">
+      <a href="#">Privacy</a>
+      <a href="#">Termini</a>
+    </div>
+  </footer>
+
+</div><!-- /sec-landing -->
+
+<!-- ══════════════════════════════════════════════════════════════
+     QUIZ (24 domande, 3 blocchi)
+══════════════════════════════════════════════════════════════ -->
+<div id="sec-quiz" class="page-section">
+  <div style="max-width:640px;margin:0 auto;padding:100px 20px 80px;">
+    <div style="margin-bottom:28px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+        <span id="prog-label" style="font-size:13px;color:var(--k-gray-400);font-weight:500;">Domanda 1 di 24</span>
+        <span id="prog-block" style="font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--k-amber-dark);">Blocco 1 / 3</span>
+      </div>
+      <div class="progress-track"><div id="prog-fill" class="progress-fill" style="width:4%;"></div></div>
+    </div>
+    <div id="q-card" class="q-container" style="background:var(--k-white);border:1px solid var(--k-gray-100);border-radius:24px;padding:32px 28px;margin-bottom:16px;box-shadow:0 2px 20px rgba(0,0,0,.04);">
+      <div id="q-tag" style="font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--k-amber-dark);margin-bottom:12px;">BLOCCO 1 — VITA QUOTIDIANA</div>
+      <div id="q-text" style="font-size:16px;font-weight:500;line-height:1.55;margin-bottom:10px;letter-spacing:-.01em;"></div>
+      <div id="q-sub" style="font-size:14px;color:var(--k-gray-400);line-height:1.6;margin-bottom:16px;display:none;"></div>
+      <div id="q-options"></div>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <button class="btn-quiz-back" id="btn-back" onclick="quizBack()" style="visibility:hidden;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Indietro
+      </button>
+      <button class="btn-quiz-next" id="btn-next" onclick="quizNext()">Avanti</button>
+    </div>
+    <p style="font-family:var(--font-mono);font-size:10px;color:var(--k-gray-300);text-align:center;margin-top:16px;">A B C D per selezionare · Invio per avanzare · Backspace per tornare</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FORM GATE
+══════════════════════════════════════════════════════════════ -->
+<div id="sec-form" class="page-section">
+  <div style="max-width:520px;margin:0 auto;padding:120px 20px 80px;text-align:center;">
+    <div style="margin-bottom:28px;">
+      <div class="sec-label" style="justify-content:center;text-align:center;margin-bottom:16px;">// il tuo karakter è stato calcolato</div>
+      <div style="background:var(--k-white);border:1.5px solid var(--k-gray-200);border-radius:20px;padding:28px;box-shadow:0 4px 24px rgba(0,0,0,.04);">
+        <div style="font-size:12px;color:var(--k-gray-400);margin-bottom:10px;font-family:var(--font-mono);letter-spacing:.04em;text-transform:uppercase;">I tuoi 3 tratti dominanti</div>
+        <div class="score-blur" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
+          <span style="background:var(--k-bg-warm);border:1px solid rgba(242,183,5,.3);padding:8px 18px;border-radius:100px;font-weight:600;font-size:13px;">LA BUSSOLA</span>
+          <span style="background:var(--k-bg-warm);border:1px solid rgba(242,183,5,.3);padding:8px 18px;border-radius:100px;font-weight:600;font-size:13px;">IL FUOCO</span>
+          <span style="background:var(--k-bg-warm);border:1px solid rgba(242,183,5,.3);padding:8px 18px;border-radius:100px;font-weight:600;font-size:13px;">LA MAPPA</span>
+        </div>
+        <div class="score-blur" style="font-size:13px;color:var(--k-gray-500);line-height:1.6;">Una combinazione unica tra le 220 possibili...</div>
+      </div>
+    </div>
+    <h2 class="sec-headline" style="font-size:clamp(28px,5vw,40px);margin-bottom:10px;">Sblocca il tuo<br>profilo <span class="hl">completo</span></h2>
+    <p style="font-size:15px;color:var(--k-gray-500);line-height:1.6;margin-bottom:28px;">Inserisci la tua email per ricevere la tua mappa motivazionale.</p>
+    <div style="background:var(--k-white);border:1px solid var(--k-gray-100);border-radius:20px;padding:28px;text-align:left;box-shadow:0 2px 16px rgba(0,0,0,.03);">
+      <div id="hs-form-container"></div>
+      <p style="font-size:11px;color:var(--k-gray-400);text-align:center;margin-top:14px;">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:3px;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        I tuoi dati sono al sicuro. Nessuno spam, mai.
+      </p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /karakter-app -->
+
+</div>
+<script src="https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/elementor-ready/mobile-script.js"></script>
