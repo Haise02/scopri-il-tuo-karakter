@@ -1,4 +1,4 @@
-@font-face{font-family:'Halfre';src:url('https://raw.githubusercontent.com/Haise02/scopri-il-tuo-karakter/main/halfre.ttf') format('truetype');font-weight:400 900;font-display:swap;}
+@font-face{font-family:'Halfre';src:url('https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/halfre.ttf') format('truetype');font-weight:400 900;font-display:swap;}
 
 /* ══ RESET ══ */
 *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
