@@ -296,7 +296,11 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
 .hfc-sub{font-size:11px;color:var(--k-gray-400);line-height:1.4;}
 
 @media(max-width:640px){
-  .hero-float-cards{grid-template-columns:1fr;gap:10px;}
+  .hero-float-cards{grid-template-columns:1fr;gap:8px;}
+  .hero-float-card{flex-direction:row;align-items:center;gap:12px;padding:10px 14px;}
+  .hfc-icon{margin-bottom:0;flex-shrink:0;width:28px;height:28px;font-size:14px;border-radius:8px;}
+  .hfc-title{font-size:12px;margin-bottom:1px;}
+  .hfc-sub{font-size:10px;}
   .hero{padding:100px 16px 32px;}
 }
 
