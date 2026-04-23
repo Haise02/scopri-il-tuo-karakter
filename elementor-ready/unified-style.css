@@ -755,33 +755,38 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
     font-size:15px !important;margin-bottom:20px !important;min-height:auto !important;
     line-height:1.55 !important;
   }
-  /* Grid: row 1 = dots full width, row 2 = labels */
+  /* Dots full width, labels positioned below */
   .likert-wrap{
-    display:grid !important;
-    grid-template-columns:1fr 1fr !important;
-    grid-template-rows:auto auto !important;
-    gap:10px 0 !important;
-    padding:0 !important;
-    align-items:start !important;
+    display:flex !important;
+    flex-wrap:wrap !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:0 !important;
+    padding:0 0 24px !important;
+    position:relative !important;
   }
   .likert-dots{
-    grid-column:1/-1 !important;grid-row:1 !important;
+    order:1 !important;
     width:100% !important;max-width:100% !important;
     display:flex !important;justify-content:space-around !important;gap:0 !important;
     flex:none !important;
+    margin-bottom:0 !important;
   }
   .likert-label{
-    width:auto !important;flex-shrink:1 !important;
+    display:block !important;
+    width:auto !important;
+    font-size:9px !important;
+    letter-spacing:.05em !important;
+    position:absolute !important;
+    bottom:0 !important;
   }
   .likert-label-left{
-    grid-column:1 !important;grid-row:2 !important;
-    text-align:left !important;justify-self:start !important;
-    font-size:9px !important;padding-left:6px !important;
+    left:4px !important;
+    text-align:left !important;
   }
   .likert-label-right{
-    grid-column:2 !important;grid-row:2 !important;
-    text-align:right !important;justify-self:end !important;
-    font-size:9px !important;padding-right:6px !important;
+    right:4px !important;
+    text-align:right !important;
   }
   .ld-1 span,.ld-6 span{width:42px !important;height:42px !important;}
   .ld-2 span,.ld-5 span{width:34px !important;height:34px !important;}
@@ -789,7 +794,7 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
   .likert-dot{padding:4px !important;flex:none !important;}
   .quiz-progress-wrap{margin-bottom:28px !important;}
   /* Hide connecting line on mobile */
-  .likert-line-wrap{display:none !important;}
+  .likert-line-wrap{display:none !important;height:0 !important;overflow:hidden !important;visibility:hidden !important;}
   .quiz-counter{margin-top:20px !important;}
 }
 @media(max-width:380px){
