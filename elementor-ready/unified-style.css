@@ -598,7 +598,7 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
 .brand-footer a{color:var(--k-gray-400);text-decoration:none;}
 .brand-footer a:hover{color:var(--k-black);}
 
-/* ══ QUIZ — Likert 16 affermazioni ══ */
+/* ══ QUIZ — Likert 20 affermazioni ══ */
 .quiz-shell{
   max-width:640px;margin:0 auto;padding:100px 20px 80px;
   display:flex;flex-direction:column;align-items:center;min-height:100vh;
@@ -641,16 +641,20 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
   display:flex;align-items:center;gap:16px;
   justify-content:center;
   position:relative;
-  padding:0 4px;
+  padding:0 4px 28px;
 }
 .likert-label{
   font-family:var(--font-mono);font-size:10px;font-weight:500;
   letter-spacing:.06em;text-transform:uppercase;
   color:var(--k-gray-400);flex-shrink:0;
-  width:72px;
+  width:90px;
 }
 .likert-label-left{text-align:right;}
 .likert-label-right{text-align:left;}
+.likert-label-center{
+  position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);
+  text-align:center;white-space:nowrap;
+}
 .likert-dots{
   display:flex;align-items:center;justify-content:center;
   gap:0;position:relative;z-index:2;
@@ -662,7 +666,7 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
   position:absolute;
   left:50%;top:50%;
   transform:translate(-50%,-50%);
-  width:calc(100% - 164px);max-width:280px;
+  width:calc(100% - 200px);max-width:280px;
   height:2px;pointer-events:none;z-index:0;
 }
 .likert-line{
@@ -682,32 +686,31 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
 }
 .likert-dot span{
   display:block;border-radius:50%;
-  background:var(--k-gray-200);
+  background:var(--k-gray-100);
+  border:2.5px solid var(--k-gray-300);
   transition:all .25s cubic-bezier(.16,1,.3,1);
+  box-sizing:border-box;
 }
 /* Sizes: extremes larger, middle smaller */
 .ld-1 span,.ld-6 span{width:44px;height:44px;}
 .ld-2 span,.ld-5 span{width:36px;height:36px;}
 .ld-3 span,.ld-4 span{width:28px;height:28px;}
 
-/* Hover */
-.likert-dot:hover span{
-  background:var(--k-gray-300);
-  transform:scale(1.12);
-}
-/* Selected */
-.likert-dot.selected span{
-  background:var(--k-amber);
-  box-shadow:0 0 0 4px rgba(242,183,5,.2),0 4px 16px rgba(242,183,5,.25);
-  transform:scale(1.15);
-}
-/* Dot color gradient on selection (left=cool, right=warm) */
-.ld-1.selected span{background:#E2EBF0;}
-.ld-2.selected span{background:#B8D8DA;}
-.ld-3.selected span{background:#D4D9A0;}
-.ld-4.selected span{background:#F0D060;}
-.ld-5.selected span{background:var(--k-amber);box-shadow:0 0 0 4px rgba(242,183,5,.2),0 4px 16px rgba(242,183,5,.25);}
-.ld-6.selected span{background:#F2B705;box-shadow:0 0 0 5px rgba(242,183,5,.25),0 6px 20px rgba(242,183,5,.3);}
+/* Colored strokes per position: red (left), amber (center), green (right) */
+.ld-1 span,.ld-2 span{border-color:#D94F4F;}
+.ld-3 span,.ld-4 span{border-color:#F2B705;}
+.ld-5 span,.ld-6 span{border-color:#3b9e54;}
+
+/* Hover — fill with stroke color */
+.ld-1:hover span,.ld-2:hover span{background:#D94F4F;transform:scale(1.12);}
+.ld-3:hover span,.ld-4:hover span{background:#F2B705;transform:scale(1.12);}
+.ld-5:hover span,.ld-6:hover span{background:#3b9e54;transform:scale(1.12);}
+
+/* Selected — fill with stroke color + glow */
+.likert-dot.selected span{transform:scale(1.15);}
+.ld-1.selected span,.ld-2.selected span{background:#D94F4F;box-shadow:0 0 0 4px rgba(217,79,79,.2),0 4px 16px rgba(217,79,79,.25);}
+.ld-3.selected span,.ld-4.selected span{background:#F2B705;box-shadow:0 0 0 4px rgba(242,183,5,.2),0 4px 16px rgba(242,183,5,.25);}
+.ld-5.selected span,.ld-6.selected span{background:#3b9e54;box-shadow:0 0 0 4px rgba(59,158,84,.2),0 4px 16px rgba(59,158,84,.25);}
 
 /* Counter badge */
 .quiz-counter{
@@ -718,13 +721,35 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
 .quiz-counter-n{font-weight:700;color:var(--k-gray-600);font-size:18px;}
 .quiz-counter-sep{margin:0 4px;}
 
+/* Loading screen */
+.quiz-loading{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:100vh;padding:40px 20px;text-align:center;
+}
+.quiz-loading-text{
+  font-family:var(--font-mono);font-size:13px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--k-gray-500);margin-bottom:28px;
+}
+.quiz-loading-bar-wrap{
+  width:100%;max-width:320px;height:4px;
+  background:var(--k-gray-100);border-radius:100px;overflow:hidden;
+}
+.quiz-loading-bar{
+  height:100%;width:0;border-radius:100px;
+  background:var(--k-gradient);background-size:200% 200%;
+  animation:gradientShift 4s ease infinite,loadingFill 2.4s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes loadingFill{0%{width:0;}100%{width:100%;}}
+
 /* Mobile quiz overrides */
 @media(max-width:640px){
   .quiz-shell{padding:80px 16px 60px;}
   .q-card{padding:32px 20px 28px;border-radius:22px;}
   .q-statement{font-size:16px;margin-bottom:32px;min-height:48px;}
-  .likert-wrap{gap:8px;}
-  .likert-label{font-size:9px;width:52px;}
+  .likert-wrap{gap:6px;flex-wrap:wrap;}
+  .likert-label{font-size:8px;width:auto;min-width:44px;}
+  .likert-label-center{font-size:7px;position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);width:auto;}
   .ld-1 span,.ld-6 span{width:38px;height:38px;}
   .ld-2 span,.ld-5 span{width:30px;height:30px;}
   .ld-3 span,.ld-4 span{width:24px;height:24px;}
@@ -732,7 +757,8 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
   .quiz-progress-wrap{margin-bottom:32px;}
 }
 @media(max-width:380px){
-  .likert-label{display:none;}
+  .likert-label-left,.likert-label-right{display:none;}
+  .likert-label-center{display:none;}
   .ld-1 span,.ld-6 span{width:34px;height:34px;}
   .ld-2 span,.ld-5 span{width:28px;height:28px;}
   .ld-3 span,.ld-4 span{width:22px;height:22px;}

@@ -289,28 +289,32 @@ function filterFaq(cat,btn){
 })();
 
 /* ══════════════════════════════════════════
-   QUIZ ENGINE — 16 affermazioni, Likert 1–6
+   QUIZ ENGINE — 20 affermazioni, Likert 1–6
 ══════════════════════════════════════════ */
 var TRAITS={BUSSOLA:{name:"La Bussola"},FUOCO:{name:"Il Fuoco"},MAPPA:{name:"La Mappa"},FILO:{name:"Il Filo"},RADICE:{name:"La Radice"},ONDA:{name:"L'Onda"},SCUDO:{name:"Lo Scudo"},PALCO:{name:"Il Palco"},PONTE:{name:"Il Ponte"},RITMO:{name:"Il Ritmo"},LENTE:{name:"La Lente"},VENTO:{name:"Il Vento"}};
 
-/* 16 affermazioni — ogni affermazione mappa a 1 tratto */
+/* 20 affermazioni — ogni affermazione mappa a 1 tratto */
 var STATEMENTS=[
   {text:"Fatico a ignorare qualcosa che sento sbagliato, anche quando intorno a me tutti tacciono.",trait:"BUSSOLA"},
   {text:"Ho bisogno di capire davvero come funziona una cosa prima di muovermi.",trait:"MAPPA"},
-  {text:"Quando credo in un obiettivo, sono disposto/a a metterci tutto \u2014 anche pi\u00f9 di quanto sarebbe ragionevole.",trait:"FUOCO"},
+  {text:"Quando credo in un obiettivo, sono disposto/a a metterci tutto, anche pi\u00f9 di quanto sarebbe ragionevole.",trait:"FUOCO"},
   {text:"Mi accorgo quasi subito quando qualcuno nel gruppo sta male, anche se non lo dice.",trait:"FILO"},
   {text:"Preferisco costruire qualcosa che dura piuttosto che andare veloce e aggiustare dopo.",trait:"RADICE"},
-  {text:"Ho bisogno di muovermi fisicamente \u2014 camminare, uscire, staccare \u2014 per pensare meglio.",trait:"ONDA"},
+  {text:"Ho bisogno di muovermi fisicamente, camminare, uscire, staccare, per pensare meglio.",trait:"ONDA"},
   {text:"Nelle situazioni di tensione o crisi, tendo ad abbassare la voce mentre gli altri la alzano.",trait:"SCUDO"},
   {text:"Ci tengo a come si presenta il mio lavoro, non solo a cosa contiene.",trait:"PALCO"},
   {text:"Quello che faccio deve avere un impatto che va oltre il mio vantaggio personale.",trait:"PONTE"},
-  {text:"Il mio corpo mi dice con precisione quando sono in forma e quando no \u2014 e mi fido di quei segnali.",trait:"RITMO"},
-  {text:"Trovo spesso l\u2019errore nel ragionamento che tutti gli altri hanno gi\u00e0 dato per buono.",trait:"LENTE"},
+  {text:"Il mio corpo mi dice con precisione quando sono in forma e quando no, e mi fido di quei segnali.",trait:"RITMO"},
+  {text:"Trovo spesso l'errore nel ragionamento che tutti gli altri hanno gi\u00e0 dato per buono.",trait:"LENTE"},
   {text:"Non riesco a seguire una regola o una procedura se non capisco perch\u00e9 esiste.",trait:"VENTO"},
   {text:"Prima di accettare un impegno importante, mi chiedo se \u00e8 davvero coerente con quello in cui credo.",trait:"BUSSOLA"},
-  {text:"Ricordo a lungo quando qualcuno non ha riconosciuto il mio contributo \u2014 non per rancore, ma come dato.",trait:"FUOCO"},
-  {text:"Faccio fatica a buttare via quello che ho costruito \u2014 un progetto, una relazione, un metodo \u2014 senza un motivo solido.",trait:"RADICE"},
-  {text:"Quasi sempre trovo un modo diverso da quello standard per fare le cose \u2014 e spesso funziona meglio.",trait:"VENTO"}
+  {text:"Ricordo a lungo quando qualcuno non ha riconosciuto il mio contributo, non per rancore, ma come dato.",trait:"FUOCO"},
+  {text:"Faccio fatica a buttare via quello che ho costruito, un progetto, una relazione, un metodo, senza un motivo solido.",trait:"RADICE"},
+  {text:"Quasi sempre trovo un modo diverso da quello standard per fare le cose, e spesso funziona meglio.",trait:"VENTO"},
+  {text:"Quando spiego qualcosa, ho bisogno di partire dal quadro generale prima di entrare nei dettagli.",trait:"MAPPA"},
+  {text:"Nelle relazioni importanti, sono io che faccio il primo passo per chiarire un malinteso.",trait:"FILO"},
+  {text:"Quando presento un'idea, penso sempre a come renderla memorabile per chi ascolta.",trait:"PALCO"},
+  {text:"Se il mio ritmo naturale viene forzato troppo a lungo, lo sento nel corpo prima che nella testa.",trait:"RITMO"}
 ];
 
 var currentQ=0;
@@ -335,7 +339,7 @@ function calcResults(){
     scores[k]=counts[k]>0?Math.round((sums[k]/counts[k])*100)/100:0;
   });
   /* Ordina: score desc, parità → tratti con più affermazioni (×2) vincono */
-  var traitsWithTwo={BUSSOLA:1,FUOCO:1,RADICE:1,VENTO:1};
+  var traitsWithTwo={BUSSOLA:1,FUOCO:1,RADICE:1,VENTO:1,MAPPA:1,FILO:1,PALCO:1,RITMO:1};
   var sorted=Object.keys(scores).sort(function(a,b){
     if(scores[b]!==scores[a])return scores[b]-scores[a];
     return (traitsWithTwo[b]||0)-(traitsWithTwo[a]||0);
@@ -392,9 +396,12 @@ function renderStatement(){
   document.getElementById('prog-fill').style.width=pct+'%';
   document.getElementById('q-text').textContent=s.text;
   document.getElementById('q-counter-current').textContent=String(currentQ+1).padStart(2,'0');
-  /* Reset dots */
+  /* Reset dots — force clean state */
   document.querySelectorAll('.likert-dot').forEach(function(d){
     d.classList.remove('selected');
+    d.querySelector('span').style.background='';
+    d.querySelector('span').style.boxShadow='';
+    d.querySelector('span').style.transform='';
   });
   /* If already answered (shouldn't happen — no back), highlight */
   if(answers[currentQ]!==null){
@@ -441,18 +448,25 @@ function advanceQuiz(){
 }
 
 function showFormSection(results){
-  var tc=document.querySelector('.score-blur');
-  if(tc){
-    var h='';
-    results.top3.forEach(function(t){
-      h+='<span style="background:var(--k-bg-warm);border:1px solid rgba(242,183,5,.3);padding:8px 18px;border-radius:100px;font-weight:600;font-size:13px;">'+TRAITS[t].name+'</span>';
-    });
-    tc.innerHTML=h;
-  }
-  showSection('sec-form');
-  mountEmailForm(results);
+  /* Show loading screen first */
+  showSection('sec-loading');
+  var bar=document.getElementById('loading-bar');
+  if(bar){bar.style.animation='none';bar.offsetHeight;bar.style.animation='gradientShift 4s ease infinite,loadingFill 2.4s cubic-bezier(.4,0,.2,1) forwards';}
   if(typeof gtag==='function')gtag('event','quiz_completed',{event_category:'quiz'});
   if(typeof dataLayer!=='undefined')dataLayer.push({event:'quiz_completed'});
+  /* After loading animation, show form */
+  setTimeout(function(){
+    var tc=document.querySelector('.score-blur');
+    if(tc){
+      var h='';
+      results.top3.forEach(function(t){
+        h+='<span style="background:var(--k-bg-warm);border:1px solid rgba(242,183,5,.3);padding:8px 18px;border-radius:100px;font-weight:600;font-size:13px;">'+TRAITS[t].name+'</span>';
+      });
+      tc.innerHTML=h;
+    }
+    showSection('sec-form');
+    mountEmailForm(results);
+  },2800);
 }
 
 /* ══ EMAIL FORM PLACEHOLDER ══
