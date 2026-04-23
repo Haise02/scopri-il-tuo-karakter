@@ -746,21 +746,44 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
 /* Mobile quiz overrides */
 @media(max-width:640px){
   .quiz-shell{padding:80px 16px 60px;}
-  .q-card{padding:32px 20px 28px;border-radius:22px;}
-  .q-statement{font-size:16px;margin-bottom:32px;min-height:48px;}
-  .likert-wrap{gap:6px;flex-wrap:wrap;}
-  .likert-label{font-size:8px;width:auto;min-width:44px;}
-  .ld-1 span,.ld-6 span{width:38px;height:38px;}
-  .ld-2 span,.ld-5 span{width:30px;height:30px;}
-  .ld-3 span,.ld-4 span{width:24px;height:24px;}
+  .q-card{padding:32px 16px 24px;border-radius:22px;}
+  .q-statement{font-size:16px;margin-bottom:28px;min-height:48px;}
+  /* Grid layout: dots span full width, labels below left/right */
+  .likert-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:auto auto;
+    gap:10px 0;
+    padding:0;
+    justify-items:center;
+  }
+  .likert-dots{
+    grid-column:1/-1;grid-row:1;
+    width:100%;max-width:100%;
+    display:flex;justify-content:center;gap:0;
+  }
+  .likert-label-left{
+    grid-column:1;grid-row:2;
+    text-align:left;justify-self:start;
+    width:auto;font-size:9px;padding-left:4px;
+  }
+  .likert-label-right{
+    grid-column:2;grid-row:2;
+    text-align:right;justify-self:end;
+    width:auto;font-size:9px;padding-right:4px;
+  }
+  .ld-1 span,.ld-6 span{width:42px;height:42px;}
+  .ld-2 span,.ld-5 span{width:34px;height:34px;}
+  .ld-3 span,.ld-4 span{width:26px;height:26px;}
   .likert-dot{padding:6px;}
   .quiz-progress-wrap{margin-bottom:32px;}
+  .likert-line-wrap{display:none;}
 }
 @media(max-width:380px){
-  .likert-label-left,.likert-label-right{display:none;}
-  .ld-1 span,.ld-6 span{width:34px;height:34px;}
-  .ld-2 span,.ld-5 span{width:28px;height:28px;}
+  .ld-1 span,.ld-6 span{width:38px;height:38px;}
+  .ld-2 span,.ld-5 span{width:30px;height:30px;}
   .ld-3 span,.ld-4 span{width:22px;height:22px;}
+  .likert-dot{padding:4px;}
 }
 
 /* ══ FORM (placeholder — stili per il form email generico) ══ */
