@@ -641,7 +641,7 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
   display:flex;align-items:center;gap:16px;
   justify-content:center;
   position:relative;
-  padding:0 4px 28px;
+  padding:0 4px;
 }
 .likert-label{
   font-family:var(--font-mono);font-size:10px;font-weight:500;
@@ -651,10 +651,6 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
 }
 .likert-label-left{text-align:right;}
 .likert-label-right{text-align:left;}
-.likert-label-center{
-  position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);
-  text-align:center;white-space:nowrap;
-}
 .likert-dots{
   display:flex;align-items:center;justify-content:center;
   gap:0;position:relative;z-index:2;
@@ -696,21 +692,18 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
 .ld-2 span,.ld-5 span{width:36px;height:36px;}
 .ld-3 span,.ld-4 span{width:28px;height:28px;}
 
-/* Colored strokes per position: red (left), amber (center), green (right) */
-.ld-1 span,.ld-2 span{border-color:#D94F4F;}
-.ld-3 span,.ld-4 span{border-color:#F2B705;}
-.ld-5 span,.ld-6 span{border-color:#3b9e54;}
+/* Colored strokes: 1-2-3 red (left), 4-5-6 green (right) */
+.ld-1 span,.ld-2 span,.ld-3 span{border-color:#D94F4F;}
+.ld-4 span,.ld-5 span,.ld-6 span{border-color:#3b9e54;}
 
 /* Hover — fill with stroke color */
-.ld-1:hover span,.ld-2:hover span{background:#D94F4F;transform:scale(1.12);}
-.ld-3:hover span,.ld-4:hover span{background:#F2B705;transform:scale(1.12);}
-.ld-5:hover span,.ld-6:hover span{background:#3b9e54;transform:scale(1.12);}
+.ld-1:hover span,.ld-2:hover span,.ld-3:hover span{background:#D94F4F;transform:scale(1.12);}
+.ld-4:hover span,.ld-5:hover span,.ld-6:hover span{background:#3b9e54;transform:scale(1.12);}
 
 /* Selected — fill with stroke color + glow */
 .likert-dot.selected span{transform:scale(1.15);}
-.ld-1.selected span,.ld-2.selected span{background:#D94F4F;box-shadow:0 0 0 4px rgba(217,79,79,.2),0 4px 16px rgba(217,79,79,.25);}
-.ld-3.selected span,.ld-4.selected span{background:#F2B705;box-shadow:0 0 0 4px rgba(242,183,5,.2),0 4px 16px rgba(242,183,5,.25);}
-.ld-5.selected span,.ld-6.selected span{background:#3b9e54;box-shadow:0 0 0 4px rgba(59,158,84,.2),0 4px 16px rgba(59,158,84,.25);}
+.ld-1.selected span,.ld-2.selected span,.ld-3.selected span{background:#D94F4F;box-shadow:0 0 0 4px rgba(217,79,79,.2),0 4px 16px rgba(217,79,79,.25);}
+.ld-4.selected span,.ld-5.selected span,.ld-6.selected span{background:#3b9e54;box-shadow:0 0 0 4px rgba(59,158,84,.2),0 4px 16px rgba(59,158,84,.25);}
 
 /* Counter badge */
 .quiz-counter{
@@ -749,7 +742,6 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
   .q-statement{font-size:16px;margin-bottom:32px;min-height:48px;}
   .likert-wrap{gap:6px;flex-wrap:wrap;}
   .likert-label{font-size:8px;width:auto;min-width:44px;}
-  .likert-label-center{font-size:7px;position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);width:auto;}
   .ld-1 span,.ld-6 span{width:38px;height:38px;}
   .ld-2 span,.ld-5 span{width:30px;height:30px;}
   .ld-3 span,.ld-4 span{width:24px;height:24px;}
@@ -758,7 +750,6 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
 }
 @media(max-width:380px){
   .likert-label-left,.likert-label-right{display:none;}
-  .likert-label-center{display:none;}
   .ld-1 span,.ld-6 span{width:34px;height:34px;}
   .ld-2 span,.ld-5 span{width:28px;height:28px;}
   .ld-3 span,.ld-4 span{width:22px;height:22px;}
