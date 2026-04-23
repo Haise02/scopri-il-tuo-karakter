@@ -415,13 +415,19 @@ function selectLikert(val){
   /* Visual feedback */
   document.querySelectorAll('.likert-dot').forEach(function(d){
     d.classList.remove('selected');
+    d.classList.remove('flash');
   });
   var sel=document.querySelector('.likert-dot[data-val="'+val+'"]');
-  if(sel)sel.classList.add('selected');
+  if(sel){
+    sel.classList.add('selected');
+    /* Flash animation */
+    void sel.offsetWidth;
+    sel.classList.add('flash');
+  }
   /* Analytics */
   if(typeof gtag==='function')gtag('event','quiz_answer',{event_category:'quiz',event_label:'q'+(currentQ+1),value:val});
   if(typeof dataLayer!=='undefined')dataLayer.push({event:'quiz_answer',question:currentQ+1,answer:val});
-  /* Auto-advance after delay */
+  /* Auto-advance after flash */
   var answeredQ=currentQ;
   setTimeout(function(){
     if(currentQ===answeredQ&&answers[answeredQ]!==null)advanceQuiz();

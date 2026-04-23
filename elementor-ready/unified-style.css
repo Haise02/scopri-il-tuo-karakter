@@ -696,14 +696,22 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
 .ld-1 span,.ld-2 span,.ld-3 span{border-color:#D94F4F;}
 .ld-4 span,.ld-5 span,.ld-6 span{border-color:#3b9e54;}
 
-/* Hover — fill with stroke color */
-.ld-1:hover span,.ld-2:hover span,.ld-3:hover span{background:#D94F4F;transform:scale(1.12);}
-.ld-4:hover span,.ld-5:hover span,.ld-6:hover span{background:#3b9e54;transform:scale(1.12);}
+/* Hover — fill with stroke color, no glow, no scale */
+.ld-1:hover span,.ld-2:hover span,.ld-3:hover span{background:#D94F4F;}
+.ld-4:hover span,.ld-5:hover span,.ld-6:hover span{background:#3b9e54;}
 
-/* Selected — fill with stroke color + glow */
-.likert-dot.selected span{transform:scale(1.15);}
-.ld-1.selected span,.ld-2.selected span,.ld-3.selected span{background:#D94F4F;box-shadow:0 0 0 4px rgba(217,79,79,.2),0 4px 16px rgba(217,79,79,.25);}
-.ld-4.selected span,.ld-5.selected span,.ld-6.selected span{background:#3b9e54;box-shadow:0 0 0 4px rgba(59,158,84,.2),0 4px 16px rgba(59,158,84,.25);}
+/* Selected — fill only, no box-shadow */
+.ld-1.selected span,.ld-2.selected span,.ld-3.selected span{background:#D94F4F;}
+.ld-4.selected span,.ld-5.selected span,.ld-6.selected span{background:#3b9e54;}
+
+/* Flash animation on click */
+@keyframes dotFlash{
+  0%{opacity:1;}
+  30%{opacity:.4;}
+  60%{opacity:1;}
+  100%{opacity:1;}
+}
+.likert-dot.flash span{animation:dotFlash .45s ease;}
 
 /* Counter badge */
 .quiz-counter{
