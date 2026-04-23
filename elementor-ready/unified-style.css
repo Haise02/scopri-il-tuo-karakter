@@ -683,7 +683,7 @@ mark{background:rgba(242,183,5,.18);padding:0 4px;border-radius:3px;color:inheri
 .likert-dot span{
   display:block;border-radius:50%;
   background:var(--k-gray-100);
-  border:2.5px solid var(--k-gray-300);
+  border:3.5px solid var(--k-gray-300);
   transition:all .25s cubic-bezier(.16,1,.3,1);
   box-sizing:border-box;
 }
