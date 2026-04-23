@@ -289,49 +289,62 @@ function filterFaq(cat,btn){
 })();
 
 /* ══════════════════════════════════════════
-   QUIZ ENGINE — 24 domande, 12 tratti
+   QUIZ ENGINE — 16 affermazioni, Likert 1–6
 ══════════════════════════════════════════ */
 var TRAITS={BUSSOLA:{name:"La Bussola"},FUOCO:{name:"Il Fuoco"},MAPPA:{name:"La Mappa"},FILO:{name:"Il Filo"},RADICE:{name:"La Radice"},ONDA:{name:"L'Onda"},SCUDO:{name:"Lo Scudo"},PALCO:{name:"Il Palco"},PONTE:{name:"Il Ponte"},RITMO:{name:"Il Ritmo"},LENTE:{name:"La Lente"},VENTO:{name:"Il Vento"}};
-var SCORING=[["PONTE","FUOCO","LENTE","BUSSOLA"],["MAPPA","FILO","FUOCO","ONDA"],["PALCO","PONTE","SCUDO","LENTE"],["SCUDO","MAPPA","LENTE","FILO"],["RADICE","ONDA","SCUDO","VENTO"],["MAPPA","RADICE","SCUDO","BUSSOLA"],["PONTE","VENTO","PALCO","RITMO"],["LENTE","SCUDO","FILO","FUOCO"],["MAPPA","RITMO","RADICE","SCUDO"],["PALCO","FUOCO","LENTE","FILO"],["RITMO","ONDA","MAPPA","PONTE"],["MAPPA","FILO","RADICE","BUSSOLA"],["PALCO","PONTE","SCUDO","BUSSOLA"],["RITMO","BUSSOLA","FUOCO","VENTO"],["PALCO","VENTO","MAPPA","LENTE"],["ONDA","PALCO","VENTO","SCUDO"],["ONDA","BUSSOLA","FILO","PONTE"],["FILO","MAPPA","RADICE","LENTE"],["RADICE","ONDA","VENTO","LENTE"],["BUSSOLA","FUOCO","RITMO","RADICE"],["VENTO","PALCO","ONDA","RITMO"],["BUSSOLA","PONTE","FILO","RITMO"],["FUOCO","ONDA","VENTO","RADICE"],["PALCO","RITMO","FUOCO","PONTE"]];
-var QUESTIONS=[
-{block:1,tag:"Vita quotidiana",text:"Stai per iniziare un nuovo progetto con un team che non conosci. Il primo briefing dura venti minuti. Come arrivi alla prima riunione operativa?",opts:[{l:"A",t:"Hai gia' capito come si collegano i diversi ruoli e hai in testa una proposta su come far fluire meglio il lavoro."},{l:"B",t:"Hai identificato chi ha piu' influenza nel gruppo e stai gia' pensando a come posizionarti per guidare le decisioni chiave."},{l:"C",t:"Hai fatto ricerche su ogni componente del team e sul contesto del progetto — vuoi capire prima di muoverti."},{l:"D",t:"Sai gia' se il progetto ti sembra coerente con quello in cui credi. Se non lo e', comincerai a chiederti quanto ci vuole ad allinearlo."}]},
-{block:1,tag:"Vita quotidiana",text:"Un collega ti chiede aiuto con un problema che non e' di tua competenza, ma che sai risolvere. Sei nel mezzo di qualcos'altro. Come reagisci?",opts:[{l:"A",t:"Ti fermi un attimo, ascolti e valuti se puoi capire la radice del problema prima di rispondere."},{l:"B",t:"Lo aiuti, ma anche perche' il legame con lui conta — sai che la prossima volta si ricordera'."},{l:"C",t:"Ti interessa capire se e' un problema che vale la pena risolvere davvero, o se e' un sintomo di qualcosa di piu' grande."},{l:"D",t:"Ti alzi, vai a vederlo di persona, e se puoi lo risolvi in cinque minuti — stare fermi a parlarne ti sembra uno spreco."}]},
-{block:1,tag:"Vita quotidiana",text:"Devi presentare i risultati di sei mesi di lavoro a un pubblico misto: colleghi, clienti, management. Hai due ore per prepararti. Dove le passi?",opts:[{l:"A",t:"Lavori sulla forma: struttura delle slide, tono della narrazione, i dettagli che rendono la presentazione memorabile."},{l:"B",t:"Pensi prima a chi sara' in sala e a come ogni persona recepira' il messaggio — costruisci una storia su misura."},{l:"C",t:"Costruisci uno schema solido: punti chiave, dati di supporto, possibili domande difficili — vuoi sentirti preparato."},{l:"D",t:"Controlli che i dati reggano e che non ci siano contraddizioni — preferiresti avere piu' tempo, ma ti concentri sui punti critici."}]},
-{block:1,tag:"Vita quotidiana",text:"Una mattina scopri che un processo su cui lavori da settimane verra' cambiato radicalmente, con poco preavviso. Come gestisci il momento?",opts:[{l:"A",t:"Ascolti, poi tieni il campo: non ti scomponi davanti agli altri, ma dentro stai gia' analizzando i rischi."},{l:"B",t:"Fai subito domande per capire cosa cambia nel concreto — hai bisogno di sapere come adattarti rapidamente."},{l:"C",t:"Ti prendi il tempo di capire l'impatto sul lavoro degli altri, non solo sul tuo — e se vedi qualcosa di storto, lo dici."},{l:"D",t:"Chiedi i dettagli tecnici: vuoi ricostruire il quadro completo prima di formarti un'opinione."}]},
-{block:1,tag:"Vita quotidiana",text:"Il tuo team lavora da mesi su un obiettivo comune. Siete quasi arrivati, ma mancano ancora alcune settimane. Qual e' il tuo atteggiamento?",opts:[{l:"A",t:"Tieni il ritmo — sai che la coerenza nelle ultime settimane e' quello che spesso fa la differenza tra un buon lavoro e un ottimo lavoro."},{l:"B",t:"Senti l'energia salire: la fase finale ti piace, sei abituato a tirare fuori il meglio quando c'e' qualcosa in gioco."},{l:"C",t:"Ti assicuri che tutto sia ancora in equilibrio — e' il momento in cui si tendono a tagliare le fondamenta per correre."},{l:"D",t:"Preferiresti avere piu' liberta' su come usare queste ultime settimane — la struttura rigida ti pesa un po'."}]},
-{block:1,tag:"Vita quotidiana",text:"Stai valutando se accettare un incarico nuovo e interessante, ma con qualche punto di ambiguita'. Cosa pesa di piu' nella tua decisione?",opts:[{l:"A",t:"Vuoi capire a fondo il contesto — non riesci a decidere senza avere un quadro chiaro di cosa stai davvero facendo."},{l:"B",t:"Valuti la solidita': quanto durera', cosa c'e' dietro, se e' qualcosa su cui vale la pena costruire nel tempo."},{l:"C",t:"Ti chiedi se hai le energie per gestire l'incertezza — l'ambiguita' non ti spaventa, ma vuoi essere lucido."},{l:"D",t:"Ti chiedi se il progetto ha senso per te — non e' una questione di soldi, e' una questione di dove ti porta."}]},
-{block:1,tag:"Vita quotidiana",text:"Sei a una conferenza professionale. Tra i partecipanti ci sono persone che ammiri. Come vivi la giornata?",opts:[{l:"A",t:"Ascolti molto, connetti le idee con cio' in cui credi — se senti qualcosa di importante per la tua causa, lo segni e lo porti avanti."},{l:"B",t:"Ti muovi liberamente: una sessione ti annoia, esci, vai a parlare con qualcuno fuori dalla sala — il format non ti vincola."},{l:"C",t:"Ti preoccupi di come ti presenti — vuoi che la tua presenza lasci un segno, non un'impressione anonima."},{l:"D",t:"Vivi la giornata seguendo un ritmo che funziona per te: sessioni scelte con cura, pause vere, nessuna sovrastimolazione."}]},
-{block:1,tag:"Vita quotidiana",text:"Il tuo team ha appena preso una decisione che ritieni discutibile. Non e' stata chiesta la tua opinione. Come ti comporti?",opts:[{l:"A",t:"La analizzi in dettaglio: cosa potrebbe andare storto, quali dati mancavano, dove si e' ragionato in modo approssimativo."},{l:"B",t:"Non ti spaventa — sai che spesso le decisioni si correggono in corsa, e hai gia' visto scenari peggiori."},{l:"C",t:"Parli con qualcuno di fiducia — non per lamentarti, ma per capire se anche gli altri hanno visto quello che hai visto tu."},{l:"D",t:"Torni sulla decisione con dati alla mano: non lo fai per avere ragione, ma perche' non riesci a lasciar passare qualcosa che non ti sembra giusto."}]},
-{block:2,tag:"Relazioni e sfide",text:"Una persona che lavora con te da mesi ti chiede un feedback sincero. Sai che alcune cose non funzionano. Come gestisci la conversazione?",opts:[{l:"A",t:"Prepari il feedback con cura: vuoi che le osservazioni siano precise, documentate, comprensibili — non improvvisi."},{l:"B",t:"Prima di parlare, ti assicuri di stare bene: una conversazione difficile richiede energia e presenza."},{l:"C",t:"Sei diretto, ma costruttivo — sai che il feedback vero e' quello che aiuta, non quello che fa sentire bene chi lo da'."},{l:"D",t:"Ascolti prima: vuoi capire il suo punto di vista prima di portare il tuo — spesso il problema e' diverso da come sembra."}]},
-{block:2,tag:"Relazioni e sfide",text:"Stai lavorando su qualcosa che hai costruito da zero. Un responsabile suggerisce di cambiare l'impostazione in modo significativo. Come reagisci?",opts:[{l:"A",t:"Ascolti, ma poi fai capire qual e' la tua visione — non ti sottrai al confronto, anzi lo cerchi."},{l:"B",t:"Prendi nota dei dettagli: ti interessa capire se la proposta regge tecnicamente prima di formarti un parere."},{l:"C",t:"Difendi il lavoro fatto, ma non a prescindere — sei disposto a cambiare se le ragioni sono solide."},{l:"D",t:"Prima di rispondere, senti dove ti porta la proposta: hai qualcosa di costruito con cura e non vuoi smontarlo senza un motivo valido."}]},
-{block:2,tag:"Relazioni e sfide",text:"Un progetto a cui tieni molto si blocca per ragioni esterne. Sai che riprendera', ma non sai quando. Come vivi l'attesa?",opts:[{l:"A",t:"Sfrutti il tempo per ricaricarti: il corpo e la testa hanno bisogno di pause e questa e' una di quelle."},{l:"B",t:"Ti adatti: inizi a esplorare altre direzioni, non resti fermo ad aspettare — il movimento ti aiuta a pensare meglio."},{l:"C",t:"Usi il tempo per approfondire — leggi, studi, esplori aspetti che non avevi avuto modo di capire a fondo."},{l:"D",t:"Tieni i fili: mantieni i contatti, fai in modo che chi e' coinvolto resti connesso — non vuoi che il progetto si spenga."}]},
-{block:2,tag:"Relazioni e sfide",text:"Ti viene proposto un gruppo di lavoro su un tema che conosci bene, con persone nuove. Il tuo contributo sarebbe importante. Cosa valuti?",opts:[{l:"A",t:"Vuoi capire bene il framework prima di entrare — hai bisogno di sapere come lavorano, con quali metodi."},{l:"B",t:"Ti interessa sapere chi c'e': il gruppo funzionera' solo se le persone si fidano tra loro."},{l:"C",t:"Valuti se e' qualcosa che reggera' nel tempo — non vuoi investire energia in un progetto che si smonta dopo tre incontri."},{l:"D",t:"Guardi se c'e' spazio per portare il tuo punto di vista autentico, senza doverlo annacquare."}]},
-{block:2,tag:"Relazioni e sfide",text:"Qualcuno ha preso credito per un tuo lavoro, in modo non intenzionale ma evidente. Come gestisci la situazione?",opts:[{l:"A",t:"Non ci passi sopra: trovi il modo di chiarire, senza drammi ma con precisione — il riconoscimento e' importante."},{l:"B",t:"Lo vedi come un dato: questa persona in futuro fara' probabilmente la stessa cosa, e ne terrai conto."},{l:"C",t:"Ti misuri con la sensazione di ingiustizia — non per vanita', ma perche' quel contributo meritava riconoscimento."},{l:"D",t:"Rimani calmo, anche se dentro ti da' fastidio — gestisci la cosa con lucidita', non con reattivita'."}]},
-{block:2,tag:"Relazioni e sfide",text:"Stai attraversando un periodo di lavoro intenso. Le giornate sono lunghe, il weekend spesso non esiste. Come stai?",opts:[{l:"A",t:"Il corpo ti sta dando segnali — stai perdendo ritmo, e sai che se non ti fermi, quello che perdi non si recupera in fretta."},{l:"B",t:"Stai dentro, ma monitori: sai dove sei e dove vuoi arrivare — l'intensita' ha senso se e' per qualcosa che vale."},{l:"C",t:"Stai reggendo bene, forse troppo bene — sei abituato a tenere il campo anche quando sarebbe ragionevole rallentare."},{l:"D",t:"L'energia ce l'hai, ma senti il bisogno di spazio — la struttura rigida ti pesa piu' del carico di lavoro."}]},
-{block:2,tag:"Relazioni e sfide",text:"Un collega ti mostra qualcosa di cui va molto fiero. Non e' all'altezza di come avrebbe potuto essere. Cosa fai?",opts:[{l:"A",t:"Noti la forma: mancano cura, dettaglio, qualcosa che avrebbe potuto rendere quel lavoro davvero bello. Non riesci a non vederlo."},{l:"B",t:"Trovi qualcosa di genuino su cui essere onesto — non senti il bisogno di adeguarti, ma non vuoi essere gratuito."},{l:"C",t:"Cerchi la struttura che manca: quali passaggi logici non reggono, dove c'e' un salto che non e' stato risolto."},{l:"D",t:"Vedi quello che avrebbe potuto essere e pensi a come aiutarlo a migliorarlo — senza che lo percepisca come una critica."}]},
-{block:2,tag:"Relazioni e sfide",text:"Ti viene chiesto di coordinarti con una persona molto diversa da te — metodica dove tu sei fluido. Come vivi la collaborazione?",opts:[{l:"A",t:"Ti adatti fino a un certo punto, poi senti il bisogno di respirare — la struttura troppo rigida ti toglie capacita'."},{l:"B",t:"Apprezzi la cura con cui costruisce le cose — anche se il vostro ritmo e' diverso, c'e' qualcosa da imparare."},{l:"C",t:"Vai per la tua strada dove puoi, e negozi dove devi — non ti interessa convincerlo, vuoi solo lo spazio di farlo."},{l:"D",t:"Tieni la rotta: le differenze di stile sono normali, e non ti scomponi — fai funzionare la collaborazione."}]},
-{block:3,tag:"Valori e scelte",text:"Hai davanti una scelta che potrebbe cambiare i prossimi anni: un'opportunita' grande, ma con un costo personale significativo. Come la affronti?",star:true,opts:[{l:"A",t:"Hai bisogno di spazio fisico per pensarci — cammini, ti muovi, e aspetti che il corpo ti dica qualcosa che la testa da sola non riuscira' a dirti."},{l:"B",t:"Torni ai fondamentali: cos'e' che per te non e' negoziabile? Quella risposta guida tutto il resto."},{l:"C",t:"Ne parli con le persone che contano per te — non per delegare la decisione, ma per sentire il loro sguardo."},{l:"D",t:"Pensi all'impatto a lungo termine: non solo su di te, ma su chi ti sta intorno e su cosa stai costruendo."}]},
-{block:3,tag:"Valori e scelte",text:"Stai lavorando su qualcosa di importante. Un evento imprevisto mette tutto in dubbio. Dove trovi la risposta?",star:true,opts:[{l:"A",t:"Nelle relazioni: le persone con cui stai costruendo ti diranno molto di piu' di qualsiasi analisi."},{l:"B",t:"Tornando al perche' iniziale: vuoi capire se quell'evento ha cambiato la sostanza o solo la forma."},{l:"C",t:"Nelle fondamenta: se quello che hai costruito e' solido, l'evento diventa un ostacolo, non una fine."},{l:"D",t:"In una lettura precisa della situazione: raccogli i dati, analizzi le variabili, poi decidi."}]},
-{block:3,tag:"Valori e scelte",text:"Qualcuno che stimi fa una scelta che non condividi. Non ti riguarda direttamente, ma ti colpisce. Come stai con questa cosa?",star:true,opts:[{l:"A",t:"La archivi: hai delle strutture interiori che ti permettono di tenere le cose al loro posto senza che ti consumino."},{l:"B",t:"Ti muove — non sai ancora dove, ma senti che non puoi comportarti come se non fosse successo."},{l:"C",t:"Cerchi di capire la logica di quella scelta: forse hai perso un pezzo, forse il quadro era diverso."},{l:"D",t:"Osservi i dettagli: cosa ha portato a quella scelta, quali segnali avevi gia' visto, cosa puoi imparare."}]},
-{block:3,tag:"Valori e scelte",text:"Hai raggiunto qualcosa a cui tenevi molto. Passata la soddisfazione iniziale, cosa senti?",star:true,opts:[{l:"A",t:"Controlli che sia davvero quello che volevi raggiungere — c'e' qualcosa in te che continua a interrogarsi sul 'perche'."},{l:"B",t:"Vuoi gia' il prossimo obiettivo — il traguardo ti piace, ma la spinta vera viene dal costruire, non dall'essere arrivato."},{l:"C",t:"Hai bisogno di ricaricarti: hai dato tanto, e ora il corpo e la testa chiedono un momento di quiete vera."},{l:"D",t:"Pensi a come consolidare: cosa resta di quello che hai costruito, e come fai si' che non vada disperso."}]},
-{block:3,tag:"Valori e scelte",text:"Ti viene proposto un ruolo che corrisponde a molte delle cose che vuoi, ma in un contesto con regole che non senti tue. Come decidi?",star:true,opts:[{l:"A",t:"Valuti fin dove puoi andare senza tradire te stesso — il compromesso e' accettabile, ma non a qualsiasi prezzo."},{l:"B",t:"Guardi se c'e' spazio per lasciare davvero un segno: se il ruolo ti permette di fare qualcosa di cui andare fiero, vale la pena."},{l:"C",t:"Hai bisogno di capire se c'e' autonomia reale — lavori bene solo quando hai spazio per muoverti a modo tuo."},{l:"D",t:"Pensi a cosa ti darebbe quel contesto in termini di crescita, relazioni, possibilita' — non solo al ruolo in se'."}]},
-{block:3,tag:"Valori e scelte",text:"In un momento di difficolta' professionale, dove trovi il centro? Cosa ti aiuta a non perdere la rotta?",star:true,opts:[{l:"A",t:"Torni ai tuoi valori: c'e' qualcosa di stabile dentro di te che regge anche quando il contesto non regge."},{l:"B",t:"Pensi a chi conta su di te e a cosa stai costruendo insieme — quella responsabilita' ti da' una direzione."},{l:"C",t:"Ti ancori alle relazioni: le persone con cui hai costruito fiducia sono la tua risorsa piu' solida."},{l:"D",t:"Torni a un ritmo che conosci — qualcosa di concreto e fisico che ti aiuta a riallinearti."}]},
-{block:3,tag:"Valori e scelte",text:"Devi scegliere tra due strade ugualmente valide: una piu' sicura ma meno stimolante, una piu' rischiosa ma piu' vicina a quello che sei. Come ti orienti?",star:true,opts:[{l:"A",t:"Scegli la sfida: il rischio controllato e' il tuo territorio naturale."},{l:"B",t:"Ascolti il corpo: c'e' una risposta somatica che precede quella razionale, e hai imparato a fidarti di quella."},{l:"C",t:"Scegli cio' che ti permette di essere davvero te stesso — se devi adattarti troppo, alla lunga non regge."},{l:"D",t:"Pensi alle radici: quale dei due percorsi ti permette di costruire qualcosa che durera' davvero?"}]},
-{block:3,tag:"Valori e scelte",text:"Guardi indietro agli ultimi anni. C'e' qualcosa che ti ha reso piu' fiero — non il risultato, ma il modo in cui ci sei arrivato. Cosa e' stato?",star:true,opts:[{l:"A",t:"Qualcosa che hai fatto con cura — che si vedesse, che lasciasse un segno, che parlasse di chi sei davvero."},{l:"B",t:"Un ritmo che hai trovato — un modo di lavorare che ha rispettato le tue energie senza consumarti."},{l:"C",t:"Una vittoria costruita con determinazione — nonostante gli ostacoli, hai tenuto il filo e sei arrivato dove volevi."},{l:"D",t:"Qualcosa che ha servito una causa piu' grande — che ha avuto un impatto su altri, non solo su di te."}]}
+
+/* 16 affermazioni — ogni affermazione mappa a 1 tratto */
+var STATEMENTS=[
+  {text:"Fatico a ignorare qualcosa che sento sbagliato, anche quando intorno a me tutti tacciono.",trait:"BUSSOLA"},
+  {text:"Ho bisogno di capire davvero come funziona una cosa prima di muovermi.",trait:"MAPPA"},
+  {text:"Quando credo in un obiettivo, sono disposto/a a metterci tutto \u2014 anche pi\u00f9 di quanto sarebbe ragionevole.",trait:"FUOCO"},
+  {text:"Mi accorgo quasi subito quando qualcuno nel gruppo sta male, anche se non lo dice.",trait:"FILO"},
+  {text:"Preferisco costruire qualcosa che dura piuttosto che andare veloce e aggiustare dopo.",trait:"RADICE"},
+  {text:"Ho bisogno di muovermi fisicamente \u2014 camminare, uscire, staccare \u2014 per pensare meglio.",trait:"ONDA"},
+  {text:"Nelle situazioni di tensione o crisi, tendo ad abbassare la voce mentre gli altri la alzano.",trait:"SCUDO"},
+  {text:"Ci tengo a come si presenta il mio lavoro, non solo a cosa contiene.",trait:"PALCO"},
+  {text:"Quello che faccio deve avere un impatto che va oltre il mio vantaggio personale.",trait:"PONTE"},
+  {text:"Il mio corpo mi dice con precisione quando sono in forma e quando no \u2014 e mi fido di quei segnali.",trait:"RITMO"},
+  {text:"Trovo spesso l\u2019errore nel ragionamento che tutti gli altri hanno gi\u00e0 dato per buono.",trait:"LENTE"},
+  {text:"Non riesco a seguire una regola o una procedura se non capisco perch\u00e9 esiste.",trait:"VENTO"},
+  {text:"Prima di accettare un impegno importante, mi chiedo se \u00e8 davvero coerente con quello in cui credo.",trait:"BUSSOLA"},
+  {text:"Ricordo a lungo quando qualcuno non ha riconosciuto il mio contributo \u2014 non per rancore, ma come dato.",trait:"FUOCO"},
+  {text:"Faccio fatica a buttare via quello che ho costruito \u2014 un progetto, una relazione, un metodo \u2014 senza un motivo solido.",trait:"RADICE"},
+  {text:"Quasi sempre trovo un modo diverso da quello standard per fare le cose \u2014 e spesso funziona meglio.",trait:"VENTO"}
 ];
 
-var currentQ=0,answers=new Array(QUESTIONS.length).fill(null);
-var AUTO_ADVANCE_DELAY=700;
+var currentQ=0;
+var answers=new Array(STATEMENTS.length).fill(null);
+var AUTO_ADVANCE_DELAY=600;
 
+/* ══ SCORING ══ */
 function calcResults(){
-  var scores={},tb={};
-  Object.keys(TRAITS).forEach(function(k){scores[k]=0;tb[k]=0;});
-  answers.forEach(function(a,i){if(a!==null){var t=SCORING[i][a];scores[t]++;if(QUESTIONS[i].star)tb[t]+=2;}});
-  var sorted=Object.keys(scores).sort(function(a,b){return scores[b]!==scores[a]?scores[b]-scores[a]:tb[b]-tb[a];});
+  /* Raccogli punteggi per tratto */
+  var sums={},counts={};
+  Object.keys(TRAITS).forEach(function(k){sums[k]=0;counts[k]=0;});
+  answers.forEach(function(val,i){
+    if(val!==null){
+      var t=STATEMENTS[i].trait;
+      sums[t]+=val;
+      counts[t]++;
+    }
+  });
+  /* Media normalizzata (scala 1–6) */
+  var scores={};
+  Object.keys(TRAITS).forEach(function(k){
+    scores[k]=counts[k]>0?Math.round((sums[k]/counts[k])*100)/100:0;
+  });
+  /* Ordina: score desc, parità → tratti con più affermazioni (×2) vincono */
+  var traitsWithTwo={BUSSOLA:1,FUOCO:1,RADICE:1,VENTO:1};
+  var sorted=Object.keys(scores).sort(function(a,b){
+    if(scores[b]!==scores[a])return scores[b]-scores[a];
+    return (traitsWithTwo[b]||0)-(traitsWithTwo[a]||0);
+  });
   return{top3:sorted.slice(0,3),scores:scores,sorted:sorted};
 }
+
+/* ══ SECTION TOGGLE ══ */
 function showSection(id){
-  /* Hide all sections aggressively */
   document.querySelectorAll('.page-section').forEach(function(s){
     s.classList.remove('active');
     s.style.display='none';
@@ -341,7 +354,6 @@ function showSection(id){
   });
   var target=document.getElementById(id);
   if(!target)return;
-  /* Show target section */
   target.classList.add('active');
   target.style.display='block';
   target.style.height='auto';
@@ -351,62 +363,102 @@ function showSection(id){
   target.style.position='relative';
   target.style.zIndex='9000';
   target.style.background='var(--k-bg)';
-  /* Force ALL Elementor parent wrappers to allow overflow */
   var el=target;
   while(el.parentElement){
     el=el.parentElement;
     el.style.overflow='visible';
     if(el.scrollTop>0)el.scrollTop=0;
   }
-  /* Scroll to top */
   window.scrollTo(0,0);
   document.documentElement.scrollTop=0;
   document.body.scrollTop=0;
-  /* Fallback: ensure scroll after a tick (some mobile browsers delay) */
   setTimeout(function(){window.scrollTo(0,0);},50);
 }
-function startQuiz(){currentQ=0;answers.fill(null);renderQ();showSection('sec-quiz');if(typeof gtag==='function')gtag('event','quiz_started',{event_category:'quiz'});if(typeof dataLayer!=='undefined')dataLayer.push({event:'quiz_started'});}
-function renderQ(){
-  var q=QUESTIONS[currentQ],pct=Math.round(((currentQ+1)/QUESTIONS.length)*100);
-  var bl=["Blocco 1 — Vita quotidiana","Blocco 2 — Relazioni e sfide","Blocco 3 — Valori e scelte"];
-  document.getElementById('prog-label').textContent='Domanda '+(currentQ+1)+' di '+QUESTIONS.length;
-  document.getElementById('prog-block').textContent=(q.star?'\u2605 ':'')+'Blocco '+q.block+' / 3';
+
+/* ══ QUIZ FLOW ══ */
+function startQuiz(){
+  currentQ=0;
+  answers=new Array(STATEMENTS.length).fill(null);
+  renderStatement();
+  showSection('sec-quiz');
+  if(typeof gtag==='function')gtag('event','quiz_started',{event_category:'quiz'});
+  if(typeof dataLayer!=='undefined')dataLayer.push({event:'quiz_started'});
+}
+
+function renderStatement(){
+  var s=STATEMENTS[currentQ];
+  var pct=Math.round(((currentQ+1)/STATEMENTS.length)*100);
+  document.getElementById('prog-label').textContent=(currentQ+1)+' / '+STATEMENTS.length;
   document.getElementById('prog-fill').style.width=pct+'%';
-  document.getElementById('q-tag').textContent=bl[q.block-1];
-  document.getElementById('q-text').textContent=q.text;
-  var opts=document.getElementById('q-options');opts.innerHTML='';
-  q.opts.forEach(function(o,i){
-    var d=document.createElement('div');d.className='quiz-opt'+(answers[currentQ]===i?' selected':'');
-    d.innerHTML='<span class="quiz-opt-letter" data-letter="'+o.l+'">'+o.l+'</span><span>'+o.t+'</span>';
-    d.addEventListener('click',function(){selectOpt(i);});opts.appendChild(d);
+  document.getElementById('q-text').textContent=s.text;
+  document.getElementById('q-counter-current').textContent=String(currentQ+1).padStart(2,'0');
+  /* Reset dots */
+  document.querySelectorAll('.likert-dot').forEach(function(d){
+    d.classList.remove('selected');
   });
-  document.getElementById('btn-back').style.visibility=currentQ===0?'hidden':'visible';
-  var btn=document.getElementById('btn-next');btn.textContent=currentQ===QUESTIONS.length-1?'Vedi il tuo Karakter':'Avanti';
-  btn.className='btn-quiz-next'+(answers[currentQ]!==null?' active':'');
+  /* If already answered (shouldn't happen — no back), highlight */
+  if(answers[currentQ]!==null){
+    var sel=document.querySelector('.likert-dot[data-val="'+answers[currentQ]+'"]');
+    if(sel)sel.classList.add('selected');
+  }
 }
-function selectOpt(i){
-  answers[currentQ]=i;document.querySelectorAll('.quiz-opt').forEach(function(el,idx){el.className='quiz-opt'+(idx===i?' selected':'');});
-  document.getElementById('btn-next').className='btn-quiz-next active';
-  if(typeof gtag==='function')gtag('event','quiz_answer',{event_category:'quiz',event_label:'q'+(currentQ+1),value:i});
-  if(typeof dataLayer!=='undefined')dataLayer.push({event:'quiz_answer',question:currentQ+1,answer:i});
-  setTimeout(function(){if(answers[currentQ]===i)quizNext();},AUTO_ADVANCE_DELAY);
+
+function selectLikert(val){
+  answers[currentQ]=val;
+  /* Visual feedback */
+  document.querySelectorAll('.likert-dot').forEach(function(d){
+    d.classList.remove('selected');
+  });
+  var sel=document.querySelector('.likert-dot[data-val="'+val+'"]');
+  if(sel)sel.classList.add('selected');
+  /* Analytics */
+  if(typeof gtag==='function')gtag('event','quiz_answer',{event_category:'quiz',event_label:'q'+(currentQ+1),value:val});
+  if(typeof dataLayer!=='undefined')dataLayer.push({event:'quiz_answer',question:currentQ+1,answer:val});
+  /* Auto-advance after delay */
+  var answeredQ=currentQ;
+  setTimeout(function(){
+    if(currentQ===answeredQ&&answers[answeredQ]!==null)advanceQuiz();
+  },AUTO_ADVANCE_DELAY);
 }
-function quizNext(){
+
+function advanceQuiz(){
   if(answers[currentQ]===null)return;
-  if(currentQ<QUESTIONS.length-1){var card=document.getElementById('q-card');card.classList.add('exiting');setTimeout(function(){currentQ++;renderQ();card.classList.remove('exiting');card.classList.add('entering');setTimeout(function(){card.classList.remove('entering');},300);},200);}
-  else{var results=calcResults();showFormSection(results);}
+  if(currentQ<STATEMENTS.length-1){
+    var card=document.getElementById('q-card');
+    card.classList.add('exiting');
+    setTimeout(function(){
+      currentQ++;
+      renderStatement();
+      card.classList.remove('exiting');
+      card.classList.add('entering');
+      setTimeout(function(){card.classList.remove('entering');},300);
+    },200);
+  }else{
+    /* Quiz completed */
+    var results=calcResults();
+    showFormSection(results);
+  }
 }
-function quizBack(){if(currentQ>0){currentQ--;renderQ();}}
+
 function showFormSection(results){
   var tc=document.querySelector('.score-blur');
-  if(tc){var h='';results.top3.forEach(function(t){h+='<span style="background:var(--k-bg-warm);border:1px solid rgba(242,183,5,.3);padding:8px 18px;border-radius:100px;font-weight:600;font-size:13px;">'+TRAITS[t].name+'</span>';});tc.innerHTML=h;}
-  showSection('sec-form');mountEmailForm(results);
-  if(typeof gtag==='function')gtag('event','quiz_completed',{event_category:'quiz'});if(typeof dataLayer!=='undefined')dataLayer.push({event:'quiz_completed'});
+  if(tc){
+    var h='';
+    results.top3.forEach(function(t){
+      h+='<span style="background:var(--k-bg-warm);border:1px solid rgba(242,183,5,.3);padding:8px 18px;border-radius:100px;font-weight:600;font-size:13px;">'+TRAITS[t].name+'</span>';
+    });
+    tc.innerHTML=h;
+  }
+  showSection('sec-form');
+  mountEmailForm(results);
+  if(typeof gtag==='function')gtag('event','quiz_completed',{event_category:'quiz'});
+  if(typeof dataLayer!=='undefined')dataLayer.push({event:'quiz_completed'});
 }
+
 /* ══ EMAIL FORM PLACEHOLDER ══
-   Sostituisci questa funzione con la tua integrazione form (es. Elementor form, custom, ecc.)
-   La funzione riceve l'oggetto results con: results.top3, results.scores, results.sorted
-   Al submit del form, fai redirect a: /grazie-quiz/?d= + encodeURIComponent(btoa(JSON.stringify({top3:results.top3,scores:results.scores,sorted:results.sorted})))
+   Sostituisci questa funzione con la tua integrazione form.
+   results contiene: results.top3, results.scores, results.sorted
+   Al submit, redirect a: /grazie-quiz/?d= + encodeURIComponent(btoa(JSON.stringify({...})))
 */
 function mountEmailForm(results){
   var c=document.getElementById('email-form-container');
@@ -419,16 +471,30 @@ function mountEmailForm(results){
   document.getElementById('quiz-email-form').addEventListener('submit',function(e){
     e.preventDefault();
     var email=document.getElementById('quiz-email').value;
-    /* PLACEHOLDER: qui puoi inviare i dati al tuo backend/CRM */
+    /* PLACEHOLDER: invia dati al tuo backend/CRM */
     console.log('Form submitted — email:',email,'results:',results);
     var p=btoa(JSON.stringify({top3:results.top3,scores:results.scores,sorted:results.sorted}));
     window.location.href='/grazie-quiz/?d='+encodeURIComponent(p);
   });
 }
+
+/* ══ LIKERT DOT CLICK HANDLERS ══ */
+(function(){
+  document.querySelectorAll('.likert-dot').forEach(function(dot){
+    dot.addEventListener('click',function(){
+      var val=parseInt(this.getAttribute('data-val'),10);
+      selectLikert(val);
+    });
+  });
+})();
+
+/* ══ KEYBOARD NAV ══ */
 document.addEventListener('keydown',function(e){
+  if(!document.getElementById('sec-quiz'))return;
   if(!document.getElementById('sec-quiz').classList.contains('active'))return;
-  var key=e.key.toUpperCase();
-  if(['A','B','C','D'].indexOf(key)!==-1){var idx={'A':0,'B':1,'C':2,'D':3}[key];if(idx<QUESTIONS[currentQ].opts.length)selectOpt(idx);}
-  if(e.key==='Enter'&&answers[currentQ]!==null)quizNext();
-  if(e.key==='Backspace'){e.preventDefault();quizBack();}
+  var key=e.key;
+  /* 1–6 per selezionare */
+  if(['1','2','3','4','5','6'].indexOf(key)!==-1){selectLikert(parseInt(key,10));}
+  /* Enter per avanzare */
+  if(key==='Enter'&&answers[currentQ]!==null)advanceQuiz();
 });
