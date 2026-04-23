@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/elementor-ready/unified-style.css?v=3">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/elementor-ready/unified-style.css?v=4">
 
 <!-- ══ NAV ══ -->
 <nav class="k-nav" id="k-nav">
@@ -20,7 +20,7 @@
       <a href="#testimonials">Testimonianze</a>
       <a href="#faq-section">FAQ</a>
     </div>
-    <button class="k-nav-cta" onclick="startQuiz()">
+    <button class="k-nav-cta js-start-quiz">
       Fai il quiz
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </button>
@@ -43,7 +43,7 @@
       24 domande e una mappa delle <mark>12 motivazioni</mark> che guidano ogni scelta che fai.
     </p>
     <div class="hero-cta-wrap">
-      <button class="btn-main" onclick="startQuiz()">
+      <button class="btn-main" data-action="startQuiz">
         <span>Inizia il quiz gratuito</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </button>
@@ -104,7 +104,7 @@
           </div>
           <!-- Fade overlay from bottom matching widget bg -->
           <div style="position:absolute;bottom:0;left:0;right:0;height:100%;background:linear-gradient(to top,#234456 0%,#234456 10%,transparent 70%);pointer-events:none;z-index:3;display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px;">
-            <button onclick="startQuiz()" style="position:relative;z-index:4;pointer-events:auto;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:rgba(255,255,255,.8);font-family:var(--font-body);font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:10px 22px;cursor:pointer;transition:all .2s;">
+            <button data-action="startQuiz" style="position:relative;z-index:4;pointer-events:auto;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:rgba(255,255,255,.8);font-family:var(--font-body);font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:10px 22px;cursor:pointer;transition:all .2s;">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               Fai Il Quiz e Scopri Tutti I Tratti
             </button>
@@ -304,7 +304,7 @@
             <p class="diff-body" style="margin-top:12px;">
               12 Tratti. Driver motivazionali specifici, stabili nel tempo, verificati su anni di coaching professionale. Il risultato è una combinazione di tre tratti: la tua <strong>Karakter</strong>. <mark>Unica, come lo sei tu.</mark>
             </p>
-            <button class="btn-main" onclick="startQuiz()" style="margin-top:28px;background:var(--k-white);color:var(--k-black);position:relative;overflow:hidden;">
+            <button class="btn-main" data-action="startQuiz" style="margin-top:28px;background:var(--k-white);color:var(--k-black);position:relative;overflow:hidden;">
               <span>Scopri Il Tuo Karakter</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </button>
@@ -425,35 +425,35 @@
       </div>
       <div class="rv rv-d1">
         <div class="faq-tabs">
-          <button class="faq-tab active" onclick="filterFaq('all',this)">Tutti</button>
-          <button class="faq-tab" onclick="filterFaq('quiz',this)">Quiz</button>
-          <button class="faq-tab" onclick="filterFaq('risultati',this)">Risultati</button>
-          <button class="faq-tab" onclick="filterFaq('privacy',this)">Privacy</button>
+          <button class="faq-tab active" data-action="filterFaq" data-cat="all">Tutti</button>
+          <button class="faq-tab" data-action="filterFaq" data-cat="quiz">Quiz</button>
+          <button class="faq-tab" data-action="filterFaq" data-cat="risultati">Risultati</button>
+          <button class="faq-tab" data-action="filterFaq" data-cat="privacy">Privacy</button>
         </div>
       </div>
       <div id="faq-list">
         <div class="faq-item rv rv-d1" data-cat="quiz">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>Il quiz è davvero gratuito?</span><span class="faq-toggle">+</span></div>
+          <div class="faq-q" data-action="toggleFaq"><span>Il quiz è davvero gratuito?</span><span class="faq-toggle">+</span></div>
           <div class="faq-a">Sì, <strong>completamente</strong>. Non serve registrarsi, non ci sono step nascosti. Fai le 24 domande, ricevi la tua mappa motivazionale.</div>
         </div>
         <div class="faq-item rv rv-d2" data-cat="quiz">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>Quanto tempo ci vuole?</span><span class="faq-toggle">+</span></div>
+          <div class="faq-q" data-action="toggleFaq"><span>Quanto tempo ci vuole?</span><span class="faq-toggle">+</span></div>
           <div class="faq-a">Tra i 5 e gli 8 minuti. Le domande sono scenari brevi e concreti: rispondi in modo istintivo. È anche quello il punto.</div>
         </div>
         <div class="faq-item rv rv-d3" data-cat="risultati">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>Cosa ottengo alla fine?</span><span class="faq-toggle">+</span></div>
+          <div class="faq-q" data-action="toggleFaq"><span>Cosa ottengo alla fine?</span><span class="faq-toggle">+</span></div>
           <div class="faq-a">Ricevi la tua <strong>Karakter</strong>: i tre tratti Karakter dominanti, con una descrizione di come si combinano tra loro e cosa dicono di come lavori, scegli e ti relazioni.</div>
         </div>
         <div class="faq-item rv rv-d4" data-cat="risultati">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>Il risultato può cambiare nel tempo?</span><span class="faq-toggle">+</span></div>
+          <div class="faq-q" data-action="toggleFaq"><span>Il risultato può cambiare nel tempo?</span><span class="faq-toggle">+</span></div>
           <div class="faq-a">I driver motivazionali profondi tendono a essere stabili. Quello che cambia, con la consapevolezza, è il modo in cui li riconosci e li usi.</div>
         </div>
         <div class="faq-item rv rv-d5" data-cat="quiz">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>C'è qualcosa di più approfondito dopo?</span><span class="faq-toggle">+</span></div>
+          <div class="faq-q" data-action="toggleFaq"><span>C'è qualcosa di più approfondito dopo?</span><span class="faq-toggle">+</span></div>
           <div class="faq-a">Sì. Alla fine del quiz troverai la possibilità di andare più a fondo: un percorso individuale con restituzione personalizzata da un <strong>coach certificato Karakter</strong>.</div>
         </div>
         <div class="faq-item rv rv-d5" data-cat="privacy">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>I miei dati sono al sicuro?</span><span class="faq-toggle">+</span></div>
+          <div class="faq-q" data-action="toggleFaq"><span>I miei dati sono al sicuro?</span><span class="faq-toggle">+</span></div>
           <div class="faq-a">Assolutamente. I tuoi dati vengono trattati nel rispetto della normativa GDPR. Nessuno spam, mai. Li usiamo solo per inviarti i risultati del quiz.</div>
         </div>
       </div>
@@ -473,7 +473,7 @@
       <p style="font-family:var(--font-display);font-size:clamp(24px,3.5vw,40px);font-style:italic;color:var(--k-white);margin-bottom:12px;">Il Tuo Karakter Esiste Già.</p>
       <h2 style="font-family:var(--font-headline);font-weight:800;font-size:clamp(64px,12vw,130px);line-height:.9;letter-spacing:-.03em;margin-bottom:16px;color:var(--k-white);">Adesso Puoi<br><span style="position:relative;display:inline-block;">Vederlo<span style="position:absolute;left:-4px;right:-4px;bottom:0;height:35%;background:#ffc200;border-radius:3px;z-index:-1;opacity:.6;"></span></span></h2>
       <p style="font-size:clamp(16px,2vw,22px);color:rgba(255,255,255,.5);margin-bottom:40px;"><strong style="color:var(--k-white);">24 domande</strong>. 5 minuti. Nessun costo.</p>
-      <button class="btn-main" onclick="startQuiz()" style="background:var(--k-amber);color:var(--k-black);margin:0 auto;">
+      <button class="btn-main" data-action="startQuiz" style="background:var(--k-amber);color:var(--k-black);margin:0 auto;">
         <span>Fai il quiz gratuito</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </button>
@@ -592,5 +592,5 @@
 </div><!-- /karakter-app -->
 
 
-<script src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/elementor-ready/unified-script.js?v=3"></script>
+<script src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/elementor-ready/unified-script.js?v=4"></script>
 </div>
