@@ -359,7 +359,7 @@ function showSection(id){
   var target=document.getElementById(id);
   if(!target)return;
   target.classList.add('active');
-  target.style.display='block';
+  target.style.display='';
   target.style.height='auto';
   target.style.overflow='visible';
   target.style.visibility='visible';
@@ -539,16 +539,4 @@ document.addEventListener('keydown',function(e){
   if(key==='Enter'&&answers[currentQ]!==null)advanceQuiz();
 });
 
-/* ══ DELEGATED EVENT LISTENERS (no inline onclick — WAF safe) ══ */
-document.addEventListener('click',function(e){
-  var el=e.target.closest('[data-action]');
-  if(!el)return;
-  var action=el.getAttribute('data-action');
-  if(action==='startQuiz'){startQuiz();}
-  else if(action==='filterFaq'){filterFaq(el.getAttribute('data-cat'),el);}
-  else if(action==='toggleFaq'){toggleFaq(el);}
-});
-/* Also bind .js-start-quiz class buttons */
-document.querySelectorAll('.js-start-quiz').forEach(function(btn){
-  btn.addEventListener('click',function(){startQuiz();});
-});
+/* ══ DELEGATED EVENT LISTENE
