@@ -748,9 +748,9 @@ mark{background:rgba(139,26,26,.15);padding:0 4px;border-radius:3px;color:inheri
 .form-gate-bg{position:absolute;inset:0;z-index:0;pointer-events:none;}
 .form-gate-svg{position:absolute;inset:0;width:100%;height:100%;}
 .form-gate-inner{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:80px 20px 60px;text-align:center;}
-.form-gate-image-wrap{position:relative;width:100%;max-width:400px;margin:0 auto 24px;border-radius:20px;overflow:hidden;background:var(--k-black);box-shadow:0 8px 40px rgba(0,0,0,.15);}
+.form-gate-image-wrap{position:relative;width:100%;max-width:400px;margin:0 auto 24px;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#d8d8d8 0%,#3a3a3a 60%,#1a1a1a 100%);box-shadow:0 8px 40px rgba(0,0,0,.18);}
 .form-gate-image{width:100%;display:block;border-radius:20px;}
-.form-gate-image-fade{position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,var(--k-black) 0%,transparent 100%);pointer-events:none;}
+.form-gate-image-fade{position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,rgba(26,26,26,.95) 0%,transparent 100%);pointer-events:none;}
 .form-gate-preview{background:var(--k-white);border:1.5px solid var(--k-gray-200);border-radius:20px;padding:28px;box-shadow:0 4px 24px rgba(0,0,0,.04);position:relative;overflow:hidden;}
 .form-gate-lock{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(250,250,248,.7);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:2;cursor:pointer;transition:all .3s;border-radius:20px;}
 .form-gate-lock svg{animation:lockBounce 2s ease-in-out infinite;}
