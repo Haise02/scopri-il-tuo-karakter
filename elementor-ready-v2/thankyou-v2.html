@@ -203,91 +203,143 @@
   .locked-description p { margin: 0; line-height: 1.8; }
   .locked-cta { text-align: center; margin-top: 2rem; }
 
-  /* ══ BLOCK 4: K-LAB EVENT — LIQUID GLASS ══ */
-  #block-klab { padding: 5rem 0; background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%); }
-  .klab-divider { text-align: center; font-size: 1rem; color: var(--text-light); margin-bottom: 1rem; }
-  #block-klab h2 { text-align: center; margin-bottom: 3rem; }
-
-  .klab-glass-container {
-    max-width: 1120px; margin: 0 auto; padding: 0; border-radius: 28px;
-    position: relative; overflow: hidden;
-    background: rgba(255,255,255,0.25);
-    backdrop-filter: blur(40px) saturate(1.8);
-    -webkit-backdrop-filter: blur(40px) saturate(1.8);
-    border: 1px solid rgba(255,255,255,0.45);
-    box-shadow:
-      0 0 0 1px rgba(255,255,255,0.15) inset,
-      0 1px 0 rgba(255,255,255,0.6) inset,
-      0 -1px 0 rgba(0,0,0,0.04) inset,
-      0 24px 80px rgba(0,0,0,0.08),
-      0 4px 16px rgba(0,0,0,0.04);
+  /* ══ BLOCK 4: K-LAB EVENT — LIGHT BG, DARK BOX ══ */
+  #block-klab {
+    padding: 5rem 0; position: relative; overflow: hidden;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%);
   }
+  .klab-divider { text-align: center; font-size: 1rem; color: var(--text-light); margin-bottom: 1rem; }
+  #block-klab h2 { text-align: center; margin-bottom: 3rem; color: var(--text); }
 
-  /* Animated gradient overlay for glass depth */
+  /* Dark glass container */
+  .klab-glass-container {
+    max-width: 1120px; margin: 0 auto; border-radius: 24px;
+    position: relative; overflow: hidden;
+    background: var(--dark);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.08);
+  }
+  /* Animated gradient overlay — shifting color glow */
   .klab-glass-container::before {
     content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-    background: linear-gradient(135deg, rgba(231,76,60,0.06) 0%, rgba(139,26,26,0.03) 30%, rgba(44,44,44,0.02) 60%, rgba(231,76,60,0.04) 100%);
+    background: linear-gradient(135deg, rgba(231,76,60,0.1) 0%, rgba(35,68,86,.12) 30%, transparent 50%, rgba(139,26,26,0.08) 70%, rgba(231,76,60,0.06) 100%);
     background-size: 200% 200%; animation: glassShift 8s ease-in-out infinite;
   }
-  /* Specular highlight */
+  /* Glass specular top edge */
   .klab-glass-container::after {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%; z-index: 0; pointer-events: none;
-    background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, transparent 100%);
-    border-radius: 28px 28px 0 0;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; z-index: 0; pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
   }
 
-  .klab-glass-inner { position: relative; z-index: 1; padding: 3rem; }
+  .klab-glass-inner {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: stretch;
+  }
 
-  .klab-header { text-align: center; margin-bottom: 2.5rem; }
-  .klab-title { font-family: var(--font-h); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--primary); margin-bottom: 1rem; }
+  /* Left column: content stack */
+  .klab-left { padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
+
+  .klab-hero-title {
+    font-family: var(--font-h); font-weight: 700; line-height: 0.95;
+    font-size: clamp(56px, 8vw, 80px); letter-spacing: -0.04em;
+    color: white; margin-bottom: 20px;
+  }
+  .klab-hero-title .dot-red { color: var(--accent-bright); }
+
+  .klab-headline {
+    font-family: var(--font-h); font-weight: 700; font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.2; color: white; margin-bottom: 16px; letter-spacing: -0.02em;
+  }
+  .klab-headline .em-it { font-style: italic; color: var(--accent-bright); font-weight: 700; }
+  .klab-headline .em-red { color: var(--accent-bright); font-weight: 700; }
+
+  .klab-desc {
+    font-size: 14px; line-height: 1.7; color: var(--gray-400); margin-bottom: 20px; max-width: 460px;
+  }
+  .klab-desc strong { color: white; font-weight: 600; }
+  .klab-desc em { font-style: italic; color: var(--gray-200); }
 
   .klab-meta {
-    display: flex; align-items: center; justify-content: center; gap: 1.25rem;
-    flex-wrap: wrap; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 10px;
+    flex-wrap: wrap; margin-bottom: 20px;
   }
   .klab-meta-item {
-    display: flex; align-items: center; gap: 8px; font-family: var(--font-mono);
-    font-size: 13px; color: var(--text-light); font-weight: 500; letter-spacing: 0.02em;
+    display: flex; align-items: center; gap: 6px; font-family: var(--font-mono);
+    font-size: 11px; color: var(--gray-200); font-weight: 500; letter-spacing: 0.02em;
+    padding: 6px 12px; border: 1px solid rgba(255,255,255,0.1); border-radius: 100px;
+    background: rgba(255,255,255,0.04);
   }
-  .klab-meta-item svg { width: 16px; height: 16px; color: var(--accent-bright); flex-shrink: 0; }
+  .klab-meta-item svg { width: 13px; height: 13px; color: var(--accent-bright); flex-shrink: 0; opacity: 0.6; }
 
-  .klab-content { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; margin-bottom: 2rem; }
-  .klab-text p { font-size: 1rem; line-height: 1.8; margin-bottom: 1.5rem; }
-  .klab-cta { margin-top: 1.5rem; }
-  .klab-trust {
-    text-align: center; font-family: var(--font-mono); font-size: 12px;
-    color: var(--text-light); margin-top: 1.25rem; letter-spacing: 0.04em;
+  /* CTA row */
+  .klab-cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+  .btn-glass {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 14px 32px; font-family: var(--font-body); font-size: 14px; font-weight: 700;
+    border: none; border-radius: 8px; cursor: pointer; transition: var(--transition);
+    text-decoration: none; white-space: nowrap; letter-spacing: 0.02em;
+    text-transform: uppercase;
+    background: var(--accent-bright); color: white;
+    position: relative; overflow: hidden;
   }
-  .klab-image img { width: 100%; border-radius: 16px; box-shadow: var(--shadow-md); }
+  .btn-glass::after {
+    content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent); transition:left .5s;
+  }
+  .btn-glass:hover::after { left:100%; }
+  .btn-glass:hover { background: #d94335; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(231,76,60,.35); }
 
+  .klab-trust-inline {
+    font-family: var(--font-mono); font-size: 11px; color: var(--gray-400); letter-spacing: 0.03em;
+  }
+
+  /* Countdown — inline boxes */
   .klab-countdown {
-    text-align: center; padding: 1.25rem; margin-top: 2rem;
-    background: rgba(139,26,26,0.04); border: 1px solid rgba(139,26,26,0.08);
-    border-radius: 12px; font-family: var(--font-mono); font-size: 14px; color: var(--primary); font-weight: 500;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
   }
-  .klab-countdown strong { font-weight: 700; }
+  .klab-cd-label {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--gray-400); margin-right: 2px;
+  }
+  .klab-cd-item {
+    text-align: center; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;
+    padding: 8px 12px; min-width: 50px;
+  }
+  .klab-cd-num {
+    font-family: var(--font-h); font-size: 20px; font-weight: 700; color: white; line-height: 1;
+  }
+  .klab-cd-unit {
+    font-family: var(--font-mono); font-size: 8px; color: var(--gray-400);
+    text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; display: block;
+  }
 
-  /* ══ BLOCK 5: SOCIAL ══ */
-  #block-social { padding: 3rem 0; background: var(--bg); text-align: center; }
-  #block-social h3 { margin-bottom: 2rem; }
-  .social-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .social-btn-text {
-    display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px;
-    background: white; color: var(--text); border: 1.5px solid var(--gray-200); border-radius: 8px;
-    font-family: var(--font-body); font-size: 14px; font-weight: 600; cursor: pointer; transition: var(--transition);
+  /* Right column: image */
+  .klab-right {
+    display: flex; align-items: center; justify-content: center; padding: 2rem;
   }
-  .social-btn-text svg { width: 18px; height: 18px; color: var(--text-light); }
-  .social-btn-text:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
-  .social-btn-text:hover svg { color: var(--primary); }
+  .klab-right img { width: 100%; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
 
-  /* ══ BLOCK 6: REISS FORM ══ */
-  #form-reiss { padding: 4rem 0; background: var(--bg-warm); }
-  #form-reiss h2 { text-align: center; margin-bottom: 2rem; }
-  .form-container {
-    max-width: 560px; margin: 0 auto; padding: 2.5rem;
-    background: white; border-radius: 16px; box-shadow: var(--shadow-md);
+  /* ══ REISS MODAL ══ */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 3000;
+    background: rgba(0,0,0,0.5); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; padding: 1.5rem;
   }
-  .form-container form { display: grid; gap: 1.25rem; }
+  .modal-overlay.active { display: flex; }
+  .modal-box {
+    position: relative; width: 100%; max-width: 480px;
+    background: white; border-radius: 20px; padding: 2.5rem;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.2); animation: popIn 0.3s ease-out;
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px; width: 36px; height: 36px;
+    border-radius: 50%; border: none; background: var(--gray-100); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: var(--text-light); transition: var(--transition);
+  }
+  .modal-close:hover { background: var(--gray-200); color: var(--text); }
+  .modal-box h2 { font-family: var(--font-h); font-size: 1.5rem; text-align: center; margin-bottom: 1.5rem; }
+  .modal-box form { display: grid; gap: 1.25rem; }
   .form-group { display: flex; flex-direction: column; }
   .form-group label { font-family: var(--font-body); font-weight: 600; margin-bottom: 0.4rem; color: var(--text); font-size: 14px; }
   .form-group input, .form-group textarea, .form-group select {
@@ -296,6 +348,14 @@
   }
   .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
     outline: none; border-color: var(--accent-bright); box-shadow: 0 0 0 3px rgba(231,76,60,0.08); background: white;
+  }
+  .form-badges {
+    display: flex; gap: 8px; justify-content: center; margin-top: 0.75rem;
+  }
+  .form-badge {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 5px 12px; border-radius: 100px;
+    border: 1px solid var(--gray-200); color: var(--text-light); font-weight: 500;
   }
 
   /* ══ BLOCK 7: FAQ ══ */
@@ -337,17 +397,25 @@
 
   /* ══ RESPONSIVE ══ */
   @media (max-width: 768px) {
-    .klab-content { grid-template-columns: 1fr; }
-    .klab-glass-inner { padding: 2rem; }
+    .klab-glass-inner { grid-template-columns: 1fr; }
+    .klab-left { padding: 2rem; }
+    .klab-right { padding: 0 2rem 2rem; }
+    .klab-hero-title { font-size: 48px; }
+    .klab-headline { font-size: 20px; }
+    .klab-cta { flex-direction: column; align-items: flex-start; }
+    .klab-trust-inline { text-align: left; }
+    .klab-countdown { gap: 8px; }
+    .klab-cd-item { min-width: 44px; padding: 6px 8px; }
+    .klab-cd-num { font-size: 16px; }
     .traits-grid { grid-template-columns: 1fr; }
-    .klab-meta { flex-direction: column; gap: 8px; }
+    .klab-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; justify-items: start; }
     .floating-cta { bottom: 1rem; right: 1rem; }
     .btn { padding: 0.75rem 1.5rem; font-size: 0.95rem; }
     .btn-large { padding: 0.875rem 2rem; font-size: 0.95rem; }
     .section { padding: 2.5rem 0; }
-    .social-buttons { gap: 8px; }
     .locked-tags { gap: 6px; }
     .tag-chip { font-size: 10px; padding: 6px 12px; }
+    .modal-box { padding: 2rem; }
   }
 </style>
 
@@ -391,7 +459,7 @@
             </div>
           </div>
           <div class="locked-overlay"></div>
-          <div class="locked-lock-container" onclick="scrollToForm('form-reiss')">
+          <div class="locked-lock-container" onclick="openReissModal()">
             <div class="locked-lock">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             </div>
@@ -412,7 +480,7 @@
       </div>
 
       <div class="locked-cta">
-        <a href="#form-reiss" class="btn btn-primary btn-large">Richiedi Info sul Test Reiss →</a>
+        <a href="javascript:void(0)" onclick="openReissModal()" class="btn btn-primary btn-large">Richiedi Info sul Test Reiss →</a>
       </div>
     </div>
   </section>
@@ -425,8 +493,12 @@
 
       <div class="klab-glass-container">
         <div class="klab-glass-inner">
-          <div class="klab-header">
-            <div class="klab-title">K-Lab Workshop</div>
+          <!-- LEFT: content stack -->
+          <div class="klab-left">
+            <div class="klab-hero-title">K-Lab<span class="dot-red">.</span></div>
+            <div class="klab-headline">Le 5 Competenze Chiave per <span class="em-it">trasformare le tue capacità</span> in una professione <span class="em-red">certificata</span></div>
+            <p class="klab-desc">Due serate gratuite con i fondatori di Karakter Coaching School. Un workshop live dove scoprirai cosa serve <em>davvero</em> per diventare un <strong>coach</strong> professionista certificato ICF.</p>
+
             <div class="klab-meta">
               <div class="klab-meta-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -445,75 +517,27 @@
                 Gratuito
               </div>
             </div>
-          </div>
 
-          <div class="klab-content">
-            <div class="klab-text">
-              <p>Due serate gratuite con i fondatori di Karakter Coaching School. Un workshop live dove scoprirai le 5 competenze chiave per trasformare le tue capacità in una professione certificata.</p>
-              <div class="klab-cta">
-                <button class="btn btn-primary btn-large" onclick="registerKLab()">Iscriviti gratuitamente →</button>
-              </div>
-              <div class="klab-trust">Posti limitati · 500+ coach formati · Certificazione ICF Level 2</div>
+            <div class="klab-cta">
+              <button class="btn-glass" id="klab-cta-btn" onclick="registerKLab()">ISCRIVITI GRATUITAMENTE</button>
+              <span class="klab-trust-inline">Posti limitati per questa edizione</span>
             </div>
-            <div class="klab-image">
-              <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/thumbnail1.gif" alt="K-Lab Workshop" />
+
+            <div class="klab-countdown" id="countdown">
+              <!-- Populated by JS -->
             </div>
           </div>
 
-          <div class="klab-countdown" id="countdown">
-            <!-- Populated by JS -->
+          <!-- RIGHT: gif image -->
+          <div class="klab-right">
+            <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/thumbnail1.gif" alt="K-Lab Workshop" />
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- BLOCK 5: SOCIAL SHARE -->
-  <section id="block-social">
-    <div class="container">
-      <h3>Condividi il tuo Karakter</h3>
-      <div class="social-buttons">
-        <button class="social-btn-text" onclick="shareOnInstagram()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          Condividi su Instagram
-        </button>
-        <button class="social-btn-text" onclick="shareOnLinkedIn()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          Condividi su LinkedIn
-        </button>
-        <button class="social-btn-text" onclick="copyLink()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-          Copia il link
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- BLOCK 6: REISS FORM -->
-  <section id="form-reiss">
-    <div class="container">
-      <h2>Scopri il profilo Reiss Completo</h2>
-      <div class="form-container">
-        <form id="hubspot-form">
-          <div class="form-group">
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="La tua email" required>
-          </div>
-          <div class="form-group">
-            <label for="telefono">Telefono</label>
-            <input type="tel" id="telefono" name="telefono" placeholder="Il tuo numero" required>
-          </div>
-          <button type="submit" class="btn btn-primary btn-large" style="width:100%;margin-top:0.5rem;">Richiedi Informazioni →</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- BLOCK 7: FAQ -->
+  <!-- BLOCK 5: FAQ -->
   <section id="block-faq">
     <div class="container">
       <h2>Domande Frequenti</h2>
@@ -575,16 +599,43 @@
         <p>Il primo passo verso il cambiamento è capire chi sei davvero. Il tuo Karakter è una mappa — il resto dipende da te. Se quello che hai scoperto oggi ha senso, il prossimo passo è decidere se vuoi approfondire.</p>
         <p>Il K-Lab ti mostra come farlo. Il Test Reiss ti aiuta a capire perché è importante farlo adesso.</p>
         <div class="footer-cta">
-          <a href="#form-reiss" class="btn btn-primary btn-large">Scopri di più →</a>
+          <a href="javascript:void(0)" onclick="openReissModal()" class="btn btn-primary btn-large">Scopri di più →</a>
         </div>
       </div>
     </div>
   </section>
 </div>
 
+<!-- REISS MODAL -->
+<div class="modal-overlay" id="reiss-modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeReissModal()">&times;</button>
+    <h2>Scopri il profilo Reiss Completo</h2>
+    <form id="hubspot-form">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="La tua email" required>
+      </div>
+      <div class="form-group">
+        <label for="telefono">Telefono</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="Il tuo numero" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-large" style="width:100%;margin-top:0.5rem;">Richiedi Informazioni →</button>
+      <div class="form-badges">
+        <span class="form-badge">Reiss Partner</span>
+        <span class="form-badge">Certificati ICF</span>
+      </div>
+    </form>
+  </div>
+</div>
+
 <!-- FLOATING CTA -->
 <div class="floating-cta" id="floating-cta">
-  <a href="#form-reiss" class="btn btn-primary btn-large">Richiedi Info →</a>
+  <button class="btn btn-primary btn-large" onclick="openReissModal()">Richiedi Info →</button>
 </div>
 
 <!-- SUCCESS MESSAGE -->
@@ -627,6 +678,15 @@
   function scrollToForm(id) {
     var el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior:'smooth' });
+  }
+
+  function openReissModal() {
+    document.getElementById('reiss-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeReissModal() {
+    document.getElementById('reiss-modal').classList.remove('active');
+    document.body.style.overflow = '';
   }
 
   // ══ INIT ══
@@ -704,17 +764,23 @@
       var days = Math.floor(diff / 864e5);
       var hours = Math.floor((diff % 864e5) / 36e5);
       var mins = Math.floor((diff % 36e5) / 6e4);
-      el.innerHTML = 'Manca: <strong>' + days + 'g ' + hours + 'h ' + mins + 'm</strong>';
+      var secs = Math.floor((diff % 6e4) / 1000);
+      el.innerHTML =
+        '<span class="klab-cd-label">Inizia tra</span>' +
+        '<div class="klab-cd-item"><span class="klab-cd-num">' + days + '</span><span class="klab-cd-unit">GG</span></div>' +
+        '<div class="klab-cd-item"><span class="klab-cd-num">' + hours + '</span><span class="klab-cd-unit">Ore</span></div>' +
+        '<div class="klab-cd-item"><span class="klab-cd-num">' + mins + '</span><span class="klab-cd-unit">Min</span></div>' +
+        '<div class="klab-cd-item"><span class="klab-cd-num">' + secs + '</span><span class="klab-cd-unit">Sec</span></div>';
     } else {
-      el.innerHTML = "L'evento è in corso!";
+      el.innerHTML = '<span class="klab-cd-label">L\'evento è in corso!</span>';
     }
   }
 
   function updateFloatingCta() {
     var cta = document.getElementById('floating-cta');
-    var sec = document.getElementById('form-reiss');
-    if (!sec) return;
-    if (window.scrollY + window.innerHeight > sec.offsetTop) {
+    var footer = document.getElementById('block-footer');
+    if (!footer) return;
+    if (window.scrollY + window.innerHeight > footer.offsetTop + footer.offsetHeight - 50) {
       cta.classList.add('hidden');
     } else {
       cta.classList.remove('hidden');
@@ -722,33 +788,31 @@
   }
 
   function registerKLab() {
+    var btn = document.getElementById('klab-cta-btn');
+    if (btn.disabled) return;
+
     var name = getLS('kQuizName') || 'Partecipante';
     var email = getLS('kQuizEmail') || '';
     var phone = getLS('kQuizPhone') || '';
     var url = '/klab-registrazione/?nome=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&tel=' + encodeURIComponent(phone);
-    showSuccess('Registrazione inviata! Ti contatteremo presto.');
+
+    // Success toast (green)
+    var el = document.getElementById('success-message');
+    el.textContent = 'Registrazione inviata! Ti contatteremo presto.';
+    el.style.background = '#10B981';
+    el.classList.remove('hidden');
+    setTimeout(function(){ el.classList.add('hidden'); }, 5000);
+
+    // Disable button
+    btn.disabled = true;
+    btn.textContent = 'GRAZIE PER ESSERTI REGISTRATO!';
+    btn.style.background = 'rgba(255,255,255,0.12)';
+    btn.style.color = 'rgba(255,255,255,0.4)';
+    btn.style.cursor = 'default';
+    btn.style.transform = 'none';
+    btn.style.boxShadow = 'none';
+
     // window.location.href = url;
-  }
-
-  function shareOnInstagram() {
-    var text = 'Ho scoperto il mio Karakter! La mia firma motivazionale rivela come realmente lavoro, scelgo e cresco.';
-    window.open('https://www.instagram.com/', '_blank');
-  }
-
-  function shareOnLinkedIn() {
-    window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), '_blank', 'width=600,height=400');
-  }
-
-  function copyLink() {
-    var text = window.location.href;
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(function(){ showSuccess('Link copiato negli appunti!'); });
-    } else {
-      var ta = document.createElement('textarea');
-      ta.value = text; document.body.appendChild(ta); ta.select();
-      document.execCommand('copy'); document.body.removeChild(ta);
-      showSuccess('Link copiato negli appunti!');
-    }
   }
 
   function submitForm(e) {
@@ -760,6 +824,7 @@
     localStorage.setItem('kQuizEmail', email);
     localStorage.setItem('kQuizPhone', phone);
     showSuccess('Richiesta inviata! Ti contatteremo presto.');
+    closeReissModal();
     document.getElementById('hubspot-form').reset();
   }
 
@@ -773,6 +838,15 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.rv').forEach(function(el) { obs.observe(el); });
   }
+
+  // Close modal on overlay click
+  document.addEventListener('click', function(e) {
+    if (e.target.id === 'reiss-modal') closeReissModal();
+  });
+  // Close modal on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeReissModal();
+  });
 
   // ══ BOOT ══
   document.addEventListener('DOMContentLoaded', initPage);
