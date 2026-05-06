@@ -12,30 +12,12 @@
 /* ══ SCROLL REVEAL ══ */
 (function(){
   var els=document.querySelectorAll('.rv');
-  var pending=[];
-  els.forEach(function(el){pending.push(el);});
-  function checkReveal(){
-    var vh=window.innerHeight||document.documentElement.clientHeight;
-    for(var i=pending.length-1;i>=0;i--){
-      var r=pending[i].getBoundingClientRect();
-      if(r.top<vh-40 && r.bottom>0){
-        pending[i].classList.add('vis');
-        pending.splice(i,1);
-      }
-    }
-    if(pending.length===0){
-      window.removeEventListener('scroll',onScroll,true);
-      document.removeEventListener('scroll',onScroll,true);
-    }
-  }
-  function onScroll(){requestAnimationFrame(checkReveal);}
-  /* Listen on both window and document (capture) to catch any scroll container */
-  window.addEventListener('scroll',onScroll,true);
-  document.addEventListener('scroll',onScroll,true);
-  /* Also check on initial load and after a short delay */
-  checkReveal();
-  setTimeout(checkReveal,500);
-  setTimeout(checkReveal,1500);
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}
+    });
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){obs.observe(el);});
 })();
 
 /* ══ HERO TYPEWRITER ══ */
