@@ -1,0 +1,780 @@
+<div id="karakter-ty">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ══ CUSTOM PROPERTIES ══ */
+  :root {
+    --primary: #8B1A1A;
+    --accent-bright: #E74C3C;
+    --dark: #2C2C2C;
+    --bg: #FAFAF8;
+    --bg-warm: #F5EDED;
+    --text: #1E1E1E;
+    --text-light: #666563;
+    --gray-50: #F7F7F6;
+    --gray-100: #EFEFED;
+    --gray-200: #DDDBD8;
+    --gray-400: #999795;
+    --gradient-main: linear-gradient(135deg, #8B1A1A 0%, #A03030 50%, #2C2C2C 100%);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.1);
+    --shadow-lg: 0 16px 40px rgba(0,0,0,0.14);
+    --font-h: 'Inter Tight', 'Helvetica Neue', sans-serif;
+    --font-body: 'DM Sans', 'Inter Tight', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  html { scroll-behavior:smooth; }
+
+  body, #karakter-ty {
+    font-family: var(--font-body);
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ══ TYPOGRAPHY ══ */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-h);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  h1 { font-size: clamp(2.5rem, 6vw, 3.75rem); }
+  h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+  h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
+  p { font-size: 1rem; color: var(--text-light); }
+  a { color: var(--primary); text-decoration: none; transition: var(--transition); }
+
+  /* ══ BUTTONS ══ */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.875rem 1.75rem; font-family: var(--font-body); font-size: 15px; font-weight: 600;
+    border: none; border-radius: 8px; cursor: pointer; transition: var(--transition);
+    text-decoration: none; white-space: nowrap; position: relative; overflow: hidden; letter-spacing: 0.01em;
+  }
+  .btn::after {
+    content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent); transition:left .5s;
+  }
+  .btn:hover::after { left:100%; }
+  .btn-primary { background: var(--accent-bright); color: white; }
+  .btn-primary:hover { background: var(--primary); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(231,76,60,.2); }
+  .btn-secondary { background: var(--bg); color: var(--primary); border: 1.5px solid var(--gray-200); }
+  .btn-secondary:hover { border-color: var(--primary); background: rgba(139,26,26,.04); }
+  .btn-large { padding: 1rem 2.25rem; font-size: 1rem; }
+
+  /* ══ UTILITY ══ */
+  .container { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+  .section { padding: 4rem 0; }
+
+  /* ══ ANIMATIONS ══ */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes popIn { 0% { opacity:0; transform:scale(0.85); } 100% { opacity:1; transform:scale(1); } }
+  @keyframes shimmer { 0% { opacity:0.5; } 50% { opacity:1; } 100% { opacity:0.5; } }
+  @keyframes bounce { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.6; } }
+  @keyframes slideInRight { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+  @property --fuse-angle { syntax:"<angle>"; initial-value:0deg; inherits:false; }
+  @keyframes fuseRotate { 0% { --fuse-angle:0deg } 100% { --fuse-angle:360deg } }
+  @keyframes glassShift { 0%,100% { background-position:0% 50%; } 50% { background-position:100% 50%; } }
+  @keyframes floatSlow { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-6px); } }
+
+  .rv { opacity:0; transform:translateY(40px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .rv.vis { opacity:1; transform:translateY(0); }
+  .rv-d1 { transition-delay:.1s } .rv-d2 { transition-delay:.2s } .rv-d3 { transition-delay:.3s }
+  .rv-d4 { transition-delay:.35s } .rv-d5 { transition-delay:.45s }
+
+  /* ══ BLOCK 1: HEADER ══ */
+  #block-header {
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%);
+    padding: 4rem 0 3rem;
+    text-align: center;
+  }
+  .label-badge {
+    display: inline-block; font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+    letter-spacing: 0.1em; color: var(--accent-bright); margin-bottom: 1.25rem;
+  }
+  #block-header h1 { margin-bottom: 0.75rem; animation: fadeUp 0.8s ease-out 0.2s both; }
+  .subtitle {
+    font-size: 1.125rem; color: var(--text-light); margin: 1rem auto 0; max-width: 560px;
+    animation: fadeUp 0.8s ease-out 0.4s both; line-height: 1.7;
+  }
+
+  /* Trait Badge Row */
+  .traits-badges {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    margin-top: 2.5rem; animation: fadeUp 0.8s ease-out 0.6s both;
+  }
+  .trait-badge {
+    display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+    background: var(--bg); border: 1.5px solid var(--gray-200); border-radius: 100px;
+    transition: var(--transition); position: relative;
+  }
+  .trait-badge:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--shadow-sm); }
+  .trait-badge-emoji { font-size: 1.5rem; }
+  .trait-badge-name { font-family: var(--font-h); font-weight: 600; font-size: 14px; color: var(--text); }
+
+  /* ══ BLOCK 2: TRAIT CARDS ══ */
+  #block-traits { background: var(--bg); padding: 3.5rem 0; }
+  .traits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 2rem; }
+
+  .trait-card {
+    position: relative; background: white; border-radius: 16px; overflow: visible;
+    box-shadow: var(--shadow-sm); transition: var(--transition); animation: fadeUp 0.8s ease-out;
+  }
+  .trait-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+  /* Animated conic-gradient stroke */
+  .trait-card::before {
+    content:''; position:absolute; inset:-2px; border-radius:18px; padding:2px;
+    background: conic-gradient(from var(--fuse-angle, 0deg), transparent 0%, transparent 70%, var(--card-color, var(--primary)) 80%, rgba(231,76,60,.5) 90%, transparent 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    animation: fuseRotate 4s linear infinite; pointer-events: none; z-index: 0;
+  }
+
+  .trait-card-inner { padding: 2rem; position: relative; z-index: 2; background: white; border-radius: 14px; }
+  .trait-card-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; }
+  .trait-card-emoji {
+    display: flex; align-items: center; justify-content: center; width: 52px; height: 52px;
+    border-radius: 12px; background: var(--primary); color: white; font-size: 1.5rem; flex-shrink: 0;
+  }
+  .trait-card-meta { flex: 1; }
+  .trait-card-number {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.1em; color: var(--text-light); text-transform: uppercase;
+  }
+  .trait-card-name { font-family: var(--font-h); font-size: 1.35rem; font-weight: 700; color: var(--text); margin-top: 0.2rem; }
+  .trait-card-description { font-size: 0.95rem; color: var(--text-light); line-height: 1.75; }
+
+  /* ══ BLOCK 3: LOCKED PREVIEW ══ */
+  #block-locked { padding: 4rem 0; background: var(--bg); }
+  #block-locked h2 { text-align: center; margin-bottom: 2.5rem; }
+
+  .locked-preview-container { position: relative; margin: 0 auto 2.5rem; max-width: 900px; }
+  .locked-preview-box {
+    position: relative; aspect-ratio: 16/10;
+    background: linear-gradient(135deg, var(--bg-warm) 0%, var(--bg) 100%);
+    border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-lg);
+  }
+  .locked-preview-bg { position: absolute; inset: 0; overflow: hidden; }
+  .locked-circle { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; }
+  .locked-circle-1 { width: 300px; height: 300px; background: #8B1A1A; top: -150px; left: -150px; }
+  .locked-circle-2 { width: 250px; height: 250px; background: #C0392B; top: 50%; right: -125px; animation: pulse 3s ease-in-out infinite; }
+  .locked-circle-3 { width: 200px; height: 200px; background: #2C2C2C; bottom: -100px; left: 30%; animation: pulse 4s ease-in-out infinite 0.5s; }
+  .shimmer-bars { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+  .shimmer-bar { position: absolute; height: 2px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); left: 0; right: 0; animation: shimmer 2s infinite; }
+  .shimmer-bar:nth-child(1) { top: 20%; }
+  .shimmer-bar:nth-child(2) { top: 50%; animation-delay: 0.5s; }
+  .shimmer-bar:nth-child(3) { top: 80%; animation-delay: 1s; }
+  .locked-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(250,250,248,0.3) 0%, rgba(245,237,237,0.7) 100%); z-index: 3; }
+  .locked-lock-container { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 4; cursor: pointer; }
+  .locked-lock {
+    display: flex; align-items: center; justify-content: center; width: 72px; height: 72px;
+    background: rgba(139,26,26,0.95); border-radius: 50%; color: white;
+    animation: bounce 2s ease-in-out infinite; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  .locked-lock svg { width: 28px; height: 28px; }
+
+  /* Tags — modernized */
+  .locked-tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 2.5rem 0; }
+  .tag-chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px;
+    background: var(--bg); border: 1.5px solid var(--gray-200); border-radius: 100px;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em;
+    color: var(--text-light); font-weight: 500; text-transform: uppercase;
+    transition: var(--transition);
+  }
+  .tag-chip:hover { border-color: var(--accent-bright); color: var(--accent-bright); background: rgba(231,76,60,.04); }
+  .tag-chip svg { width: 14px; height: 14px; opacity: 0.5; }
+
+  .locked-description {
+    max-width: 800px; margin: 2rem auto; padding: 2rem;
+    background: white; border-radius: 16px; box-shadow: var(--shadow-sm);
+    border-left: 3px solid var(--accent-bright);
+  }
+  .locked-description p { margin: 0; line-height: 1.8; }
+  .locked-cta { text-align: center; margin-top: 2rem; }
+
+  /* ══ BLOCK 4: K-LAB EVENT — LIQUID GLASS ══ */
+  #block-klab { padding: 5rem 0; background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%); }
+  .klab-divider { text-align: center; font-size: 1rem; color: var(--text-light); margin-bottom: 1rem; }
+  #block-klab h2 { text-align: center; margin-bottom: 3rem; }
+
+  .klab-glass-container {
+    max-width: 1120px; margin: 0 auto; padding: 0; border-radius: 28px;
+    position: relative; overflow: hidden;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(40px) saturate(1.8);
+    -webkit-backdrop-filter: blur(40px) saturate(1.8);
+    border: 1px solid rgba(255,255,255,0.45);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.15) inset,
+      0 1px 0 rgba(255,255,255,0.6) inset,
+      0 -1px 0 rgba(0,0,0,0.04) inset,
+      0 24px 80px rgba(0,0,0,0.08),
+      0 4px 16px rgba(0,0,0,0.04);
+  }
+
+  /* Animated gradient overlay for glass depth */
+  .klab-glass-container::before {
+    content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background: linear-gradient(135deg, rgba(231,76,60,0.06) 0%, rgba(139,26,26,0.03) 30%, rgba(44,44,44,0.02) 60%, rgba(231,76,60,0.04) 100%);
+    background-size: 200% 200%; animation: glassShift 8s ease-in-out infinite;
+  }
+  /* Specular highlight */
+  .klab-glass-container::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%; z-index: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, transparent 100%);
+    border-radius: 28px 28px 0 0;
+  }
+
+  .klab-glass-inner { position: relative; z-index: 1; padding: 3rem; }
+
+  .klab-header { text-align: center; margin-bottom: 2.5rem; }
+  .klab-title { font-family: var(--font-h); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--primary); margin-bottom: 1rem; }
+
+  .klab-meta {
+    display: flex; align-items: center; justify-content: center; gap: 1.25rem;
+    flex-wrap: wrap; margin-bottom: 1.5rem;
+  }
+  .klab-meta-item {
+    display: flex; align-items: center; gap: 8px; font-family: var(--font-mono);
+    font-size: 13px; color: var(--text-light); font-weight: 500; letter-spacing: 0.02em;
+  }
+  .klab-meta-item svg { width: 16px; height: 16px; color: var(--accent-bright); flex-shrink: 0; }
+
+  .klab-content { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; margin-bottom: 2rem; }
+  .klab-text p { font-size: 1rem; line-height: 1.8; margin-bottom: 1.5rem; }
+  .klab-cta { margin-top: 1.5rem; }
+  .klab-trust {
+    text-align: center; font-family: var(--font-mono); font-size: 12px;
+    color: var(--text-light); margin-top: 1.25rem; letter-spacing: 0.04em;
+  }
+  .klab-image img { width: 100%; border-radius: 16px; box-shadow: var(--shadow-md); }
+
+  .klab-countdown {
+    text-align: center; padding: 1.25rem; margin-top: 2rem;
+    background: rgba(139,26,26,0.04); border: 1px solid rgba(139,26,26,0.08);
+    border-radius: 12px; font-family: var(--font-mono); font-size: 14px; color: var(--primary); font-weight: 500;
+  }
+  .klab-countdown strong { font-weight: 700; }
+
+  /* ══ BLOCK 5: SOCIAL ══ */
+  #block-social { padding: 3rem 0; background: var(--bg); text-align: center; }
+  #block-social h3 { margin-bottom: 2rem; }
+  .social-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .social-btn-text {
+    display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px;
+    background: white; color: var(--text); border: 1.5px solid var(--gray-200); border-radius: 8px;
+    font-family: var(--font-body); font-size: 14px; font-weight: 600; cursor: pointer; transition: var(--transition);
+  }
+  .social-btn-text svg { width: 18px; height: 18px; color: var(--text-light); }
+  .social-btn-text:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+  .social-btn-text:hover svg { color: var(--primary); }
+
+  /* ══ BLOCK 6: REISS FORM ══ */
+  #form-reiss { padding: 4rem 0; background: var(--bg-warm); }
+  #form-reiss h2 { text-align: center; margin-bottom: 2rem; }
+  .form-container {
+    max-width: 560px; margin: 0 auto; padding: 2.5rem;
+    background: white; border-radius: 16px; box-shadow: var(--shadow-md);
+  }
+  .form-container form { display: grid; gap: 1.25rem; }
+  .form-group { display: flex; flex-direction: column; }
+  .form-group label { font-family: var(--font-body); font-weight: 600; margin-bottom: 0.4rem; color: var(--text); font-size: 14px; }
+  .form-group input, .form-group textarea, .form-group select {
+    padding: 0.8rem 1rem; border: 1.5px solid var(--gray-200); border-radius: 8px;
+    font-family: var(--font-body); font-size: 15px; transition: var(--transition); background: var(--bg);
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    outline: none; border-color: var(--accent-bright); box-shadow: 0 0 0 3px rgba(231,76,60,0.08); background: white;
+  }
+
+  /* ══ BLOCK 7: FAQ ══ */
+  #block-faq { padding: 4rem 0; background: var(--bg); }
+  #block-faq h2 { text-align: center; margin-bottom: 2rem; }
+  .faq-container { max-width: 800px; margin: 0 auto; }
+  .faq-item { margin-bottom: 0; border-bottom: 1px solid var(--gray-100); }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-question {
+    display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 0;
+    cursor: pointer; user-select: none; transition: var(--transition);
+  }
+  .faq-question:hover { color: var(--accent-bright); }
+  .faq-question h3 { font-size: 1rem; font-weight: 600; margin: 0; line-height: 1.4; }
+  .faq-toggle { font-size: 1.25rem; color: var(--accent-bright); transition: var(--transition); flex-shrink: 0; margin-left: 1rem; }
+  .faq-item.active .faq-toggle { transform: rotate(45deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease-out; }
+  .faq-item.active .faq-answer { max-height: 500px; padding-bottom: 1.25rem; }
+  .faq-answer p { margin: 0; line-height: 1.8; font-size: 0.95rem; }
+
+  /* ══ BLOCK 8: FOOTER ══ */
+  #block-footer { padding: 4rem 0; background: linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 100%); text-align: center; }
+  #block-footer h2 { margin-bottom: 1.5rem; }
+  .footer-content { max-width: 640px; margin: 0 auto; }
+  .footer-content p { margin-bottom: 1.5rem; line-height: 1.8; }
+  .footer-cta { margin-top: 1.5rem; }
+
+  /* ══ FLOATING CTA ══ */
+  .floating-cta { position: fixed; bottom: 2rem; right: 2rem; z-index: 1000; animation: fadeUp 0.8s ease-out 1s both; }
+  .floating-cta.hidden { display: none; }
+
+  /* ══ SUCCESS MESSAGE ══ */
+  .success-message {
+    position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
+    background: var(--accent-bright); color: white; padding: 1rem 2rem; border-radius: 8px;
+    box-shadow: var(--shadow-lg); z-index: 2000; font-family: var(--font-body); font-weight: 600;
+  }
+  .success-message.hidden { display: none; }
+
+  /* ══ RESPONSIVE ══ */
+  @media (max-width: 768px) {
+    .klab-content { grid-template-columns: 1fr; }
+    .klab-glass-inner { padding: 2rem; }
+    .traits-grid { grid-template-columns: 1fr; }
+    .klab-meta { flex-direction: column; gap: 8px; }
+    .floating-cta { bottom: 1rem; right: 1rem; }
+    .btn { padding: 0.75rem 1.5rem; font-size: 0.95rem; }
+    .btn-large { padding: 0.875rem 2rem; font-size: 0.95rem; }
+    .section { padding: 2.5rem 0; }
+    .social-buttons { gap: 8px; }
+    .locked-tags { gap: 6px; }
+    .tag-chip { font-size: 10px; padding: 6px 12px; }
+  }
+</style>
+
+<div id="main-content">
+  <!-- BLOCK 1: PROFILE RESULT HEADER -->
+  <section id="block-header">
+    <div class="container">
+      <p class="label-badge">LA TUA FIRMA MOTIVAZIONALE</p>
+      <h1>Il tuo Karakter.</h1>
+      <p class="subtitle">Una combinazione unica di tre archetipi che definiscono come lavori, scegli e cresci.</p>
+      <div class="traits-badges" id="traits-badges-container">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 2: TRAIT CARDS -->
+  <section id="block-traits">
+    <div class="container">
+      <div class="traits-grid" id="traits-cards-container">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 3: LOCKED PREVIEW -->
+  <section id="block-locked">
+    <div class="container">
+      <h2>Vuoi la mappa completa del tuo Karakter?</h2>
+
+      <div class="locked-preview-container">
+        <div class="locked-preview-box">
+          <div class="locked-preview-bg">
+            <div class="locked-circle locked-circle-1"></div>
+            <div class="locked-circle locked-circle-2"></div>
+            <div class="locked-circle locked-circle-3"></div>
+            <div class="shimmer-bars">
+              <div class="shimmer-bar"></div>
+              <div class="shimmer-bar"></div>
+              <div class="shimmer-bar"></div>
+            </div>
+          </div>
+          <div class="locked-overlay"></div>
+          <div class="locked-lock-container" onclick="scrollToForm('form-reiss')">
+            <div class="locked-lock">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="locked-tags">
+        <span class="tag-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Tratti secondari</span>
+        <span class="tag-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> Tensioni motivazionali</span>
+        <span class="tag-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Come i 3 tratti si combinano</span>
+        <span class="tag-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><circle cx="12" cy="16" r="0.5"/></svg> Zona d'ombra dominante</span>
+        <span class="tag-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Restituzione con coach certificato</span>
+      </div>
+
+      <div class="locked-description">
+        <p>Il Test Reiss Motivation Profile è una sessione individuale di un'ora con un coach certificato Karakter che ti restituisce il profilo completo delle tue 16 motivazioni fondamentali.<br><br>Vedrai non solo dove sei forte, ma dove le tue motivazioni creano attrito — con gli altri, con certi tipi di lavoro, con scelte che sembravano giuste ma non reggevano nel tempo.</p>
+      </div>
+
+      <div class="locked-cta">
+        <a href="#form-reiss" class="btn btn-primary btn-large">Richiedi Info sul Test Reiss →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 4: K-LAB EVENT -->
+  <section id="block-klab">
+    <div class="container">
+      <p class="klab-divider">Vuoi conoscere come puoi iniziare a sfruttare queste tue caratteristiche?</p>
+      <h2>Ha inizio la Prima Edizione di K-Lab.</h2>
+
+      <div class="klab-glass-container">
+        <div class="klab-glass-inner">
+          <div class="klab-header">
+            <div class="klab-title">K-Lab Workshop</div>
+            <div class="klab-meta">
+              <div class="klab-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                26-27 Maggio 2026
+              </div>
+              <div class="klab-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                ore 20:45
+              </div>
+              <div class="klab-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                Zoom Live
+              </div>
+              <div class="klab-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                Gratuito
+              </div>
+            </div>
+          </div>
+
+          <div class="klab-content">
+            <div class="klab-text">
+              <p>Due serate gratuite con i fondatori di Karakter Coaching School. Un workshop live dove scoprirai le 5 competenze chiave per trasformare le tue capacità in una professione certificata.</p>
+              <div class="klab-cta">
+                <button class="btn btn-primary btn-large" onclick="registerKLab()">Iscriviti gratuitamente →</button>
+              </div>
+              <div class="klab-trust">Posti limitati · 500+ coach formati · Certificazione ICF Level 2</div>
+            </div>
+            <div class="klab-image">
+              <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/thumbnail1.gif" alt="K-Lab Workshop" />
+            </div>
+          </div>
+
+          <div class="klab-countdown" id="countdown">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 5: SOCIAL SHARE -->
+  <section id="block-social">
+    <div class="container">
+      <h3>Condividi il tuo Karakter</h3>
+      <div class="social-buttons">
+        <button class="social-btn-text" onclick="shareOnInstagram()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Condividi su Instagram
+        </button>
+        <button class="social-btn-text" onclick="shareOnLinkedIn()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          Condividi su LinkedIn
+        </button>
+        <button class="social-btn-text" onclick="copyLink()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          Copia il link
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 6: REISS FORM -->
+  <section id="form-reiss">
+    <div class="container">
+      <h2>Scopri il profilo Reiss Completo</h2>
+      <div class="form-container">
+        <form id="hubspot-form">
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="La tua email" required>
+          </div>
+          <div class="form-group">
+            <label for="telefono">Telefono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="Il tuo numero" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-large" style="width:100%;margin-top:0.5rem;">Richiedi Informazioni →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 7: FAQ -->
+  <section id="block-faq">
+    <div class="container">
+      <h2>Domande Frequenti</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h3>Qual è la differenza tra il nostro quiz e il test Reiss?</h3>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Il nostro quiz Karakter identifica i tuoi 3 archetipi dominanti in 5 minuti. È uno strumento di autoconoscenza veloce e potente. Il Test Reiss Motivation Profile è più approfondito: una sessione individuale di 1 ora con un coach certificato che misura le tue 16 motivazioni fondamentali e ti mostra dove queste motivazioni creano armonia o attrito nella tua vita professionale e personale.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h3>Il Test Reiss è solo per chi lavora in coaching?</h3>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>No. Il Test Reiss è utile per chiunque voglia capire cosa lo muove veramente. È uno strumento che funziona bene per founder, manager, professionisti, persone in transizione di carriera. La sessione individuale con il coach ti aiuta a tradurre questa consapevolezza in azioni concrete nella tua vita professionale.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h3>Posso fare il K-Lab anche se non faccio il Test Reiss?</h3>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Sì, certo. Il K-Lab è un workshop pubblico gratuito che vale per chiunque voglia capire come trasformare le proprie capacità in una professione certificata. Non è un prerequisito il Test Reiss, ma se hai già fatto il nostro quiz, il workshop prenderà più senso perché potrai mettervi subito in pratica quello che scopri.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h3>Quanto costa il Test Reiss?</h3>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Contattaci per i dettagli sui prezzi. La sessione individuale di 1 ora con un coach certificato Karakter è un investimento sulla tua autoconoscenza e sulle tue scelte di carriera. Compiliamo il form e ti raccontiamo tutto.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h3>Come funziona la certificazione che menzionate?</h3>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>La certificazione ICF Level 2 è uno standard internazionale per i coach. I nostri coach completano un programma strutturato di Karakter che integra il modello dei 12 archetipi e il Reiss Motivation Profile. Al termine del programma, ricevono la certificazione Karakter e possono lavorare come coach specializzato in questo metodo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 8: FOOTER NURTURING -->
+  <section id="block-footer">
+    <div class="container">
+      <h2>Non finisce qui.</h2>
+      <div class="footer-content">
+        <p>Il primo passo verso il cambiamento è capire chi sei davvero. Il tuo Karakter è una mappa — il resto dipende da te. Se quello che hai scoperto oggi ha senso, il prossimo passo è decidere se vuoi approfondire.</p>
+        <p>Il K-Lab ti mostra come farlo. Il Test Reiss ti aiuta a capire perché è importante farlo adesso.</p>
+        <div class="footer-cta">
+          <a href="#form-reiss" class="btn btn-primary btn-large">Scopri di più →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta" id="floating-cta">
+  <a href="#form-reiss" class="btn btn-primary btn-large">Richiedi Info →</a>
+</div>
+
+<!-- SUCCESS MESSAGE -->
+<div class="success-message hidden" id="success-message"></div>
+
+<script>
+  // ══ TRAIT DATA ══
+  var TRAIT_DATA = {
+    BUSSOLA: { name:"La Bussola", emoji:"🧭", desc:"Sai già cosa è giusto per te. Il problema non è mai capire cosa vuoi — è trovare contesti che non ti chiedano di scendere a compromessi su quello che per te non è negoziabile. Sei il tipo di persona di cui ci si ricorda: non per quello che dici, ma perché quello che dici e quello che fai coincidono sempre. Quando qualcosa non è allineato con i tuoi valori, lo senti subito — e non riesci a ignorarlo." },
+    FUOCO: { name:"Il Fuoco", emoji:"🔥", desc:"Ti muovi per lasciare il segno. Non ti basta essere presente — vuoi contare, incidere, fare la differenza in modo che si veda. Quella spinta non è ambizione nel senso banale del termine: è la tua energia motrice. Quando la usi bene, trascini tutto e tutti con te. Il rischio è bruciare chi ti sta vicino quando il ritmo diventa solo il tuo." },
+    MAPPA: { name:"La Mappa", emoji:"🗺️", desc:"Non agisci prima di capire. Per te, saltare la fase di comprensione non è velocità — è un errore che si paga dopo. Sei quello che fa le domande giuste nel momento in cui tutti danno le cose per scontate. La tua capacità di analisi è il tuo superpotere — a patto che non diventi un modo per rimandare l'azione." },
+    FILO: { name:"Il Filo", emoji:"🧵", desc:"Per te le relazioni non sono il contorno del lavoro. Sono il lavoro. Leggi le persone prima ancora di leggere i progetti, e sai quando qualcuno ha bisogno di essere visto anche se non lo dice. Hai una sensibilità che ti rende indispensabile nei gruppi — e vulnerabile quando non viene riconosciuta." },
+    RADICE: { name:"La Radice", emoji:"🌳", desc:"Costruisci per durare. Non ti piace il provvisorio, non ti piace l'approssimazione. Quando ti metti su qualcosa, lo fai con una cura che gli altri notano anche quando non la nominano. Il tuo contributo si vede nel tempo, non nel momento. La sfida è accettare che non tutto può essere costruito con la stessa solidità." },
+    ONDA: { name:"L'Onda", emoji:"🌊", desc:"Hai bisogno di spazio per funzionare — spazio fisico, mentale, di tempo. Quando ce l'hai, sei capace di adattamenti e soluzioni che altri non vedrebbero nemmeno. Il movimento è il tuo modo di pensare. Se qualcuno prova a bloccarti in uno schema rigido, perdi energia invece di guadagnarla." },
+    SCUDO: { name:"Lo Scudo", emoji:"🛡️", desc:"Tieni il campo quando gli altri vacillano. Non perché tu non senta l'imprevisto — lo senti eccome. Ma hai imparato che la reazione emotiva immediata non è sempre la risposta più utile. Questo ti rende prezioso nei momenti difficili. La sfida è non trasformare la stabilità in distacco." },
+    PALCO: { name:"Il Palco", emoji:"🎭", desc:"Hai un rapporto diretto con la qualità e con il riconoscimento: non sono optional per te, sono nutrimento. Curi i dettagli che gli altri saltano, alzi il livello di quello che tocchi. Quando il tuo lavoro non viene notato, non è indifferenza quello che senti — è una frustrazione che può diventare motore o freno." },
+    PONTE: { name:"Il Ponte", emoji:"🌉", desc:"Non ti basta che le cose funzionino — devono avere senso. Scegli i progetti in cui credi, i contesti in cui senti che il tuo lavoro serve a qualcosa che va oltre il risultato immediato. La tua motivazione cresce quando vedi l'impatto — e si spegne quando il lavoro diventa solo esecuzione." },
+    RITMO: { name:"Il Ritmo", emoji:"🎵", desc:"Ascolti il corpo prima che la testa abbia finito di ragionare. Sai quando sei fuori ritmo — e sai che quando succede, tutto il resto ne risente. Il tuo equilibrio fisico non è un lusso — è la condizione base. Quando lo rispetti, tutto il resto fluisce. Quando lo ignori, anche le cose semplici diventano pesanti." },
+    LENTE: { name:"La Lente", emoji:"🔍", desc:"Vedi le cose che gli altri non si sono fermati a guardare. La contraddizione nel ragionamento, il dato che non torna, il dettaglio che cambia tutto. Non ti accontenti di capire 'abbastanza'. Il rischio è che la ricerca di precisione diventi un modo per non chiudere mai." },
+    VENTO: { name:"Il Vento", emoji:"💨", desc:"Non ti lasci definire dagli altri — né dalle aspettative, né dalle convenzioni. Cerchi il tuo modo di fare le cose non per differenziarti, ma perché credi che ci sia quasi sempre un approccio migliore di quello standard. La sfida è distinguere tra indipendenza autentica e resistenza al cambiamento." }
+  };
+
+  var TRAIT_COLORS = {
+    BUSSOLA:"#8B1A1A", FUOCO:"#C0392B", MAPPA:"#2C2C2C", FILO:"#A0522D",
+    RADICE:"#5C4033", ONDA:"#6B3A3A", SCUDO:"#4A4A4A", PALCO:"#8B4513",
+    PONTE:"#C75F2A", RITMO:"#704241", LENTE:"#3D3B39", VENTO:"#7B5B5B"
+  };
+
+  // ══ UTILITIES ══
+  function decodeBase64Json(str) { try { return JSON.parse(atob(str)); } catch(e) { return null; } }
+  function getUrlParam(p) { return new URLSearchParams(window.location.search).get(p); }
+  function getLS(k) { try { return localStorage.getItem(k) || ''; } catch(e) { return ''; } }
+
+  function showSuccess(msg) {
+    var el = document.getElementById('success-message');
+    el.textContent = msg; el.classList.remove('hidden');
+    setTimeout(function(){ el.classList.add('hidden'); }, 5000);
+  }
+
+  function scrollToForm(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior:'smooth' });
+  }
+
+  // ══ INIT ══
+  function initPage() {
+    var encoded = getUrlParam('d');
+    var quizData = { top3:['BUSSOLA','FUOCO','MAPPA'], scores:{}, sorted:[] };
+    if (encoded) { var d = decodeBase64Json(encoded); if (d) quizData = d; }
+
+    // Pre-fill form from localStorage
+    var name = getLS('kQuizName');
+    var email = getLS('kQuizEmail');
+    var phone = getLS('kQuizPhone');
+    if (name) document.getElementById('nome').value = name;
+    if (email) document.getElementById('email').value = email;
+    if (phone) document.getElementById('telefono').value = phone;
+
+    renderTraitBadges(quizData.top3);
+    renderTraitCards(quizData.top3);
+
+    document.getElementById('hubspot-form').addEventListener('submit', submitForm);
+    window.addEventListener('scroll', updateFloatingCta);
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Scroll reveal
+    initScrollReveal();
+  }
+
+  function renderTraitBadges(traits) {
+    var c = document.getElementById('traits-badges-container');
+    c.innerHTML = '';
+    traits.forEach(function(trait) {
+      if (!TRAIT_DATA[trait]) return;
+      var d = TRAIT_DATA[trait];
+      var b = document.createElement('div');
+      b.className = 'trait-badge';
+      b.innerHTML = '<span class="trait-badge-emoji">' + d.emoji + '</span><span class="trait-badge-name">' + d.name + '</span>';
+      c.appendChild(b);
+    });
+  }
+
+  function renderTraitCards(traits) {
+    var c = document.getElementById('traits-cards-container');
+    c.innerHTML = '';
+    traits.forEach(function(trait, idx) {
+      if (!TRAIT_DATA[trait]) return;
+      var d = TRAIT_DATA[trait];
+      var color = TRAIT_COLORS[trait];
+      var card = document.createElement('div');
+      card.className = 'trait-card';
+      card.style.setProperty('--card-color', color);
+      card.style.animationDelay = (idx * 0.15) + 's';
+      card.innerHTML =
+        '<div class="trait-card-inner">' +
+          '<div class="trait-card-header">' +
+            '<div class="trait-card-emoji" style="background:' + color + ';">' + d.emoji + '</div>' +
+            '<div class="trait-card-meta">' +
+              '<div class="trait-card-number">Tratto ' + (idx + 1) + '</div>' +
+              '<div class="trait-card-name">' + d.name + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<p class="trait-card-description">' + d.desc + '</p>' +
+        '</div>';
+      c.appendChild(card);
+    });
+  }
+
+  function updateCountdown() {
+    var target = new Date('2026-05-26T20:45:00+02:00').getTime();
+    var now = Date.now();
+    var diff = target - now;
+    var el = document.getElementById('countdown');
+    if (diff > 0) {
+      var days = Math.floor(diff / 864e5);
+      var hours = Math.floor((diff % 864e5) / 36e5);
+      var mins = Math.floor((diff % 36e5) / 6e4);
+      el.innerHTML = 'Manca: <strong>' + days + 'g ' + hours + 'h ' + mins + 'm</strong>';
+    } else {
+      el.innerHTML = "L'evento è in corso!";
+    }
+  }
+
+  function updateFloatingCta() {
+    var cta = document.getElementById('floating-cta');
+    var sec = document.getElementById('form-reiss');
+    if (!sec) return;
+    if (window.scrollY + window.innerHeight > sec.offsetTop) {
+      cta.classList.add('hidden');
+    } else {
+      cta.classList.remove('hidden');
+    }
+  }
+
+  function registerKLab() {
+    var name = getLS('kQuizName') || 'Partecipante';
+    var email = getLS('kQuizEmail') || '';
+    var phone = getLS('kQuizPhone') || '';
+    var url = '/klab-registrazione/?nome=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&tel=' + encodeURIComponent(phone);
+    showSuccess('Registrazione inviata! Ti contatteremo presto.');
+    // window.location.href = url;
+  }
+
+  function shareOnInstagram() {
+    var text = 'Ho scoperto il mio Karakter! La mia firma motivazionale rivela come realmente lavoro, scelgo e cresco.';
+    window.open('https://www.instagram.com/', '_blank');
+  }
+
+  function shareOnLinkedIn() {
+    window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), '_blank', 'width=600,height=400');
+  }
+
+  function copyLink() {
+    var text = window.location.href;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(function(){ showSuccess('Link copiato negli appunti!'); });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+      showSuccess('Link copiato negli appunti!');
+    }
+  }
+
+  function submitForm(e) {
+    e.preventDefault();
+    var name = document.getElementById('nome').value;
+    var email = document.getElementById('email').value;
+    var phone = document.getElementById('telefono').value;
+    localStorage.setItem('kQuizName', name);
+    localStorage.setItem('kQuizEmail', email);
+    localStorage.setItem('kQuizPhone', phone);
+    showSuccess('Richiesta inviata! Ti contatteremo presto.');
+    document.getElementById('hubspot-form').reset();
+  }
+
+  function toggleFaq(el) { el.parentElement.classList.toggle('active'); }
+
+  // Scroll reveal observer
+  function initScrollReveal() {
+    if (!('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.rv').forEach(function(el) { obs.observe(el); });
+  }
+
+  // ══ BOOT ══
+  document.addEventListener('DOMContentLoaded', initPage);
+</script>
+</div>

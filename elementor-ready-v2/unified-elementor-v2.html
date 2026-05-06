@@ -559,10 +559,34 @@
      FORM GATE
 ══════════════════════════════════════════════════════════════ -->
 <div id="sec-form" class="page-section">
-  <div style="max-width:520px;margin:0 auto;padding:120px 20px 80px;text-align:center;">
+  <!-- Animated mappa background -->
+  <div class="form-gate-bg">
+    <svg class="form-gate-svg" viewBox="0 0 800 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="120" cy="100" r="3" fill="var(--k-amber)" opacity=".15"><animate attributeName="cy" values="100;80;100" dur="4s" repeatCount="indefinite"/></circle>
+      <circle cx="680" cy="150" r="2.5" fill="var(--k-amber)" opacity=".12"><animate attributeName="cy" values="150;170;150" dur="5s" repeatCount="indefinite"/></circle>
+      <circle cx="400" cy="50" r="2" fill="var(--k-gray-300)" opacity=".1"><animate attributeName="cy" values="50;35;50" dur="6s" repeatCount="indefinite"/></circle>
+      <circle cx="250" cy="500" r="3" fill="var(--k-amber)" opacity=".1"><animate attributeName="cy" values="500;480;500" dur="4.5s" repeatCount="indefinite"/></circle>
+      <circle cx="600" cy="450" r="2" fill="var(--k-gray-300)" opacity=".08"><animate attributeName="cy" values="450;470;450" dur="5.5s" repeatCount="indefinite"/></circle>
+      <line x1="80" y1="200" x2="720" y2="200" stroke="var(--k-amber)" stroke-width=".5" opacity=".06"><animate attributeName="y1" values="200;190;200" dur="7s" repeatCount="indefinite"/><animate attributeName="y2" values="200;210;200" dur="7s" repeatCount="indefinite"/></line>
+      <line x1="100" y1="350" x2="700" y2="350" stroke="var(--k-gray-300)" stroke-width=".5" opacity=".05"><animate attributeName="y1" values="350;360;350" dur="8s" repeatCount="indefinite"/></line>
+      <line x1="200" y1="120" x2="600" y2="120" stroke="var(--k-amber)" stroke-width=".3" opacity=".08"><animate attributeName="y1" values="120;115;120" dur="5s" repeatCount="indefinite"/></line>
+      <rect x="60" y="280" width="40" height="3" rx="1.5" fill="var(--k-amber)" opacity=".08"><animate attributeName="width" values="40;55;40" dur="4s" repeatCount="indefinite"/></rect>
+      <rect x="680" y="320" width="50" height="3" rx="1.5" fill="var(--k-gray-300)" opacity=".06"><animate attributeName="width" values="50;35;50" dur="5s" repeatCount="indefinite"/></rect>
+      <rect x="350" y="520" width="60" height="3" rx="1.5" fill="var(--k-amber)" opacity=".07"><animate attributeName="width" values="60;45;60" dur="6s" repeatCount="indefinite"/></rect>
+    </svg>
+  </div>
+
+  <div class="form-gate-inner">
+    <!-- Karakter image in black box with fade -->
+    <div class="form-gate-image-wrap">
+      <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/karakter%201.png" alt="Karakter" class="form-gate-image">
+      <div class="form-gate-image-fade"></div>
+    </div>
+
+    <!-- Result preview -->
     <div style="margin-bottom:28px;">
       <div class="sec-label" style="justify-content:center;text-align:center;margin-bottom:16px;">// il tuo karakter è stato calcolato</div>
-      <div style="background:var(--k-white);border:1.5px solid var(--k-gray-200);border-radius:20px;padding:28px;box-shadow:0 4px 24px rgba(0,0,0,.04);">
+      <div class="form-gate-preview">
         <div style="font-size:12px;color:var(--k-gray-400);margin-bottom:10px;font-family:var(--font-mono);letter-spacing:.04em;text-transform:uppercase;">I tuoi 3 tratti dominanti</div>
         <div class="score-blur" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
           <span style="background:var(--k-bg-warm);border:1px solid rgba(139,26,26,.25);padding:8px 18px;border-radius:100px;font-weight:600;font-size:13px;">LA BUSSOLA</span>
@@ -570,12 +594,17 @@
           <span style="background:var(--k-bg-warm);border:1px solid rgba(139,26,26,.25);padding:8px 18px;border-radius:100px;font-weight:600;font-size:13px;">LA MAPPA</span>
         </div>
         <div class="score-blur" style="font-size:13px;color:var(--k-gray-500);line-height:1.6;">Una combinazione unica tra le 220 possibili...</div>
+        <!-- Animated lock overlay -->
+        <div class="form-gate-lock" id="formGateLock">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--k-amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
       </div>
     </div>
+
     <h2 class="sec-headline" style="font-size:clamp(28px,5vw,40px);margin-bottom:10px;">Sblocca il tuo<br>profilo <span class="hl">completo</span></h2>
-    <p style="font-size:15px;color:var(--k-gray-500);line-height:1.6;margin-bottom:28px;">Inserisci la tua email per ricevere la tua mappa motivazionale.</p>
-    <div style="background:var(--k-white);border:1px solid var(--k-gray-100);border-radius:20px;padding:28px;text-align:left;box-shadow:0 2px 16px rgba(0,0,0,.03);">
-      <!-- PLACEHOLDER: qui verrà montato il form email -->
+    <p style="font-size:15px;color:var(--k-gray-500);line-height:1.6;margin-bottom:28px;">Inserisci i tuoi dati per ricevere la tua mappa motivazionale.</p>
+
+    <div id="form-gate-card" class="form-gate-card">
       <div id="email-form-container"></div>
       <p style="font-size:11px;color:var(--k-gray-400);text-align:center;margin-top:14px;">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:3px;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -588,5 +617,5 @@
 </div><!-- /karakter-app -->
 
 
-<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onload="(function(){var h=document.head;var f=document.createElement('link');f.rel='preconnect';f.href='https://fonts.googleapis.com';h.appendChild(f);var f2=document.createElement('link');f2.rel='preconnect';f2.href='https://fonts.gstatic.com';f2.crossOrigin='anonymous';h.appendChild(f2);var g=document.createElement('link');g.rel='stylesheet';g.href='https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap';h.appendChild(g);var c=document.createElement('link');c.rel='stylesheet';c.href='https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/elementor-ready-v2/unified-style-v2.css?v=2';h.appendChild(c);var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/elementor-ready-v2/unified-script-v2.js?v=2';document.body.appendChild(s);})()" style="display:none" alt="">
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onload="(function(){var h=document.head;var f=document.createElement('link');f.rel='preconnect';f.href='https://fonts.googleapis.com';h.appendChild(f);var f2=document.createElement('link');f2.rel='preconnect';f2.href='https://fonts.gstatic.com';f2.crossOrigin='anonymous';h.appendChild(f2);var g=document.createElement('link');g.rel='stylesheet';g.href='https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap';h.appendChild(g);var c=document.createElement('link');c.rel='stylesheet';c.href='https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@c54ddf4/elementor-ready-v2/unified-style-v2.css';h.appendChild(c);var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@c54ddf4/elementor-ready-v2/unified-script-v2.js';document.body.appendChild(s);})()" style="display:none" alt="">
 </div>

@@ -483,19 +483,39 @@ function showFormSection(results){
 function mountEmailForm(results){
   var c=document.getElementById('email-form-container');
   if(!c)return;
+  var inputStyle='width:100%;background:var(--k-gray-50);border:1.5px solid var(--k-gray-200);border-radius:12px;padding:14px 16px;font-family:var(--font-body);font-size:15px;color:var(--k-black);outline:none;transition:all .2s;margin-bottom:14px;box-sizing:border-box;';
+  var labelStyle='font-size:13px;color:var(--k-gray-500);font-weight:500;margin-bottom:6px;display:block;';
   c.innerHTML='<form id="quiz-email-form" style="text-align:left;">'
-    +'<label style="font-size:13px;color:var(--k-gray-500);font-weight:500;margin-bottom:6px;display:block;">Email</label>'
-    +'<input type="email" id="quiz-email" required placeholder="la-tua@email.com" style="width:100%;background:var(--k-gray-50);border:1.5px solid var(--k-gray-200);border-radius:12px;padding:14px 16px;font-family:var(--font-body);font-size:15px;color:var(--k-black);outline:none;transition:all .2s;margin-bottom:14px;box-sizing:border-box;">'
+    +'<label style="'+labelStyle+'">Nome *</label>'
+    +'<input type="text" id="quiz-name" required placeholder="Il tuo nome" style="'+inputStyle+'">'
+    +'<label style="'+labelStyle+'">Email *</label>'
+    +'<input type="email" id="quiz-email" required placeholder="la-tua@email.com" style="'+inputStyle+'">'
+    +'<label style="'+labelStyle+'">Telefono</label>'
+    +'<input type="tel" id="quiz-phone" placeholder="+39" style="'+inputStyle+'">'
     +'<button type="submit" style="width:100%;background:var(--k-black);color:var(--k-white);font-family:var(--font-body);font-size:15px;font-weight:600;border:none;border-radius:100px;padding:16px 24px;cursor:pointer;margin-top:8px;transition:all .2s;">Scopri il tuo Karakter</button>'
     +'</form>';
   document.getElementById('quiz-email-form').addEventListener('submit',function(e){
     e.preventDefault();
+    var name=document.getElementById('quiz-name').value;
     var email=document.getElementById('quiz-email').value;
+    var phone=document.getElementById('quiz-phone').value;
+    /* Save to localStorage for TYP passthrough */
+    try{
+      localStorage.setItem('kQuizName',name);
+      localStorage.setItem('kQuizEmail',email);
+      localStorage.setItem('kQuizPhone',phone);
+    }catch(err){}
     /* PLACEHOLDER: invia dati al tuo backend/CRM */
-    console.log('Form submitted — email:',email,'results:',results);
+    console.log('Form submitted — name:',name,'email:',email,'phone:',phone,'results:',results);
     var p=btoa(JSON.stringify({top3:results.top3,scores:results.scores,sorted:results.sorted}));
     window.location.href='/grazie-quiz/?d='+encodeURIComponent(p);
   });
+  /* Lock icon → scroll to form on mobile */
+  var lock=document.getElementById('formGateLock');
+  if(lock){lock.addEventListener('click',function(){
+    var card=document.getElementById('form-gate-card');
+    if(card)card.scrollIntoView({behavior:'smooth',block:'center'});
+  });}
 }
 
 /* ══ LIKERT DOT CLICK HANDLERS ══ */
