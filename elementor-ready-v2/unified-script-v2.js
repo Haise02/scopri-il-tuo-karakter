@@ -308,7 +308,7 @@ var STATEMENTS=[
   {text:"Trovo spesso l'errore nel ragionamento che tutti gli altri hanno gi\u00e0 dato per buono.",trait:"LENTE"},
   {text:"Non riesco a seguire una regola o una procedura se non capisco perch\u00e9 esiste.",trait:"VENTO"},
   {text:"Prima di accettare un impegno importante, mi chiedo se \u00e8 davvero coerente con quello in cui credo.",trait:"BUSSOLA"},
-  {text:"Ricordo a lungo quando qualcuno non ha riconosciuto il mio contributo, non per rancore, ma come dato.",trait:"FUOCO"},
+  {text:"Quando il mio contributo viene ignorato, non lo dimentico facilmente.",trait:"FUOCO"},
   {text:"Faccio fatica a buttare via quello che ho costruito, un progetto, una relazione, un metodo, senza un motivo solido.",trait:"RADICE"},
   {text:"Quasi sempre trovo un modo diverso da quello standard per fare le cose, e spesso funziona meglio.",trait:"VENTO"},
   {text:"Quando spiego qualcosa, ho bisogno di partire dal quadro generale prima di entrare nei dettagli.",trait:"MAPPA"},
