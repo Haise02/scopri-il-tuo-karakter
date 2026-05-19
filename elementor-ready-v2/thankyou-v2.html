@@ -9,6 +9,7 @@
   :root {
     --primary: #2F80ED;
     --accent-bright: #A3E635;
+    --accent-on-light: #4D7A0F;
     --dark: #0B1F3A;
     --bg: #F5F8FC;
     --bg-warm: #EDF2F7;
@@ -99,7 +100,7 @@
   }
   .label-badge {
     display: inline-block; font-family: var(--font-mono); font-size: 12px; font-weight: 500;
-    letter-spacing: 0.1em; color: var(--accent-bright); margin-bottom: 1.25rem;
+    letter-spacing: 0.1em; color: var(--accent-on-light); margin-bottom: 1.25rem;
   }
   #block-header h1 { margin-bottom: 0.75rem; animation: fadeUp 0.8s ease-out 0.2s both; }
   .subtitle {
@@ -122,7 +123,7 @@
   .trait-badge-name { font-family: var(--font-h); font-weight: 600; font-size: 14px; color: var(--text); }
 
   /* ══ BLOCK 2: TRAIT CARDS ══ */
-  #block-traits { background: var(--bg); padding: 3.5rem 0; }
+  #block-traits { background: var(--bg); padding: 3.5rem 0 1rem; }
   .traits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 2rem; }
 
   .trait-card {
@@ -155,7 +156,7 @@
   .trait-card-description { font-size: 0.95rem; color: var(--text-light); line-height: 1.75; }
 
   /* ══ BLOCK 3: LOCKED PREVIEW ══ */
-  #block-locked { padding: 4rem 0; background: var(--bg); }
+  #block-locked { padding: 2rem 0 4rem; background: var(--bg); }
   #block-locked h2 { text-align: center; margin-bottom: 2.5rem; }
 
   .locked-preview-container { position: relative; margin: 0 auto 2.5rem; max-width: 900px; }
@@ -397,6 +398,9 @@
 
   /* ══ RESPONSIVE ══ */
   @media (max-width: 768px) {
+    #block-klab { padding: 5rem 0; }
+    #block-klab .container { padding-left: 0; padding-right: 0; }
+    .klab-glass-container { border-radius: 0; margin: 0; max-width: 100%; }
     .klab-glass-inner { grid-template-columns: 1fr; }
     .klab-left { padding: 2rem; }
     .klab-right { padding: 0 2rem 2rem; }
@@ -476,7 +480,7 @@
       </div>
 
       <div class="locked-description">
-        <p>Il Test Reiss Motivation Profile è una sessione individuale di un'ora con un coach certificato Karakter che ti restituisce il profilo completo delle tue 16 motivazioni fondamentali.<br><br>Vedrai non solo dove sei forte, ma dove le tue motivazioni creano attrito — con gli altri, con certi tipi di lavoro, con scelte che sembravano giuste ma non reggevano nel tempo.</p>
+        <p>Il Test <strong>Reiss Motivation Profile</strong> è una <strong>sessione individuale di un'ora</strong> con un coach certificato Karakter che ti restituisce il <strong>profilo completo delle tue 16 motivazioni fondamentali</strong>.<br><br>Vedrai non solo dove sei forte, ma <strong>dove le tue motivazioni creano attrito</strong> — con gli altri, con certi tipi di lavoro, con scelte che sembravano giuste ma non reggevano nel tempo.</p>
       </div>
 
       <div class="locked-cta">
@@ -530,7 +534,7 @@
 
           <!-- RIGHT: gif image -->
           <div class="klab-right">
-            <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/thumbnail1.gif" alt="K-Lab Workshop" />
+            <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/thumbnail2.gif" alt="K-Lab Workshop" />
           </div>
         </div>
       </div>
