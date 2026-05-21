@@ -112,7 +112,7 @@
   }
 
   function updateCountdown() {
-    var target = new Date('2026-05-26T20:45:00+02:00').getTime();
+    var target = new Date('2026-06-03T21:00:00+02:00').getTime();
     var now = Date.now();
     var diff = target - now;
     var el = document.getElementById('countdown');
