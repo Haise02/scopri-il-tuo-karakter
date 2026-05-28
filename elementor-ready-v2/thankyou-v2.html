@@ -523,8 +523,30 @@
             </div>
 
             <div class="klab-cta">
-              <button class="btn-glass" id="klab-cta-btn" onclick="registerKLab()">ISCRIVITI GRATUITAMENTE</button>
-              <span class="klab-trust-inline">Posti limitati per questa edizione</span>
+              <!-- Form nascosto K-Lab: POST a Brevo (lista Iscritti K-Lab #5) con dati pre-popolati dall'URL del Quiz -->
+              <form id="klabSingleClickForm"
+                    action="https://b9cb86d9.sibforms.com/serve/MUIFAFbQK30u1W7mWImEDCRTWUilDAVeYUpYZ6clJHb-RHtd9lc-qMRGwKbmlZnrxXH5H_fN75vTXeJEXzslCU0aPEHZ34ZlFq_CpNyJbMVSQAlNVpzXSFEO_rU3eD9v5w5xRe3S31bpPyFMv2cOCV1hVMoO_OoRXPxQbfrs6lpH4tOMRTTcWVayMaUHIT8YUJdEgAo3h6vNNx6Eow=="
+                    method="POST"
+                    target="brevoTYPFrame"
+                    style="display:none;">
+                <input type="hidden" name="EMAIL" id="klabHiddenEmail">
+                <input type="hidden" name="NOME" id="klabHiddenNome">
+                <input type="hidden" name="COGNOME" id="klabHiddenCognome">
+                <input type="hidden" name="SMS" id="klabHiddenSms">
+                <input type="hidden" name="locale" value="it">
+                <input type="hidden" name="email_address_check" value="">
+                <input type="hidden" name="OPT_IN" value="1">
+              </form>
+
+              <button class="btn-glass" id="klab-cta-btn" onclick="registerKLabSingleClick()">ISCRIVITI GRATUITAMENTE</button>
+              <span class="klab-trust-inline" id="klab-trust-line">Posti limitati per questa edizione</span>
+
+              <!-- Success state K-Lab -->
+              <div id="klabCtaSuccess" style="display:none; margin-top:20px; padding:20px 24px; background:rgba(163,230,53,.12); border:1px solid rgba(163,230,53,.4); border-radius:12px; text-align:center;">
+                <div style="font-size:32px; margin-bottom:8px;">✅</div>
+                <p style="color:#fff; font-size:15px; font-weight:600; margin-bottom:4px;">Iscrizione confermata!</p>
+                <p style="color:rgba(255,255,255,.7); font-size:13px;">Ci vediamo il 3 giugno alle 21:00. Controlla la tua email per i dettagli.</p>
+              </div>
             </div>
 
             <div class="klab-countdown" id="countdown">
@@ -610,30 +632,54 @@
   </section>
 </div>
 
+<!-- Iframe nascosto: cattura il submit dei form Brevo senza far cambiare pagina -->
+<iframe name="brevoTYPFrame" id="brevoTYPFrame" style="display:none;" title="brevo-submit"></iframe>
+
 <!-- REISS MODAL -->
 <div class="modal-overlay" id="reiss-modal">
   <div class="modal-box">
     <button class="modal-close" onclick="closeReissModal()">&times;</button>
     <h2>Scopri il profilo Reiss Completo</h2>
-    <form id="hubspot-form">
+
+    <!-- Form Reiss: POST diretto a Brevo (lista Lead Reiss #7) -->
+    <form id="reissForm"
+          action="https://b9cb86d9.sibforms.com/serve/MUIFAB3fYR9IkRmRaHpll1o9pGfhvezTcYheb4tKV8xDcDNlSRBFsXjQe0VPzOTUCrAZ80BNACtIdvr3Mnw_Wle05NBand8IlLr14lHt1GabfAnobb-lF1RLhe_dxRGLSQto9ruDBZn34qzjn1LN3JgOjWKEmrT2AbT0CB-zqm_w6d0YJGb7flLIM3-Jq4WcNZ40Ecupsd6QNed_sA=="
+          method="POST"
+          target="brevoTYPFrame"
+          onsubmit="setTimeout(function(){document.getElementById('reissForm').style.display='none';document.getElementById('reissSuccess').style.display='block';},1500); return true;">
       <div class="form-group">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required>
+        <label for="reissNome">Nome</label>
+        <input type="text" id="reissNome" name="NOME" placeholder="Il tuo nome" required>
       </div>
       <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="La tua email" required>
+        <label for="reissEmail">Email</label>
+        <input type="email" id="reissEmail" name="EMAIL" placeholder="La tua email" required>
       </div>
       <div class="form-group">
-        <label for="telefono">Telefono</label>
-        <input type="tel" id="telefono" name="telefono" placeholder="Il tuo numero" required>
+        <label for="reissTel">Telefono</label>
+        <input type="tel" id="reissTel" name="SMS" placeholder="+39 ..." required>
       </div>
+      <!-- Hidden Brevo fields -->
+      <input type="hidden" name="locale" value="it">
+      <input type="hidden" name="email_address_check" value="">
+      <input type="hidden" name="OPT_IN" value="1">
+
       <button type="submit" class="btn btn-primary btn-large" style="width:100%;margin-top:0.5rem;">Richiedi Informazioni →</button>
       <div class="form-badges">
         <span class="form-badge">Reiss Partner</span>
         <span class="form-badge">Certificati ICF</span>
       </div>
     </form>
+
+    <!-- Success state Reiss -->
+    <div id="reissSuccess" style="display:none; padding:32px 16px; text-align:center;">
+      <div style="font-size:48px; margin-bottom:12px;">✅</div>
+      <h3 style="margin-bottom:8px; color:var(--text);">Richiesta ricevuta</h3>
+      <p style="color:var(--text-light); font-size:14px; line-height:1.6;">
+        Ti ricontattiamo entro 24h dal team Karakter.<br>
+        Intanto controlla la tua email: ti abbiamo già inviato una panoramica del test.
+      </p>
+    </div>
   </div>
 </div>
 
@@ -647,5 +693,75 @@
 
 <!-- JS caricato da GitHub CDN (no inline script = no WAF 403) -->
 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onload="(function(){var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/elementor-ready-v2/thankyou-script-v2.js';document.body.appendChild(s);})()" style="display:none" alt="">
+
+<!-- ════ BREVO INTEGRATION: K-Lab single-click + Reiss pre-fill ════ -->
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onload="(function(){
+  // Legge dati utente: prima da URL (?email=...), poi come fallback da localStorage (salvato dal form Quiz su LP karakter)
+  var params = new URLSearchParams(window.location.search);
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem('karakterQuizUser') || '{}'); } catch(e) {}
+
+  var email   = params.get('email')   || params.get('EMAIL')   || saved.email   || '';
+  var nome    = params.get('nome')    || params.get('NOME')    || saved.nome    || '';
+  var cognome = params.get('cognome') || params.get('COGNOME') || saved.cognome || '';
+  var sms     = params.get('sms')     || params.get('SMS')     || params.get('telefono') || params.get('tel') || saved.sms || '';
+
+  // Pre-popola form K-Lab nascosto (per single-click webinar)
+  function tryPrefill() {
+    var emailEl = document.getElementById('klabHiddenEmail');
+    var nomeEl = document.getElementById('klabHiddenNome');
+    var cognomeEl = document.getElementById('klabHiddenCognome');
+    var smsEl = document.getElementById('klabHiddenSms');
+    if (emailEl && nomeEl) {
+      emailEl.value = email;
+      nomeEl.value = nome;
+      cognomeEl.value = cognome;
+      smsEl.value = sms;
+      return true;
+    }
+    return false;
+  }
+
+  // Pre-popola anche il form Reiss modal se ci sono dati URL
+  function prefillReiss() {
+    var rNome = document.getElementById('reissNome');
+    var rEmail = document.getElementById('reissEmail');
+    var rTel = document.getElementById('reissTel');
+    if (rNome && nome) rNome.value = nome;
+    if (rEmail && email) rEmail.value = email;
+    if (rTel && sms) rTel.value = sms;
+  }
+
+  // Espongo la funzione single-click globalmente (chiamata da onclick del bottone)
+  window.registerKLabSingleClick = function() {
+    var emailEl = document.getElementById('klabHiddenEmail');
+    if (!emailEl || !emailEl.value) {
+      // Fallback: se mancano dati dall'URL, apri il form K-Lab standalone in nuova tab
+      window.open('https://b9cb86d9.sibforms.com/serve/MUIFAFbQK30u1W7mWImEDCRTWUilDAVeYUpYZ6clJHb-RHtd9lc-qMRGwKbmlZnrxXH5H_fN75vTXeJEXzslCU0aPEHZ34ZlFq_CpNyJbMVSQAlNVpzXSFEO_rU3eD9v5w5xRe3S31bpPyFMv2cOCV1hVMoO_OoRXPxQbfrs6lpH4tOMRTTcWVayMaUHIT8YUJdEgAo3h6vNNx6Eow==','_blank');
+      return;
+    }
+    // Submit form nascosto a Brevo (target iframe → utente rimane sulla TYP)
+    document.getElementById('klabSingleClickForm').submit();
+    // Mostra success state dopo 1.2s
+    setTimeout(function() {
+      var btn = document.getElementById('klab-cta-btn');
+      var trust = document.getElementById('klab-trust-line');
+      var success = document.getElementById('klabCtaSuccess');
+      if (btn) btn.style.display = 'none';
+      if (trust) trust.style.display = 'none';
+      if (success) success.style.display = 'block';
+    }, 1200);
+  };
+
+  // Esegui pre-fill: prova subito, ritenta se DOM non ancora pronto
+  if (!tryPrefill()) {
+    var attempts = 0;
+    var interval = setInterval(function() {
+      if (tryPrefill() || ++attempts > 20) clearInterval(interval);
+    }, 200);
+  }
+  prefillReiss();
+  setTimeout(prefillReiss, 500); // ritenta per sicurezza
+})()" style="display:none" alt="">
 
 </div>

@@ -752,26 +752,33 @@ i,.italic{font-style:italic;}
         </div>
       </div>
       <div class="reg-form rv rv-d2">
-        <form id="klabForm" onsubmit="return false;">
+        <!-- Iframe nascosto: cattura la risposta di Brevo senza far cambiare pagina -->
+        <iframe name="brevoKlabFrame" style="display:none;" title="brevo-submit"></iframe>
+
+        <form id="klabForm"
+              action="https://b9cb86d9.sibforms.com/serve/MUIFAFbQK30u1W7mWImEDCRTWUilDAVeYUpYZ6clJHb-RHtd9lc-qMRGwKbmlZnrxXH5H_fN75vTXeJEXzslCU0aPEHZ34ZlFq_CpNyJbMVSQAlNVpzXSFEO_rU3eD9v5w5xRe3S31bpPyFMv2cOCV1hVMoO_OoRXPxQbfrs6lpH4tOMRTTcWVayMaUHIT8YUJdEgAo3h6vNNx6Eow=="
+              method="POST"
+              target="brevoKlabFrame"
+              onsubmit="setTimeout(function(){document.getElementById('klabForm').style.display='none';document.getElementById('klabSuccess').style.display='block';},1500); return true;">
           <div class="form-group">
             <label for="fname">Nome</label>
-            <input type="text" id="fname" name="fname" placeholder="Il tuo nome" required>
+            <input type="text" id="fname" name="NOME" placeholder="Il tuo nome" required>
           </div>
           <div class="form-group">
             <label for="lname">Cognome</label>
-            <input type="text" id="lname" name="lname" placeholder="Il tuo cognome" required>
+            <input type="text" id="lname" name="COGNOME" placeholder="Il tuo cognome" required>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="La tua email" required>
+            <input type="email" id="email" name="EMAIL" placeholder="La tua email" required>
           </div>
           <div class="form-group">
             <label for="phone">Telefono <span style="color:var(--gray-400);font-weight:400;">(opzionale)</span></label>
-            <input type="tel" id="phone" name="phone" placeholder="+39">
+            <input type="tel" id="phone" name="SMS" placeholder="+39 ...">
           </div>
           <div class="form-group">
             <label for="source">Come hai conosciuto Karakter?</label>
-            <select id="source" name="source">
+            <select id="source" name="SOURCE">
               <option value="">Seleziona</option>
               <option value="quiz">Quiz "Scopri il tuo Karakter"</option>
               <option value="social">Social media</option>
@@ -780,9 +787,24 @@ i,.italic{font-style:italic;}
               <option value="altro">Altro</option>
             </select>
           </div>
+          <!-- Campi nascosti richiesti da Brevo -->
+          <input type="hidden" name="locale" value="it">
+          <input type="hidden" name="email_address_check" value="">
+          <input type="hidden" name="OPT_IN" value="1">
+
           <button type="submit" class="btn-submit">Iscriviti gratuitamente</button>
           <p class="form-note">Riceverai il link Zoom via email entro pochi minuti. Niente spam, promesso.</p>
         </form>
+
+        <!-- Stato di successo: appare dopo il submit -->
+        <div id="klabSuccess" style="display:none; padding:48px 24px; text-align:center; background:rgba(163,230,53,.08); border:1px solid rgba(163,230,53,.3); border-radius:16px;">
+          <div style="font-size:48px; margin-bottom:16px;">✅</div>
+          <h3 style="font-family:var(--font-display); font-size:24px; margin-bottom:12px; color:var(--black);">Iscrizione confermata!</h3>
+          <p style="color:var(--gray-600); font-size:15px; line-height:1.6;">
+            Ci vediamo il <strong>3 giugno alle 21:00</strong>.<br>
+            Tra pochi minuti ricevi via email tutti i dettagli per partecipare al K-Lab.
+          </p>
+        </div>
       </div>
     </div>
   </div>
