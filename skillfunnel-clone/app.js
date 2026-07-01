@@ -145,18 +145,11 @@
   var heroMedia = document.querySelector("[data-hero-media]");
   var heroVideo = document.querySelector(".hero__video");
   if (heroMedia && heroVideo && hasST && !prefersReduced && !isTouch) {
+    /* A) PROSPETTIVA 3D: parte dal primo scroll (scrub sulla hero) */
     gsap.set(heroMedia, { transformPerspective: 1500, rotateX: 40, scale: 1.12 });
     gsap.to(heroMedia, {
       rotateX: 0, scale: 1, ease: "none",
-      scrollTrigger: {
-        trigger: heroVideo,
-        start: "center center",
-        end: "+=380",
-        scrub: 0.5,
-        pin: heroVideo,
-        pinSpacing: true,
-        anticipatePin: 1
-      }
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "+=420", scrub: 0.6 }
     });
   } else if (heroMedia && hasGSAP) {
     gsap.set(heroMedia, { rotateX: 0, scale: 1 });
