@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Karakter Coaching School · Ogni persona è un Karakter</title>
+<meta name="description" content="Scuola di coaching professionale a Roma dal 2011. Diventa Coach certificato ICF Level 2 con il metodo Karakter e il Reiss Motivation Profile." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..800;1,300..800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/styles.css" />
+</head>
+<body>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#hero" class="nav__logo" data-cursor><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/karakter-logo-bianco.svg" alt="Karakter Coaching School" class="nav__logo-img" /></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#metodo" class="nav__link" data-nav>Il Metodo</a>
+      <a href="#percorsi" class="nav__link" data-nav>Percorsi</a>
+      <a href="#reiss" class="nav__link" data-nav>Reiss</a>
+      <a href="#tratti" class="nav__link" data-nav>I 12 Tratti</a>
+      <a href="#reviews" class="nav__link" data-nav>Recensioni</a>
+      <a href="#faq" class="nav__link" data-nav>FAQ</a>
+    </nav>
+    <a href="#info" class="btn btn--light nav__cta" data-cursor>Richiesta informazioni <span class="btn__chev">›</span></a>
+    <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<!-- VIDEO BG opzionale: sostituisci .hero__glow con <video class="hero__bgmedia" autoplay muted loop playsinline poster="poster.jpg"><source src="hero.mp4" type="video/mp4"></video> -->
+<section class="hero" id="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="hero__beams" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="badge reveal" data-reveal><span class="badge__dot"></span> Scuola accreditata ICF Level 2 · Roma, dal 2011</div>
+    <h1 class="hero__title">
+      <span class="hero__title-top" data-reveal><span class="accent">La scuola di coaching</span> che parte da te</span>
+      <span class="hero__title-serif" data-reveal>Ogni persona è un <em class="serif-it">Karakter</em></span>
+    </h1>
+    <p class="hero__sub reveal" data-reveal>
+      Formiamo <strong>coach professionisti certificati ICF</strong> partendo dalla scienza delle motivazioni: il <b class="hl-blue">Reiss Motivation Profile</b>. Scopri, comprendi e fai crescere il tuo carattere, e quello degli altri.
+    </p>
+    <div class="hero__actions reveal" data-reveal>
+      <a href="#info" class="btn btn--primary" data-cursor>Richiesta informazioni <span class="btn__chev">›</span></a>
+      <a href="#tratti" class="btn btn--ghost" data-cursor>Scopri il tuo Karakter · Quiz gratuito <span class="btn__chev">›</span></a>
+    </div>
+    <div class="hero__video" data-hero-video>
+      <div class="ph ph--video" data-hero-media style="background-image:url('https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/hero.jpg');background-size:cover;background-position:center">
+        <button class="play-btn" aria-label="Play" data-cursor><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTED -->
+<section class="trusted">
+  <div class="container">
+    <p class="trusted__label reveal" data-reveal>ACCREDITATA E RICONOSCIUTA · PARTNER E CERTIFICAZIONI</p>
+    <div class="trusted__row reveal" data-reveal>
+      <div class="trusted__track"><div class="trusted__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/icf.jpg" alt="ICF" loading="lazy" /></div><div class="trusted__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/rmp.jpg" alt="Reiss Motivation Profile certified partner" loading="lazy" /></div><div class="trusted__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/unimilano.png" alt="Università" loading="lazy" /></div><div class="trusted__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/asi.svg" alt="ASI" loading="lazy" /></div><div class="trusted__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/saef.jpg" alt="SAEF" loading="lazy" /></div><div class="trusted__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/uaw.png" alt="UAW" loading="lazy" /></div><div class="trusted__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/domus.jpg" alt="Domus de Luna" loading="lazy" /></div><div class="trusted__logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/icf.jpg" alt="ICF" loading="lazy" /></div><div class="trusted__logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/rmp.jpg" alt="Reiss Motivation Profile certified partner" loading="lazy" /></div><div class="trusted__logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/unimilano.png" alt="Università" loading="lazy" /></div><div class="trusted__logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/asi.svg" alt="ASI" loading="lazy" /></div><div class="trusted__logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/saef.jpg" alt="SAEF" loading="lazy" /></div><div class="trusted__logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/uaw.png" alt="UAW" loading="lazy" /></div><div class="trusted__logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/domus.jpg" alt="Domus de Luna" loading="lazy" /></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REISS / WHY -->
+<section class="about" id="reiss">
+  <div class="container about__grid">
+    <div class="about__text">
+      <div class="badge reveal" data-reveal><span class="badge__dot"></span> Unico in Italia dentro un percorso ICF</div>
+      <h2 class="section-title section-title--left" data-split>Non partiamo dal metodo.<br /><span class="accent accent--italic">Partiamo dalle motivazioni.</span></h2>
+      <p class="section-sub section-sub--left reveal" data-reveal>
+        Il <b class="hl-blue">Reiss Motivation Profile</b> misura le <strong>16 motivazioni fondamentali</strong> che guidano ogni persona, non 4 categorie semplificate. È lo strumento scientifico che integriamo nel Master: capire <strong>cosa muove davvero</strong> te e i tuoi clienti è ciò che rende un coach <b class="hl-lime">efficace</b>.
+      </p>
+      <div class="about__cta reveal" data-reveal><a href="#info" class="btn btn--primary" data-cursor>Richiesta informazioni <span class="btn__chev">›</span></a></div>
+    </div>
+    <div class="about__media reveal" data-reveal>
+      <div class="reiss-chart" data-reveal aria-label="Facsimile del profilo Reiss Motivation Profile">
+        <div class="reiss-chart__head"><b>Il tuo profilo motivazionale</b><span class="reiss-chart__brand">Karakter · Reiss</span></div>
+        <div class="reiss-chart__scale"><span>-2</span><span>0</span><span>+2</span></div>
+        <div class="rr"><span class="rr__l">Potere</span><span class="rr__t"><i class="rr__b rr__b--p" style="--v:.85;--d:0.00s"></i></span></div><div class="rr"><span class="rr__l">Indipendenza</span><span class="rr__t"><i class="rr__b rr__b--n" style="--v:.18;--d:0.06s"></i></span></div><div class="rr"><span class="rr__l">Curiosità</span><span class="rr__t"><i class="rr__b rr__b--n" style="--v:.38;--d:0.12s"></i></span></div><div class="rr"><span class="rr__l">Ordine</span><span class="rr__t"><i class="rr__b rr__b--p" style="--v:.5;--d:0.18s"></i></span></div><div class="rr"><span class="rr__l">Onore</span><span class="rr__t"><i class="rr__b rr__b--p" style="--v:.62;--d:0.24s"></i></span></div><div class="rr"><span class="rr__l">Contatto sociale</span><span class="rr__t"><i class="rr__b rr__b--n" style="--v:.85;--d:0.30s"></i></span></div><div class="rr"><span class="rr__l">Famiglia</span><span class="rr__t"><i class="rr__b rr__b--n" style="--v:.8;--d:0.36s"></i></span></div><div class="rr"><span class="rr__l">Status</span><span class="rr__t"><i class="rr__b rr__b--n" style="--v:.4;--d:0.42s"></i></span></div><div class="rr"><span class="rr__l">Vendetta</span><span class="rr__t"><i class="rr__b rr__b--p" style="--v:.72;--d:0.48s"></i></span></div><div class="rr"><span class="rr__l">Tranquillità</span><span class="rr__t"><i class="rr__b rr__b--n" style="--v:.68;--d:0.54s"></i></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container stats__grid">
+    <div class="stat reveal" data-reveal><span class="stat__num" data-count="500" data-suffix="+">0+</span><p class="stat__desc">Coach professionisti <strong>formati dal 2011</strong></p></div>
+    <div class="stat reveal" data-reveal><span class="stat__num" data-count="14" data-suffix=" anni">0 anni</span><p class="stat__desc">Di scuola di coaching a Roma, accreditata <strong>ICF</strong></p></div>
+    <div class="stat reveal" data-reveal><span class="stat__num" data-count="16" data-suffix="">0</span><p class="stat__desc">Le <strong>motivazioni</strong> misurate dal Reiss Motivation Profile</p></div>
+    <div class="stat reveal" data-reveal><span class="stat__num" data-count="3000" data-suffix="+">0+</span><p class="stat__desc">Persone accompagnate tra <strong>percorsi, test e coaching</strong></p></div>
+  </div>
+</section>
+
+<!-- METODO -->
+<section class="method" id="metodo">
+  <div class="method__pin">
+    <div class="method__bg" aria-hidden="true"><div class="method__glow" id="methodGlow"></div></div>
+    <div class="method__header">
+      <span class="kicker kicker--light">Il Metodo Karakter</span>
+      <h2 class="method__title">Tre passaggi che<br />cambiano una persona.</h2>
+    </div>
+    <div class="method__stage">
+      <div class="step is-active" data-step="1">
+        <div class="step__num">01</div>
+        <div class="step__content">
+          <h3 class="step__title">Scopri</h3>
+          <p class="step__txt">Si parte da una mappa. Il Test Reiss Motivation Profile fotografa le 16 motivazioni che ti muovono, quelle che spesso non sai nemmeno di avere. Da qui parte tutto.</p>
+          <ul class="step__tags"><li>Reiss Motivation Profile</li><li>Self-Awareness</li><li>Mappa motivazionale</li></ul>
+        </div>
+        <div class="step__visual"><svg viewBox="0 0 200 200" class="step__svg">
+          <circle cx="100" cy="100" r="80" stroke="rgba(217,225,232,0.1)" stroke-width="1" fill="none"/>
+          <circle cx="100" cy="100" r="60" stroke="rgba(217,225,232,0.15)" stroke-width="1" fill="none"/>
+          <circle cx="100" cy="100" r="40" stroke="rgba(217,225,232,0.2)" stroke-width="1" fill="none"/>
+          <g class="step__pulse"><circle cx="100" cy="20" r="3" fill="#A3E635"/><circle cx="170" cy="60" r="3" fill="#A3E635"/><circle cx="170" cy="140" r="3" fill="#A3E635"/><circle cx="100" cy="180" r="3" fill="#A3E635"/><circle cx="30" cy="140" r="3" fill="#A3E635"/><circle cx="30" cy="60" r="3" fill="#A3E635"/></g>
+        </svg></div>
+      </div>
+      <div class="step" data-step="2">
+        <div class="step__num">02</div>
+        <div class="step__content">
+          <h3 class="step__title">Comprendi</h3>
+          <p class="step__txt">Il coaching diventa un linguaggio. 170 ore tra teoria ICF, pratica supervisionata e laboratori. Impari ad ascoltare prima te stesso, poi gli altri.</p>
+          <ul class="step__tags"><li>ICF Level 2 / 144h ACSTH</li><li>Reiss integrato</li><li>Supervisione 1:1</li></ul>
+        </div>
+        <div class="step__visual"><svg viewBox="0 0 200 200" class="step__svg"><g class="step__network">
+          <line x1="50" y1="50" x2="150" y2="100" stroke="rgba(47,128,237,0.6)" stroke-width="1"/>
+          <line x1="150" y1="100" x2="50" y2="150" stroke="rgba(47,128,237,0.6)" stroke-width="1"/>
+          <line x1="50" y1="50" x2="50" y2="150" stroke="rgba(47,128,237,0.6)" stroke-width="1"/>
+          <line x1="150" y1="100" x2="100" y2="40" stroke="rgba(163,230,53,0.6)" stroke-width="1"/>
+          <line x1="50" y1="150" x2="100" y2="170" stroke="rgba(163,230,53,0.6)" stroke-width="1"/>
+          <circle cx="50" cy="50" r="6" fill="#2F80ED"/><circle cx="150" cy="100" r="6" fill="#A3E635"/><circle cx="50" cy="150" r="6" fill="#2F80ED"/><circle cx="100" cy="40" r="5" fill="#A3E635"/><circle cx="100" cy="170" r="5" fill="#2F80ED"/>
+        </g></svg></div>
+      </div>
+      <div class="step" data-step="3">
+        <div class="step__num">03</div>
+        <div class="step__content">
+          <h3 class="step__title">Fai Crescere</h3>
+          <p class="step__txt">Esci con un mestiere. Diventi coach professionista certificato ICF, con strumenti, metodo, network e soprattutto il tuo Karakter: la firma che porti in ogni sessione.</p>
+          <ul class="step__tags"><li>Certificazione ICF</li><li>Reiss Master</li><li>Professione coach</li></ul>
+        </div>
+        <div class="step__visual"><svg viewBox="0 0 200 200" class="step__svg"><g class="step__growth">
+          <path d="M 30 170 Q 70 170 80 130 T 130 80 T 170 30" stroke="url(#gradStep3)" stroke-width="2" fill="none" stroke-linecap="round" class="step__line"/>
+          <defs><linearGradient id="gradStep3" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#2F80ED"/><stop offset="100%" stop-color="#A3E635"/></linearGradient></defs>
+          <circle cx="170" cy="30" r="10" fill="#A3E635"/><circle cx="170" cy="30" r="20" fill="#A3E635" opacity="0.15"/>
+        </g></svg></div>
+      </div>
+    </div>
+    <div class="method__progress" aria-hidden="true">
+      <div class="method__progress-track"><div class="method__progress-fill" id="methodProgress"></div></div>
+      <div class="method__progress-labels"><span data-step-label="1">Scopri</span><span data-step-label="2">Comprendi</span><span data-step-label="3">Fai Crescere</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PERCORSI -->
+<section class="learn" id="percorsi">
+  <div class="container">
+    <h2 class="section-title" data-split>I nostri <span class="accent accent--italic">percorsi</span></h2>
+    <p class="section-sub reveal" data-reveal>Dal primo test gratuito alla <strong>certificazione professionale</strong>: un ecosistema per capirti, formarti e crescere.</p>
+    <div class="bento" id="bento">
+      <article class="card card--feature reveal" data-reveal data-tilt>
+        <div class="ph ph--thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/reiss.png')"></div>
+        <h3 class="card__title">Test Reiss Motivation Profile</h3>
+        <p class="card__text">Scopri le tue <strong>16 motivazioni</strong> fondamentali con restituzione individuale di un'ora.</p>
+        <a href="#info" class="card__link" data-cursor>Richiesta informazioni ›</a>
+      </article>
+
+      <article class="card card--feature reveal" data-reveal data-tilt>
+        <div class="ph ph--thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/master.png')"></div>
+        <h3 class="card__title">Master K-Coach Professionisti</h3>
+        <p class="card__text">Diventa <strong>Coach certificato ICF Level 2</strong>. 170 ore, Reiss incluso, con pratica supervisionata.</p>
+        <a href="#master" class="card__link" data-cursor>Scopri il percorso ›</a>
+      </article>
+
+      <article class="card card--feature reveal" data-reveal data-tilt>
+        <div class="ph ph--thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/reissmaster.png')"></div>
+        <h3 class="card__title">Reiss Master · Certificazione RMP</h3>
+        <p class="card__text">Abilitati a <strong>somministrare e restituire</strong> il Reiss Motivation Profile come Reiss Profile Master.</p>
+        <a href="#info" class="card__link" data-cursor>Richiesta informazioni ›</a>
+      </article>
+
+      <article class="card card--feature reveal" data-reveal data-tilt>
+        <div class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 11l3 3 8-8"/><path d="M21 12a9 9 0 1 1-6-8.5"/></svg></div>
+        <div class="card__viz card__viz--radar" aria-hidden="true"></div>
+        <h3 class="card__title">Quiz gratuito · Scopri il tuo Karakter</h3>
+        <p class="card__text">24 domande, <strong>5 minuti</strong>: scopri i tuoi <b class="hl-lime">3 Tratti dominanti</b> tra i 12 Tratti.</p>
+        <a href="#tratti" class="card__link" data-cursor>Fai il quiz ›</a>
+      </article>
+
+      <article class="card card--feature card--klab card--wide reveal" data-reveal data-tilt>
+        <div class="card__bg" aria-hidden="true"></div>
+        <div class="card__klab-body">
+          <div class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3v6L4 19a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1L15 9V3"/><path d="M8 3h8"/></svg></div>
+          <h3 class="card__title">K-Lab · Il laboratorio</h3>
+          <p class="card__text">Il format esperienziale gratuito: le competenze chiave per trasformare le tue capacità in una professione.</p>
+          <ul class="klab-ed">
+            <li><span class="klab-dot klab-dot--done"></span> 1ª edizione · 3-4 giugno 2026 · <em>conclusa</em></li>
+            <li><span class="klab-dot"></span> 2ª edizione · <strong>prossimamente</strong></li>
+          </ul>
+          <span class="btn btn--disabled" aria-disabled="true">Posti non ancora prenotabili</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 12 TRATTI -->
+<section class="tratti" id="tratti">
+  <div class="container">
+    <h2 class="section-title" data-split>I 12 Tratti <span class="accent accent--italic">Karakter</span></h2>
+    <p class="section-sub reveal" data-reveal>Dodici modi di stare al mondo. Il quiz gratuito ti restituisce i tuoi <strong>3 Tratti dominanti</strong> in 5 minuti.</p>
+    <div class="tratti__grid reveal" data-reveal>
+      <span class="tratto" style="--i:0">🧭 Bussola</span>
+      <span class="tratto" style="--i:1">🔥 Fuoco</span>
+      <span class="tratto" style="--i:2">🗺️ Mappa</span>
+      <span class="tratto" style="--i:3">🧵 Filo</span>
+      <span class="tratto" style="--i:4">🌱 Radice</span>
+      <span class="tratto" style="--i:5">🌊 Onda</span>
+      <span class="tratto" style="--i:6">🛡️ Scudo</span>
+      <span class="tratto" style="--i:7">🎭 Palco</span>
+      <span class="tratto" style="--i:8">🌉 Ponte</span>
+      <span class="tratto" style="--i:9">🥁 Ritmo</span>
+      <span class="tratto" style="--i:10">🔎 Lente</span>
+      <span class="tratto" style="--i:11">🌬️ Vento</span>
+    </div>
+    <div class="tratti__cta reveal" data-reveal>
+      <a href="#" class="btn btn--primary" data-cursor>Fai il quiz gratuito <span class="btn__chev">›</span></a>
+      <span class="tratti__note">Sostituisci il link con l'URL del quiz "Scopri il tuo Karakter".</span>
+    </div>
+  </div>
+</section>
+
+<!-- FONDATORI -->
+<section class="mentor" id="meet-your-mentor">
+  <div class="container">
+    <h2 class="section-title" data-split>I <span class="accent accent--italic">fondatori</span></h2>
+    <article class="mentor__row reveal" data-reveal>
+      <div class="mentor__photo"><div class="mentor-img" style="background-image:url('marco.png')"></div></div>
+      <div class="mentor__body">
+        <span class="mentor__role">Fondatore · ICF PCC · Program Owner</span>
+        <h3 class="mentor__name">Marco Angeletti</h3>
+        <p class="mentor__bio" data-reveal-text>Coach professionista ICF PCC e fondatore di Karakter, Marco guida il Master K-Coach dal 2011. Ha portato in Italia l'integrazione del Reiss Motivation Profile nella formazione dei coach, convinto che una professione seria parta dalla profondità scientifica e dalla consapevolezza di sé.</p>
+        <a href="https://www.linkedin.com/" class="pill" target="_blank" rel="noopener" data-cursor><span class="pill__icon">in</span> LinkedIn</a>
+      </div>
+    </article>
+    <article class="mentor__row mentor__row--reverse reveal" data-reveal>
+      <div class="mentor__photo"><div class="mentor-img" style="background-image:url('alessandra.png')"></div></div>
+      <div class="mentor__body">
+        <span class="mentor__role">Co-fondatrice · Coach &amp; Formatrice</span>
+        <h3 class="mentor__name">Alessandra Abbattista</h3>
+        <p class="mentor__bio" data-reveal-text>Co-fondatrice di Karakter, Alessandra accompagna allievi e aziende nei percorsi di crescita. Formatrice e coach, porta nel Master un approccio caldo e rigoroso allo stesso tempo: ogni Karakter conta, e la formazione più vera è quella che parte dalle persone.</p>
+        <a href="https://www.linkedin.com/" class="pill" target="_blank" rel="noopener" data-cursor><span class="pill__icon">in</span> LinkedIn</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- MASTER PROGRAMMA -->
+<section class="curriculum" id="master">
+  <div class="container">
+    <h2 class="section-title" data-split>Master K-Coach<br /><span class="accent accent--italic">il percorso</span></h2>
+    <p class="section-sub reveal" data-reveal><strong>170 ore</strong> per diventare coach certificato ICF Level 2, con il <b class="hl-blue">Reiss Motivation Profile</b> integrato.</p>
+    <div class="curriculum__grid">
+      <div class="modules reveal" data-reveal>
+        <div class="modules__head"><h3 class="modules__title">Come è strutturato il percorso</h3><p class="modules__meta">6 tappe · 170 ore · ICF Level 2 (144h ACSTH)</p></div>
+        <div class="accordion" data-accordion>
+          <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-meta">Tappa 1 · 28h</span><span class="acc-q">Fondamenti del coaching e competenze ICF</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Cos'è il coaching, il codice etico e le competenze chiave ICF su cui si costruisce la professione.</p></div></div>
+          <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-meta">Tappa 2 · 28h</span><span class="acc-q">Il modello Karakter e i 12 Tratti</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Il sistema Scopri, Comprendi, Fai Crescere e la lettura del carattere attraverso i 12 Tratti.</p></div></div>
+          <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-meta">Tappa 3 · 30h</span><span class="acc-q">Reiss Motivation Profile: le 16 motivazioni</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Lo strumento scientifico che misura ciò che muove le persone, e come restituirlo in sessione.</p></div></div>
+          <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-meta">Tappa 4 · 30h</span><span class="acc-q">La sessione di coaching e l'arte delle domande</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Struttura di una sessione efficace, ascolto profondo e domande che aprono strade.</p></div></div>
+          <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-meta">Tappa 5 · 28h</span><span class="acc-q">Deontologia, mentoring e supervisione</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Mentoring ICF, supervisione tra pari e postura etica del coach professionista.</p></div></div>
+          <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-meta">Tappa 6 · 26h</span><span class="acc-q">Pratica supervisionata e certificazione</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Ore di pratica, valutazione e accompagnamento verso la certificazione ICF.</p></div></div>
+        </div>
+      </div>
+      <aside class="pricing reveal" data-reveal>
+        <div class="pricing__sticky pricing__sticky--light">
+          <img class="pricing__logo" src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/karakter-logo-gradient.svg" alt="Karakter Coaching School" />
+          <span class="pricing__badge pricing__badge--live"><span class="dot"></span> Prossima edizione: <em>Ottobre 2026</em></span>
+          <h3 class="pricing__title">Master K-Coach <span class="accent accent--italic">Professionisti</span></h3>
+          <p class="pricing__desc">Il percorso completo per trasformare le tue capacità in una <strong>professione certificata</strong>.</p>
+          <div class="urgency">
+            <p class="urgency__label">Iscrizioni aperte · chiusura il 30 luglio</p>
+            <div class="countdown" id="countdown" data-deadline="2026-07-30T23:59:59">
+              <div class="cd"><span data-d>00</span><small>giorni</small></div>
+              <div class="cd"><span data-h>00</span><small>ore</small></div>
+              <div class="cd"><span data-m>00</span><small>min</small></div>
+              <div class="cd"><span data-s>00</span><small>sec</small></div>
+            </div>
+            <span class="urgency__chip">Posti limitati</span>
+          </div>
+          <hr class="pricing__hr" />
+          <p class="pricing__incl">Cosa include:</p>
+          <ul class="checklist">
+            <li><span class="check">✓</span> Accreditamento <strong>ICF Level 2</strong> (144h ACSTH)</li>
+            <li><span class="check">✓</span> 170 ore tra teoria, pratica e supervisione</li>
+            <li><span class="check">✓</span> <strong>Test Reiss</strong> Motivation Profile incluso</li>
+            <li><span class="check">✓</span> Lezioni in presenza a Roma e online</li>
+            <li><span class="check">✓</span> Community e aggiornamento continuo</li>
+          </ul>
+          <a href="#info" class="btn btn--primary btn--block" data-cursor>Richiesta informazioni <span class="btn__chev">›</span></a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- RECENSIONI -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <h2 class="section-title" data-split>Le storie di chi<br /><span class="accent accent--italic">ha scelto Karakter</span></h2>
+    <p class="section-sub reveal" data-reveal>Oltre <strong>3.000 persone</strong> tra allievi del Master, profili Reiss e percorsi di coaching. Recensioni verificate su Google.</p>
+  </div>
+  <div class="reviews__marquee">
+    <div class="reviews__row"><div class="reviews__track" data-rowset><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Ho trovato la mia professione."</h3><p class="review__text">Il Master mi ha dato un metodo serio e la certificazione ICF. Oggi lavoro come coach a tempo pieno.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#4285F4">GF</span><span><strong>Giulia Ferrari</strong><em>Coach ICF</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Il Reiss ha cambiato come guido il team."</h3><p class="review__text">Capire le 16 motivazioni delle persone che gestisco è stato illuminante. Strumento scientifico, non slogan.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#0F9D58">MD</span><span><strong>Marco De Santis</strong><em>HR Manager</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Serio, mai motivazionale."</h3><p class="review__text">Cercavo una scuola rigorosa e umana insieme. Karakter è esattamente questo: profondità e calore.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#DB4437">EB</span><span><strong>Elena Bruni</strong><em>Life Coach</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Ho capito cosa mi muove davvero."</h3><p class="review__text">Il profilo Reiss e la restituzione mi hanno dato una chiarezza che nessun test superficiale mi aveva dato.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#AB47BC">DR</span><span><strong>Davide Riva</strong><em>Imprenditore</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"La scuola più rigorosa che potessi scegliere."</h3><p class="review__text">Docenti presenti, pratica vera, supervisione costante. Mi sono sentita accompagnata fino alla certificazione.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#FF7043">SC</span><span><strong>Sara Colombo</strong><em>Coach & Formatrice</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Ho trovato la mia professione."</h3><p class="review__text">Il Master mi ha dato un metodo serio e la certificazione ICF. Oggi lavoro come coach a tempo pieno.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#4285F4">GF</span><span><strong>Giulia Ferrari</strong><em>Coach ICF</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Il Reiss ha cambiato come guido il team."</h3><p class="review__text">Capire le 16 motivazioni delle persone che gestisco è stato illuminante. Strumento scientifico, non slogan.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#0F9D58">MD</span><span><strong>Marco De Santis</strong><em>HR Manager</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Serio, mai motivazionale."</h3><p class="review__text">Cercavo una scuola rigorosa e umana insieme. Karakter è esattamente questo: profondità e calore.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#DB4437">EB</span><span><strong>Elena Bruni</strong><em>Life Coach</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Ho capito cosa mi muove davvero."</h3><p class="review__text">Il profilo Reiss e la restituzione mi hanno dato una chiarezza che nessun test superficiale mi aveva dato.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#AB47BC">DR</span><span><strong>Davide Riva</strong><em>Imprenditore</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"La scuola più rigorosa che potessi scegliere."</h3><p class="review__text">Docenti presenti, pratica vera, supervisione costante. Mi sono sentita accompagnata fino alla certificazione.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#FF7043">SC</span><span><strong>Sara Colombo</strong><em>Coach & Formatrice</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Ho trovato la mia professione."</h3><p class="review__text">Il Master mi ha dato un metodo serio e la certificazione ICF. Oggi lavoro come coach a tempo pieno.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#4285F4">GF</span><span><strong>Giulia Ferrari</strong><em>Coach ICF</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Il Reiss ha cambiato come guido il team."</h3><p class="review__text">Capire le 16 motivazioni delle persone che gestisco è stato illuminante. Strumento scientifico, non slogan.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#0F9D58">MD</span><span><strong>Marco De Santis</strong><em>HR Manager</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Serio, mai motivazionale."</h3><p class="review__text">Cercavo una scuola rigorosa e umana insieme. Karakter è esattamente questo: profondità e calore.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#DB4437">EB</span><span><strong>Elena Bruni</strong><em>Life Coach</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Ho capito cosa mi muove davvero."</h3><p class="review__text">Il profilo Reiss e la restituzione mi hanno dato una chiarezza che nessun test superficiale mi aveva dato.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#AB47BC">DR</span><span><strong>Davide Riva</strong><em>Imprenditore</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"La scuola più rigorosa che potessi scegliere."</h3><p class="review__text">Docenti presenti, pratica vera, supervisione costante. Mi sono sentita accompagnata fino alla certificazione.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#FF7043">SC</span><span><strong>Sara Colombo</strong><em>Coach & Formatrice</em></span></div></article></div></div>
+    <div class="reviews__row"><div class="reviews__track reviews__track--rev" data-rowset><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Finalmente uno strumento scientifico."</h3><p class="review__text">Il Reiss Motivation Profile ha portato metodo dove prima usavo solo intuito. Ora è parte del mio lavoro.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#00ACC1">LM</span><span><strong>Luca Marchetti</strong><em>Team Leader</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Integra perfettamente il mio lavoro."</h3><p class="review__text">Da psicologa cercavo rigore. Il modello Karakter e il Reiss si sono incastrati con la mia pratica.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#5C6BC0">CG</span><span><strong>Chiara Greco</strong><em>Psicologa</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Percorso trasformativo e concreto."</h3><p class="review__text">Non un corso motivazionale, ma una vera formazione professionale. Ne è valsa ogni ora.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#EC407A">AC</span><span><strong>Andrea Conti</strong><em>Consulente</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Il quiz mi ha aperto gli occhi."</h3><p class="review__text">Sono partita dal quiz gratuito dei 12 Tratti, poi il Reiss, poi il Master. Un percorso naturale.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#F4B400">VR</span><span><strong>Valentina Rossi</strong><em>Allieva Master</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Roma o online, sempre presenti."</h3><p class="review__text">Ho seguito parte online e parte in sede: qualità identica, docenti sempre disponibili.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#0F9D58">FP</span><span><strong>Francesco Pinna</strong><em>Coach aziendale</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Finalmente uno strumento scientifico."</h3><p class="review__text">Il Reiss Motivation Profile ha portato metodo dove prima usavo solo intuito. Ora è parte del mio lavoro.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#00ACC1">LM</span><span><strong>Luca Marchetti</strong><em>Team Leader</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Integra perfettamente il mio lavoro."</h3><p class="review__text">Da psicologa cercavo rigore. Il modello Karakter e il Reiss si sono incastrati con la mia pratica.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#5C6BC0">CG</span><span><strong>Chiara Greco</strong><em>Psicologa</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Percorso trasformativo e concreto."</h3><p class="review__text">Non un corso motivazionale, ma una vera formazione professionale. Ne è valsa ogni ora.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#EC407A">AC</span><span><strong>Andrea Conti</strong><em>Consulente</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Il quiz mi ha aperto gli occhi."</h3><p class="review__text">Sono partita dal quiz gratuito dei 12 Tratti, poi il Reiss, poi il Master. Un percorso naturale.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#F4B400">VR</span><span><strong>Valentina Rossi</strong><em>Allieva Master</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Roma o online, sempre presenti."</h3><p class="review__text">Ho seguito parte online e parte in sede: qualità identica, docenti sempre disponibili.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#0F9D58">FP</span><span><strong>Francesco Pinna</strong><em>Coach aziendale</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Finalmente uno strumento scientifico."</h3><p class="review__text">Il Reiss Motivation Profile ha portato metodo dove prima usavo solo intuito. Ora è parte del mio lavoro.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#00ACC1">LM</span><span><strong>Luca Marchetti</strong><em>Team Leader</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Integra perfettamente il mio lavoro."</h3><p class="review__text">Da psicologa cercavo rigore. Il modello Karakter e il Reiss si sono incastrati con la mia pratica.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#5C6BC0">CG</span><span><strong>Chiara Greco</strong><em>Psicologa</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Percorso trasformativo e concreto."</h3><p class="review__text">Non un corso motivazionale, ma una vera formazione professionale. Ne è valsa ogni ora.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#EC407A">AC</span><span><strong>Andrea Conti</strong><em>Consulente</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Il quiz mi ha aperto gli occhi."</h3><p class="review__text">Sono partita dal quiz gratuito dei 12 Tratti, poi il Reiss, poi il Master. Un percorso naturale.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#F4B400">VR</span><span><strong>Valentina Rossi</strong><em>Allieva Master</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Roma o online, sempre presenti."</h3><p class="review__text">Ho seguito parte online e parte in sede: qualità identica, docenti sempre disponibili.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#0F9D58">FP</span><span><strong>Francesco Pinna</strong><em>Coach aziendale</em></span></div></article></div></div>
+  </div>
+</section>
+
+<!-- PRIMA / DOPO -->
+<section class="compare">
+  <div class="container">
+    <h2 class="section-title" data-split>Prima e dopo <span class="accent accent--italic">Karakter</span></h2>
+    <p class="section-sub reveal" data-reveal>Cosa cambia quando smetti di improvvisare e parti da un <strong>metodo scientifico</strong> e da una <b class="hl-blue">certificazione riconosciuta</b>.</p>
+    <div class="compare__grid" data-story>
+      <div class="story-rail" aria-hidden="true"><span class="story-rail__track"></span><span class="story-rail__fill"></span><span class="story-rail__dot" style="top:6%"></span><span class="story-rail__dot" style="top:50%"></span><span class="story-rail__dot" style="top:94%"></span></div>
+      <div class="compare__col compare__col--before reveal" data-reveal>
+        <span class="compare__tag compare__tag--before">Prima</span>
+        <h3 class="compare__head">Senza un metodo</h3>
+        <ul class="compare__list compare__list--bad">
+          <li><span class="mk mk--x">✕</span> Strumenti generici e "motivazionali"</li>
+          <li><span class="mk mk--x">✕</span> Nessuna certificazione riconosciuta</li>
+          <li><span class="mk mk--x">✕</span> Intuito senza una struttura</li>
+          <li><span class="mk mk--x">✕</span> Difficoltà a trasformare la passione in professione</li>
+        </ul>
+      </div>
+      <div class="compare__col compare__col--after reveal" data-reveal>
+        <div class="compare__after-head">
+          <span class="compare__tag compare__tag--after">Dopo</span>
+          <div class="compare__growth">
+            <span class="rating__stars rating__stars--green" aria-hidden="true">★★★★★</span>
+            <div class="compare__growth-num">3.000+</div>
+            <span class="rating__text">persone accompagnate</span>
+          </div>
+        </div>
+        <h3 class="compare__head">Con il metodo Karakter</h3>
+        <ul class="compare__list compare__list--good">
+          <li><span class="mk mk--v">✓</span> Certificazione <strong>ICF Level 2</strong> riconosciuta</li>
+          <li><span class="mk mk--v">✓</span> Reiss Motivation Profile: 16 motivazioni misurate</li>
+          <li><span class="mk mk--v">✓</span> Un metodo chiaro: Scopri, Comprendi, Fai Crescere</li>
+          <li><span class="mk mk--v">✓</span> Una vera <b class="hl-lime">professione</b>, con community e supervisione</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO FORM -->
+<section class="register" id="info">
+  <div class="container">
+    <h2 class="section-title" data-split>Richiesta<br /><span class="accent accent--italic">informazioni</span></h2>
+    <p class="section-sub reveal" data-reveal>Raccontaci cosa ti interessa: ti ricontattiamo con il <strong>calendario delle edizioni</strong> e tutti i dettagli.</p>
+    <div class="register__grid" data-story>
+      <div class="story-rail" aria-hidden="true"><span class="story-rail__track"></span><span class="story-rail__fill"></span><span class="story-rail__dot" style="top:6%"></span><span class="story-rail__dot" style="top:50%"></span><span class="story-rail__dot" style="top:94%"></span></div>
+      <div class="register__info reveal" data-reveal>
+        <h3 class="register__h">Parliamo del tuo percorso.</h3>
+        <p class="register__lead">Compila il form: ti rispondiamo <strong>entro 24-48h</strong>.</p>
+        <ul class="register__details">
+          <li><span class="rico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span> <span><strong>Sede:</strong> Roma, Viale G. Rossini</span></li>
+          <li><span class="rico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span> <span><strong>Formato:</strong> in presenza e online</span></li>
+          <li><span class="rico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11v4c0 1.5 3 3 6 3s6-1.5 6-3v-4"/></svg></span> <span><strong>Accreditamento:</strong> ICF Level 2</span></li>
+          <li><span class="rico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span> <span><strong>Risposta:</strong> entro 24-48 ore</span></li>
+        </ul>
+        <div class="loc-box">
+          <iframe class="loc-map" title="Sede Karakter Coaching School, Roma" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Viale%20Gioacchino%20Rossini%2C%20Roma&output=embed"></iframe>
+          <div class="loc-box__meta"><strong>Karakter Coaching School</strong><span>Viale G. Rossini, Roma · e online</span></div>
+        </div>
+        <p class="register__note">Preferisci scriverci? <a href="mailto:info@karakter.it" data-cursor>info@karakter.it</a></p>
+      </div>
+      <div class="register__card reveal" data-reveal>
+        <span class="register__badge"><span class="dot"></span> Ti ricontattiamo <em>entro 24-48h</em></span>
+        <h3 class="register__form-title">Richiedi informazioni</h3>
+        <p class="register__form-sub">Compila i campi: pensiamo a tutto noi.</p>
+        <form class="form" id="regForm" novalidate>
+          <label class="field"><span>Nome e cognome</span><input type="text" name="name" placeholder="Il tuo nome" required /></label>
+          <label class="field"><span>Email</span><input type="email" name="email" placeholder="La tua email" required /></label>
+          <label class="field"><span>Telefono</span><input type="tel" name="phone" placeholder="Il tuo numero" /></label>
+          <label class="field"><span>Interesse</span>
+            <select name="interest" class="field__select" required>
+              <option value="" selected disabled>Cosa ti interessa?</option>
+              <option>Master K-Coach Professionisti</option>
+              <option>Test Reiss Motivation Profile</option>
+              <option>Reiss Master · Certificazione RMP</option>
+              <option>Coaching (individuale / aziendale)</option>
+              <option>Quiz &amp; 12 Tratti</option>
+              <option>Altro</option>
+            </select>
+          </label>
+          <label class="field"><span>Messaggio (facoltativo)</span><input type="text" name="message" placeholder="Raccontaci in una riga" /></label>
+          <button type="submit" class="btn btn--primary btn--block" data-cursor>Invia richiesta <span class="btn__chev">›</span></button>
+          <p class="form__msg" id="formMsg" hidden>Grazie! Abbiamo ricevuto la tua richiesta, ti ricontattiamo presto. (demo, nessun dato inviato)</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <h2 class="section-title" data-split>Domande<br /><span class="accent accent--italic">frequenti</span></h2>
+    <div class="accordion accordion--faq" data-accordion>
+      <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-q">Serve esperienza per iscriversi al Master?</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>No. Il Master accompagna dai fondamenti fino alla certificazione: serve motivazione, non esperienza pregressa.</p></div></div>
+      <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-q">Il Master è riconosciuto?</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Sì. È accreditato ICF Level 2 (144 ore ACSTH), lo standard internazionale del coaching professionale.</p></div></div>
+      <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-q">Cos'è il Reiss Motivation Profile?</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>È il test scientifico che misura le 16 motivazioni fondamentali della persona. Karakter è tra le poche realtà in Italia a integrarlo nel percorso.</p></div></div>
+      <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-q">Devo essere a Roma per frequentare?</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>No. Le lezioni si svolgono in presenza a Roma e online, con la stessa qualità didattica.</p></div></div>
+      <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-q">Che differenza c'è tra il quiz e il Test Reiss?</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Il quiz "Scopri il tuo Karakter" è gratuito e ti dà i tuoi 3 Tratti dominanti. Il Reiss è il test professionale che misura le 16 motivazioni, con restituzione individuale.</p></div></div>
+      <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-q">Come si diventa Reiss Master?</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Con la certificazione RMP che abilita a somministrare e restituire il Reiss Motivation Profile. Richiedi informazioni per il percorso dedicato.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="finalcta">
+  <video class="finalcta__bg" autoplay muted loop playsinline preload="auto" id="finalVideo"><source src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/reiss-bg.mp4" type="video/mp4"></video>
+  <div class="finalcta__overlay" aria-hidden="true"></div>
+  <div class="container finalcta__inner">
+    <div class="rating reveal" data-reveal>
+      <span class="avatars" aria-hidden="true">
+        <span class="g-av" style="--c:#4285F4">GF</span><span class="g-av" style="--c:#DB4437">MD</span><span class="g-av" style="--c:#0F9D58">EB</span><span class="g-av" style="--c:#AB47BC">DR</span><span class="g-av" style="--c:#FF7043">SC</span>
+      </span>
+      <span class="rating__col"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><span class="rating__text">500+ coach formati dal 2011</span></span>
+    </div>
+    <h2 class="finalcta__title" data-split>Ogni persona è un Karakter.<br /><span class="muted-italic">Qual è il tuo?</span></h2>
+    <p class="finalcta__sub reveal" data-reveal>Inizia dal <strong>quiz gratuito</strong> o richiedi informazioni sul Master K-Coach e sul Reiss Motivation Profile.</p>
+    <div class="finalcta__actions reveal" data-reveal>
+      <a href="#info" class="btn btn--primary" data-cursor>Richiesta informazioni <span class="btn__chev">›</span></a>
+      <a href="#tratti" class="btn btn--ghost" data-cursor>Fai il quiz gratuito <span class="btn__chev">›</span></a>
+    </div>
+    <span class="finalcta__note reveal" data-reveal><span class="dot"></span> Roma · Viale G. Rossini · e online</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__top">
+      <a href="#hero" class="nav__logo" data-cursor><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/karakter-logo-bianco.svg" alt="Karakter Coaching School" class="nav__logo-img" /></a>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#percorsi" data-cursor>Percorsi</a><a href="#reiss" data-cursor>Reiss</a><a href="#master" data-cursor>Master</a><a href="#info" data-cursor>Contatti</a>
+      </nav>
+      <div class="footer__social">
+        <a href="#" class="social" aria-label="Instagram" data-cursor><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" class="social" aria-label="LinkedIn" data-cursor><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 13v4"/></svg></a>
+        <a href="#" class="social" aria-label="Facebook" data-cursor><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 8h2V5h-2a3 3 0 0 0-3 3v2H9v3h2v6h3v-6h2l1-3h-3V8a1 1 0 0 1 1-1z"/></svg></a>
+      </div>
+    </div>
+    <hr class="pricing__hr" />
+    <div class="footer__bottom">
+      <span class="footer__made">Karakter Coaching School · Roma · P.IVA in aggiornamento</span>
+      <div class="footer__copy"><span>© 2026 Karakter Coaching School. Tutti i diritti riservati.</span><button class="to-top" id="toTop" aria-label="Torna su" data-cursor>↑</button></div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/app.js"></script>
+</body>
+</html>
