@@ -151,7 +151,7 @@
       scrollTrigger: {
         trigger: heroVideo,
         start: "center center",
-        end: "+=440",
+        end: "+=380",
         scrub: 0.5,
         pin: heroVideo,
         pinSpacing: true,
@@ -396,8 +396,9 @@
       yPercent: 18, ease: "none",
       scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
     });
-    var ctaBg = document.querySelector(".finalcta__bg");
-    if (ctaBg) gsap.fromTo(ctaBg, { scale: 1.18 }, {
+    /* niente transform sul <video>: lo congelerebbe al primo frame su alcuni browser */
+    var ctaImg = document.querySelector(".finalcta__bg.ph--bg");
+    if (ctaImg) gsap.fromTo(ctaImg, { scale: 1.18 }, {
       scale: 1, ease: "none",
       scrollTrigger: { trigger: ".finalcta", start: "top bottom", end: "bottom top", scrub: true }
     });
