@@ -988,3 +988,17 @@ p strong,.section-sub strong,.stat__desc strong,.card__text strong,.method__step
   .bento .card:nth-child(5){top:112px}
   .card--quiz{align-self:auto}
 }
+
+/* =========================================================
+   v18 — FIX compare list: marker hanging, testo inline pulito
+   (prima ogni <strong>/<b> diventava un flex item separato
+    e non andava a capo col testo -> righe "sminchiate")
+   ========================================================= */
+.compare__list li{
+  display:block;position:relative;padding-left:2.1rem;
+  align-items:initial;gap:0;line-height:1.5;
+}
+.compare__list li .mk{position:absolute;left:0;top:.12em}
+.compare__list li strong,.compare__list li b{
+  font-size:inherit;letter-spacing:inherit;white-space:normal;
+}
