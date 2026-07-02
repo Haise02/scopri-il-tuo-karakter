@@ -913,3 +913,78 @@ p strong,.section-sub strong,.stat__desc strong,.card__text strong,.method__step
 @media (prefers-reduced-motion:reduce){
   .hero__glow,.hero__beams{animation:none}
 }
+
+/* v15 — card Quiz: sfondo card1.png, testo+bottone in basso, no radar/check */
+.card--quiz{
+  background-image:url('card1.png');
+  background-size:cover;background-position:top center;background-repeat:no-repeat;
+  background-color:#eef1f4;
+  position:relative;overflow:hidden;min-height:360px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.card--quiz::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:62%;z-index:1;pointer-events:none;
+  background:linear-gradient(to top,rgba(238,241,244,.96),rgba(238,241,244,.6) 42%,transparent);
+}
+.card--quiz > *{position:relative;z-index:2}
+.card--quiz .card__title{color:var(--navy);margin-top:0;padding-top:0}
+.card--quiz .card__text{color:#3c4a5b}
+.card--quiz .card__text strong,.card--quiz .card__text b{color:var(--navy)}
+.card--quiz .card__link{background:var(--azzurro);color:#fff;border:1px solid var(--azzurro)}
+.card--quiz .card__link:hover{background:var(--accent-hover);color:#fff;border-color:var(--accent-hover)}
+
+/* v16 — card Quiz: immagine in flusso (proporzione costante a ogni risoluzione) */
+.card--quiz{padding:0;overflow:hidden;position:relative;display:block;align-self:start;min-height:0;background:none}
+.card--quiz::after{display:none}
+.quizcard__img{display:block;width:100%;height:auto}
+.quizcard__body{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;padding:22px 24px;
+  background:linear-gradient(to top,rgba(238,241,244,.97),rgba(238,241,244,.55) 45%,transparent);
+}
+.quizcard__body .card__title{color:var(--navy);margin:0 0 .45rem;padding-top:0}
+.quizcard__body .card__text{color:#3c4a5b;margin:0 0 1rem}
+.quizcard__body .card__text strong,.quizcard__body .card__text b{color:var(--navy)}
+.quizcard__body .card__link{margin-top:0;align-self:flex-start;background:var(--azzurro);color:#fff;border:1px solid var(--azzurro)}
+.quizcard__body .card__link:hover{background:var(--accent-hover);color:#fff;border-color:var(--accent-hover)}
+
+/* =========================================================
+   v17 — AGGIUSTAMENTI MOBILE (<=768px)
+   ========================================================= */
+@media (max-width:768px){
+  /* hero: parte piu' in alto, meno margine */
+  .hero{min-height:auto;padding:88px 0 44px}
+  /* headline: prima riga piu' piccola, seconda piu' grande */
+  .hero__title-top{white-space:normal;font-size:clamp(1.15rem,4.8vw,1.55rem)}
+  .hero__title-serif{white-space:normal;font-size:clamp(3rem,15vw,4.6rem)}
+  .hide-mobile{display:none}
+
+  /* statistiche 2 x 2 */
+  .stats__grid{grid-template-columns:repeat(2,1fr);gap:1.8rem 1.2rem}
+
+  /* metodo: numeri leggibili (no gradiente spento) + titoli piu' grandi */
+  .step__num{background:none !important;-webkit-text-fill-color:#A3E635;color:#A3E635;opacity:1}
+  .step__title{font-size:clamp(3rem,11vw,3.6rem)}
+
+  /* fondatori: via lo spazio vuoto dopo l'ultima riga */
+  .mentor{padding:52px 0}
+  .mentor__row{margin-bottom:2rem}
+  .mentor__row:last-child{margin-bottom:0}
+
+  /* master: card bianca info PRIMA dei moduli */
+  .curriculum__grid .pricing{order:-1}
+
+  /* margini verticali sezioni ridotti ovunque */
+  .about,.stats,.method,.learn,.tratti,.curriculum,.reviews,.compare,.register,.faq{padding-top:54px;padding-bottom:54px}
+  .finalcta{padding:64px 0}
+  .trusted{padding:34px 0 20px}
+
+  /* BENTO: card-stack (impilate, sticky, con sliver in alto) */
+  .bento{display:block}
+  .bento .card,.bento .card--wide{grid-column:auto;position:sticky;margin:0 0 20px;box-shadow:0 -12px 34px -12px rgba(0,0,0,.55)}
+  .bento .card:nth-child(1){top:64px}
+  .bento .card:nth-child(2){top:76px}
+  .bento .card:nth-child(3){top:88px}
+  .bento .card:nth-child(4){top:100px}
+  .bento .card:nth-child(5){top:112px}
+  .card--quiz{align-self:auto}
+}
