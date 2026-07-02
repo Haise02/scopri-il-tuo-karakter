@@ -861,3 +861,55 @@ p strong,.section-sub strong,.stat__desc strong,.card__text strong,.method__step
 @keyframes gridDrift{from{background-position:0 0,0 0}to{background-position:46px 46px,46px 46px}}
 .tratti .container{position:relative;z-index:1}
 @media (prefers-reduced-motion:reduce){.tratti::before{animation:none}}
+
+/* v12 — barre Reiss fluide in loop, render metodo in movimento, grid tratti, countdown flip */
+/* Reiss: oscillazione continua e smooth (onda sfalsata via --d) */
+.rr__b--p{transform-origin:left center}
+.rr__b--n{transform-origin:right center}
+.reiss-chart.in .rr__b{width:calc(var(--v) * 48%);animation:barOsc 2.8s ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes barOsc{0%,100%{transform:scaleX(.32)}50%{transform:scaleX(1)}}
+
+/* Metodo: render laterali sempre in movimento */
+.step__svg{overflow:visible}
+.method .step__pulse{transform-box:fill-box;transform-origin:center;animation:kOrbit 22s linear infinite}
+.method .step__network{transform-box:fill-box;transform-origin:center;animation:kOrbit 34s linear infinite reverse}
+.method .step__growth{transform-box:fill-box;transform-origin:center}
+.step.is-active .step__line{animation:kDraw 4.5s ease-in-out infinite}
+@keyframes kOrbit{to{transform:rotate(360deg)}}
+@keyframes kDraw{0%{stroke-dashoffset:400}45%,55%{stroke-dashoffset:0}100%{stroke-dashoffset:-400}}
+
+/* 12 Tratti: grid overlay piu' percepibile */
+.tratti::before{
+  background-image:linear-gradient(rgba(47,128,237,.30) 1px,transparent 1px),linear-gradient(90deg,rgba(47,128,237,.30) 1px,transparent 1px);
+  opacity:.6;
+}
+
+/* Countdown: effetto flip a "calendario" */
+.cd{position:relative;perspective:260px}
+.cd::after{content:"";position:absolute;left:10%;right:10%;top:calc(50% - 9px);height:1px;background:rgba(11,31,58,.18);z-index:2}
+.cd span{display:block;transform-origin:center;backface-visibility:hidden}
+.cd span.flip{animation:cdFlip .5s cubic-bezier(.3,.7,.3,1)}
+@keyframes cdFlip{0%{transform:rotateX(90deg);opacity:.25}60%{opacity:1}100%{transform:rotateX(0);opacity:1}}
+
+/* v13 — countdown: animazione "odometer" (slide-up) al posto del flip */
+.cd{perspective:none;overflow:hidden}
+.cd::after{display:none}
+.cd span{display:block;transform-origin:center;backface-visibility:visible}
+.cd span.flip{animation:cdRoll .45s cubic-bezier(.22,.61,.36,1)}
+@keyframes cdRoll{0%{transform:translateY(48%);opacity:0}100%{transform:translateY(0);opacity:1}}
+
+/* v14 — hero: mesh gradient animato (drift + breathe) */
+.hero__glow{background-size:200% 200%;animation:heroMesh 20s ease-in-out infinite alternate;will-change:background-position}
+@keyframes heroMesh{
+  0%{background-position:0% 0%}
+  50%{background-position:100% 45%}
+  100%{background-position:35% 100%}
+}
+.hero__beams{background-size:220% 220%;animation:heroBeams 14s ease-in-out infinite alternate;will-change:background-position,opacity}
+@keyframes heroBeams{
+  0%{opacity:.35;background-position:0% 0%}
+  100%{opacity:.7;background-position:100% 30%}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero__glow,.hero__beams{animation:none}
+}

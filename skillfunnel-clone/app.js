@@ -441,7 +441,15 @@
       var h = Math.floor(diff / 3600000) % 24;
       var m = Math.floor(diff / 60000) % 60;
       var sec = Math.floor(diff / 1000) % 60;
-      var setv = function (k, v) { var el = cd.querySelector("[data-" + k + "]"); if (el) el.textContent = pad2(v); };
+      var setv = function (k, v) {
+        var el = cd.querySelector("[data-" + k + "]");
+        if (!el) return;
+        var nv = pad2(v);
+        if (el.textContent !== nv) {
+          el.textContent = nv;
+          el.classList.remove("flip"); void el.offsetWidth; el.classList.add("flip");
+        }
+      };
       setv("d", d); setv("h", h); setv("m", m); setv("s", sec);
     };
     tick(); setInterval(tick, 1000);
@@ -470,31 +478,6 @@
       }
     });
     setActive(0);
-  })();
-
-  /* 19. REISS CHART - cicla profili diversi */
-  (function () {
-    if (prefersReduced) return;
-    var chart = document.querySelector(".reiss-chart");
-    if (!chart) return;
-    var bars = Array.prototype.slice.call(chart.querySelectorAll(".rr__b"));
-    if (!bars.length) return;
-    var profiles = [
-      [.85,-.18,-.38,.5,.62,-.85,-.8,-.4,.72,-.68],
-      [-.45,.7,.6,-.3,.2,-.5,.75,.55,-.25,-.6],
-      [.3,-.6,.85,.7,-.4,.4,-.55,-.7,.5,.35],
-      [-.7,.35,-.2,-.55,.8,.65,-.3,.45,-.6,.7]
-    ];
-    var pi = 0;
-    function apply(p) {
-      bars.forEach(function (b, i) {
-        var v = p[i] || 0;
-        b.style.setProperty("--v", Math.abs(v).toFixed(2));
-        b.classList.toggle("rr__b--p", v >= 0);
-        b.classList.toggle("rr__b--n", v < 0);
-      });
-    }
-    setInterval(function () { pi = (pi + 1) % profiles.length; apply(profiles[pi]); }, 3400);
   })();
 
   /* 20. FINAL CTA VIDEO - autoplay robusto (IO + interazione) */
