@@ -880,8 +880,10 @@ p strong,.section-sub strong,.stat__desc strong,.card__text strong,.method__step
 
 /* 12 Tratti: grid overlay piu' percepibile */
 .tratti::before{
-  background-image:linear-gradient(rgba(47,128,237,.30) 1px,transparent 1px),linear-gradient(90deg,rgba(47,128,237,.30) 1px,transparent 1px);
-  opacity:.6;
+  background-image:linear-gradient(rgba(47,128,237,.44) 1px,transparent 1px),linear-gradient(90deg,rgba(47,128,237,.44) 1px,transparent 1px);
+  opacity:.9;
+  -webkit-mask:radial-gradient(ellipse 72% 68% at 50% 45%,#000,transparent 82%);
+          mask:radial-gradient(ellipse 72% 68% at 50% 45%,#000,transparent 82%);
 }
 
 /* Countdown: effetto flip a "calendario" */
@@ -1005,4 +1007,4 @@ p strong,.section-sub strong,.stat__desc strong,.card__text strong,.method__step
 
 /* v18 — logo ICF piccolo nell'etichetta hero */
 .badge--icf{padding-left:.4em}
-.badge__logo{height:22px;width:auto;display:block;flex:none}
+.badge__logo{width:22px;height:22px;object-fit:contain;display:block;flex:none}

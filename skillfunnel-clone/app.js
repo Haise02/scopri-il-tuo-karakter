@@ -130,14 +130,23 @@
 
   /* 5. MENTOR BIO TEXT-HIGHLIGHT SCRUB */
   var bios = document.querySelectorAll("[data-reveal-text]");
-  if (hasST && typeof SplitType !== "undefined" && !prefersReduced) {
+  if (hasST && !prefersReduced) {
+    var hasSplit = typeof SplitType !== "undefined";
     bios.forEach(function (el) {
-      var split = new SplitType(el, { types: "words", tagName: "span" });
-      split.words.forEach(function (w) { w.classList.add("reveal-word"); });
-      gsap.to(split.words, {
-        color: "#eef3f7", ease: "none", stagger: 0.5,
-        scrollTrigger: { trigger: el, start: "top 80%", end: "bottom 55%", scrub: true }
-      });
+      if (hasSplit) {
+        var split = new SplitType(el, { types: "words", tagName: "span" });
+        split.words.forEach(function (w) { w.classList.add("reveal-word"); });
+        gsap.to(split.words, {
+          color: "#eef3f7", ease: "none", stagger: 0.5,
+          scrollTrigger: { trigger: el, start: "top 80%", end: "bottom 55%", scrub: true }
+        });
+      } else {
+        /* fallback: se SplitType non carica, illumina comunque il paragrafo intero */
+        gsap.fromTo(el, { color: "#44566d" }, {
+          color: "#eef3f7", ease: "none",
+          scrollTrigger: { trigger: el, start: "top 80%", end: "bottom 55%", scrub: true }
+        });
+      }
     });
   }
 
