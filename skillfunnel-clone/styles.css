@@ -1005,4 +1005,4 @@ p strong,.section-sub strong,.stat__desc strong,.card__text strong,.method__step
 
 /* v18 — logo ICF piccolo nell'etichetta hero */
 .badge--icf{padding-left:.4em}
-.badge__logo{height:18px;width:auto;display:block;border-radius:3px;background:#fff;padding:1px 3px;flex:none}
+.badge__logo{height:22px;width:auto;display:block;flex:none}
