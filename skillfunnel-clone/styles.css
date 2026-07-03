@@ -1002,3 +1002,7 @@ p strong,.section-sub strong,.stat__desc strong,.card__text strong,.method__step
 .compare__list li strong,.compare__list li b{
   font-size:inherit;letter-spacing:inherit;white-space:normal;
 }
+
+/* v18 — logo ICF piccolo nell'etichetta hero */
+.badge--icf{padding-left:.4em}
+.badge__logo{height:18px;width:auto;display:block;border-radius:3px;background:#fff;padding:1px 3px;flex:none}
