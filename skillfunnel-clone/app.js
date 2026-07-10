@@ -7,6 +7,16 @@
 (function () {
   "use strict";
 
+  /* 0. EMBED DETECTION: se siamo dentro un iframe (Elementor), nascondi la
+     scrollbar interna per evitare la doppia barra di scorrimento. */
+  try {
+    if (window.self !== window.top) {
+      document.documentElement.classList.add("is-embedded");
+    }
+  } catch (e) {
+    document.documentElement.classList.add("is-embedded");
+  }
+
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var isTouch = window.matchMedia("(pointer: coarse)").matches;
   var hasGSAP = typeof gsap !== "undefined";

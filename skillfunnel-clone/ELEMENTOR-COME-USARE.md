@@ -30,11 +30,28 @@ https://haise02.github.io/scopri-il-tuo-karakter/skillfunnel-clone/index.html
 ```html
 <iframe
   src="https://haise02.github.io/scopri-il-tuo-karakter/skillfunnel-clone/index.html"
-  style="width:100%;height:100vh;border:0;display:block;overflow:hidden"
+  style="width:100%;height:100vh;border:0;display:block"
   loading="lazy" title="Karakter">
 </iframe>
 ```
-Regola `height` se serve (es. `height:6000px` per pagina intera senza scroll interno, oppure lascia `100vh` con scroll).
+
+## Doppia barra di scorrimento (risolto)
+L'iframe è alto `100vh` e ha il **suo** scroll interno: quello scroll serve, perché tutte
+le animazioni (GSAP/ScrollTrigger, hero 3D, metodo sticky) sono guidate dallo scroll
+*dentro* la pagina. Essendo cross-origin, l'iframe non può leggere lo scroll della pagina
+Elementor, quindi lo scroll interno non si può eliminare.
+
+Soluzione applicata: la pagina rileva da sola di essere dentro un iframe
+(`window.self !== window.top` → classe `is-embedded` su `<html>`) e **nasconde la scrollbar
+interna** via CSS, mantenendola scrollabile. Risultato: resta una sola barra.
+
+Per una pagina Elementor davvero pulita:
+- template **Elementor Canvas** (senza header/footer del tema)
+- sezione a piena larghezza, padding 0, margin 0
+- iframe `height:100vh`
+
+Se vedi ancora due barre, controlla che la sezione/colonna Elementor che contiene l'iframe
+non abbia `overflow:auto` o un'altezza fissa minore del contenuto.
 
 ## Il video finale
 - Sulla **pagina vera** (Pages/iframe) il video parte da solo: è `muted/loop/playsinline`, ora è **1080p 188KB** (prima era 4K e i browser non lo riproducevano).

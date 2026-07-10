@@ -1005,6 +1005,13 @@ p strong,.section-sub strong,.stat__desc strong,.card__text strong,.method__step
   font-size:inherit;letter-spacing:inherit;white-space:normal;
 }
 
+/* v19 — embed in iframe (Elementor): niente doppia scrollbar.
+   Lo scroll interno resta attivo (serve a GSAP/ScrollTrigger), sparisce solo la barra. */
+html.is-embedded{scrollbar-width:none;-ms-overflow-style:none}
+html.is-embedded::-webkit-scrollbar,
+html.is-embedded body::-webkit-scrollbar{width:0;height:0;display:none}
+html.is-embedded,html.is-embedded body{overflow-x:hidden}
+
 /* v18 — logo ICF piccolo nell'etichetta hero */
 .badge--icf{padding-left:.4em}
 .badge__logo{width:22px;height:22px;object-fit:contain;display:block;flex:none}
