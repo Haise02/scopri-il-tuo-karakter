@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family:'Fraunces'; src:url('fonts/fraunces-400.ttf'); font-weight:400; }
+@font-face { font-family:'Fraunces'; src:url('fonts/fraunces-600.ttf'); font-weight:600; }
+@font-face { font-family:'Fraunces'; src:url('fonts/fraunces-900.ttf'); font-weight:900; }
+@font-face { font-family:'Source Serif'; src:url('fonts/sourceserif-400.ttf'); font-weight:400; }
+@font-face { font-family:'Source Serif'; src:url('fonts/sourceserif-400i.ttf'); font-weight:400; font-style:italic; }
+@font-face { font-family:'Source Serif'; src:url('fonts/sourceserif-600.ttf'); font-weight:600; }
+@font-face { font-family:'Plex Mono'; src:url('fonts/plexmono-400.ttf'); font-weight:400; }
+
+@page {
+  size: A4;
+  margin: 21mm 17mm 19mm 17mm;
+  background: #F6F4EF;
+  @bottom-left { content: "LA MAPPA DEL COACH · KARAKTER COACHING SCHOOL"; font-family:'Plex Mono'; font-size:6.5pt; letter-spacing:.14em; color:#8A94A0; }
+  @bottom-right { content: "PAG. " counter(page) " / 41.9028° N — 12.4964° E"; font-family:'Plex Mono'; font-size:6.5pt; letter-spacing:.1em; color:#8A94A0; }
+}
+@page plain { margin:0; background:#F6F4EF; @bottom-left{content:none} @bottom-right{content:none} }
+
+body { font-family:'Source Serif',serif; font-size:10pt; line-height:1.66; color:#1E2B38; margin:0; }
+p { margin:0 0 9pt 0; }
+strong { font-weight:600; color:#0B1F3A; }
+.mk { background:#A3E635; padding:0 3px; box-decoration-break:clone; }
+
+/* ---------- CONTOUR BG (svg data uri) ---------- */
+.contours {
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Cg fill='none' stroke='%232F80ED' stroke-opacity='.13' stroke-width='1'%3E%3Cpath d='M-20 340 C80 300 90 220 180 210 S330 260 440 200'/%3E%3Cpath d='M-20 370 C90 330 110 250 200 240 S340 290 440 235'/%3E%3Cpath d='M-20 400 C100 360 130 280 220 270 S350 320 440 270'/%3E%3Cpath d='M60 -20 C60 60 140 90 150 170 S90 300 130 430'/%3E%3Cpath d='M100 -20 C100 55 180 85 190 160 S130 290 170 430'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:420px 420px;
+}
+
+/* ---------- COVER ---------- */
+.cover { page: plain; width:210mm; height:296mm; background:#F6F4EF; position:relative; color:#0B1F3A; }
+.cover-frame { position:absolute; top:10mm; left:10mm; right:10mm; bottom:10mm; border:1.2pt solid #0B1F3A; }
+.cover-inner { position:relative; padding:22mm 20mm; height:100%; }
+.cover-grid { font-family:'Plex Mono'; font-size:7pt; letter-spacing:.18em; color:#8A94A0; display:flex; justify-content:space-between; margin-bottom:16mm; }
+.cover-logo { width:46mm; margin-bottom:14mm; }
+.cover-kicker { font-family:'Plex Mono'; font-size:8.5pt; letter-spacing:.3em; text-transform:uppercase; color:#2F80ED; margin-bottom:9mm; }
+.cover h1 { font-family:'Fraunces'; font-weight:900; font-size:58pt; line-height:.98; color:#0B1F3A; margin:0 0 9mm 0; letter-spacing:-.01em; }
+.cover h1 .mk { padding:0 8px; }
+.cover-sub { font-size:13.5pt; font-style:italic; line-height:1.5; color:#3A4A5A; max-width:120mm; margin-bottom:12mm; }
+.cover-route { margin:0 0 12mm 0; }
+.cover-meta { font-family:'Plex Mono'; font-size:8pt; line-height:2; letter-spacing:.06em; color:#5A6B7D; }
+.cover-meta strong { font-family:'Plex Mono'; color:#0B1F3A; font-weight:400; }
+.stamp {
+  position:absolute; right:22mm; bottom:32mm; width:34mm; height:34mm; border:1.6pt solid #0B1F3A; border-radius:50%;
+  transform:rotate(8deg); text-align:center; display:table;
+  font-family:'Plex Mono'; font-size:6.6pt; letter-spacing:.16em; line-height:1.9; color:#0B1F3A;
+}
+.stamp span { display:table-cell; vertical-align:middle; }
+
+/* ---------- STRUCTURE ---------- */
+.page-break { page-break-before: always; }
+.chapter { page-break-before: always; }
+.ch-head { border-bottom:1.2pt solid #0B1F3A; padding-bottom:10pt; margin-bottom:14pt; position:relative; }
+.wp { display:inline-block; width:22pt; height:22pt; line-height:20pt; text-align:center; border:1.4pt solid #0B1F3A; border-radius:50%; font-family:'Fraunces'; font-weight:600; font-size:11.5pt; color:#0B1F3A; margin-right:8pt; vertical-align:middle; background:#F6F4EF; }
+.ch-kicker { font-family:'Plex Mono'; font-size:7.5pt; letter-spacing:.26em; text-transform:uppercase; color:#2F80ED; display:inline-block; vertical-align:middle; }
+h2.ch-title { font-family:'Fraunces'; font-weight:900; font-size:23pt; line-height:1.08; color:#0B1F3A; margin:8pt 0 0 0; letter-spacing:-.005em; }
+h3 { font-family:'Fraunces'; font-weight:600; font-size:12.5pt; color:#0B1F3A; margin:14pt 0 5pt 0; }
+h4 { font-family:'Fraunces'; font-weight:600; font-size:11pt; color:#0B1F3A; margin:12pt 0 3pt 0; }
+h4 .wp { width:16pt; height:16pt; line-height:14.5pt; font-size:9pt; margin-right:5pt; }
+
+.lead { font-size:11.5pt; line-height:1.62; color:#2E3E4E; }
+.editorial { font-family:'Fraunces'; font-weight:400; font-style:italic; font-size:13.5pt; line-height:1.45; color:#0B1F3A; margin:13pt 0; padding:2pt 0 2pt 12pt; border-left:2.5pt solid #A3E635; }
+
+.box { border:1.2pt solid #0B1F3A; padding:11pt 13pt; margin:13pt 0; page-break-inside:avoid; position:relative; background:#F6F4EF; }
+.box-tab { position:absolute; top:-7pt; left:10pt; background:#0B1F3A; color:#F6F4EF; font-family:'Plex Mono'; font-size:6.8pt; letter-spacing:.2em; text-transform:uppercase; padding:2pt 8pt; }
+.box p:last-child { margin-bottom:0; }
+.box-lime { border:1.2pt solid #0B1F3A; background:#F1F7DF; padding:11pt 13pt; margin:13pt 0; page-break-inside:avoid; position:relative; }
+
+.signal { margin:0 0 11pt 0; page-break-inside:avoid; }
+.signal-t { font-family:'Fraunces'; font-weight:600; font-size:11.5pt; color:#0B1F3A; }
+
+table { border-collapse:collapse; width:100%; margin:11pt 0; font-size:8.8pt; page-break-inside:avoid; border:1.2pt solid #0B1F3A; }
+th { border-bottom:1.2pt solid #0B1F3A; border-right:.6pt solid #C8CFD6; color:#0B1F3A; text-align:left; padding:5pt 7pt; font-family:'Plex Mono'; font-size:7.2pt; letter-spacing:.12em; text-transform:uppercase; font-weight:400; background:#EDEAE2; }
+td { border-bottom:.6pt solid #C8CFD6; border-right:.6pt solid #C8CFD6; padding:5pt 7pt; vertical-align:top; }
+th:last-child, td:last-child { border-right:none; }
+tr:last-child td { border-bottom:none; }
+.td-good { background:#F1F7DF !important; }
+
+ul { margin:0 0 9pt 0; padding-left:14pt; }
+li { margin-bottom:4pt; }
+
+.check { list-style:none; padding-left:0; }
+.check li { padding-left:18pt; position:relative; margin-bottom:8pt; }
+.check li::before { content:"✓"; position:absolute; left:0; top:0; color:#0B1F3A; font-weight:600; background:#A3E635; width:11pt; height:11pt; line-height:11pt; text-align:center; font-size:8pt; border-radius:50%; }
+
+.qrow { border-bottom:.7pt solid #C8CFD6; padding:6pt 0; page-break-inside:avoid; }
+.qtxt { display:inline-block; width:72%; vertical-align:top; }
+.qopt { display:inline-block; width:26%; text-align:right; color:#8A94A0; font-family:'Plex Mono'; font-size:7.5pt; vertical-align:top; padding-top:2pt; }
+
+.score { display:inline-block; vertical-align:top; width:31%; margin-right:2%; border:1.2pt solid #0B1F3A; padding:9pt 10pt; font-size:8.6pt; page-break-inside:avoid; background:#F6F4EF; }
+.score:last-child{margin-right:0}
+.score b { display:block; font-family:'Fraunces'; font-weight:600; font-size:11pt; color:#0B1F3A; margin-bottom:3pt; }
+
+.phase { position:relative; padding:0 0 4pt 22pt; margin:0 0 13pt 0; page-break-inside:avoid; }
+.phase::before { content:""; position:absolute; left:5pt; top:4pt; bottom:-8pt; border-left:1.4pt dashed #0B1F3A; }
+.phase:last-of-type::before { display:none; }
+.phase-dot { position:absolute; left:0; top:2pt; width:11pt; height:11pt; border:1.4pt solid #0B1F3A; border-radius:50%; background:#A3E635; }
+.phase-t { font-family:'Fraunces'; font-weight:600; font-size:12pt; color:#0B1F3A; }
+.phase-d { font-family:'Plex Mono'; font-size:7.5pt; letter-spacing:.2em; text-transform:uppercase; color:#2F80ED; }
+
+/* ---------- FINAL ---------- */
+.final { page: plain; width:210mm; height:296mm; background:#F6F4EF; position:relative; color:#0B1F3A; }
+.final-frame { position:absolute; top:10mm; left:10mm; right:10mm; bottom:10mm; border:1.2pt solid #0B1F3A; }
+.final-inner { position:relative; padding:22mm 20mm; }
+.final h2 { font-family:'Fraunces'; font-weight:900; font-size:34pt; line-height:1.02; margin:0 0 12mm 0; }
+.next { position:relative; padding:0 0 8mm 26pt; }
+.next::before { content:""; position:absolute; left:6pt; top:6pt; bottom:-4pt; border-left:1.4pt dashed #0B1F3A; }
+.next:last-of-type::before { display:none; }
+.next-dot { position:absolute; left:0; top:2pt; width:13pt; height:13pt; border:1.5pt solid #0B1F3A; border-radius:50%; background:#A3E635; }
+.next-n { font-family:'Plex Mono'; font-size:7.5pt; letter-spacing:.22em; text-transform:uppercase; color:#2F80ED; }
+.next-t { font-family:'Fraunces'; font-weight:600; font-size:14pt; margin:2pt 0 3pt 0; }
+.next p { color:#3A4A5A; font-size:9.5pt; margin:0; }
+.final-contact { margin-top:10mm; font-family:'Plex Mono'; font-size:8pt; color:#5A6B7D; line-height:2.1; letter-spacing:.04em; }
+.final-contact strong { font-family:'Plex Mono'; color:#0B1F3A; font-weight:400; }
+.final-logo { width:42mm; margin-top:8mm; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<div class="cover contours">
+  <div class="cover-frame"></div>
+  <div class="cover-inner">
+    <div class="cover-grid"><span>+ 41.9028° N</span><span>FIELD GUIDE · N.01</span><span>12.4964° E +</span></div>
+    <img class="cover-logo" src="logo-nero.png" alt="Karakter">
+    <div class="cover-kicker">La guida per chi ci pensa da anni</div>
+    <h1>La Mappa<br>del <span class="mk">Coach</span></h1>
+    <div class="cover-sub">Capire se il coaching è la tua strada.<br>E come percorrerla fino in fondo.</div>
+    <svg class="cover-route" width="150mm" height="26mm" viewBox="0 0 560 96">
+      <path d="M10 78 C120 70 150 30 260 38 S440 70 520 26" fill="none" stroke="#0B1F3A" stroke-width="2" stroke-dasharray="7 6"/>
+      <circle cx="10" cy="78" r="7" fill="#F6F4EF" stroke="#0B1F3A" stroke-width="2"/>
+      <text x="10" y="81.5" text-anchor="middle" font-family="Plex Mono" font-size="9" fill="#0B1F3A">1</text>
+      <circle cx="180" cy="46" r="7" fill="#F6F4EF" stroke="#0B1F3A" stroke-width="2"/>
+      <text x="180" y="49.5" text-anchor="middle" font-family="Plex Mono" font-size="9" fill="#0B1F3A">2</text>
+      <circle cx="350" cy="52" r="7" fill="#F6F4EF" stroke="#0B1F3A" stroke-width="2"/>
+      <text x="350" y="55.5" text-anchor="middle" font-family="Plex Mono" font-size="9" fill="#0B1F3A">3</text>
+      <g transform="translate(520,26)">
+        <rect x="-11" y="-11" width="22" height="22" fill="#A3E635" transform="rotate(45)"/>
+        <path d="M-5 -5 L5 5 M-5 5 L5 -5" stroke="#0B1F3A" stroke-width="2.4"/>
+      </g>
+    </svg>
+    <div class="cover-meta">
+      DI <strong>MARCO ANGELETTI</strong> (ICF PCC) E <strong>ALESSANDRA ABBATTISTA</strong><br>
+      KARAKTER COACHING SCHOOL · ROMA, DAL 2011<br>
+      ACCREDITAMENTO ICF LEVEL 2 · OLTRE 500 COACH FORMATI
+    </div>
+    <div class="stamp"><span>ROMA<br>· DAL 2011 ·<br>ICF LEVEL 2</span></div>
+  </div>
+</div>
+
+<!-- ============ INTRO ============ -->
+<div class="page-break">
+  <div class="ch-head">
+    <span class="ch-kicker">Prima di cominciare · punto di partenza</span>
+    <h2 class="ch-title">Questa guida non è per tutti</h2>
+  </div>
+  <p class="lead">Se l'hai scaricata, probabilmente c'è una frase che ti gira in testa da un po'. Magari da anni. Suona più o meno così: <strong>"E se lo facessi davvero?"</strong></p>
+  <p>Le persone si aprono con te. Ti cercano quando devono prendere decisioni importanti. Qualcuno, prima o poi, te l'ha detto chiaramente: <em>"dovresti farlo di mestiere"</em>. E tu hai sorriso, hai cambiato argomento, e sei tornato alla tua vita di sempre. Ma la frase è rimasta lì.</p>
+  <p>Questa guida esiste per una ragione precisa: <strong>aiutarti a capire se quella frase merita una risposta seria</strong>. Non ti diremo che il coaching è per tutti — non lo è. Non ti prometteremo guadagni facili — chi lo fa, mente. Ti daremo invece quello che avremmo voluto avere noi quando abbiamo iniziato: una mappa onesta, con i dati veri, i percorsi possibili, i costi reali e un test per misurare dove sei adesso.</p>
+  <div class="editorial">"Il modo più costoso di diventare coach non è scegliere la scuola più cara. È scegliere il percorso sbagliato."</div>
+  <p>Formiamo coach professionisti dal 2011. Abbiamo visto centinaia di persone attraversare questo bivio: alcune sono diventate coach eccellenti, altre hanno capito — in tempo — che non era la loro strada. Entrambi gli esiti sono una vittoria, se arrivano <strong>prima</strong> di aver investito anni e migliaia di euro.</p>
+  <p>Leggila con calma. Fai il test del capitolo 8 con sincerità. E qualunque cosa scoprirai su di te, sarà un passo avanti.</p>
+  <p style="margin-top:14pt;"><strong>Marco Angeletti</strong> e <strong>Alessandra Abbattista</strong><br><span style="color:#5A6B7D;font-style:italic;">Fondatori, Karakter Coaching School</span></p>
+  <div class="box">
+    <div class="box-tab">Legenda · come usare la guida</div>
+    <p>Capitoli 1–3: capire il mestiere e il mercato. Capitoli 4–5: cosa serve davvero per farlo bene. Capitoli 6–7: scegliere il percorso senza sbagliare. Capitolo 8: il test. Capitolo 9: il piano dei prossimi 90 giorni.</p>
+  </div>
+</div>
+
+<!-- ============ CAP 1 ============ -->
+<div class="chapter">
+  <div class="ch-head">
+    <span class="wp">1</span><span class="ch-kicker">Capitolo uno · rilevamento segnali</span>
+    <h2 class="ch-title">I 7 segnali che il coaching ti sta chiamando</h2>
+  </div>
+  <p class="lead">Nessuno si sveglia una mattina e decide dal nulla di diventare coach. Il richiamo arriva prima — sotto forma di segnali che si ripetono. Questi sono i sette che ritroviamo, quasi identici, nelle storie di chi poi ha fatto questo mestiere davvero.</p>
+
+  <div class="signal"><span class="signal-t"><span class="mk">01.</span> Le persone si aprono con te senza che tu chieda nulla</span>
+  <p>Colleghi, amici, a volte quasi sconosciuti: ti raccontano cose che non dicono a nessun altro. Non è un caso. Percepiscono in te uno spazio sicuro, senza giudizio. È la materia prima del coaching: non si insegna, si affina.</p></div>
+
+  <div class="signal"><span class="signal-t"><span class="mk">02.</span> Fai già domande che gli altri non fanno</span>
+  <p>Dove tutti danno consigli, tu chiedi. "Cosa vorresti che succedesse?", "Cosa ti trattiene davvero?". Se ti è mai capitato che qualcuno ti dicesse "non ci avevo mai pensato in questi termini" — quello era coaching allo stato grezzo.</p></div>
+
+  <div class="signal"><span class="signal-t"><span class="mk">03.</span> Il tuo successo attuale non ti somiglia</span>
+  <p>Sulla carta funziona tutto: ruolo, stipendio, riconoscimento. Ma la soddisfazione dura poco, e una parte di te continua a chiedere "tutto qui?". Non sei ingrato. Stai semplicemente misurando la tua vita con motivazioni che non sono le tue. Ne parleremo al capitolo 5, perché è il punto più importante di tutta la guida.</p></div>
+
+  <div class="signal"><span class="signal-t"><span class="mk">04.</span> Sei la persona dei momenti di svolta</span>
+  <p>Quando qualcuno intorno a te deve decidere — cambiare lavoro, chiudere una relazione, ricominciare — è a te che chiede un confronto. Non per avere risposte: per pensare meglio. Ci hai mai fatto caso?</p></div>
+
+  <div class="signal"><span class="signal-t"><span class="mk">05.</span> Divori tutto ciò che parla di persone e cambiamento</span>
+  <p>Libri, podcast, corsi, test. Non per moda: per fame. Il funzionamento umano ti interessa più di qualsiasi altro argomento, e questo interesse non si è mai spento con gli anni.</p></div>
+
+  <div class="signal"><span class="signal-t"><span class="mk">06.</span> I traguardi degli altri ti emozionano più dei tuoi</span>
+  <p>Quando aiuti qualcuno a sbloccarsi e poi lo vedi farcela, provi una soddisfazione che il tuo lavoro attuale raramente ti dà. Questo è il segnale più affidabile dei sette: il coaching è un mestiere in cui il tuo successo passa sempre attraverso quello di qualcun altro.</p></div>
+
+  <div class="signal"><span class="signal-t"><span class="mk">07.</span> Questa idea torna. Da anni.</span>
+  <p>L'hai accantonata dopo ogni "non è il momento", "non ho le carte in regola", "alla mia età". Eppure eccoti qui, a leggere una guida su come diventare coach. Le idee sbagliate si dimenticano. Quelle giuste tornano.</p></div>
+
+  <div class="box-lime">
+    <div class="box-tab">Rilevamento · fai il conto</div>
+    <p>In quanti segnali ti sei riconosciuto? <strong>0–2:</strong> forse è curiosità più che vocazione — il capitolo 2 ti aiuterà a capirlo. <strong>3–5:</strong> c'è qualcosa di concreto: continua a leggere con attenzione. <strong>6–7:</strong> la domanda non è più "se", ma "come". I capitoli 6 e 9 sono i tuoi.</p>
+  </div>
+</div>
+
+<!-- ============ CAP 2 ============ -->
+<div class="chapter">
+  <div class="ch-head">
+    <span class="wp">2</span><span class="ch-kicker">Capitolo due · definizione del territorio</span>
+    <h2 class="ch-title">Cosa fa davvero un coach (e cosa non è)</h2>
+  </div>
+  <p class="lead">Il coaching è una delle professioni più fraintese d'Italia. Colpa di chi lo confonde con la motivazione da palco e di chi si improvvisa senza formazione. Mettiamo ordine.</p>
+  <p>La definizione della International Coaching Federation (ICF), l'organismo che dal 1995 definisce gli standard mondiali della professione, è questa: <strong>il coaching è una partnership con i clienti che, attraverso un processo creativo, li ispira a massimizzare il proprio potenziale personale e professionale</strong>.</p>
+  <p>Tradotto: il coach non ti dice cosa fare. <strong>Ti allena a vedere quello che da solo non vedi</strong> — e a trasformarlo in azione. La differenza con le altre professioni d'aiuto non è di sfumatura, è strutturale:</p>
+  <table>
+    <tr><th style="width:24%;">Figura</th><th>Cosa fa</th><th>Il coach invece</th></tr>
+    <tr><td><strong>Psicoterapeuta</strong></td><td>Cura la sofferenza psicologica, spesso lavorando sul passato</td><td>Lavora con persone funzionali, orientate al futuro e all'obiettivo</td></tr>
+    <tr><td><strong>Consulente</strong></td><td>Analizza il problema e fornisce la soluzione</td><td>Non dà soluzioni: fa emergere quelle del cliente</td></tr>
+    <tr><td><strong>Mentore</strong></td><td>Trasmette la propria esperienza in un campo</td><td>Non serve che abbia vissuto la situazione del cliente</td></tr>
+    <tr><td><strong>Motivatore</strong></td><td>Accende energia temporanea dal palco</td><td>Costruisce cambiamento che regge nel tempo, in sessioni 1:1</td></tr>
+    <tr><td><strong>Formatore</strong></td><td>Insegna contenuti e competenze</td><td>Non insegna: fa domande, ascolta, restituisce</td></tr>
+  </table>
+  <h3>Com'è fatta una sessione vera</h3>
+  <p>Una sessione di coaching professionale dura in genere 45–60 minuti e ha una struttura precisa: si apre con un <strong>accordo</strong> ("su cosa vuoi lavorare oggi, e come capirai che ne è valsa la pena?"), attraversa una fase di <strong>esplorazione</strong> fatta di ascolto profondo e domande potenti, e si chiude con <strong>azioni concrete</strong> che il cliente sceglie di compiere prima dell'incontro successivo. Un percorso tipico dura 6–12 sessioni.</p>
+  <h3>Dove lavora un coach</h3>
+  <p>I principali ambiti: <strong>life coaching</strong> (transizioni personali, equilibrio, relazioni), <strong>business ed executive coaching</strong> (manager, imprenditori, leadership — l'ambito con le tariffe più alte), <strong>career coaching</strong> (cambi di carriera, ricollocazione), <strong>team coaching</strong> (squadre aziendali e sportive). Molti coach combinano più ambiti, spesso integrando il coaching nella professione che già esercitano: HR, formazione, management, insegnamento, libera professione.</p>
+  <div class="box">
+    <div class="box-tab">Confine di mappa</div>
+    <p>Il coaching non è "dare consigli con un titolo". È una disciplina con competenze codificate (le vediamo al capitolo 4), un'etica professionale e ore di pratica supervisionata. Se cerchi una scorciatoia per monetizzare il tuo carisma, questa non è la strada. Se cerchi un mestiere vero, continua.</p>
+  </div>
+</div>
+
+<!-- ============ CAP 3 ============ -->
+<div class="chapter">
+  <div class="ch-head">
+    <span class="wp">3</span><span class="ch-kicker">Capitolo tre · rilievo del terreno</span>
+    <h2 class="ch-title">I numeri della professione</h2>
+  </div>
+  <p class="lead">Prima di investire tempo e denaro in un sogno, guardiamo i dati. Quelli veri, non quelli delle sponsorizzate. Fonte principale: ICF Global Coaching Study 2025, la più grande ricerca mondiale sulla professione (10.035 rispondenti da 127 paesi).</p>
+  <table>
+    <tr><th>Indicatore</th><th>Dato</th><th>Cosa significa per te</th></tr>
+    <tr><td>Coach professionisti nel mondo</td><td><strong>122.974</strong> (+54% dal 2019, +15% dal 2023)</td><td>La professione cresce a doppia cifra da un decennio</td></tr>
+    <tr><td>Fatturato globale del coaching</td><td><strong>5,34 miliardi $</strong> (quasi raddoppiato rispetto ai 2,85 mld del 2023)</td><td>Il mercato cresce più velocemente del numero di coach</td></tr>
+    <tr><td>Coach certificati in Italia</td><td><strong>~2.000</strong> (ICF Italia, AICP, Asso.Co.Pro.)</td><td>Pochissimi, per un paese da 59 milioni di abitanti</td></tr>
+    <tr><td>Coach attivi in Italia (anche non certificati)</td><td><strong>~5.000</strong></td><td>3 su 5 non hanno credenziali: chi le ha, si distingue subito</td></tr>
+    <tr><td>Mercato italiano del coaching</td><td><strong>100–200 milioni €</strong>, in crescita</td><td>Mercato giovane: lo spazio c'è, e premia chi è credibile</td></tr>
+    <tr><td>Investimenti in coaching aziendale</td><td><strong>+47%</strong> di crescita prevista (Mordor Intelligence)</td><td>Le aziende sono il segmento che paga di più e cresce di più</td></tr>
+  </table>
+  <h3>La lettura onesta di questi numeri</h3>
+  <p><strong>La notizia buona:</strong> l'Italia è indietro rispetto a Regno Unito, Germania e Nord Europa. Tradotto: il mercato italiano ha davanti anni di crescita, e chi si posiziona ora con credenziali serie parte in vantaggio.</p>
+  <p><strong>La notizia scomoda:</strong> "ci si vive?" dipende da come ci entri. I coach che faticano sono quasi sempre quelli senza formazione certificata, senza metodo e senza posizionamento: si confondono nella massa e competono sul prezzo. I coach con credenziali internazionali e strumenti scientifici validati lavorano con tariffe da professionisti — in particolare nel business coaching, dove le aziende chiedono garanzie formali prima di firmare.</p>
+  <div class="editorial">"Il mercato non paga chi si definisce coach. Paga chi può dimostrarlo."</div>
+  <p>Ed è esattamente per questo che i prossimi due capitoli contano più di tutti: cosa deve saper fare un coach vero, e cosa lo rende credibile agli occhi di chi paga.</p>
+</div>
+
+<!-- ============ CAP 4 ============ -->
+<div class="chapter">
+  <div class="ch-head">
+    <span class="wp">4</span><span class="ch-kicker">Capitolo quattro · equipaggiamento</span>
+    <h2 class="ch-title">Le 5 competenze del coach professionista</h2>
+  </div>
+  <p class="lead">Le competenze del coaching sono codificate a livello internazionale. Qui le abbiamo raggruppate nelle cinque che, in 15 anni di aula, abbiamo visto fare davvero la differenza tra chi esercita e chi resta a metà.</p>
+
+  <h4><span class="wp">1</span>L'ascolto che cambia tutto</h4>
+  <p>Non è "stare zitti mentre l'altro parla". È ascoltare a tre livelli: le parole, ciò che si muove sotto le parole, e ciò che non viene detto. Un coach allenato sente l'esitazione prima del "sì", il cambio di energia quando si tocca il punto vero. <strong>Come si allena:</strong> pratica supervisionata con feedback — da soli è quasi impossibile, perché nessuno si accorge dei propri automatismi di ascolto.</p>
+
+  <h4><span class="wp">2</span>Le domande che aprono strade</h4>
+  <p>La domanda potente è l'attrezzo principale del mestiere: breve, aperta, spiazzante al punto giusto. "Perché non l'hai ancora fatto?" chiude. "Cosa diventerebbe possibile se lo facessi?" apre. La differenza sembra minima; nei risultati del cliente è enorme. <strong>Come si allena:</strong> studiando le strutture delle domande e poi facendone centinaia in sessioni di pratica reale.</p>
+
+  <h4><span class="wp">3</span>La mappa delle motivazioni</h4>
+  <p>Ogni cliente è mosso da spinte diverse: c'è chi cerca riconoscimento, chi indipendenza, chi ordine, chi sfida. Se il coach non sa leggere queste differenze, tratta tutti allo stesso modo — e i percorsi si arenano. I coach migliori lavorano con una mappa delle motivazioni umane scientificamente fondata, non a intuito. <strong>Come si allena:</strong> con strumenti psicometrici validati (ne parliamo nel prossimo capitolo) e pratica di restituzione.</p>
+
+  <h4><span class="wp">4</span>La struttura di una sessione vera</h4>
+  <p>Senza struttura, una sessione diventa una chiacchierata piacevole e inutile. Il coach professionista gestisce il contratto di sessione, il tempo, i passaggi di fase e la chiusura orientata all'azione — anche quando il cliente porta caos. <strong>Come si allena:</strong> osservando sessioni di coach esperti, poi conducendone di proprie sotto mentoring.</p>
+
+  <h4><span class="wp">5</span>La competenza invisibile</h4>
+  <p>La più importante, e quella che nessun corso veloce insegna: <strong>la consapevolezza del coach su se stesso</strong>. I tuoi giudizi, i tuoi automatismi, le tue motivazioni entrano in sessione con te. Se non li conosci, li proietti sul cliente senza accorgertene. È il motivo per cui ogni percorso serio comincia dal lavoro su di sé — e il motivo per cui il capitolo 5 esiste.</p>
+
+  <div class="box">
+    <div class="box-tab">Tempi di marcia</div>
+    <p>Le credenziali internazionali richiedono <strong>ore di formazione certificate</strong> (in genere 60–125+ a seconda del livello) più <strong>ore di pratica documentata</strong> con clienti reali. È un percorso da 6–18 mesi fatto seriamente — compatibile con un lavoro a tempo pieno, ma non comprimibile in un weekend.</p>
+  </div>
+</div>
+
+<!-- ============ CAP 5 ============ -->
+<div class="chapter">
+  <div class="ch-head">
+    <span class="wp">5</span><span class="ch-kicker">Capitolo cinque · la bussola interna</span>
+    <h2 class="ch-title">Il fattore invisibile: le motivazioni</h2>
+  </div>
+  <p class="lead">C'è una domanda che quasi nessuno si fa prima di cambiare vita professionale: <strong>"cosa mi muove, davvero?"</strong>. Ed è il motivo per cui tanti cambi di carriera — anche verso il coaching — falliscono.</p>
+  <p>Funziona così: prendi una decisione importante basandoti su ciò che <em>pensi</em> di volere ("più libertà", "più senso", "aiutare gli altri"). Ma sotto le etichette generiche, ogni persona ha una combinazione di motivazioni profonde unica come un'impronta digitale. Se la decisione va contro le tue motivazioni reali, la motivazione iniziale evapora in pochi mesi. Ti è già successo? A quasi tutti, almeno una volta.</p>
+  <h3>La scienza: il Reiss Motivation Profile</h3>
+  <p>Lo psicologo americano <strong>Steven Reiss</strong>, dopo studi condotti su decine di migliaia di persone, ha identificato <strong>16 motivazioni fondamentali</strong> che guidano ogni comportamento umano. Non 4 categorie di personalità semplificate, non un oroscopo aziendale: uno strumento psicometrico validato, usato in tutto il mondo nella selezione, nello sport professionistico e nell'executive coaching.</p>
+  <table>
+    <tr><th colspan="4">Legenda · le 16 motivazioni fondamentali (Reiss Motivation Profile)</th></tr>
+    <tr><td>Potere</td><td>Indipendenza</td><td>Curiosità</td><td>Accettazione</td></tr>
+    <tr><td>Ordine</td><td>Risparmio</td><td>Onore</td><td>Idealismo</td></tr>
+    <tr><td>Contatto sociale</td><td>Famiglia</td><td>Status</td><td>Rivalsa</td></tr>
+    <tr><td>Eros</td><td>Cibo</td><td>Attività fisica</td><td>Tranquillità</td></tr>
+  </table>
+  <p>Ognuna può essere per te altissima, media o bassa — e non esistono profili giusti o sbagliati. Esistono <strong>vite allineate o disallineate</strong> rispetto al proprio profilo. Il "successo che non senti tuo" del capitolo 1? Nove volte su dieci è questo: obiettivi raggiunti inseguendo le motivazioni di qualcun altro.</p>
+  <h3>Perché ti riguarda due volte</h3>
+  <ul>
+    <li><strong>Come persona che sta decidendo:</strong> conoscere il tuo profilo motivazionale prima di scegliere se (e come) diventare coach è il modo più affidabile per non sbagliare direzione. C'è chi è fatto per il coaching 1:1 e chi per l'aula, chi per l'azienda e chi per i percorsi individuali: dipende dalle motivazioni.</li>
+    <li><strong>Come futuro coach:</strong> ricordi la competenza n. 5? Il primo cliente di ogni coach è se stesso. Un coach che conosce la propria mappa motivazionale legge quella dei clienti con una profondità che gli altri non hanno.</li>
+  </ul>
+  <div class="box">
+    <div class="box-tab">Nota di trasparenza</div>
+    <p>Karakter è l'unica scuola di coaching in Italia che integra il Reiss Motivation Profile nel percorso formativo: ogni allievo del Master inizia dal proprio profilo, con restituzione individuale. Te lo diciamo apertamente perché è il motivo per cui questo capitolo è nella guida — e perché crediamo che qualunque scuola sceglierai, partire dalle tue motivazioni reali sia il passo giusto.</p>
+  </div>
+</div>
+
+<!-- ============ CAP 6 ============ -->
+<div class="chapter">
+  <div class="ch-head">
+    <span class="wp">6</span><span class="ch-kicker">Capitolo sei · il bivio</span>
+    <h2 class="ch-title">I 4 percorsi per diventare coach</h2>
+  </div>
+  <p class="lead">In Italia la professione del coach non è regolamentata per legge: chiunque può stamparsi un biglietto da visita. Proprio per questo, il percorso che scegli determina la tua credibilità. Ecco i quattro possibili, senza sconti per nessuno.</p>
+
+  <h4><span class="wp">A</span>L'autodidatta</h4>
+  <p>Libri, podcast, video. <strong>Costo:</strong> quasi zero. <strong>Verità:</strong> ottimo per capire se il tema ti appassiona, inutile per esercitare. Nessuna pratica supervisionata, nessuna credenziale, nessun cliente serio. È il punto di partenza, non un percorso.</p>
+
+  <h4><span class="wp">B</span>Il corso online veloce</h4>
+  <p>Videocorsi da 300–2.000€, "diventa coach in 30 giorni". <strong>Verità:</strong> contenuti a volte discreti, ma senza pratica dal vivo, senza feedback e senza ore certificate. Il "diploma" che rilasciano non è riconosciuto da nessun organismo internazionale. Chi li compra spesso ricompra poi un percorso vero: doppio costo.</p>
+
+  <h4><span class="wp">C</span>La scuola non accreditata</h4>
+  <p>Scuole anche serie nei contenuti (2.000–4.000€), ma senza accreditamento presso organismi internazionali. <strong>Verità:</strong> puoi imparare cose utili, ma le ore non valgono per le credenziali ICF, e nel mercato business — quello che paga di più — l'assenza di credenziali chiude le porte. Verifica sempre: "le vostre ore sono riconosciute ICF?"</p>
+
+  <h4><span class="wp">D</span>La scuola accreditata ICF</h4>
+  <p>Percorsi da 4.000–8.000€ con ore certificate, pratica supervisionata, mentor coaching e accesso alle credenziali internazionali (ACC, PCC, MCC). <strong>Verità:</strong> è l'investimento più alto ed è l'unico che il mercato riconosce formalmente, in Italia e all'estero. Attenzione però: anche tra le scuole ICF ci sono differenze enormi — per questo esiste il capitolo 7.</p>
+
+  <table>
+    <tr><th></th><th>Autodidatta</th><th>Corso online</th><th>Scuola non accr.</th><th>Scuola ICF</th></tr>
+    <tr><td><strong>Costo</strong></td><td>~0€</td><td>300–2.000€</td><td>2.000–4.000€</td><td>4.000–8.000€</td></tr>
+    <tr><td><strong>Pratica supervisionata</strong></td><td>No</td><td>No / minima</td><td>Variabile</td><td class="td-good">Sì, strutturata</td></tr>
+    <tr><td><strong>Ore certificate</strong></td><td>No</td><td>No</td><td>No</td><td class="td-good">Sì (Level 1 / Level 2)</td></tr>
+    <tr><td><strong>Credenziale internazionale</strong></td><td>No</td><td>No</td><td>No</td><td class="td-good">Sì (ACC / PCC)</td></tr>
+    <tr><td><strong>Accesso al mercato business</strong></td><td>No</td><td>No</td><td>Difficile</td><td class="td-good">Sì</td></tr>
+    <tr><td><strong>Rischio di dover ricominciare</strong></td><td>Alto</td><td>Alto</td><td>Medio</td><td class="td-good">Basso</td></tr>
+  </table>
+
+  <div class="box">
+    <div class="box-tab">ICF in 60 secondi</div>
+    <p>La <strong>International Coaching Federation</strong> è il più grande organismo mondiale di accreditamento della professione. Le scuole accreditate rilasciano percorsi <strong>Level 1</strong> (verso la credenziale ACC) e <strong>Level 2</strong> (verso la PCC, il livello dei professionisti affermati). Le credenziali personali — ACC, PCC, MCC — si ottengono con ore di formazione certificate + ore di coaching documentate + esame. Quando un'azienda o un cliente esigente sceglie un coach, la prima cosa che guarda è questa sigla.</p>
+  </div>
+</div>
+
+<!-- ============ CAP 7 ============ -->
+<div class="chapter">
+  <div class="ch-head">
+    <span class="wp">7</span><span class="ch-kicker">Capitolo sette · strumenti di verifica</span>
+    <h2 class="ch-title">Come scegliere la scuola: 7 domande da fare</h2>
+  </div>
+  <p class="lead">Hai deciso che fai sul serio. Ora devi scegliere a chi affidarti — e qui si gioca la differenza tra un investimento e un rimpianto. Fai queste 7 domande a ogni scuola che valuti. Le risposte vaghe sono già una risposta.</p>
+  <ul class="check">
+    <li><strong>"Che accreditamento avete, esattamente?"</strong> — Non "siamo riconosciuti": quale organismo, quale livello. Level 2 ICF è lo standard più alto per una scuola. Verificabile sul sito ICF.</li>
+    <li><strong>"Quante ore di formazione certificate include il percorso?"</strong> — Per la credenziale PCC servono 125+ ore di training. Un percorso serio dichiara le ore esatte, nero su bianco.</li>
+    <li><strong>"Chi insegna, e con quali credenziali?"</strong> — I docenti hanno credenziali ICF attive (PCC o MCC)? Esercitano ancora come coach o insegnano soltanto?</li>
+    <li><strong>"Quanta pratica reale farò?"</strong> — Sessioni condotte da te, osservate e con feedback; mentor coaching incluso. Se la risposta è "tanta teoria e role play finali", scappa.</li>
+    <li><strong>"Che strumenti scientifici mi date?"</strong> — Test psicometrici validati inclusi nel percorso (non venduti a parte), con formazione al loro uso. È ciò che distingue un coach con metodo da uno con opinioni.</li>
+    <li><strong>"Quanti siete in aula, e che succede dopo il diploma?"</strong> — Aule piccole = feedback vero. E dopo: community, supervisione, aggiornamento? O il rapporto finisce col bonifico?</li>
+    <li><strong>"Quanto costa, tutto compreso, e chi lo dice?"</strong> — Prezzo finale con IVA, esami, materiali, test. E chiedi di parlare con ex allievi veri, non con le testimonianze del sito.</li>
+  </ul>
+  <div class="editorial">"Una scuola seria non ha paura di nessuna di queste domande. Una scuola evasiva ti sta già dando tutte le risposte che ti servono."</div>
+</div>
+
+<!-- ============ CAP 8 ============ -->
+<div class="chapter">
+  <div class="ch-head">
+    <span class="wp">8</span><span class="ch-kicker">Capitolo otto · checkpoint</span>
+    <h2 class="ch-title">Il test: sei pronto?</h2>
+  </div>
+  <p class="lead">Dodici affermazioni. Per ciascuna assegnati: <strong>0</strong> = non mi rappresenta · <strong>1</strong> = in parte · <strong>2</strong> = mi rappresenta pienamente. Rispondi d'istinto e in modo onesto: il punteggio serve a te, non a noi.</p>
+
+  <div class="qrow"><span class="qtxt"><strong>1.</strong> Le persone mi cercano spontaneamente per parlare delle loro scelte importanti.</span><span class="qopt">0 · 1 · 2</span></div>
+  <div class="qrow"><span class="qtxt"><strong>2.</strong> So ascoltare a lungo senza interrompere e senza pensare a cosa risponderò.</span><span class="qopt">0 · 1 · 2</span></div>
+  <div class="qrow"><span class="qtxt"><strong>3.</strong> Riesco a non dare consigli anche quando avrei la soluzione pronta.</span><span class="qopt">0 · 1 · 2</span></div>
+  <div class="qrow"><span class="qtxt"><strong>4.</strong> La crescita delle persone mi dà un'energia che il mio lavoro attuale non mi dà.</span><span class="qopt">0 · 1 · 2</span></div>
+  <div class="qrow"><span class="qtxt"><strong>5.</strong> Sono disposto a investire 6–18 mesi in una formazione seria, pratica inclusa.</span><span class="qopt">0 · 1 · 2</span></div>
+  <div class="qrow"><span class="qtxt"><strong>6.</strong> Accetto l'idea di lavorare prima su me stesso, anche dove è scomodo.</span><span class="qopt">0 · 1 · 2</span></div>
+  <div class="qrow"><span class="qtxt"><strong>7.</strong> So reggere il silenzio in una conversazione senza riempirlo per ansia.</span><span class="qopt">0 · 1 · 2</span></div>
+  <div class="qrow"><span class="qtxt"><strong>8.</strong> Non giudico facilmente: mi incuriosisce capire perché le persone fanno ciò che fanno.</span><span class="qopt">0 · 1 · 2</span></div>
+  <div class="qrow"><span class="qtxt"><strong>9.</strong> Ho (o posso costruire) la disciplina per gestirmi come professionista autonomo.</span><span class="qopt">0 · 1 · 2</span></div>
+  <div class="qrow"><span class="qtxt"><strong>10.</strong> Sono pronto a farmi valutare da coach più esperti e a ricevere feedback diretti.</span><span class="qopt">0 · 1 · 2</span></div>
+  <div class="qrow"><span class="qtxt"><strong>11.</strong> Questa idea non è un'infatuazione: mi accompagna da almeno un anno.</span><span class="qopt">0 · 1 · 2</span></div>
+  <div class="qrow"><span class="qtxt"><strong>12.</strong> Posso sostenere economicamente un investimento formativo serio, pianificandolo.</span><span class="qopt">0 · 1 · 2</span></div>
+
+  <h3 style="margin-top:16pt;">Il tuo punteggio</h3>
+  <div>
+    <div class="score"><b>0–8 · Esploratore</b>L'interesse c'è, la spinta non ancora. Non forzare: rileggi i capitoli 1 e 2 tra qualche mese. Se l'idea torna, saprai che non era curiosità.</div>
+    <div class="score"><b>9–16 · In cammino</b>La vocazione è reale, i dubbi sono operativi (tempo, soldi, fiducia in te). È il profilo più comune tra i nostri migliori allievi al momento dell'iscrizione. Il capitolo 9 è scritto per te.</div>
+    <div class="score"><b>17–24 · Pronto</b>Hai attitudine, motivazione e condizioni. L'unico rischio, ora, è restare fermo un altro anno o scegliere il percorso sbagliato per fretta. Vai al capitolo 9 e datti una scadenza.</div>
+  </div>
+  <div class="box-lime" style="margin-top:16pt;">
+    <div class="box-tab">Un consiglio da coach</div>
+    <p>Qualunque punteggio tu abbia fatto: le domande 4, 6 e 11 pesano più delle altre. Se lì hai totalizzato 5 o 6, ascolta quel dato — è il segnale più affidabile dell'intero test.</p>
+  </div>
+</div>
+
+<!-- ============ CAP 9 ============ -->
+<div class="chapter">
+  <div class="ch-head">
+    <span class="wp">9</span><span class="ch-kicker">Capitolo nove · piano di marcia</span>
+    <h2 class="ch-title">La tua mappa in 90 giorni</h2>
+  </div>
+  <p class="lead">Le decisioni importanti non si prendono in un pomeriggio di entusiasmo, e nemmeno rimandando all'infinito. Si prendono con un metodo e una scadenza. Eccoli.</p>
+
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-d">Giorni 1–30 · Esplora</div>
+    <div class="phase-t">Vivi il coaching da vicino, prima di decidere</div>
+    <p>Parla con almeno <strong>due coach professionisti veri</strong> (con credenziali): chiedi com'è il mestiere davvero, cosa rifarebbero, cosa non sapevano prima. <strong>Fai una sessione di coaching da cliente</strong>: è il modo più rapido per capire cosa fa un coach — e se ti ci vedi dall'altra parte. E fai il punto sulle tue motivazioni profonde: un profilo motivazionale scientifico ora vale più di dieci corsi dopo.</p>
+  </div>
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-d">Giorni 31–60 · Valuta</div>
+    <div class="phase-t">Seleziona 2–3 scuole e mettile alla prova</div>
+    <p>Usa la checklist del capitolo 7, domanda per domanda. Partecipa agli incontri di presentazione, parla con ex allievi, verifica gli accreditamenti sul sito ICF. Definisci il tuo budget reale e le finestre temporali: quasi tutte le scuole serie hanno <strong>1–2 edizioni l'anno</strong> — sapere quando partono ti evita di decidere di fretta o di aspettare 12 mesi.</p>
+  </div>
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-d">Giorni 61–90 · Decidi</div>
+    <div class="phase-t">Scegli — in un senso o nell'altro</div>
+    <p>Con i dati raccolti, la decisione a questo punto è quasi sempre evidente. Se è sì: blocca il posto nell'edizione che hai scelto e inizia il lavoro su di te ancora prima dell'aula. Se è no: chiudi il capitolo senza rimpianti, sapendo di aver deciso con la testa e non per paura. <strong>L'unico esito da evitare è il terzo: un altro anno di "ci penso".</strong></p>
+  </div>
+
+  <div class="editorial">"Tra un anno, l'unica versione di te che rimpiangerà questi 90 giorni è quella che non li ha usati."</div>
+  <p>Nell'ultima pagina trovi come possiamo aiutarti in ciascuna delle tre fasi — se e quando vorrai.</p>
+</div>
+
+<!-- ============ FINAL ============ -->
+<div class="final contours">
+  <div class="final-frame"></div>
+  <div class="final-inner">
+    <div class="cover-grid" style="margin-bottom:12mm;"><span>+ DESTINAZIONE</span><span>ULTIMA TAPPA</span><span>X +</span></div>
+    <h2>E adesso?<br>Tre modi per <span class="mk">fare sul serio.</span></h2>
+    <div class="next">
+      <div class="next-dot"></div>
+      <div class="next-n">Tappa 1 · Per la fase Esplora</div>
+      <div class="next-t">Scopri le tue motivazioni con il Reiss Motivation Profile</div>
+      <p>Il test scientifico delle 16 motivazioni, con restituzione individuale di un'ora insieme a un coach Karakter. Il punto di partenza più solido per qualunque decisione — anche se poi sceglierai un'altra scuola. (300€ + IVA)</p>
+    </div>
+    <div class="next">
+      <div class="next-dot"></div>
+      <div class="next-n">Tappa 2 · Per la fase Valuta</div>
+      <div class="next-t">Prenota una call conoscitiva con Marco o Alessandra</div>
+      <p>30 minuti, senza impegno e senza copione di vendita: porta le 7 domande del capitolo 7 e mettici alla prova. Ti diremo con onestà anche se, secondo noi, non è il tuo momento.</p>
+    </div>
+    <div class="next">
+      <div class="next-dot"></div>
+      <div class="next-n">Tappa 3 · Per la fase Decidi</div>
+      <div class="next-t">Master K-Coach Professionisti — Edizione Ottobre 2026</div>
+      <p>170 ore, accreditamento ICF Level 2, Reiss Motivation Profile individuale incluso, pratica supervisionata e mentor coaching. Aule a numero chiuso, a Roma e online. Agevolazioni under 30 e over 60.</p>
+    </div>
+    <div class="final-contact">
+      <strong>KARAKTERCOACHING.IT</strong> · INFO@KARAKTER.IT<br>
+      KARAKTER COACHING SCHOOL · VIALE G. ROSSINI, ROMA · DAL 2011<br>
+      QUESTA GUIDA PUÒ ESSERE CONDIVISA LIBERAMENTE CON CHI NE HA BISOGNO.
+    </div>
+    <img class="final-logo" src="logo-nero.png" alt="Karakter Coaching School">
+    <div class="stamp" style="bottom:26mm;"><span>QUI FINISCE<br>· LA GUIDA ·<br>INIZI TU</span></div>
+  </div

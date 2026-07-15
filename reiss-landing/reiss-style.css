@@ -1,0 +1,519 @@
+/* =========================================================
+   KARAKTER · Landing Test Reiss — DESIGN v3
+   Alternanza CHIARO-first. Ogni banda ha uno sfondo diverso
+   (aurore, griglie, grana, pannelli) — niente navy piatto.
+   Solo palette ereditata. Scoped sotto #reiss-app.
+   Font headline: Inter Tight (bold) + Instrument Serif (corsivo accento).
+   Testo: Inter. Gradiente solo su parole Inter Tight.
+   ========================================================= */
+
+#reiss-app{
+  --navy:#0B1F3A;
+  --azzurro:#2F80ED;
+  --lime:#A3E635;
+  --ice:#D9E1E8;
+  --azzurro-d:#1f66c8;
+  --lime-d:#7fb61f;
+
+  --radius:16px;
+  --radius-lg:26px;
+  --radius-xl:38px;
+  --pill:999px;
+
+  --container:1180px;
+  --pad:22px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --spring:cubic-bezier(.34,1.56,.64,1);
+  --display:"Inter Tight","Inter",system-ui,sans-serif;
+  --serif:"Instrument Serif",Georgia,serif;
+  --font:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+
+  /* grana condivisa (texture leggera per togliere il "piatto") */
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  font-family:var(--font);
+  color:var(--navy);
+  background:#F1F5FA;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+  overflow-x:hidden;
+}
+#reiss-app *,#reiss-app *::before,#reiss-app *::after{box-sizing:border-box;margin:0;padding:0}
+#reiss-app img{display:block;max-width:100%}
+#reiss-app a{color:inherit;text-decoration:none}
+#reiss-app button{font-family:inherit;border:none;background:none;color:inherit;cursor:pointer}
+#reiss-app ul{list-style:none}
+#reiss-app section{position:relative}
+#reiss-app ::selection{background:var(--lime);color:var(--navy)}
+#reiss-app .wrap{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:var(--pad);position:relative;z-index:2}
+
+.reiss-bar{position:fixed;top:0;left:0;height:3px;width:0;z-index:9999;background:linear-gradient(90deg,var(--azzurro),var(--lime))}
+
+/* =======================================================
+   BANDE + TOKEN TEMA
+   ======================================================= */
+#reiss-app .band{position:relative;background-color:var(--bg);color:var(--fg);isolation:isolate}
+#reiss-app .band--pad{padding:clamp(74px,10vw,128px) 0}
+#reiss-app .band--pad-sm{padding:clamp(40px,5vw,64px) 0}
+/* grana su ogni banda */
+#reiss-app .band::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:var(--grain);background-size:150px;opacity:.5;mix-blend-mode:soft-light}
+
+#reiss-app .band--light{
+  --bg:#EFF4FA;--fg:#0B1F3A;--fg-mut:#526478;--fg-dim:#8496a8;
+  --card:#FFFFFF;--card-2:#F4F8FC;--border:rgba(11,31,58,.10);
+  --shadow:0 24px 60px -34px rgba(11,31,58,.42);
+}
+#reiss-app .band--dark{
+  --bg:#0B1F3A;--fg:#EAF1F8;--fg-mut:#9AADC1;--fg-dim:#5f7488;
+  --card:rgba(255,255,255,.045);--card-2:rgba(255,255,255,.03);--border:rgba(217,225,232,.14);
+  --shadow:0 30px 60px -38px rgba(0,0,0,.85);
+}
+
+/* ---- DECORI DI SFONDO (uno diverso per banda) ---- */
+#reiss-app .dec-hero{background-color:#F6FAFE;background-image:
+  radial-gradient(56% 52% at 86% 14%,rgba(47,128,237,.20),transparent 60%),
+  radial-gradient(48% 50% at 4% 96%,rgba(163,230,53,.18),transparent 60%),
+  radial-gradient(40% 40% at 50% 120%,rgba(47,128,237,.08),transparent 60%)}
+#reiss-app .dec-l-soft{background-color:#EEF3F9;background-image:
+  radial-gradient(64% 44% at 50% -12%,rgba(47,128,237,.12),transparent 62%)}
+#reiss-app .dec-l-warm{background-color:#F1F6EF;background-image:
+  radial-gradient(50% 50% at 92% 8%,rgba(163,230,53,.20),transparent 60%),
+  radial-gradient(46% 50% at 6% 96%,rgba(47,128,237,.10),transparent 60%)}
+#reiss-app .dec-l-split{background-color:#EFF4FA;background-image:
+  linear-gradient(112deg,#FFFFFF 0%,#FFFFFF 44%,#E7EFF8 44%,#E7EFF8 100%)}
+#reiss-app .dec-l-dots{background-color:#F2F6FB}
+#reiss-app .dec-l-dots::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:radial-gradient(rgba(11,31,58,.10) 1.4px,transparent 1.5px);background-size:26px 26px;
+  -webkit-mask:radial-gradient(80% 70% at 50% 30%,#000,transparent 78%);mask:radial-gradient(80% 70% at 50% 30%,#000,transparent 78%)}
+
+#reiss-app .dec-d-glowA{background-color:#0B1F3A;background-image:
+  radial-gradient(54% 62% at 88% 6%,rgba(47,128,237,.36),transparent 60%),
+  radial-gradient(40% 52% at 8% 104%,rgba(20,72,140,.55),transparent 60%)}
+#reiss-app .dec-d-grid{background-color:#070F1E}
+#reiss-app .dec-d-grid::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(217,225,232,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(217,225,232,.055) 1px,transparent 1px);
+  background-size:62px 62px;
+  -webkit-mask:radial-gradient(76% 68% at 50% 42%,#000,transparent 82%);mask:radial-gradient(76% 68% at 50% 42%,#000,transparent 82%)}
+#reiss-app .dec-d-glowB{background-color:#0A1A30;background-image:
+  radial-gradient(48% 60% at 4% 92%,rgba(163,230,53,.16),transparent 60%),
+  radial-gradient(46% 56% at 92% 10%,rgba(47,128,237,.26),transparent 60%)}
+#reiss-app .dec-d-deep{background-color:#060E1A;background-image:
+  radial-gradient(60% 54% at 50% 128%,rgba(47,128,237,.22),transparent 60%)}
+#reiss-app .dec-cta{background-color:#EEF4FB;background-image:
+  radial-gradient(50% 60% at 90% 90%,rgba(163,230,53,.16),transparent 60%),
+  radial-gradient(48% 54% at 6% 6%,rgba(47,128,237,.14),transparent 60%)}
+
+/* =======================================================
+   TIPOGRAFIA
+   ======================================================= */
+#reiss-app .eyebrow{display:inline-flex;align-items:center;gap:.6em;font-family:var(--display);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--azzurro-d)}
+#reiss-app .band--dark .eyebrow{color:var(--lime)}
+#reiss-app .eyebrow::before{content:"";width:28px;height:2px;background:currentColor}
+#reiss-app .eyebrow--center{justify-content:center}
+
+/* Headline: Inter Tight bold (tracking stretto, interlinea corta) */
+#reiss-app .display{font-family:var(--display);font-weight:800;line-height:1.04;letter-spacing:-.04em;font-size:clamp(2.7rem,6.6vw,5.2rem);text-wrap:balance}
+#reiss-app .h2{font-family:var(--display);font-weight:700;line-height:1.06;letter-spacing:-.04em;font-size:clamp(2rem,4.6vw,3.35rem);text-wrap:balance}
+#reiss-app .lead{font-size:clamp(1.05rem,1.5vw,1.2rem);color:var(--fg-mut);line-height:1.6;max-width:46ch}
+#reiss-app .lead--center{margin-inline:auto;text-align:center}
+#reiss-app .center{text-align:center}
+/* parola-accento: Instrument Serif corsivo, più grande, interlinea normale */
+#reiss-app .it{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.18em;line-height:1;letter-spacing:.005em}
+/* gradiente SOLO su parole in Inter Tight */
+#reiss-app .grad-word{font-family:var(--display);font-weight:800;background:linear-gradient(100deg,var(--azzurro),var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent}
+#reiss-app .band--dark .grad-word{background:linear-gradient(100deg,#5aa2ff,var(--lime));-webkit-background-clip:text;background-clip:text}
+#reiss-app strong{font-weight:700;color:var(--fg)}
+
+/* =======================================================
+   BOTTONI / PILL / TAG
+   ======================================================= */
+#reiss-app .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;padding:1em 1.6em;border-radius:var(--pill);font-family:var(--display);font-weight:600;font-size:.98rem;letter-spacing:-.01em;white-space:nowrap;transition:transform .35s var(--spring),background .3s,box-shadow .3s,color .3s;will-change:transform}
+#reiss-app .btn svg{width:1.05em;height:1.05em;transition:transform .3s var(--ease)}
+#reiss-app .btn:hover svg{transform:translateX(4px)}
+#reiss-app .btn--primary{background:var(--azzurro);color:#fff;box-shadow:0 14px 34px -12px rgba(47,128,237,.85)}
+#reiss-app .btn--primary:hover{transform:translateY(-3px);box-shadow:0 20px 44px -12px rgba(47,128,237,1)}
+#reiss-app .btn--dark{background:var(--navy);color:#fff}
+#reiss-app .btn--dark:hover{transform:translateY(-3px);box-shadow:0 18px 40px -14px rgba(11,31,58,.6)}
+#reiss-app .btn--outline{background:transparent;color:var(--fg);border:1.5px solid var(--border)}
+#reiss-app .btn--outline:hover{border-color:currentColor;transform:translateY(-3px)}
+#reiss-app .btn--lg{padding:1.15em 2em;font-size:1.05rem}
+#reiss-app .btn--block{display:flex;width:100%}
+
+#reiss-app .pill{display:inline-flex;align-items:center;gap:.5em;padding:.5em 1em;border-radius:var(--pill);border:1px solid var(--border);background:var(--card);font-size:.82rem;font-weight:500;color:var(--fg-mut);box-shadow:var(--shadow)}
+#reiss-app .band--dark .pill{box-shadow:none;background:rgba(255,255,255,.05)}
+#reiss-app .pill .d{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(163,230,53,.18)}
+#reiss-app .pill img{height:15px;width:auto}
+#reiss-app .tag{display:inline-block;padding:.4em .85em;border-radius:var(--pill);border:1px solid var(--border);font-size:.78rem;font-weight:500;color:var(--fg-mut);background:var(--card-2)}
+
+#reiss-app .stars{color:#F5B301;letter-spacing:1px;font-size:1rem}
+#reiss-app .av{width:38px;height:38px;border-radius:50%;display:inline-grid;place-items:center;color:#fff;font-weight:700;font-size:.72rem;font-family:var(--display);background:var(--c,#4285F4);border:2px solid var(--bg);margin-left:-12px}
+#reiss-app .avs{display:inline-flex}
+#reiss-app .avs .av:first-child{margin-left:0}
+
+/* =======================================================
+   NAV (floating pill)
+   ======================================================= */
+#reiss-app .nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:900;width:min(calc(100% - 28px),var(--container))}
+#reiss-app .nav__pill{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:9px 9px 9px 20px;border-radius:var(--pill);background:rgba(9,20,38,.82);backdrop-filter:blur(16px);border:1px solid rgba(217,225,232,.14);box-shadow:0 20px 50px -26px rgba(11,31,58,.5);transition:background .4s,box-shadow .4s}
+#reiss-app .nav.scrolled .nav__pill{background:rgba(9,20,38,.94)}
+#reiss-app .nav__logo img{height:26px;width:auto}
+#reiss-app .nav__links{display:flex;gap:1.6rem}
+#reiss-app .nav__links a{font-size:.9rem;color:#c5d3e2;transition:color .25s}
+#reiss-app .nav__links a:hover{color:#fff}
+#reiss-app .nav__cta{padding:.7em 1.25em;font-size:.9rem}
+@media (max-width:860px){#reiss-app .nav__links{display:none}}
+
+/* =======================================================
+   HERO (chiaro)
+   ======================================================= */
+#reiss-app .hero{padding:150px 0 clamp(64px,8vw,96px);overflow:hidden}
+#reiss-app .hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.6rem);align-items:center}
+#reiss-app .hero__eyebrow{margin-bottom:1.2rem}
+#reiss-app .hero__title{margin-bottom:1.4rem}
+#reiss-app .hero__sub{font-size:1.16rem;max-width:40ch}
+#reiss-app .hero__cta{margin-top:2.1rem;display:flex;flex-wrap:wrap;gap:1rem}
+#reiss-app .hero__proof{margin-top:2rem;display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap}
+#reiss-app .hero__badges{display:flex;gap:.6rem;flex-wrap:wrap}
+#reiss-app .hero__rate{display:flex;align-items:center;gap:.7em;color:var(--fg-mut);font-size:.86rem}
+
+/* trust strip in fondo all'hero */
+#reiss-app .hero__trust{margin-top:clamp(3rem,5vw,4.5rem)}
+#reiss-app .trust__lbl{font-family:var(--display);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-dim);font-weight:600;margin-bottom:18px}
+#reiss-app .trust__row{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+#reiss-app .trust__track{display:flex;align-items:center;gap:clamp(1.6rem,4vw,3rem);width:max-content;animation:marq 34s linear infinite}
+#reiss-app .hero__trust:hover .trust__track{animation-play-state:paused}
+#reiss-app .trust__logo{background:#fff;border-radius:14px;padding:12px 20px;height:62px;display:grid;place-items:center;box-shadow:0 12px 30px -20px rgba(11,31,58,.5);border:1px solid rgba(11,31,58,.05)}
+#reiss-app .trust__logo img{max-height:38px;width:auto;object-fit:contain}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* =======================================================
+   FACSIMILE PROFILO REISS — card SCURA (stacca sul chiaro)
+   ======================================================= */
+#reiss-app .fp{position:relative;background:linear-gradient(165deg,#0f2a4d 0%,#081a33 100%);color:#EAF1F8;border-radius:var(--radius-lg);padding:24px;border:1px solid rgba(217,225,232,.14);box-shadow:0 50px 90px -40px rgba(11,31,58,.6)}
+#reiss-app .fp::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(140deg,rgba(47,128,237,.7),rgba(163,230,53,.5),transparent 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+#reiss-app .fp__top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+#reiss-app .fp__ttl{font-family:var(--display);font-weight:700;font-size:1.02rem;letter-spacing:-.01em}
+#reiss-app .fp__ttl small{display:block;font-family:var(--font);font-weight:500;color:#8fa3ba;font-size:.72rem;margin-top:2px}
+#reiss-app .fp__chip{display:inline-flex;align-items:center;gap:.35em;font-size:.7rem;font-weight:600;color:#b7c6d8;border:1px solid rgba(217,225,232,.16);border-radius:var(--pill);padding:.35em .7em}
+#reiss-app .fp__chip b{color:var(--lime)}
+#reiss-app .fp__scale{display:grid;grid-template-columns:104px 1fr;gap:0 10px;margin-bottom:.35rem}
+#reiss-app .fp__scale .sc{display:flex;justify-content:space-between;font-size:.64rem;font-weight:600;color:#7c92aa;font-family:var(--display)}
+#reiss-app .fp__rows{position:relative}
+#reiss-app .fp__axis{position:absolute;top:0;bottom:0;left:calc(50% + 57px);width:2px;background:rgba(217,225,232,.16);z-index:1}
+#reiss-app .fp__scan{position:absolute;top:0;bottom:0;left:114px;right:0;overflow:hidden;pointer-events:none;z-index:3}
+#reiss-app .fp__scan::after{content:"";position:absolute;top:0;bottom:0;width:60px;left:-60px;background:linear-gradient(90deg,transparent,rgba(163,230,53,.16),transparent);animation:fpScan 4.4s var(--ease) infinite}
+@keyframes fpScan{0%{left:-60px}62%,100%{left:100%}}
+#reiss-app .frow{display:grid;grid-template-columns:104px 1fr;gap:0 10px;align-items:center;padding:3px 0;position:relative;z-index:2}
+#reiss-app .frow__l{font-size:.72rem;font-weight:600;color:#c2d0e0;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#reiss-app .frow__t{position:relative;height:14px;border-radius:7px;background:rgba(217,225,232,.07)}
+#reiss-app .frow__b{position:absolute;top:0;height:100%;border-radius:7px;width:0;transition:width 1s var(--ease)}
+#reiss-app .frow__b--p{background:linear-gradient(90deg,rgba(47,128,237,.55),var(--azzurro))}
+#reiss-app .frow__b--n{background:linear-gradient(90deg,var(--lime),var(--lime-d))}
+#reiss-app .frow__dot{position:absolute;top:50%;width:9px;height:9px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);opacity:0;transition:opacity .5s;box-shadow:0 0 0 3px rgba(8,26,51,.9)}
+#reiss-app .fp.in .frow__dot{opacity:1}
+#reiss-app .fp__foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:.9rem;padding-top:.9rem;border-top:1px solid rgba(217,225,232,.12);font-size:.7rem;color:#8fa3ba}
+#reiss-app .fp__lg{display:flex;gap:.9rem}
+#reiss-app .fp__lg span{display:inline-flex;align-items:center;gap:.4em}
+#reiss-app .fp__lg i{width:10px;height:10px;border-radius:3px}
+#reiss-app .fp__lg .p{background:var(--azzurro)}
+#reiss-app .fp__lg .n{background:var(--lime)}
+#reiss-app .fp__live{display:inline-flex;align-items:center;gap:.4em;color:#b7c6d8;font-weight:600}
+#reiss-app .fp__live .d{width:7px;height:7px;border-radius:50%;background:var(--lime);animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+#reiss-app .fp__badge{position:absolute;z-index:4;font-family:var(--display);font-weight:600;font-size:.72rem;padding:.45em .8em;border-radius:var(--pill);box-shadow:0 16px 34px -14px rgba(11,31,58,.5)}
+#reiss-app .fp__badge--a{top:-15px;left:-14px;background:#fff;color:var(--navy)}
+#reiss-app .fp__badge--a b{color:var(--azzurro-d)}
+#reiss-app .fp__badge--b{bottom:64px;right:-16px;background:var(--lime);color:var(--navy);animation:float1 5.6s ease-in-out infinite .4s}
+#reiss-app .fp__badge--a{animation:float1 5s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* =======================================================
+   SEAM marquee
+   ======================================================= */
+#reiss-app .seam{overflow:hidden;padding:12px 0;background:var(--lime)}
+#reiss-app .seam--blue{background:var(--azzurro)}
+#reiss-app .seam__track{display:flex;width:max-content;animation:marqFull 32s linear infinite}
+#reiss-app .seam:hover .seam__track{animation-play-state:paused}
+#reiss-app .seam__set{display:flex;align-items:center;flex-shrink:0}
+#reiss-app .seam__set span{display:inline-flex;align-items:center;white-space:nowrap;font-family:var(--display);font-weight:700;font-size:1rem;letter-spacing:.03em;color:var(--navy);text-transform:uppercase;padding-right:1.5rem}
+#reiss-app .seam__set span::after{content:"✦";margin-left:1.5rem;opacity:.8}
+#reiss-app .seam--blue .seam__set span{color:#fff}
+@keyframes marqFull{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* =======================================================
+   PROBLEM
+   ======================================================= */
+#reiss-app .prob__head{max-width:900px;margin-inline:auto;text-align:center;margin-bottom:clamp(2.4rem,4vw,3.6rem)}
+#reiss-app .prob__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+#reiss-app .pcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:30px;box-shadow:var(--shadow);transition:transform .4s var(--ease),border-color .4s}
+#reiss-app .band--dark .pcard{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02))}
+#reiss-app .pcard:hover{transform:translateY(-6px);border-color:rgba(47,128,237,.5)}
+#reiss-app .pcard__n{font-family:var(--display);font-weight:700;font-size:2.7rem;line-height:1;color:transparent;-webkit-text-stroke:1.5px var(--azzurro)}
+#reiss-app .band--dark .pcard__n{-webkit-text-stroke-color:var(--lime)}
+#reiss-app .pcard__t{margin-top:1rem;font-family:var(--display);font-weight:600;font-size:1.22rem;letter-spacing:-.01em;color:var(--fg)}
+#reiss-app .pcard__d{margin-top:.6rem;color:var(--fg-mut);font-size:.98rem}
+
+/* =======================================================
+   WHAT IS REISS
+   ======================================================= */
+#reiss-app .what__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.4rem);align-items:center}
+#reiss-app .what__list{margin-top:1.8rem;display:flex;flex-direction:column;gap:1.1rem}
+#reiss-app .what__list li{display:flex;gap:.9em;align-items:flex-start;font-size:1.02rem;color:var(--fg-mut)}
+#reiss-app .what__ic{width:30px;height:30px;border-radius:9px;flex:none;display:grid;place-items:center;background:var(--azzurro);color:#fff}
+#reiss-app .band--dark .what__ic{background:var(--lime);color:var(--navy)}
+#reiss-app .what__ic svg{width:16px;height:16px}
+#reiss-app .vs{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:30px;box-shadow:var(--shadow)}
+#reiss-app .band--dark .vs{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02))}
+#reiss-app .vs__h{font-family:var(--display);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-dim);font-weight:600;text-align:center;margin-bottom:1.4rem}
+#reiss-app .vs__cols{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:stretch}
+#reiss-app .vs__c{padding:22px 18px;border-radius:var(--radius);text-align:center;border:1px solid var(--border)}
+#reiss-app .vs__c--bad{background:rgba(224,87,63,.08);border-color:rgba(224,87,63,.3)}
+#reiss-app .vs__c--good{background:linear-gradient(180deg,rgba(47,128,237,.14),transparent);border-color:rgba(47,128,237,.45)}
+#reiss-app .vs__cap{font-size:.8rem;font-weight:700;margin-bottom:.7rem}
+#reiss-app .vs__c--bad .vs__cap{color:#d9563d}
+#reiss-app .vs__c--good .vs__cap{color:var(--azzurro-d)}
+#reiss-app .band--dark .vs__c--good .vs__cap{color:var(--lime)}
+#reiss-app .vs__num{font-family:var(--display);font-weight:700;font-size:3rem;line-height:1;letter-spacing:-.03em;color:var(--fg)}
+#reiss-app .vs__c--good .vs__num{background:linear-gradient(120deg,var(--azzurro),var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent}
+#reiss-app .vs__lbl{margin-top:.4rem;font-size:.82rem;color:var(--fg-mut)}
+#reiss-app .vs__mid{display:grid;place-items:center;font-family:var(--display);font-weight:700;color:var(--fg-dim);font-size:.85rem}
+#reiss-app .vs__foot{margin-top:1.3rem;text-align:center;color:var(--fg-mut);font-size:.88rem}
+
+/* =======================================================
+   16 MOTIVAZIONI
+   ======================================================= */
+#reiss-app .mot__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-top:clamp(2.4rem,4vw,3.4rem)}
+#reiss-app .mcard{position:relative;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;overflow:hidden;box-shadow:var(--shadow);transition:transform .35s var(--ease)}
+#reiss-app .band--dark .mcard{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.015))}
+#reiss-app .mcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--azzurro),var(--lime));transform:scaleY(.35);transform-origin:top;transition:transform .4s var(--ease)}
+#reiss-app .mcard:hover{transform:translateY(-5px)}
+#reiss-app .mcard:hover::before{transform:scaleY(1)}
+#reiss-app .mcard__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.55rem}
+#reiss-app .mcard__emo{font-size:1.35rem;line-height:1;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--card-2);border:1px solid var(--border);transition:transform .35s var(--spring)}
+#reiss-app .mcard:hover .mcard__emo{transform:translateY(-2px) rotate(-6deg) scale(1.08)}
+#reiss-app .mcard__n{font-family:var(--display);font-weight:700;font-size:.86rem;color:var(--azzurro-d)}
+#reiss-app .band--dark .mcard__n{color:var(--lime)}
+#reiss-app .mcard__name{font-family:var(--display);font-weight:600;font-size:1.12rem;letter-spacing:-.01em;color:var(--fg)}
+#reiss-app .mcard__d{margin-top:.4rem;color:var(--fg-mut);font-size:.88rem;line-height:1.45}
+#reiss-app .mcard__poles{margin-top:.8rem;display:flex;align-items:center;gap:.5em;font-size:.68rem;color:var(--fg-dim);font-weight:600}
+#reiss-app .mcard__poles span{flex:1;height:1px;background:var(--border)}
+#reiss-app .mot__note{margin-top:2.4rem;text-align:center;color:var(--fg-mut);max-width:60ch;margin-inline:auto}
+
+/* =======================================================
+   COME FUNZIONA
+   ======================================================= */
+#reiss-app .how__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:clamp(2.4rem,4vw,3.4rem);position:relative}
+#reiss-app .how__line{position:absolute;top:42px;left:14%;right:14%;height:2px;background:var(--border);z-index:0}
+#reiss-app .how__line::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--azzurro),var(--lime));transform:scaleX(0);transform-origin:left;transition:transform 2.1s var(--ease)}
+#reiss-app .how__grid.in .how__line::after{transform:scaleX(1)}
+#reiss-app .scard{position:relative;z-index:1;text-align:center}
+#reiss-app .scard__n{width:64px;height:64px;margin:0 auto 1.2rem;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:1.5rem;background:var(--card);border:2px solid var(--border);color:var(--fg-dim);transition:background .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease),box-shadow .5s var(--ease),transform .5s var(--spring)}
+#reiss-app .scard.lit .scard__n{background:var(--azzurro);border-color:var(--azzurro);color:#fff;transform:scale(1.08);box-shadow:0 0 0 7px rgba(47,128,237,.14),0 16px 32px -12px rgba(47,128,237,.65)}
+#reiss-app .band--dark .scard.lit .scard__n{background:var(--lime);border-color:var(--lime);color:var(--navy);box-shadow:0 0 0 7px rgba(163,230,53,.16),0 16px 32px -12px rgba(163,230,53,.5)}
+#reiss-app .scard{transition:opacity .8s var(--ease),transform .8s var(--ease)}
+#reiss-app .scard.lit .scard__t{color:var(--fg)}
+#reiss-app .scard__t{font-family:var(--display);font-weight:600;font-size:1.24rem;letter-spacing:-.01em;color:var(--fg)}
+#reiss-app .scard__d{margin-top:.6rem;color:var(--fg-mut);font-size:.98rem;max-width:34ch;margin-inline:auto}
+#reiss-app .scard__meta{margin-top:1rem;display:inline-flex;align-items:center;gap:.45em;font-size:.8rem;color:var(--fg-mut);border:1px solid var(--border);border-radius:var(--pill);padding:.4em .85em}
+#reiss-app .scard__meta .d{width:6px;height:6px;border-radius:50%;background:var(--azzurro)}
+#reiss-app .band--dark .scard__meta .d{background:var(--lime)}
+
+/* =======================================================
+   PER CHI
+   ======================================================= */
+#reiss-app .who__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:clamp(2.4rem,4vw,3.4rem)}
+#reiss-app .wcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);transition:transform .4s var(--ease)}
+#reiss-app .band--dark .wcard{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02))}
+#reiss-app .wcard:hover{transform:translateY(-6px)}
+#reiss-app .wcard__body{padding:26px}
+#reiss-app .wcard__ic{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;background:var(--azzurro);color:#fff;margin-bottom:1.1rem}
+#reiss-app .band--dark .wcard__ic{background:var(--lime);color:var(--navy)}
+#reiss-app .wcard__ic svg{width:24px;height:24px}
+#reiss-app .wcard__t{font-family:var(--display);font-weight:600;font-size:1.26rem;letter-spacing:-.01em;color:var(--fg)}
+#reiss-app .wcard__d{margin-top:.7rem;color:var(--fg-mut);font-size:.96rem}
+#reiss-app .wcard__tags{margin-top:1.2rem;display:flex;flex-wrap:wrap;gap:.5rem}
+
+/* =======================================================
+   BENEFICI
+   ======================================================= */
+#reiss-app .ben__grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:clamp(2.4rem,4vw,3.4rem)}
+#reiss-app .bcol{border-radius:var(--radius-lg);padding:32px;border:1px solid var(--border);background:var(--card);box-shadow:var(--shadow)}
+#reiss-app .bcol--before{background:linear-gradient(180deg,rgba(224,87,63,.08),transparent 55%);border-color:rgba(224,87,63,.28)}
+#reiss-app .bcol--after{background:linear-gradient(180deg,rgba(47,128,237,.14),transparent 55%);border-color:rgba(47,128,237,.45)}
+#reiss-app .btag{display:inline-block;padding:.35em .9em;border-radius:var(--pill);font-size:.76rem;font-weight:700;font-family:var(--display);margin-bottom:1.2rem}
+#reiss-app .btag--b{background:rgba(224,87,63,.16);color:#d9563d}
+#reiss-app .btag--a{background:rgba(163,230,53,.2);color:var(--lime-d)}
+#reiss-app .band--dark .btag--a{color:var(--lime)}
+#reiss-app .bcol__h{font-family:var(--display);font-weight:600;font-size:1.35rem;margin-bottom:1.4rem;letter-spacing:-.01em;color:var(--fg)}
+#reiss-app .blist{display:flex;flex-direction:column;gap:1rem}
+#reiss-app .blist li{display:flex;align-items:flex-start;gap:.7em;color:var(--fg-mut);font-size:1rem}
+#reiss-app .mk{width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;font-size:.72rem;font-weight:800;flex:none}
+#reiss-app .mk--x{background:rgba(224,87,63,.18);color:#d9563d}
+#reiss-app .mk--v{background:rgba(163,230,53,.2);color:var(--lime-d)}
+#reiss-app .band--dark .mk--v{color:var(--lime)}
+
+/* =======================================================
+   AUTORITÀ
+   ======================================================= */
+#reiss-app .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-bottom:clamp(3rem,5vw,4.5rem)}
+#reiss-app .stat{text-align:center;padding:26px 16px;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--card);box-shadow:var(--shadow)}
+#reiss-app .band--dark .stat{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02))}
+#reiss-app .stat__n{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,4.4vw,3.2rem);line-height:1;letter-spacing:-.03em;color:var(--fg)}
+#reiss-app .stat__d{margin-top:.6rem;color:var(--fg-mut);font-size:.9rem}
+#reiss-app .founders{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+#reiss-app .founder{display:flex;gap:1.3rem;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow)}
+#reiss-app .band--dark .founder{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02))}
+#reiss-app .founder__img{width:104px;height:104px;border-radius:18px;flex:none;background-size:cover;background-position:center top;border:1px solid var(--border)}
+#reiss-app .founder__role{font-family:var(--display);font-size:.8rem;color:var(--fg-dim);font-weight:600}
+#reiss-app .founder__name{font-family:var(--display);font-weight:700;font-size:1.3rem;margin:.2rem 0 .5rem;letter-spacing:-.01em;color:var(--fg)}
+#reiss-app .founder__bio{color:var(--fg-mut);font-size:.92rem;line-height:1.5}
+
+/* =======================================================
+   RECENSIONI
+   ======================================================= */
+#reiss-app .rev__marq{margin-top:clamp(2.4rem,4vw,3.4rem);display:flex;flex-direction:column;gap:1.2rem;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+#reiss-app .rev__row{overflow:hidden}
+#reiss-app .rev__track{display:flex;gap:1.2rem;width:max-content;animation:revMove 60s linear infinite}
+#reiss-app .rev__track--rev{animation-direction:reverse}
+#reiss-app .rev__marq:hover .rev__track{animation-play-state:paused}
+@keyframes revMove{from{transform:translateX(0)}to{transform:translateX(-33.333%)}}
+#reiss-app .review{width:360px;flex:none;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+#reiss-app .band--dark .review{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02))}
+#reiss-app .review__t{margin:.9rem 0 .6rem;font-family:var(--display);font-weight:600;font-size:1.18rem;letter-spacing:-.01em;line-height:1.2;color:var(--fg)}
+#reiss-app .review__x{color:var(--fg-mut);font-size:.94rem;flex:1}
+#reiss-app .review__a{margin-top:1.3rem;display:flex;align-items:center;gap:.7em}
+#reiss-app .review__a .av{margin-left:0;border:none;width:42px;height:42px;font-size:.8rem}
+#reiss-app .review__a strong{display:block;font-weight:600;font-size:.92rem;color:var(--fg)}
+#reiss-app .review__a em{font-style:normal;color:var(--fg-dim);font-size:.82rem}
+
+/* =======================================================
+   FAQ
+   ======================================================= */
+#reiss-app .faq__wrap{max-width:840px;margin:clamp(2.4rem,4vw,3.4rem) auto 0}
+#reiss-app .acc{border-bottom:1px solid var(--border)}
+#reiss-app .acc__t{width:100%;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;padding:24px 4px;text-align:left}
+#reiss-app .acc__q{font-family:var(--display);font-weight:600;font-size:1.14rem;letter-spacing:-.01em;color:var(--fg)}
+#reiss-app .acc__ic{width:30px;height:30px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;color:var(--fg);font-size:1.1rem;transition:transform .35s var(--ease),background .3s,color .3s}
+#reiss-app .acc.open .acc__ic{transform:rotate(45deg);background:var(--azzurro);color:#fff;border-color:var(--azzurro)}
+#reiss-app .band--dark .acc.open .acc__ic{background:var(--lime);color:var(--navy);border-color:var(--lime)}
+#reiss-app .acc__p{overflow:hidden;height:0;transition:height .4s var(--ease)}
+#reiss-app .acc__p p{padding:0 4px 24px;color:var(--fg-mut);font-size:1rem;line-height:1.6}
+
+/* =======================================================
+   CTA + FORM (chiaro con pannello scuro)
+   ======================================================= */
+#reiss-app .cta__grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(1.6rem,4vw,3rem);align-items:stretch}
+#reiss-app .cta__panel{position:relative;overflow:hidden;border-radius:var(--radius-xl);padding:clamp(30px,4vw,48px);color:#EAF1F8;display:flex;flex-direction:column;justify-content:center;box-shadow:0 40px 90px -44px rgba(11,31,58,.7);background:linear-gradient(150deg,#0b2244,#123566)}
+#reiss-app .cta__img{position:absolute;inset:0;width:100%;height:100%;background-size:cover;background-position:center;z-index:0;opacity:.6}
+#reiss-app .cta__panel::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(150deg,#081a33 8%,rgba(9,26,50,.82) 55%,rgba(20,72,140,.55) 100%)}
+#reiss-app .cta__panel > *{position:relative;z-index:2}
+#reiss-app .cta__rate{display:flex;align-items:center;gap:.6em;color:#c2d0e0;font-size:.86rem;margin-bottom:1.2rem}
+#reiss-app .cta__ttl{font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.03;letter-spacing:-.025em;color:#fff}
+#reiss-app .cta__sub{margin-top:1.1rem;color:#c2d0e0;font-size:1.06rem;max-width:38ch}
+#reiss-app .cta__list{margin-top:1.6rem;display:flex;flex-direction:column;gap:.85rem}
+#reiss-app .cta__list li{display:flex;align-items:center;gap:.75em;color:#d6e0ec;font-size:1rem}
+#reiss-app .cta__ic{width:32px;height:32px;border-radius:50%;background:var(--lime);color:var(--navy);display:grid;place-items:center;flex:none}
+#reiss-app .cta__ic svg{width:15px;height:15px}
+#reiss-app .cta__note{margin-top:1.6rem;display:inline-flex;align-items:center;gap:.5em;font-size:.86rem;color:#a9bccf}
+#reiss-app .cta__note .d{width:8px;height:8px;border-radius:50%;background:var(--lime)}
+
+#reiss-app .form{background:#fff;color:var(--navy);border-radius:var(--radius-xl);padding:clamp(26px,3vw,36px);box-shadow:0 40px 90px -44px rgba(11,31,58,.55);border:1px solid rgba(11,31,58,.06)}
+#reiss-app .form__badge{display:inline-flex;align-items:center;gap:.5em;font-size:.82rem;color:#4a5a6c;margin-bottom:1.1rem}
+#reiss-app .form__badge em{font-style:normal;font-weight:700;color:var(--navy)}
+#reiss-app .form__badge .d{width:8px;height:8px;border-radius:50%;background:var(--azzurro);box-shadow:0 0 0 4px rgba(47,128,237,.18)}
+#reiss-app .form__ttl{font-family:var(--display);font-weight:700;font-size:1.6rem;letter-spacing:-.01em}
+#reiss-app .form__sub{color:#5b6875;margin:.4rem 0 1.5rem;font-size:.94rem}
+#reiss-app .field{display:block;margin-bottom:1rem}
+#reiss-app .field span{display:block;font-size:.84rem;font-weight:600;margin-bottom:.45rem;font-family:var(--display)}
+#reiss-app .field input,#reiss-app .field select{width:100%;padding:.95em 1.05em;border-radius:12px;border:1px solid #c2cedb;background:#fff;color:var(--navy);font-family:inherit;font-size:.96rem;transition:border-color .25s,box-shadow .25s}
+#reiss-app .field input::placeholder{color:#93a2b3}
+#reiss-app .field input:focus,#reiss-app .field select:focus{outline:none;border-color:var(--azzurro);box-shadow:0 0 0 3px rgba(47,128,237,.18)}
+#reiss-app .form__priv{margin-top:.9rem;text-align:center;font-size:.78rem;color:#6b7885}
+#reiss-app .form__msg{margin-top:1rem;padding:.9em 1em;border-radius:12px;background:rgba(47,125,63,.1);color:#2f7d3f;font-weight:600;font-size:.94rem;border:1px solid rgba(47,125,63,.28)}
+
+/* =======================================================
+   FOOTER
+   ======================================================= */
+#reiss-app .foot{padding:56px 0 40px}
+#reiss-app .foot__top{display:flex;align-items:center;justify-content:space-between;gap:1.4rem;flex-wrap:wrap}
+#reiss-app .foot__logo img{height:26px;width:auto}
+#reiss-app .foot__meta{color:var(--fg-mut);font-size:.86rem;text-align:right}
+#reiss-app .foot__meta a{color:var(--lime)}
+#reiss-app .foot__hr{border:none;height:1px;background:var(--border);margin:1.6rem 0}
+#reiss-app .foot__bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:var(--fg-dim);font-size:.82rem}
+
+/* =======================================================
+   THANK YOU PAGE (grazie.html)
+   ======================================================= */
+#reiss-app .typ{padding:150px 0 clamp(64px,8vw,100px);text-align:center}
+#reiss-app .typ__inner{max-width:780px;margin-inline:auto}
+#reiss-app .typ__check{width:104px;height:104px;margin:0 auto 1.9rem;border-radius:50%;display:grid;place-items:center;background:var(--lime);color:var(--navy);box-shadow:0 0 0 12px rgba(163,230,53,.16),0 24px 50px -18px rgba(163,230,53,.55);animation:typPop .7s var(--spring) both}
+#reiss-app .typ__check svg{width:46px;height:46px;stroke-dasharray:40;stroke-dashoffset:40;animation:typDraw .6s var(--ease) .4s forwards}
+@keyframes typPop{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes typDraw{to{stroke-dashoffset:0}}
+#reiss-app .typ__meta{margin-top:2rem;display:flex;justify-content:center;gap:.7rem;flex-wrap:wrap}
+#reiss-app .typ__sub{margin-inline:auto;text-align:center}
+#reiss-app .typ__contact{text-align:center;padding:clamp(52px,6vw,80px) 0}
+#reiss-app .typ__mail{display:inline-flex;align-items:center;gap:.5em;margin-top:1.2rem;font-family:var(--display);font-weight:600;font-size:1.1rem;color:var(--lime)}
+
+/* link dentro le card "nel frattempo" */
+#reiss-app .wcard__link{margin-top:1.2rem;display:inline-flex;align-items:center;gap:.45em;font-family:var(--display);font-weight:600;font-size:.94rem;color:var(--azzurro-d);transition:gap .3s var(--ease)}
+#reiss-app .band--dark .wcard__link{color:var(--lime)}
+#reiss-app .wcard__link:hover{gap:.8em}
+#reiss-app .wcard__link svg{width:1em;height:1em}
+@media (prefers-reduced-motion:reduce){
+  #reiss-app .typ__check,#reiss-app .typ__check svg{animation:none;stroke-dashoffset:0}
+}
+
+/* =======================================================
+   PLACEHOLDER immagini (da generare)
+   ======================================================= */
+#reiss-app .ph{position:relative;width:100%;aspect-ratio:var(--ratio,16/10);border-radius:var(--radius);overflow:hidden;display:grid;place-items:center;
+  background:repeating-linear-gradient(135deg,var(--card-2) 0 14px,var(--card) 14px 28px);border:1.5px dashed var(--border)}
+#reiss-app .ph::after{content:attr(data-label);position:absolute;padding:.5em .9em;border-radius:var(--pill);background:var(--bg);border:1px solid var(--border);font-family:var(--display);font-size:.72rem;font-weight:600;letter-spacing:.03em;color:var(--fg-mut);text-transform:uppercase}
+#reiss-app .ph--tall{--ratio:4/5}
+#reiss-app .ph--wide{--ratio:16/9}
+
+/* =======================================================
+   REVEAL
+   ======================================================= */
+#reiss-app [data-rise]{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+#reiss-app [data-clip]{opacity:0;transform:translateY(34px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+#reiss-app [data-rise].in,#reiss-app [data-clip].in{opacity:1;transform:none}
+
+/* =======================================================
+   RESPONSIVE
+   ======================================================= */
+@media (max-width:1080px){
+  #reiss-app .hero__grid{grid-template-columns:1fr;gap:3rem}
+  #reiss-app .fp{max-width:560px;margin-inline:auto}
+  #reiss-app .what__grid{grid-template-columns:1fr;gap:2.6rem}
+  #reiss-app .mot__grid{grid-template-columns:repeat(2,1fr)}
+  #reiss-app .stats{grid-template-columns:repeat(2,1fr)}
+  #reiss-app .cta__grid{grid-template-columns:1fr;gap:1.6rem}
+}
+@media (max-width:760px){
+  #reiss-app{--pad:16px}
+  #reiss-app .hero{padding:120px 0 60px}
+  #reiss-app .prob__grid{grid-template-columns:1fr}
+  #reiss-app .how__grid{grid-template-columns:1fr;gap:2rem}
+  #reiss-app .how__line{display:none}
+  #reiss-app .who__grid{grid-template-columns:1fr}
+  #reiss-app .ben__grid{grid-template-columns:1fr}
+  #reiss-app .founders{grid-template-columns:1fr}
+  #reiss-app .vs__cols{grid-template-columns:1fr}
+  #reiss-app .review{width:82vw}
+}
+@media (max-width:480px){
+  #reiss-app .mot__grid{grid-template-columns:1fr}
+  #reiss-app .stats{grid-template-columns:1fr}
+  #reiss-app .founder{flex-direction:column;text-align:center}
+  #reiss-app .fp__badge--a{left:4px}
+  #reiss-app .fp__badge--b{right:2px}
+}
+@media (prefers-reduced-motion:reduce){
+  #reiss-app *{animation:none !important;transition-duration:.01ms !important}
+  #reiss-app [data-rise],#reiss-app [data-clip]{opacity:1;transform:none;clip-path:none}
+  #reiss-app .seam__track,#reiss-app .trust__track,#reiss-app .rev__track{animation:none;transform:none}
+}

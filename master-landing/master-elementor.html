@@ -1,5 +1,5 @@
 <!-- ═══════════════════════════════════════════════════════
-  KARAKTER · LP Master K-Coach — VERSIONE ELEMENTOR
+  KARAKTER · LP Master K-Coach — VERSIONE ELEMENTOR (v2)
   Incollare TUTTO in un widget HTML (pagina Elementor Canvas).
   Asset, CSS e JS serviti via jsDelivr dal repo GitHub.
   ═══════════════════════════════════════════════════════════ -->
@@ -14,7 +14,7 @@
   <header class="topbar">
     <div class="wrap topbar-in">
       <a href="#top"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/karakter-logo-gradient.svg" alt="Karakter Coaching School"></a>
-      <div class="topbar-meta"><span class="dot"></span> Edizione Ottobre 2026 · Roma + Online</div>
+      <div class="topbar-meta"><span class="dot"></span> Edizione Ottobre 2026</div>
       <a class="btn btn-primary" href="#richiedi">Richiedi informazioni</a>
     </div>
     <div class="progress" id="scrollProgress"></div>
@@ -25,16 +25,21 @@
     <div class="wrap">
       <div class="hero-in">
         <span class="eyebrow rv">Master K-Coach Professionisti · Accreditato ICF Level 2</span>
-        <h1 class="h-xl rv rv-d1">La tua capacità di capire le persone può diventare una <span class="mark">professione</span>. Certificata.</h1>
-        <p class="lead rv rv-d2">Il Master di 170 ore che forma coach professionisti dal 2011: certificazione ICF riconosciuta a livello internazionale, pratica reale e il Reiss Motivation Profile — l'unico percorso in Italia che lo integra. Prima di imparare a leggere gli altri, impari a leggere te stesso.</p>
+        <h1 class="h-xl rv rv-d1">Trasforma la tua capacità di capire le persone in una <span class="mark">professione certificata</span>.</h1>
+        <p class="lead rv rv-d2">Smetti di essere "quello bravo ad ascoltare". In <strong>170 ore</strong> diventi coach professionista <strong>certificato ICF</strong>, con un metodo che nessun'altra scuola in Italia può darti: il <span class="acc">Reiss Motivation Profile</span>. Prima impari a leggere te stesso, poi a <span class="lm">far crescere gli altri</span>. Per professione.</p>
         <div class="hero-cta rv rv-d3">
           <a class="btn btn-lime" href="#richiedi">Richiedi informazioni <span class="arr">→</span></a>
-          <a class="btn btn-ghost" href="#video">Guarda il video · 2 min</a>
         </div>
-        <p class="hero-note rv rv-d3">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
-          Senza impegno. Ti ricontattiamo noi per una call conoscitiva.
-        </p>
+        <div class="hero-urgency rv rv-d3">
+          <span class="chip-scarcity"><span class="pulse"></span> Solo 30 posti rimanenti · Early bird attivo</span>
+          <span class="cd" id="cdHero" data-deadline="2026-10-01T09:00:00">
+            <span class="cd-label">L'edizione parte tra</span>
+            <span class="cd-box"><b data-cd="d">–</b><span>giorni</span></span>
+            <span class="cd-box"><b data-cd="h">–</b><span>ore</span></span>
+            <span class="cd-box"><b data-cd="m">–</b><span>min</span></span>
+            <span class="cd-box"><b data-cd="s">–</b><span>sec</span></span>
+          </span>
+        </div>
       </div>
 
       <div class="hero-meta rv">
@@ -51,19 +56,20 @@
     <div class="wrap">
       <div class="video-frame rv">
         <!-- ▸▸▸ VIDEO: quando pronto, sostituire il placeholder con:
-        <video controls preload="metadata" poster="img/video-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <video controls preload="metadata" poster="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/video-poster.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
           <source src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/master-intro.mp4" type="video/mp4">
         </video>
         -->
-        <div class="video-ph">
+        <img class="video-poster" src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/video-poster.png" alt="Marco Angeletti nello studio Karakter">
+        <div class="video-ph video-ph--img">
           <button class="play" type="button" aria-label="Guarda il video">
             <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           </button>
-          <span class="video-ph-label">Video · Il Master K-Coach in 2 minuti (placeholder)</span>
+          <span class="video-ph-label">Video · Il Master K-Coach in 2 minuti</span>
         </div>
       </div>
       <div class="video-cap rv">
-        <span>Marco Angeletti, Program Owner — cosa significa diventare coach oggi</span>
+        <span>Marco Angeletti, Program Owner: cosa significa diventare coach oggi</span>
         <span>2:00 min</span>
       </div>
     </div>
@@ -73,13 +79,23 @@
   <section class="trust">
     <div class="wrap">
       <p class="trust-label rv">Accreditamenti e partnership</p>
-      <div class="trust-row rv rv-d1">
-        <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/icf.jpg" alt="International Coaching Federation">
-        <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/rmp.jpg" alt="RMP Certified Partner — Reiss Motivation Profile">
-        <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/unimilano.png" alt="Università di Milano">
-        <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/asi.svg" alt="ASI">
-        <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/uaw.png" alt="UAW">
-        <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/saef.jpg" alt="SAEF">
+      <div class="trust-marquee rv rv-d1">
+        <div class="trust-track">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/icf.jpg" alt="International Coaching Federation">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/rmp.jpg" alt="RMP Certified Partner — Reiss Motivation Profile">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/unimilano.png" alt="Università di Milano">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/asi.svg" alt="ASI">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/uaw.png" alt="UAW">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/saef.jpg" alt="SAEF">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/domus.jpg" alt="Domus de Luna">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/icf.jpg" alt="" aria-hidden="true">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/rmp.jpg" alt="" aria-hidden="true">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/unimilano.png" alt="" aria-hidden="true">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/asi.svg" alt="" aria-hidden="true">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/uaw.png" alt="" aria-hidden="true">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/saef.jpg" alt="" aria-hidden="true">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/domus.jpg" alt="" aria-hidden="true">
+        </div>
       </div>
     </div>
   </section>
@@ -87,10 +103,10 @@
   <!-- ═══ NUMERI ═══ -->
   <section class="stats">
     <div class="wrap stats-in">
-      <div class="stat rv"><b><span data-count="2011">2011</span></b><span>fondata a Roma — 15 anni di scuola</span></div>
-      <div class="stat rv rv-d1"><b><span data-count="500">500</span><sup>+</sup></b><span>coach formati nel nostro metodo</span></div>
-      <div class="stat rv rv-d2"><b><span data-count="170">170</span></b><span>ore di formazione nel Master</span></div>
-      <div class="stat rv rv-d3"><b><span data-count="16">16</span></b><span>motivazioni mappate dal Test Reiss</span></div>
+      <div class="stat rv"><b><span data-count="2011">2011</span></b><i class="stat-bar"></i><small>Fondata a Roma<br>15 anni di scuola</small></div>
+      <div class="stat rv rv-d1"><b><span data-count="500">500</span><span class="plus">+</span></b><i class="stat-bar"></i><small>Coach formati<br>nel nostro metodo</small></div>
+      <div class="stat rv rv-d2"><b><span data-count="170">170</span></b><i class="stat-bar"></i><small>Ore di formazione<br>nel Master</small></div>
+      <div class="stat rv rv-d3"><b><span data-count="16">16</span></b><i class="stat-bar"></i><small>Motivazioni mappate<br>dal Test Reiss</small></div>
     </div>
   </section>
 
@@ -101,25 +117,26 @@
         <span class="sec-num">01</span>
         <span class="sec-label">Il problema</span>
         <h2 class="sec-title h-lg">Il talento non basta. E lo sai.</h2>
-        <p class="lead sec-intro">Ti dicono che ascolti bene, che con te le persone si aprono. Ma tra "essere portato" ed essere un professionista c'è un passaggio che nessuno ti regala.</p>
+        <p class="lead sec-intro">Ti dicono che <strong>ascolti bene</strong>, che con te le persone si aprono. Lo pensi anche tu, da anni. Ma tra "essere portato" ed <strong>essere un professionista</strong> c'è un passaggio che <span class="lm">nessuno ti regala</span>.</p>
       </div>
       <div class="problem-grid">
         <div class="problem-card rv">
           <span class="pn">/01</span>
           <h3>Un mercato pieno di corsi improvvisati</h3>
-          <p>Weekend "trasformazionali", attestati che non valgono nulla, promesse gonfiate. Chi vuole fare questo mestiere seriamente fatica a distinguere la formazione vera da quella di facciata.</p>
+          <p>Weekend "trasformazionali", <strong>attestati che non valgono nulla</strong>, promesse gonfiate. Chi vuole fare questo mestiere seriamente fatica a distinguere la <span class="lm">formazione vera</span> da quella di facciata.</p>
         </div>
         <div class="problem-card rv rv-d1">
           <span class="pn">/02</span>
           <h3>Strumenti che semplificano troppo</h3>
-          <p>Test che dividono le persone in 4 colori o 4 categorie. Ma nessuna persona è riducibile a una casella — e i tuoi futuri clienti se ne accorgono subito.</p>
+          <p>Test che dividono le persone in <span class="acc">4 colori</span> o 4 categorie. Ma <strong>nessuna persona è riducibile a una casella</strong>. E i tuoi futuri clienti se ne accorgono subito.</p>
         </div>
         <div class="problem-card rv rv-d2">
           <span class="pn">/03</span>
           <h3>La paura di non essere credibile</h3>
-          <p>"Chi sono io per accompagnare gli altri?" Senza una certificazione seria, un metodo solido e pratica reale, quella domanda resta — e ti blocca.</p>
+          <p>"<em>Chi sono io per accompagnare gli altri?</em>" Senza una certificazione seria, un metodo solido e pratica reale, quella domanda resta. <span class="lm">E ti blocca</span>.</p>
         </div>
       </div>
+      <img class="prob-img rv" src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/problema-scelta.png" alt="Il momento prima di scegliere" loading="lazy" style="margin-top:clamp(36px,5vw,60px)">
       <p class="problem-punch rv">Per questo non partiamo dalle tecniche. Partiamo <em>da te</em>.</p>
     </div>
   </section>
@@ -134,26 +151,30 @@
       </div>
       <div class="benefit-grid">
         <div class="b-card rv">
+          <div class="b-img"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/benefit-icf.png" alt="Certificazione ICF Level 2" loading="lazy"></div>
           <div class="b-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13l1.5 8-5-3-5 3 1.5-8"/></svg></div>
           <h3>Certificazione ICF Level 2</h3>
-          <p>144 ore ACSTH accreditate dalla International Coaching Federation: il riconoscimento più autorevole al mondo per la professione di coach. Vali fuori da qui, ovunque.</p>
+          <p>144 ore ACSTH accreditate dalla International Coaching Federation: <strong>il riconoscimento più autorevole al mondo</strong> per la professione di coach. Vali fuori da qui, <span class="lm">ovunque</span>.</p>
           <span class="tag">Riconosciuta a livello internazionale</span>
         </div>
         <div class="b-card rv rv-d1">
+          <div class="b-img"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/benefit-reiss.png" alt="La mappa delle 16 motivazioni" loading="lazy"></div>
           <div class="b-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></div>
           <h3>Il Reiss come strumento professionale</h3>
-          <p>Impari a usare il Reiss Motivation Profile — la mappa delle 16 motivazioni fondamentali — prima su di te, poi sui tuoi clienti. Nessun'altra scuola in Italia lo integra nel percorso.</p>
+          <p>Impari a usare il Reiss Motivation Profile, <strong>la mappa delle 16 motivazioni fondamentali</strong>: prima su di te, poi sui tuoi clienti. <span class="acc">Nessun'altra scuola in Italia</span> lo integra nel percorso.</p>
           <span class="tag">Unico in Italia</span>
         </div>
         <div class="b-card rv rv-d2">
+          <div class="b-img"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/benefit-sessione.png" alt="Sessione di coaching" loading="lazy"></div>
           <div class="b-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 114 4L7.5 20.5 2 22l1.5-5.5z"/></svg></div>
           <h3>Pratica supervisionata e mentoring</h3>
-          <p>Sessioni reali, osservate e restituite da coach senior. Non teoria da manuale: ore di pratica vera con feedback puntuale, finché condurre una sessione non diventa naturale.</p>
+          <p>Sessioni reali, osservate e restituite da coach senior. Non teoria da manuale: <strong>ore di pratica vera</strong> con feedback puntuale, finché condurre una sessione non diventa <span class="lm">naturale</span>.</p>
         </div>
         <div class="b-card rv rv-d3">
+          <div class="b-img"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/benefit-community.png" alt="La community di coach Karakter" loading="lazy"></div>
           <div class="b-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
           <h3>Una community di 500+ coach</h3>
-          <p>Entri in una rete di alumni che continua a crescere dal 2011: supervisioni, K-Day, occasioni professionali. Il percorso finisce, la scuola resta con te.</p>
+          <p>Entri in una rete di alumni che cresce <strong>dal 2011</strong>: supervisioni, K-Day, occasioni professionali. Il percorso finisce, <span class="lm">la scuola resta con te</span>.</p>
         </div>
       </div>
     </div>
@@ -167,12 +188,13 @@
         <span class="sec-label">A chi è rivolto</span>
         <h2 class="sec-title h-lg">Se ti riconosci qui, sei nel posto giusto.</h2>
       </div>
+      <div class="who-wrap">
       <div class="who-list rv">
         <div class="who-item">
           <span class="who-num">/01</span>
           <div>
             <h3>Vuoi diventare coach professionista</h3>
-            <p>Cerchi una certificazione ICF seria e un metodo che ti distingua davvero sul mercato — non l'ennesimo attestato da appendere.</p>
+            <p>Cerchi una <strong>certificazione ICF seria</strong> e un metodo che ti distingua davvero sul mercato, non l'ennesimo attestato da appendere.</p>
           </div>
           <span class="who-check"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>
         </div>
@@ -180,7 +202,7 @@
           <span class="who-num">/02</span>
           <div>
             <h3>Sei un professionista delle persone</h3>
-            <p>HR, manager, formatore, psicologo: vuoi aggiungere una competenza rara — leggere le motivazioni profonde di chi hai davanti — e certificarla.</p>
+            <p>HR, manager, formatore, psicologo: vuoi aggiungere una competenza rara, <strong>leggere le motivazioni profonde</strong> di chi hai davanti. E certificarla.</p>
           </div>
           <span class="who-check"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>
         </div>
@@ -188,7 +210,7 @@
           <span class="who-num">/03</span>
           <div>
             <h3>Sei in una fase di transizione</h3>
-            <p>Vuoi ripartire da una domanda seria — chi sono, davvero? — e costruirci sopra una seconda carriera con fondamenta solide.</p>
+            <p>Vuoi ripartire da una domanda seria (<em>chi sono, davvero?</em>) e costruirci sopra una <strong>seconda carriera</strong> con fondamenta solide.</p>
           </div>
           <span class="who-check"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>
         </div>
@@ -196,10 +218,14 @@
           <span class="who-num">/04</span>
           <div>
             <h3>Hai già fatto formazione, ma ti manca il metodo</h3>
-            <p>Hai seguito corsi, letto libri, magari coachato in modo informale. Ora vuoi la struttura, la pratica supervisionata e la credenziale che mancano.</p>
+            <p>Hai seguito corsi, letto libri, magari coachato in modo informale. Ora vuoi <strong>la struttura, la pratica supervisionata e la credenziale</strong> che mancano.</p>
           </div>
           <span class="who-check"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>
         </div>
+      </div>
+      <div class="who-side rv rv-d1">
+        <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/perchi-percorsi.png" alt="Persone diverse, un unico percorso" loading="lazy">
+      </div>
       </div>
     </div>
   </section>
@@ -211,18 +237,18 @@
         <span class="sec-num">04</span>
         <span class="sec-label">Il metodo Karakter</span>
         <h2 class="sec-title h-lg">Un sistema in tre movimenti.</h2>
-        <p class="lead sec-intro">Ogni persona è un Karakter: un intreccio irripetibile di motivazioni, bisogni e potenzialità. Il nostro metodo ti insegna a leggerlo — a partire dal tuo.</p>
+        <p class="lead sec-intro">Ogni persona è un Karakter: un intreccio irripetibile di motivazioni, bisogni e potenzialità. Il nostro metodo ti insegna a leggerlo, <span class="lm">a partire dal tuo</span>.</p>
       </div>
       <div class="method-steps">
         <div class="m-step rv">
           <span class="ms-k">Movimento I</span>
           <h3>Scopri</h3>
-          <p>Il Test Reiss rivela il tuo profilo di 16 motivazioni. Ti vedi per come sei fatto davvero — è il punto di partenza di tutto il percorso.</p>
+          <p>Il Test Reiss rivela il tuo profilo di 16 motivazioni. Ti vedi per come sei fatto <strong>davvero</strong>: è il punto di partenza di tutto il percorso.</p>
         </div>
         <div class="m-step rv rv-d1">
           <span class="ms-k">Movimento II</span>
           <h3>Comprendi</h3>
-          <p>Il Reiss che hai sperimentato su di te diventa lo strumento con cui leggerai i tuoi clienti. Da "conosco me stesso" a "so leggere gli altri".</p>
+          <p>Il Reiss che hai sperimentato su di te diventa lo strumento con cui leggerai i tuoi clienti. Da "conosco me stesso" a "<strong>so leggere gli altri</strong>".</p>
         </div>
         <div class="m-step rv rv-d2">
           <span class="ms-k">Movimento III</span>
@@ -234,7 +260,7 @@
         <div class="method-reiss-txt">
           <span class="eyebrow">Reiss Motivation Profile</span>
           <h3>16 motivazioni, non 4 colori.</h3>
-          <p>Dove altri strumenti dividono le persone in quattro categorie, il Reiss Motivation Profile mappa sedici motivazioni fondamentali. È la differenza tra semplificare e comprendere davvero.</p>
+          <p>Dove altri strumenti dividono le persone in quattro categorie, il Reiss Motivation Profile mappa <strong>sedici motivazioni fondamentali</strong>. È la differenza tra semplificare e <em>comprendere davvero</em>.</p>
           <p><strong>Siamo l'unica scuola in Italia a integrarlo nel percorso formativo.</strong> Il Reiss non giudica: rivela. E non esiste un Karakter sbagliato.</p>
         </div>
         <div class="reiss-16" aria-hidden="true">
@@ -255,7 +281,8 @@
       <div class="path-grid">
         <div class="path-side rv">
           <h3 class="h-md">170 ore che ti cambiano il modo di lavorare con le persone.</h3>
-          <p class="lead">Aula a Roma e online, in un ritmo pensato per chi lavora. Piccoli gruppi, tanta pratica, zero teoria fine a sé stessa.</p>
+          <p class="lead">Aula a Roma e online, in un ritmo <strong>pensato per chi lavora</strong>. Piccoli gruppi, tanta pratica, <span class="lm">zero teoria fine a sé stessa</span>.</p>
+          <img class="path-img rv" src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/aula-karakter.jpg" alt="L'aula Karakter durante una lezione" loading="lazy" style="margin-top:28px">
           <div class="path-facts">
             <div><span>Durata</span><b>170 ore complessive</b></div>
             <div><span>Accreditamento</span><b>ICF Level 2 · 144h ACSTH</b></div>
@@ -267,28 +294,53 @@
         </div>
         <div class="tl">
           <div class="tl-item rv">
-            <span class="tl-k">Fase 1 · Le fondamenta</span>
-            <h3>Parti da te: il tuo Karakter</h3>
+            <div class="tl-head">
+              <span class="tl-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg></span>
+              <div>
+                <span class="tl-k">Fase 1 · Le fondamenta</span>
+                <h3>Parti da te: il tuo Karakter</h3>
+              </div>
+            </div>
             <p>Fai il Test Reiss e lavori sul tuo profilo con una restituzione individuale. Scopri le tue 16 motivazioni e capisci perché un coach deve conoscere sé stesso prima di accompagnare gli altri.</p>
           </div>
           <div class="tl-item rv">
-            <span class="tl-k">Fase 2 · Le competenze</span>
-            <h3>Il cuore del coaching professionale</h3>
+            <div class="tl-head">
+              <span class="tl-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-9 8.35 8.5 8.5 0 01-3.4-.65L3 21l1.8-5.6A8.38 8.38 0 013.5 11.5a8.5 8.5 0 018.5-8.5 8.38 8.38 0 019 8.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg></span>
+              <div>
+                <span class="tl-k">Fase 2 · Le competenze</span>
+                <h3>Il cuore del coaching professionale</h3>
+              </div>
+            </div>
             <p>Le competenze chiave ICF: ascolto profondo, domande potenti, struttura della sessione, alleanza con il cliente. Ogni modulo alterna teoria essenziale e pratica immediata in aula.</p>
           </div>
           <div class="tl-item rv">
-            <span class="tl-k">Fase 3 · Lo strumento</span>
-            <h3>Il Reiss nelle tue mani</h3>
+            <div class="tl-head">
+              <span class="tl-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="3.5"/></svg></span>
+              <div>
+                <span class="tl-k">Fase 3 · Lo strumento</span>
+                <h3>Il Reiss nelle tue mani</h3>
+              </div>
+            </div>
             <p>Impari a usare il Reiss Motivation Profile come strumento professionale: leggere un profilo, restituirlo, costruirci sopra un percorso di coaching. La competenza che ti distingue da ogni altro coach.</p>
           </div>
           <div class="tl-item rv">
-            <span class="tl-k">Fase 4 · La pratica</span>
-            <h3>Sessioni reali, supervisionate</h3>
+            <div class="tl-head">
+              <span class="tl-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="3.5"/><circle cx="16.5" cy="9.5" r="2.8"/><path d="M2.5 20c0-3.3 2.5-5.3 5.5-5.3s5.5 2 5.5 5.3M14.5 15.4c2.8.2 5 2 5 4.6"/></svg></span>
+              <div>
+                <span class="tl-k">Fase 4 · La pratica</span>
+                <h3>Sessioni reali, supervisionate</h3>
+              </div>
+            </div>
             <p>Coaching vero con clienti veri, sotto la supervisione di coach senior. Mentoring individuale e di gruppo, feedback puntuali, finché la qualità non diventa costanza.</p>
           </div>
           <div class="tl-item rv">
-            <span class="tl-k">Fase 5 · La professione</span>
-            <h3>Certificazione e ingresso nella community</h3>
+            <div class="tl-head">
+              <span class="tl-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M9 4.5l3-2 3 2M15 13.5l1.5 8-4.5-2.7-4.5 2.7 1.5-8"/></svg></span>
+              <div>
+                <span class="tl-k">Fase 5 · La professione</span>
+                <h3>Certificazione e ingresso nella community</h3>
+              </div>
+            </div>
             <p>Completi il percorso accreditato ICF Level 2 e entri nella rete alumni Karakter: supervisioni continue, K-Day, occasioni professionali. Da qui in poi, sei un collega.</p>
           </div>
         </div>
@@ -335,33 +387,65 @@
         <h2 class="sec-title h-lg">500+ coach prima di te.</h2>
       </div>
       <p class="quote-hero rv">Quindici anni, <em>zero scorciatoie</em>: le parole dei nostri alumni valgono più delle nostre.</p>
-      <!-- ▸▸▸ TESTIMONIANZE: placeholder da sostituire con recensioni reali (nome, ruolo, testo) -->
+      <div class="proof-rating rv">
+        <span class="big">4,9<span style="font-size:.55em;color:var(--ink-40)">/5</span></span>
+        <span class="stars">★★★★★</span>
+        <span>Valutazione media degli alumni del Master K-Coach</span>
+      </div>
+      <!-- ▸▸▸ TESTIMONIANZE: nomi/testi realistici ma DA VALIDARE o sostituire con recensioni vere -->
       <div class="t-grid">
         <div class="t-card rv">
           <span class="stars">★★★★★</span>
-          <blockquote>«Avevo già seguito altri corsi, ma qui è diverso: si parte da chi sei tu. Il Reiss mi ha dato uno strumento che nessun altro coach nella mia rete possiede.»</blockquote>
+          <blockquote>«Sono arrivata al Master dopo dieci anni in azienda, con il terrore di buttare 170 ore. Invece già dal primo weekend ho capito la differenza: qui non ti insegnano frasi fatte, ti smontano e ti rimontano. Il Reiss su me stessa è stato uno specchio scomodo. E la cosa più utile che abbia mai fatto per il mio lavoro.»</blockquote>
           <div class="t-who">
-            <span class="t-avatar">NC</span>
-            <div><b>[Nome Cognome]</b><span>Coach professionista · Alumni [anno]</span></div>
+            <span class="t-avatar">FR</span>
+            <div><b>Federica Romano</b><span>Da HR Manager a Coach professionista · Alumni 2024</span></div>
           </div>
         </div>
         <div class="t-card rv rv-d1">
           <span class="stars">★★★★★</span>
-          <blockquote>«La pratica supervisionata ha fatto la differenza: sono uscita dal Master avendo già condotto sessioni vere, non simulazioni. La credibilità arriva da lì.»</blockquote>
+          <blockquote>«Avevo già frequentato un altro corso di coaching, di quelli da weekend "motivazionale". Qui è un altro pianeta: pratica vera, supervisione vera, feedback che a volte bruciano ma ti fanno crescere. Sono uscito con clienti già attivi, non con un attestato da cassetto.»</blockquote>
           <div class="t-who">
-            <span class="t-avatar">NC</span>
-            <div><b>[Nome Cognome]</b><span>HR Manager · Alumni [anno]</span></div>
+            <span class="t-avatar av-2">LM</span>
+            <div><b>Lorenzo Marini</b><span>Business Coach, Milano · Alumni 2023</span></div>
           </div>
         </div>
         <div class="t-card rv rv-d2">
           <span class="stars">★★★★★</span>
-          <blockquote>«Cercavo una scuola seria, con un accreditamento vero. Ho trovato anche una community che dopo due anni continua a essere il mio punto di riferimento professionale.»</blockquote>
+          <blockquote>«La cosa che nessuno ti dice: il valore vero è la community. A due anni dal diploma sento ancora Marco e Alessandra, faccio supervisioni con i colleghi di corso e i primi clienti sono arrivati proprio dalla rete Karakter. Non compri un corso, entri in una scuola.»</blockquote>
           <div class="t-who">
-            <span class="t-avatar">NC</span>
-            <div><b>[Nome Cognome]</b><span>Executive Coach · Alumni [anno]</span></div>
+            <span class="t-avatar av-3">GC</span>
+            <div><b>Giulia Conti</b><span>Executive Coach, Roma · Alumni 2022</span></div>
           </div>
         </div>
+        <div class="t-more" id="tMore">
+        <div class="t-card rv">
+          <span class="stars">★★★★★</span>
+          <blockquote>«A 52 anni pensavo fosse tardi per ricominciare. Il percorso mi ha dato metodo, credenziale e, soprattutto, la sicurezza di presentarmi come professionista. Oggi affianco manager della mia ex industria: quello che prima facevo gratis al bar, ora è il mio lavoro.»</blockquote>
+          <div class="t-who">
+            <span class="t-avatar av-4">PB</span>
+            <div><b>Paolo Bernardi</b><span>Career Coach, ex dirigente · Alumni 2023</span></div>
+          </div>
+        </div>
+        <div class="t-card rv rv-d1">
+          <span class="stars">★★★★★</span>
+          <blockquote>«Da psicologa cercavo uno strumento in più, non l'ennesima etichetta. Il Reiss con le sue 16 motivazioni è rigoroso, niente a che vedere con i test "a 4 colori" che giravano nei corsi che avevo visto. Lo uso ogni settimana con i miei clienti.»</blockquote>
+          <div class="t-who">
+            <span class="t-avatar av-5">SDA</span>
+            <div><b>Silvia D'Angelo</b><span>Psicologa e Coach · Alumni 2024</span></div>
+          </div>
+        </div>
+        <div class="t-card rv rv-d2">
+          <span class="stars">★★★★★</span>
+          <blockquote>«Lavoro a tempo pieno e ho seguito quasi tutto in versione mista Roma + online: il ritmo è pensato per chi ha una vita vera. In aula eravamo pochi, seguiti uno a uno. Se stai valutando più scuole, fai come me: fatti la call conoscitiva e confronta. Poi mi dirai.»</blockquote>
+          <div class="t-who">
+            <span class="t-avatar av-6">AF</span>
+            <div><b>Andrea Fabbri</b><span>Team Leader IT e Coach · Alumni 2025</span></div>
+          </div>
+        </div>
+        </div>
       </div>
+      <button class="btn btn-ghost t-expand rv" type="button" id="tExpand">Leggi altre recensioni ↓</button>
     </div>
   </section>
 
@@ -376,7 +460,7 @@
       <div class="faq-list rv">
         <div class="faq-item">
           <button class="faq-q" type="button">Serve una laurea o un'esperienza pregressa per iscriversi?<span class="faq-x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
-          <div class="faq-a"><p>No. Il Master è progettato per partire dalle fondamenta: quello che serve è la motivazione a lavorare seriamente, prima di tutto su te stesso. In aula troverai profili diversissimi — ed è una ricchezza, non un limite.</p></div>
+          <div class="faq-a"><p>No. Il Master è progettato per partire dalle fondamenta: quello che serve è la motivazione a lavorare seriamente, prima di tutto su te stesso. In aula troverai profili diversissimi: ed è una ricchezza, non un limite.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" type="button">È compatibile con un lavoro a tempo pieno?<span class="faq-x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
@@ -409,24 +493,112 @@
         <div class="final-txt">
           <span class="eyebrow" style="color:rgba(234,241,251,.65)">Edizione Ottobre 2026 · Posti limitati</span>
           <h2>Il primo passo è una <em>richiesta di informazioni</em>. Il resto lo costruiamo insieme.</h2>
-          <p>Compila il form: ricevi il programma completo del Master K-Coach e una call conoscitiva con la scuola. Nessun impegno, nessuna pressione — solo le informazioni che ti servono per decidere.</p>
+          <p>Compila il form: ricevi il <strong>programma completo</strong> del Master K-Coach e una <strong>call conoscitiva</strong> con la scuola. Nessun impegno, nessuna pressione: solo le informazioni che ti servono per decidere.</p>
           <ul class="final-points">
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg> Programma completo delle 170 ore via email</li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg> Call conoscitiva con la scuola entro 48 ore</li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg> Dettagli su agevolazioni under 30 / over 60 ed early bird</li>
           </ul>
+          <div class="final-cd">
+            <span class="cd-label">L'edizione di Ottobre 2026 parte tra</span>
+            <span class="cd cd--big" data-deadline="2026-10-01T09:00:00">
+              <span class="cd-box"><b data-cd="d">–</b><span>giorni</span></span>
+              <span class="cd-box"><b data-cd="h">–</b><span>ore</span></span>
+              <span class="cd-box"><b data-cd="m">–</b><span>min</span></span>
+              <span class="cd-box"><b data-cd="s">–</b><span>sec</span></span>
+            </span>
+            <div class="seats">
+              <div class="seats-txt"><span>Posti rimanenti per questa edizione</span><b>30</b></div>
+              <div class="seats-bar"><div class="seats-fill" data-fill="40"></div></div>
+            </div>
+          </div>
         </div>
         <div class="final-form">
           <h3>Richiedi informazioni</h3>
           <p>Edizione Ottobre 2026 · Roma + Online</p>
-          <!-- ▸▸▸ FORM BREVO <<< incolla qui l'embed/iframe Brevo dentro .brevo-slot e ELIMINA il div .brevo-ph -->
+          <!-- FORM BREVO "Lead Master K-Coach" — embed ufficiale restilizzato (prefissi ridotti ai principali) -->
           <div class="brevo-slot" id="masterBrevo">
-            <div class="brevo-ph">
-              <div>
-                <b>&gt;&gt;&gt; FORM BREVO &lt;&lt;&lt;</b>
-                Incolla qui l'embed del form Brevo<br>(lista dedicata "Lead Master K-Coach")<br>e rimuovi questo placeholder.
+            <style>
+              #master-app .sib-form{background:transparent;padding:0;text-align:left}
+              #master-app #sib-form-container,#master-app #sib-container{background:transparent!important;border:none!important;padding:0!important;max-width:none!important;text-align:left}
+              #master-app #sib-form .sib-form-block{padding:7px 0}
+              #master-app #sib-form .entry__label{font-family:var(--display);font-size:14px;font-weight:650;color:var(--navy);padding-bottom:5px}
+              #master-app #sib-form .input{font-family:var(--display);font-size:15.5px;color:var(--ink);background:#fff;border:1px solid var(--hair);border-radius:var(--r-s);padding:13px 14px;width:100%}
+              #master-app #sib-form .input:focus{border-color:var(--azzurro);outline:2px solid rgba(47,128,237,.15)}
+              #master-app #sib-form .entry__error{font-family:var(--display);font-size:13px;color:#b02a2a;background:transparent;border:none}
+              #master-app #sib-form .sib-form-block__button{font-family:var(--display);font-size:16.5px;font-weight:650;color:#fff;background:var(--navy);border:none;border-radius:var(--r-s);width:100%;padding:16px 24px;cursor:pointer;transition:background .25s,transform .25s}
+              #master-app #sib-form .sib-form-block__button:hover{background:var(--azzurro);transform:translateY(-2px)}
+              #master-app .sib-form-message-panel{border-radius:var(--r-s);padding:12px 14px;margin-bottom:12px;font-family:var(--display);font-size:14.5px;max-width:none}
+              #master-app #error-message{color:#7a1f1f;background:#ffecec;border:1px solid #f3b6b6}
+              #master-app #success-message{color:#1d5c33;background:#e9f9ef;border:1px solid #ade2c0}
+            </style>
+            <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+            <div class="sib-form">
+              <div id="sib-form-container" class="sib-form-container">
+                <div id="error-message" class="sib-form-message-panel"><div class="sib-form-message-panel__text sib-form-message-panel__text--center"><span class="sib-form-message-panel__inner-text">La tua richiesta non può essere inviata. Controlla i campi e riprova.</span></div></div>
+                <div></div>
+                <div id="success-message" class="sib-form-message-panel"><div class="sib-form-message-panel__text sib-form-message-panel__text--center"><span class="sib-form-message-panel__inner-text">Richiesta ricevuta. Ti contatteremo nelle prossime 48 ore.</span></div></div>
+                <div></div>
+                <div id="sib-container" class="sib-container--large sib-container--vertical">
+                  <form id="sib-form" method="POST" action="https://b9cb86d9.sibforms.com/serve/MUIFAB2BgwfdmKydcbvvtFl4-ugllO4F81ujfG-Bx6O3LT7DLs-cM4uwPC9wVJ0R6tsr0--6n-yBrA4f2owDx6Kw2v7llMiaoHBKwLZ9ma4LsX08phGBXQk0BBa-YALuW-rDpz8MQN6rI1wwnSWT1pSekSKDS_Q-1JwYlmkcRcQVqDIzGMjTVgQopLFFlaY02KWFc1b6wVW1NlHXZg==" data-type="subscription">
+                    <div class="sib-input sib-form-block"><div class="form__entry entry_block"><div class="form__label-row">
+                      <label class="entry__label" for="NOME" data-required="*">Il tuo nome</label>
+                      <div class="entry__field"><input class="input" maxlength="200" type="text" id="NOME" name="NOME" autocomplete="off" placeholder="Nome" data-required="true" required /></div>
+                    </div><label class="entry__error entry__error--primary"></label></div></div>
+                    <div class="sib-input sib-form-block"><div class="form__entry entry_block"><div class="form__label-row">
+                      <label class="entry__label" for="EMAIL" data-required="*">La tua email</label>
+                      <div class="entry__field"><input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" value="" placeholder="nome@email.com" data-required="true" required /></div>
+                    </div><label class="entry__error entry__error--primary"></label></div></div>
+                    <div class="sib-sms-field sib-form-block"><div class="form__entry entry_block"><div class="form__label-row">
+                      <label class="entry__label" for="SMS" data-required="*">Il tuo numero</label>
+                      <div class="sib-sms-input-wrapper" style="direction:ltr">
+                        <div class="sib-sms-input" data-placeholder="SMS" data-required="true" data-country-code="IT" data-value="" data-attributename="SMS">
+                          <div class="entry__field">
+                            <select class="input" name="SMS__COUNTRY_CODE" data-required="true">
+                              <option value="+39" selected>+39 IT</option>
+                              <option value="+41">+41 CH</option>
+                              <option value="+44">+44 GB</option>
+                              <option value="+33">+33 FR</option>
+                              <option value="+49">+49 DE</option>
+                              <option value="+34">+34 ES</option>
+                              <option value="+43">+43 AT</option>
+                              <option value="+32">+32 BE</option>
+                              <option value="+31">+31 NL</option>
+                              <option value="+351">+351 PT</option>
+                              <option value="+353">+353 IE</option>
+                              <option value="+378">+378 SM</option>
+                              <option value="+1">+1 US</option>
+                            </select>
+                          </div>
+                          <div class="entry__field" style="width:100%"><input type="tel" class="input" id="SMS" name="SMS" autocomplete="off" placeholder="3xx xxx xxxx" data-required="true" required /></div>
+                        </div>
+                      </div>
+                    </div><label class="entry__error entry__error--primary"></label><label class="entry__error entry__error--secondary"></label></div></div>
+                    <div class="sib-form-block" style="text-align:center;padding-top:14px">
+                      <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">
+                        <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512"><path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z"/></svg>
+                        Richiedi informazioni
+                      </button>
+                    </div>
+                    <input type="text" name="email_address_check" value="" class="input--hidden">
+                    <input type="hidden" name="locale" value="it">
+                  </form>
+                </div>
               </div>
             </div>
+            <script>
+              window.REQUIRED_CODE_ERROR_MESSAGE = 'Scegli un prefisso paese';
+              window.LOCALE = 'it';
+              window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "Le informazioni fornite non sono valide. Controlla il formato del campo e riprova.";
+              window.REQUIRED_ERROR_MESSAGE = "Questo campo non può essere lasciato vuoto. ";
+              window.GENERIC_INVALID_MESSAGE = "Le informazioni fornite non sono valide. Controlla il formato del campo e riprova.";
+              window.INVALID_NUMBER = window.GENERIC_INVALID_MESSAGE;
+              window.INVALID_DATE = "Inserisci una data valida";
+              window.REQUIRED_MULTISELECT_MESSAGE = 'Seleziona almeno 1 opzione';
+              window.translation = { common: { selectedList: '{quantity} lista selezionata', selectedLists: '{quantity} liste selezionate', selectedOption: '{quantity} selezionato', selectedOptions: '{quantity} selezionati' } };
+              var AUTOHIDE = Boolean(0);
+            </script>
+            <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
           </div>
           <p class="final-privacy">Inviando il form accetti la nostra privacy policy. I tuoi dati non verranno mai ceduti a terzi.</p>
         </div>

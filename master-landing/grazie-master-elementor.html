@@ -1,0 +1,178 @@
+<!-- ═══════════════════════════════════════════════════════
+  KARAKTER · Thank You Page Master K-Coach — VERSIONE ELEMENTOR
+  Incollare TUTTO in un widget HTML (pagina Elementor Canvas).
+  Asset, CSS e JS serviti via jsDelivr dal repo GitHub.
+  Da fare: sostituire INCOLLA_URL_QUIZ e INCOLLA_URL_REISS.
+  ═══════════════════════════════════════════════════════════ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/master-style.css">
+<style>
+#master-app .typ-hero{padding:clamp(56px,7vw,96px) 0 clamp(36px,4vw,56px);text-align:center}
+#master-app .typ-hero .eyebrow{justify-content:center}
+#master-app .typ-check{
+  width:92px;height:92px;border-radius:50%;margin:0 auto 28px;
+  background:var(--lime);display:grid;place-items:center;color:var(--navy);
+  animation:typ-pop .7s cubic-bezier(.34,1.56,.64,1) .15s both;
+}
+@keyframes typ-pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+#master-app .typ-check svg{width:44px;height:44px}
+#master-app .typ-hero h1{margin:22px auto 18px;max-width:16ch}
+#master-app .typ-hero .lead{margin:0 auto;text-align:center}
+#master-app .typ-note{
+  display:inline-flex;align-items:center;gap:10px;margin-top:26px;
+  font-size:14px;font-weight:600;color:var(--ink-60);
+  background:var(--bg-tint);border:1px solid var(--hair);
+  padding:12px 18px;border-radius:var(--r-s);
+}
+#master-app .typ-note svg{flex:none;color:var(--azzurro)}
+#master-app .typ-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+#master-app .typ-step{
+  border:1px solid var(--hair);border-radius:var(--r-m);background:#fff;
+  padding:30px 28px 34px;position:relative;overflow:hidden;
+}
+#master-app .typ-step::before{content:"";position:absolute;top:0;left:0;right:0;height:3px}
+#master-app .typ-step:nth-child(1)::before{background:var(--navy)}
+#master-app .typ-step:nth-child(2)::before{background:var(--azzurro)}
+#master-app .typ-step:nth-child(3)::before{background:var(--lime)}
+#master-app .typ-step .n{
+  font-size:13px;font-weight:750;letter-spacing:.1em;color:var(--ink-40);
+  display:block;margin-bottom:14px;font-variant-numeric:tabular-nums;
+}
+#master-app .typ-step h3{font-size:21px;font-weight:700;letter-spacing:-0.02em;margin-bottom:10px}
+#master-app .typ-step p{font-size:15.5px;color:var(--ink-60);line-height:1.6}
+@media(max-width:860px){#master-app .typ-steps{grid-template-columns:1fr}}
+#master-app .typ-explore{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:800px){#master-app .typ-explore{grid-template-columns:1fr}}
+#master-app .typ-card-link{display:block}
+#master-app .typ-card-link .btn{margin-top:18px}
+</style>
+
+<div id="master-app">
+
+  <!-- ═══ TOPBAR ═══ -->
+  <header class="topbar">
+    <div class="wrap topbar-in">
+      <a href="https://karaktercoaching.it"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/karakter-logo-gradient.svg" alt="Karakter Coaching School"></a>
+      <div class="topbar-meta"><span class="dot"></span> Richiesta ricevuta</div>
+      <a class="btn btn-primary" href="https://karaktercoaching.it">Torna al sito</a>
+    </div>
+  </header>
+
+  <!-- ═══ CONFERMA ═══ -->
+  <section class="typ-hero">
+    <div class="wrap">
+      <span class="eyebrow rv">Master K-Coach Professionisti · Edizione Ottobre 2026</span>
+      <div class="typ-check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h1 class="h-lg rv">Fatto. La tua richiesta è <span class="mark">arrivata</span>.</h1>
+      <p class="lead rv rv-d1">Il programma completo del Master K-Coach sta viaggiando verso la tua casella email. E il tuo posto nella lista è segnato: da qui in poi ci pensiamo noi.</p>
+      <div class="rv rv-d2">
+        <span class="typ-note">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          Non la vedi? Controlla Spam o Promozioni: a volte si nasconde lì.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COSA SUCCEDE ADESSO ═══ -->
+  <section class="sec" style="padding-top:clamp(40px,5vw,64px)">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">01</span>
+        <span class="sec-label">Cosa succede adesso</span>
+        <h2 class="sec-title h-lg">Tre passi, nessuna pressione.</h2>
+      </div>
+      <div class="typ-steps">
+        <div class="typ-step rv">
+          <span class="n">/01 · Subito</span>
+          <h3>Il programma nella tua inbox</h3>
+          <p>Trovi il dettaglio completo delle <strong>170 ore</strong>: moduli, calendario dell'edizione di Ottobre 2026, accreditamento ICF Level 2 e come funziona il Test Reiss nel percorso.</p>
+        </div>
+        <div class="typ-step rv rv-d1">
+          <span class="n">/02 · Entro 48 ore</span>
+          <h3>Ti chiamiamo noi</h3>
+          <p>Una <strong>call conoscitiva</strong> con la scuola: ci racconti il tuo percorso, ti raccontiamo il Master e rispondiamo a tutto, comprese le agevolazioni e l'early bird.</p>
+        </div>
+        <div class="typ-step rv rv-d2">
+          <span class="n">/03 · Con calma</span>
+          <h3>Decidi tu</h3>
+          <p>Nessun follow-up aggressivo: valuti con tutti gli elementi in mano. Ricorda solo che i posti sono <strong>limitati</strong> e vengono assegnati in ordine di richiesta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ VIDEO ═══ -->
+  <section class="sec" id="video" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">02</span>
+        <span class="sec-label">Nel frattempo</span>
+        <h2 class="sec-title h-lg">2 minuti con Marco, mentre aspetti l'email.</h2>
+      </div>
+      <div class="video-frame rv">
+        <!-- ▸▸▸ VIDEO: quando pronto, sostituire il placeholder con il tag <video> (vedi README) -->
+        <img class="video-poster" src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/video-poster.png" alt="Marco Angeletti nello studio Karakter">
+        <div class="video-ph video-ph--img">
+          <button class="play" type="button" aria-label="Guarda il video">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <span class="video-ph-label">Video · Il Master K-Coach in 2 minuti</span>
+        </div>
+      </div>
+      <div class="video-cap rv">
+        <span>Marco Angeletti, Program Owner: cosa significa diventare coach oggi</span>
+        <span>2:00 min</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ESPLORA ═══ -->
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">03</span>
+        <span class="sec-label">Continua a esplorare</span>
+        <h2 class="sec-title h-lg">Due modi per conoscerci meglio, già da ora.</h2>
+      </div>
+      <div class="typ-explore">
+        <!-- ▸▸▸ Sostituire href con l'URL reale della LP quiz -->
+        <a class="typ-card-link" href="INCOLLA_URL_QUIZ">
+          <div class="b-card rv">
+            <div class="b-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9.5a3 3 0 115.2 2c-.8.8-2.2 1.2-2.2 2.5"/><path d="M12 17.5h.01"/></svg></div>
+            <h3>Scopri il tuo Karakter</h3>
+            <p>Il quiz gratuito che rivela i tuoi <strong>3 Tratti dominanti</strong> in 5 minuti. Il primo assaggio del metodo che userai da coach.</p>
+            <span class="btn btn-ghost">Fai il quiz gratuito <span class="arr">→</span></span>
+          </div>
+        </a>
+        <!-- ▸▸▸ Sostituire href con l'URL reale della LP Test Reiss -->
+        <a class="typ-card-link" href="INCOLLA_URL_REISS">
+          <div class="b-card rv rv-d1">
+            <div class="b-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></div>
+            <h3>Il Test Reiss</h3>
+            <p>La mappa delle <strong>16 motivazioni</strong> con un'ora di restituzione individuale. Puoi farlo anche prima di decidere sul Master.</p>
+            <span class="btn btn-ghost">Scopri il Test Reiss <span class="arr">→</span></span>
+          </div>
+        </a>
+      </div>
+      <p class="founders-quote rv">«Non parliamo dalla torre d'avorio. <span class="mark">Ci sediamo di fronte a te.</span>»</p>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="wrap footer-in">
+      <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/karakter-logo-gradient.svg" alt="Karakter Coaching School">
+      <p>Karakter Coaching School · Roma, Viale G. Rossini · dal 2011 · Accreditata ICF Level 2</p>
+      <p><a href="https://karaktercoaching.it">karaktercoaching.it</a></p>
+    </div>
+    <div class="wrap" style="margin-top:28px"><hr class="sig"></div>
+  </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/master-script.js"></script>

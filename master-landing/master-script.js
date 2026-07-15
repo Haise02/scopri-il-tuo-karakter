@@ -1,12 +1,14 @@
 /* ═══════════════════════════════════════════════════════════
-   KARAKTER · LP Master K-Coach — script v1
+   KARAKTER · LP Master K-Coach — script v2
    Reveal on scroll, marker sweep, progress bar, count-up,
-   FAQ accordion, radar Reiss 16 punte. Vanilla, zero librerie.
+   FAQ accordion, radar Reiss 16 punte, countdown, recensioni
+   espandibili, barra posti. Vanilla, zero librerie.
    Scoped su #master-app.
    ═══════════════════════════════════════════════════════════ */
 (function () {
   var app = document.getElementById('master-app');
   if (!app) return;
+  app.classList.add('js-on'); /* senza JS la pagina resta interamente visibile */
 
   /* ── Reveal on scroll + marker sweep ── */
   var io = new IntersectionObserver(function (entries) {
@@ -20,7 +22,6 @@
   }, { threshold: 0.18, rootMargin: '0px 0px -40px 0px' });
 
   app.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
-  /* mark fuori da .rv (es. hero già visibile) */
   app.querySelectorAll('.mark').forEach(function (el) { io.observe(el); });
 
   /* ── Progress bar topbar ── */
@@ -36,7 +37,6 @@
   }
 
   /* ── Count-up numeri ── */
-  var fmt = function (n) { return String(n); };
   var counters = app.querySelectorAll('[data-count]');
   var cio = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
@@ -49,7 +49,7 @@
         if (!start) start = ts;
         var p = Math.min((ts - start) / dur, 1);
         var eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = fmt(Math.round(from + (target - from) * eased));
+        el.textContent = String(Math.round(from + (target - from) * eased));
         if (p < 1) requestAnimationFrame(step);
       }
       requestAnimationFrame(step);
@@ -98,11 +98,9 @@
       for (var k in attrs) el.setAttribute(k, attrs[k]);
       return el;
     };
-    /* anelli guida */
     [0.33, 0.66, 1].forEach(function (r) {
       radar.appendChild(g('circle', { cx: cx, cy: cy, r: R * r, fill: 'none', stroke: 'rgba(234,241,251,.14)', 'stroke-width': 1 }));
     });
-    /* raggi */
     for (var i = 0; i < 16; i++) {
       var ang = (Math.PI * 2 * i) / 16 - Math.PI / 2;
       radar.appendChild(g('line', {
@@ -111,7 +109,6 @@
         stroke: 'rgba(234,241,251,.1)', 'stroke-width': 1
       }));
     }
-    /* poligono valori */
     var pts = vals.map(function (v, i) {
       var ang = (Math.PI * 2 * i) / 16 - Math.PI / 2;
       return (cx + Math.cos(ang) * R * v) + ',' + (cy + Math.sin(ang) * R * v);
@@ -121,7 +118,6 @@
     grad.appendChild(g('stop', { offset: '100%', 'stop-color': '#A3E635', 'stop-opacity': '.4' }));
     var defs = g('defs', {}); defs.appendChild(grad); radar.appendChild(defs);
     radar.appendChild(g('polygon', { points: pts, fill: 'url(#rg)', stroke: '#A3E635', 'stroke-width': 1.5, 'stroke-linejoin': 'round' }));
-    /* punti */
     vals.forEach(function (v, i) {
       var ang = (Math.PI * 2 * i) / 16 - Math.PI / 2;
       radar.appendChild(g('circle', {
@@ -129,10 +125,56 @@
         r: 3, fill: '#A3E635'
       }));
     });
-    /* etichetta */
     var label = g('text', { x: cx, y: cy + 4, 'text-anchor': 'middle', fill: 'rgba(234,241,251,.85)', 'font-size': '13', 'font-weight': '700', 'letter-spacing': '2', 'font-family': 'Inter Tight, sans-serif' });
     label.textContent = '16 MOTIVAZIONI';
     radar.appendChild(label);
+  }
+
+  /* ── Countdown (target in data-deadline, ISO) ── */
+  var cds = app.querySelectorAll('.cd[data-deadline]');
+  if (cds.length) {
+    var pad = function (n) { return n < 10 ? '0' + n : String(n); };
+    var tick = function () {
+      cds.forEach(function (cd) {
+        var diff = new Date(cd.getAttribute('data-deadline')).getTime() - Date.now();
+        if (diff < 0) diff = 0;
+        var d = Math.floor(diff / 86400000),
+            h = Math.floor(diff / 3600000) % 24,
+            m = Math.floor(diff / 60000) % 60,
+            s = Math.floor(diff / 1000) % 60;
+        var set = function (k, v) {
+          var el = cd.querySelector('[data-cd="' + k + '"]');
+          if (el) el.textContent = v;
+        };
+        set('d', d); set('h', pad(h)); set('m', pad(m)); set('s', pad(s));
+      });
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  /* ── Recensioni: espandi ── */
+  var tExpand = document.getElementById('tExpand');
+  var tMore = document.getElementById('tMore');
+  if (tExpand && tMore) {
+    tExpand.addEventListener('click', function () {
+      tMore.classList.add('show');
+      tMore.querySelectorAll('.rv').forEach(function (el) { el.classList.add('is-in'); });
+      tExpand.style.display = 'none';
+    });
+  }
+
+  /* ── Barra posti disponibili ── */
+  var fill = app.querySelector('.seats-fill');
+  if (fill) {
+    var fio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        fill.style.width = (fill.getAttribute('data-fill') || 60) + '%';
+        fio.unobserve(e.target);
+      });
+    }, { threshold: 0.4 });
+    fio.observe(fill);
   }
 
   /* ── Video placeholder: il play porta al form finché non c'è il video ── */

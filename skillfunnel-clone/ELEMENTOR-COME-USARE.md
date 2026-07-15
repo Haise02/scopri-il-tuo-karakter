@@ -28,12 +28,33 @@ https://haise02.github.io/scopri-il-tuo-karakter/skillfunnel-clone/index.html
 
 ### Passo 3 — In Elementor, widget HTML, incolla SOLO questo:
 ```html
-<iframe
-  src="https://haise02.github.io/scopri-il-tuo-karakter/skillfunnel-clone/index.html"
-  style="width:100%;height:100vh;border:0;display:block"
-  loading="lazy" title="Karakter">
-</iframe>
+<div class="karakter-embed">
+  <iframe
+    src="https://haise02.github.io/scopri-il-tuo-karakter/skillfunnel-clone/index.html"
+    title="Karakter" loading="lazy"></iframe>
+</div>
+
+<style>
+.karakter-embed{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;            /* ritaglia la scrollbar dell'iframe */
+}
+.karakter-embed iframe{
+  position:absolute;
+  top:0; left:0;
+  width:calc(100% + 24px);    /* spinge la scrollbar fuori dall'area visibile */
+  height:100%;
+  border:0;
+  display:block;
+}
+</style>
 ```
+Perché funziona: l'iframe viene reso **più largo** del contenitore di circa 24px, e il
+contenitore ha `overflow:hidden`. La barra di scorrimento dell'iframe finisce quindi
+fuori dall'area visibile e viene tagliata. Lo scroll interno continua a funzionare
+(quindi le animazioni restano), ma la barra non si vede più.
 
 ## Doppia barra di scorrimento (risolto)
 L'iframe è alto `100vh` e ha il **suo** scroll interno: quello scroll serve, perché tutte

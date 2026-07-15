@@ -1,0 +1,1535 @@
+<!-- ═══════════════════════════════════════════════════════════
+  KARAKTER · LP Master K-Coach — ELEMENTOR SELF-CONTAINED (v5)
+  Incolla TUTTO in un widget HTML (pagina Elementor Canvas).
+  CSS e JS sono INLINE: non serve il push per gli stili.
+  Le IMMAGINI arrivano da GitHub/jsDelivr: servono nel repo
+  (cartella master-landing/img) → push obbligatorio per vederle.
+  ═══════════════════════════════════════════════════════════ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   KARAKTER · LP Master K-Coach — DESIGN "MONUMENT" v5 (inline)
+   Scoped sotto #master-app. Zero librerie.
+   ═══════════════════════════════════════════════════════════ */
+
+#master-app{
+  --navy:#0B1F3A;
+  --azzurro:#2F80ED;
+  --azzurro-d:#1f66c8;
+  --lime:#A3E635;
+  --lime-d:#7fb61f;
+  --ice:#D9E1E8;
+
+  --bg:#FCFDFF;
+  --bg-tint:#F4F8FB;
+  --ink:var(--navy);
+  --ink-60:rgba(11,31,58,.62);
+  --ink-40:rgba(11,31,58,.42);
+  --hair:rgba(11,31,58,.14);
+  --hair-soft:rgba(11,31,58,.08);
+
+  --grad:linear-gradient(90deg,#0B1F3A 0%,#2F80ED 55%,#A3E635 100%);
+
+  --r-s:6px;
+  --r-m:10px;
+
+  --container:1240px;
+  --pad:24px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+
+  --display:"Inter Tight",system-ui,-apple-system,sans-serif;
+
+  font-family:var(--display);
+  font-size:17px;
+  line-height:1.55;
+  color:var(--ink);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+  overflow-x:clip;
+}
+#master-app *,#master-app *::before,#master-app *::after{box-sizing:border-box;margin:0;padding:0}
+#master-app img{display:block;max-width:100%}
+#master-app a{color:inherit;text-decoration:none}
+#master-app button{font-family:inherit;border:none;background:none;color:inherit;cursor:pointer}
+#master-app ul{list-style:none}
+#master-app section{position:relative}
+#master-app ::selection{background:var(--lime);color:var(--navy)}
+/* Difesa dal tema WordPress: colori e font non devono essere sovrascritti dalle regole del tema */
+#master-app h1,#master-app h2,#master-app h3,#master-app h4,#master-app h5,#master-app p,#master-app span,#master-app li,#master-app a,#master-app blockquote,#master-app label,#master-app small,#master-app b,#master-app i,#master-app em{color:inherit;font-family:inherit}
+#master-app .wrap{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:var(--pad)}
+
+/* ── Tipografia monumentale ─────────────────────────────── */
+#master-app .h-xl{
+  font-weight:700;
+  font-size:clamp(34px,4.8vw,62px);
+  line-height:1.04;
+  letter-spacing:-0.04em;
+  text-wrap:balance;
+}
+#master-app .h-lg{
+  font-weight:700;
+  font-size:clamp(32px,4.6vw,60px);
+  line-height:1.04;
+  letter-spacing:-0.04em;
+  text-wrap:balance;
+}
+#master-app .h-md{
+  font-weight:700;
+  font-size:clamp(24px,3vw,36px);
+  line-height:1.12;
+  letter-spacing:-0.03em;
+}
+#master-app .lead{
+  font-size:clamp(18px,1.6vw,21px);
+  line-height:1.55;
+  color:var(--ink-60);
+  font-weight:450;
+  max-width:62ch;
+}
+#master-app .eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:12.5px;font-weight:650;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-60);
+}
+#master-app .eyebrow::before{
+  content:"";width:9px;height:9px;background:var(--lime);
+  outline:1px solid rgba(11,31,58,.25);
+}
+
+/* Evidenziatore lime (sweep on-scroll) */
+#master-app .mark{
+  position:relative;white-space:nowrap;z-index:0;
+}
+#master-app .mark::after{
+  content:"";position:absolute;left:-.06em;right:-.06em;
+  bottom:.02em;height:.42em;background:var(--lime);
+  z-index:-1;transform-origin:left center;
+  transition:transform .9s var(--ease) .25s;
+}
+#master-app.js-on .mark::after{transform:scaleX(0)}
+#master-app .mark.is-on::after,#master-app.js-on .mark.is-on::after{transform:scaleX(1)}
+
+/* Riga gradiente firma */
+#master-app .sig{height:3px;background:var(--grad);border:none}
+
+/* Doppio livello di lettura: accenti inline */
+#master-app strong{font-weight:750}
+#master-app .acc{color:var(--azzurro);font-weight:700}
+#master-app .lm{
+  font-weight:700;font-style:italic;
+  background:linear-gradient(transparent 62%,rgba(163,230,53,.6) 62%);
+}
+#master-app .problem strong,#master-app .final-txt strong{color:#fff}
+#master-app .problem .acc{color:#6ea8f5}
+#master-app .problem .lm,#master-app .final-txt .lm{background:none;color:var(--lime)}
+
+/* ── Pattern header di sezione: hairline + numero + label ── */
+#master-app .sec{padding:clamp(72px,9vw,130px) 0}
+#master-app .sec-head{
+  border-top:1px solid var(--hair);
+  padding-top:22px;margin-bottom:clamp(36px,5vw,64px);
+  display:grid;grid-template-columns:auto 1fr;gap:8px 28px;align-items:start;
+}
+#master-app .sec-num{
+  font-weight:700;font-size:14px;letter-spacing:.08em;color:var(--ink-40);
+  font-variant-numeric:tabular-nums;padding-top:4px;
+}
+#master-app .sec-label{
+  grid-column:2;font-size:12.5px;font-weight:650;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-60);margin-bottom:14px;
+}
+#master-app .sec-title{grid-column:2;max-width:18ch}
+#master-app .sec-intro{grid-column:2;margin-top:18px}
+
+/* ── Reveal on scroll (senza JS resta tutto visibile) ───── */
+#master-app .rv{transition:opacity .8s var(--ease),transform .8s var(--ease)}
+#master-app.js-on .rv{opacity:0;transform:translateY(22px)}
+#master-app .rv.is-in,#master-app.js-on .rv.is-in{opacity:1;transform:none}
+#master-app .rv-d1{transition-delay:.1s}
+#master-app .rv-d2{transition-delay:.2s}
+#master-app .rv-d3{transition-delay:.3s}
+@media (prefers-reduced-motion:reduce){
+  #master-app .rv{opacity:1;transform:none;transition:none}
+  #master-app .mark::after{transition:none}
+}
+
+/* ── Bottoni ────────────────────────────────────────────── */
+#master-app .btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-weight:650;font-size:16.5px;letter-spacing:-0.01em;
+  padding:17px 30px;border-radius:var(--r-s);
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease),color .25s var(--ease);
+  will-change:transform;
+}
+#master-app .btn-primary{
+  background:var(--navy);color:#fff;
+}
+#master-app .btn-primary:hover{
+  background:var(--azzurro);transform:translateY(-2px);
+  box-shadow:0 14px 30px -12px rgba(47,128,237,.55);
+}
+#master-app .btn-primary .arr{transition:transform .25s var(--ease)}
+#master-app .btn-primary:hover .arr{transform:translateX(4px)}
+#master-app .btn-ghost{
+  border:1px solid var(--hair);color:var(--ink);background:transparent;
+}
+#master-app .btn-ghost:hover{border-color:var(--navy);transform:translateY(-2px)}
+#master-app .btn-lime{
+  background:var(--lime);color:var(--navy);
+}
+#master-app .btn-lime:hover{background:#b9f24d;transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(163,230,53,.6)}
+
+/* ── Topbar ─────────────────────────────────────────────── */
+#master-app .topbar{
+  position:sticky;top:0;z-index:60;
+  background:rgba(252,253,255,.86);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--hair-soft);
+}
+#master-app .topbar-in{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding-block:14px;
+}
+#master-app .topbar img{height:34px;width:auto}
+#master-app .topbar-meta{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60);
+}
+#master-app .topbar-meta .dot{width:7px;height:7px;background:var(--lime);border-radius:50%}
+#master-app .topbar .btn{padding:11px 20px;font-size:14.5px}
+#master-app .progress{
+  position:absolute;left:0;bottom:-1px;height:2px;width:100%;
+  transform-origin:left;transform:scaleX(0);background:var(--grad);
+}
+@media(max-width:720px){#master-app .topbar-meta{display:none}}
+
+/* ── Hero (compatta: tutto leggibile nella prima schermata) ─ */
+#master-app .hero{padding:clamp(40px,5vw,64px) 0 clamp(28px,3vw,40px)}
+#master-app .hero-in{max-width:880px}
+#master-app .hero h1{margin:18px 0 18px}
+#master-app .hero .lead{margin-bottom:26px;font-size:clamp(16.5px,1.4vw,19px);max-width:56ch}
+#master-app .hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+
+/* scarcity + countdown inline nella hero */
+#master-app .hero-urgency{
+  margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;
+}
+#master-app .chip-scarcity{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:13.5px;font-weight:650;color:var(--navy);
+  background:rgba(163,230,53,.22);border:1px solid rgba(163,230,53,.7);
+  padding:8px 14px;border-radius:var(--r-s);
+}
+#master-app .chip-scarcity .pulse{
+  width:8px;height:8px;border-radius:50%;background:var(--lime-d);
+  animation:m-pulse 1.6s infinite;
+}
+@keyframes m-pulse{
+  0%{box-shadow:0 0 0 0 rgba(127,182,31,.5)}
+  70%{box-shadow:0 0 0 8px rgba(127,182,31,0)}
+  100%{box-shadow:0 0 0 0 rgba(127,182,31,0)}
+}
+
+/* meta-riga hero: dati secchi separati da hairline */
+#master-app .hero-meta{
+  margin-top:clamp(28px,4vw,44px);
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+}
+#master-app .hero-meta>div{
+  padding:14px 20px 16px;border-left:1px solid var(--hair);
+}
+#master-app .hero-meta>div:first-child{border-left:none;padding-left:0}
+#master-app .hero-meta b{display:block;font-size:17px;font-weight:700;letter-spacing:-0.02em}
+#master-app .hero-meta span{font-size:12.5px;color:var(--ink-60);letter-spacing:.04em}
+@media(max-width:860px){
+  #master-app .hero-meta{grid-template-columns:1fr 1fr}
+  #master-app .hero-meta>div:nth-child(3){border-left:none;padding-left:0}
+  #master-app .hero-meta>div{border-top:1px solid var(--hair-soft)}
+  #master-app .hero-meta>div:nth-child(-n+2){border-top:none}
+}
+
+/* ── Countdown ──────────────────────────────────────────── */
+#master-app .cd{display:inline-flex;align-items:center;gap:8px}
+#master-app .cd-label{font-size:13px;font-weight:600;color:var(--ink-60);margin-right:4px}
+#master-app .cd-box{
+  min-width:52px;text-align:center;
+  background:var(--navy);color:#fff;border-radius:var(--r-s);
+  padding:7px 8px 8px;
+}
+#master-app .cd-box b{
+  display:block;font-size:19px;font-weight:750;line-height:1;
+  font-variant-numeric:tabular-nums;letter-spacing:-0.02em;
+}
+#master-app .cd-box span{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;opacity:.6}
+#master-app .cd--big .cd-box{min-width:68px;padding:11px 10px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+#master-app .cd--big .cd-box b{font-size:27px}
+#master-app .cd--big .cd-label{color:rgba(234,241,251,.65)}
+
+/* ── Video ──────────────────────────────────────────────── */
+#master-app .video-sec{padding-bottom:clamp(60px,8vw,110px)}
+#master-app .video-frame{
+  position:relative;aspect-ratio:16/9;overflow:hidden;
+  border-radius:var(--r-m);background:var(--navy);
+  outline:1px solid var(--hair);
+}
+#master-app .video-frame .video-ph{
+  position:absolute;inset:0;display:grid;place-items:center;
+  background:
+    radial-gradient(60% 90% at 70% 10%,rgba(47,128,237,.35),transparent 60%),
+    radial-gradient(50% 80% at 15% 90%,rgba(163,230,53,.18),transparent 55%),
+    var(--navy);
+}
+#master-app .video-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#master-app .video-ph--img{background:linear-gradient(180deg,rgba(6,14,26,.05),rgba(6,14,26,.45))}
+#master-app .who-side img{width:100%;display:block;border-radius:var(--r-m);border:1px solid var(--hair)}
+#master-app .prob-img{width:100%;display:block;border-radius:var(--r-m);border:1px solid rgba(234,241,251,.15)}
+#master-app .path-img{width:100%;display:block;border-radius:var(--r-m);border:1px solid var(--hair);aspect-ratio:16/10;object-fit:cover;object-position:center 35%}
+#master-app .video-ph-label{
+  position:absolute;left:20px;bottom:16px;
+  font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+}
+#master-app .play{
+  display:grid;place-items:center;width:92px;height:92px;border-radius:50%;
+  background:var(--lime);color:var(--navy);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+#master-app .play:hover{transform:scale(1.08);box-shadow:0 20px 50px -15px rgba(163,230,53,.7)}
+#master-app .play svg{margin-left:5px}
+#master-app .video-cap{
+  margin-top:14px;display:flex;justify-content:space-between;gap:16px;
+  font-size:13.5px;color:var(--ink-40);letter-spacing:.03em;
+}
+
+/* ── Trust: loghi a colori in marquee loop con fade bianco ── */
+#master-app .trust{padding:clamp(40px,5vw,64px) 0;overflow:hidden}
+#master-app .trust-label{
+  text-align:center;font-size:12px;font-weight:650;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-40);margin-bottom:28px;
+}
+#master-app .trust-marquee{
+  position:relative;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);
+}
+#master-app .trust-track{
+  display:flex;align-items:center;gap:clamp(48px,7vw,90px);
+  width:max-content;
+  animation:m-marquee 28s linear infinite;
+}
+#master-app .trust-marquee:hover .trust-track{animation-play-state:paused}
+@keyframes m-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+#master-app .trust-track img{
+  height:52px;width:auto;object-fit:contain;flex:none;
+}
+@media (prefers-reduced-motion:reduce){
+  #master-app .trust-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}
+}
+
+/* ── Numeri (centrati, allineati, underline animata) ────── */
+#master-app .stats{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);background:var(--bg-tint)}
+#master-app .stats-in{
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+#master-app .stat{
+  padding:clamp(36px,4.5vw,58px) 20px;border-left:1px solid var(--hair);
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;
+}
+#master-app .stat:first-child{border-left:none}
+#master-app .stat b{
+  display:flex;align-items:baseline;justify-content:center;gap:2px;
+  font-size:clamp(46px,5vw,66px);font-weight:750;
+  letter-spacing:-0.04em;line-height:1;font-variant-numeric:tabular-nums;
+}
+#master-app .stat b .plus{font-size:.5em;color:var(--azzurro);font-weight:750;transform:translateY(-.55em)}
+#master-app .stat .stat-bar{
+  display:block;width:44px;height:3px;background:var(--grad);border-radius:2px;
+  transition:transform 1s var(--ease) .4s;transform-origin:center;
+}
+#master-app.js-on .stat .stat-bar{transform:scaleX(0)}
+#master-app .stat.is-in .stat-bar,#master-app .rv.is-in .stat-bar{transform:scaleX(1)}
+#master-app .stat small{display:block;font-size:14px;color:var(--ink-60);line-height:1.45;max-width:22ch}
+@media(max-width:860px){
+  #master-app .stats-in{grid-template-columns:1fr 1fr}
+  #master-app .stat:nth-child(3){border-left:none}
+  #master-app .stat{border-top:1px solid var(--hair)}
+  #master-app .stat:nth-child(-n+2){border-top:none}
+}
+
+/* ── Problema (inversione navy) ─────────────────────────── */
+#master-app .problem{
+  background:var(--navy);color:#EAF1FB;
+  padding:clamp(84px,10vw,150px) 0;
+}
+#master-app .problem .sec-head{border-top-color:rgba(234,241,251,.2)}
+#master-app .problem .sec-num{color:rgba(234,241,251,.4)}
+#master-app .problem .sec-label{color:rgba(234,241,251,.6)}
+#master-app .problem .lead{color:rgba(234,241,251,.68)}
+#master-app .problem-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:rgba(234,241,251,.16);
+  border:1px solid rgba(234,241,251,.16);
+  margin-top:clamp(36px,5vw,60px);
+}
+#master-app .problem-card{
+  background:var(--navy);padding:34px 30px 38px;
+}
+#master-app .problem-card .pn{
+  font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--lime);
+  display:block;margin-bottom:18px;font-variant-numeric:tabular-nums;
+}
+#master-app .problem-card h3{
+  font-size:21px;font-weight:700;letter-spacing:-0.02em;line-height:1.2;margin-bottom:12px;
+}
+#master-app .problem-card p{font-size:15.5px;color:rgba(234,241,251,.62);line-height:1.6}
+#master-app .problem-punch{
+  margin-top:clamp(44px,6vw,70px);
+  font-size:clamp(24px,3.4vw,40px);font-weight:700;letter-spacing:-0.03em;
+  line-height:1.15;max-width:26ch;text-wrap:balance;
+}
+#master-app .problem-punch em{font-style:normal;color:var(--lime)}
+@media(max-width:860px){#master-app .problem-grid{grid-template-columns:1fr}}
+
+/* ── Benefici ───────────────────────────────────────────── */
+#master-app .benefit-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:22px;
+}
+#master-app .b-card{
+  border:1px solid var(--hair);border-radius:var(--r-m);
+  padding:34px 32px 38px;background:#fff;
+  transition:transform .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease);
+}
+#master-app .b-card:hover{
+  transform:translateY(-4px);border-color:rgba(11,31,58,.3);
+  box-shadow:0 24px 50px -30px rgba(11,31,58,.25);
+}
+#master-app .b-ico{
+  width:52px;height:52px;border-radius:var(--r-s);
+  display:grid;place-items:center;margin-bottom:22px;
+  background:var(--bg-tint);border:1px solid var(--hair-soft);color:var(--azzurro);
+}
+#master-app .b-img{
+  margin:-34px -32px 24px;border-bottom:1px solid var(--hair-soft);
+  border-radius:var(--r-m) var(--r-m) 0 0;overflow:hidden;aspect-ratio:16/7;
+}
+#master-app .b-img img{width:100%;height:100%;object-fit:cover}
+#master-app .b-card h3{font-size:22px;font-weight:700;letter-spacing:-0.025em;margin-bottom:10px}
+#master-app .b-card p{font-size:16px;color:var(--ink-60);line-height:1.6}
+#master-app .b-card .tag{
+  display:inline-block;margin-top:16px;font-size:12px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--navy);
+  background:var(--lime);padding:5px 10px;
+}
+@media(max-width:800px){#master-app .benefit-grid{grid-template-columns:1fr}}
+
+/* ── Placeholder immagini ───────────────────────────────── */
+#master-app .ph{
+  position:relative;border:2px dashed rgba(47,128,237,.35);border-radius:var(--r-m);
+  background:
+    repeating-linear-gradient(45deg,rgba(47,128,237,.03) 0 14px,transparent 14px 28px),
+    rgba(47,128,237,.03);
+  display:grid;place-items:center;overflow:hidden;
+}
+#master-app .ph::after{
+  content:attr(data-label);
+  font-size:12.5px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(47,128,237,.75);text-align:center;padding:16px;line-height:1.5;
+}
+#master-app .ph--wide{aspect-ratio:16/7}
+#master-app .ph--dark{
+  border-color:rgba(234,241,251,.35);
+  background:
+    repeating-linear-gradient(45deg,rgba(234,241,251,.04) 0 14px,transparent 14px 28px),
+    rgba(234,241,251,.03);
+}
+#master-app .ph--dark::after{color:rgba(234,241,251,.65)}
+#master-app .ph--card{aspect-ratio:16/7;border-radius:0;border-width:0 0 2px 0}
+#master-app .ph--tall{aspect-ratio:4/5;min-height:340px}
+#master-app .ph--sq{aspect-ratio:1/1}
+
+/* ── A chi è rivolto ────────────────────────────────────── */
+#master-app .who-wrap{display:grid;grid-template-columns:1.45fr 1fr;gap:clamp(30px,4vw,56px);align-items:start}
+#master-app .who-side{position:sticky;top:110px}
+@media(max-width:900px){
+  #master-app .who-wrap{grid-template-columns:1fr}
+  #master-app .who-side{position:static;order:-1}
+  #master-app .who-side .ph--tall{aspect-ratio:16/9;min-height:0}
+}
+#master-app .who-list{border-top:1px solid var(--hair)}
+#master-app .who-item{
+  display:grid;grid-template-columns:64px 1fr auto;gap:26px;align-items:center;
+  padding:30px 4px;border-bottom:1px solid var(--hair);
+  transition:background .3s var(--ease),padding .3s var(--ease);
+}
+#master-app .who-item:hover{background:var(--bg-tint);padding-inline:18px}
+#master-app .who-num{
+  font-size:15px;font-weight:700;color:var(--ink-40);font-variant-numeric:tabular-nums;
+}
+#master-app .who-item h3{font-size:clamp(20px,2.4vw,27px);font-weight:700;letter-spacing:-0.025em;margin-bottom:6px}
+#master-app .who-item p{font-size:16px;color:var(--ink-60);max-width:62ch}
+#master-app .who-check{
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--hair);
+  display:grid;place-items:center;color:var(--azzurro);flex:none;
+  transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);
+}
+#master-app .who-item:hover .who-check{background:var(--lime);color:var(--navy);border-color:var(--lime)}
+@media(max-width:640px){
+  #master-app .who-item{grid-template-columns:1fr;gap:8px}
+  #master-app .who-num{display:none}
+  #master-app .who-check{display:none}
+}
+
+/* ── Metodo ─────────────────────────────────────────────── */
+#master-app .method{background:var(--bg-tint);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+#master-app .method-steps{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:22px;
+}
+#master-app .m-step{
+  background:#fff;border:1px solid var(--hair);border-radius:var(--r-m);
+  padding:34px 30px 38px;position:relative;overflow:hidden;
+}
+#master-app .m-step::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+}
+#master-app .m-step:nth-child(1)::before{background:var(--navy)}
+#master-app .m-step:nth-child(2)::before{background:var(--azzurro)}
+#master-app .m-step:nth-child(3)::before{background:var(--lime)}
+#master-app .m-step .ms-k{
+  font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-40);display:block;margin-bottom:16px;
+}
+#master-app .m-step h3{font-size:24px;font-weight:700;letter-spacing:-0.03em;margin-bottom:10px}
+#master-app .m-step p{font-size:15.5px;color:var(--ink-60);line-height:1.6}
+#master-app .method-reiss{
+  background:#fff;border:1px solid var(--hair);border-radius:var(--r-m);
+  display:grid;grid-template-columns:1.1fr .9fr;overflow:hidden;
+}
+#master-app .method-reiss-txt{padding:clamp(34px,4vw,56px)}
+#master-app .method-reiss-txt .eyebrow{margin-bottom:18px}
+#master-app .method-reiss-txt h3{
+  font-size:clamp(26px,3vw,38px);font-weight:700;letter-spacing:-0.035em;
+  line-height:1.08;margin-bottom:16px;
+}
+#master-app .method-reiss-txt p{font-size:16.5px;color:var(--ink-60);line-height:1.62;margin-bottom:14px}
+#master-app .method-reiss-txt p:last-of-type{margin-bottom:0}
+#master-app .reiss-16{
+  position:relative;min-height:340px;background:var(--navy);
+  display:grid;place-items:center;overflow:hidden;
+}
+#master-app .reiss-16 svg{width:88%;height:auto}
+@media(max-width:900px){
+  #master-app .method-steps{grid-template-columns:1fr}
+  #master-app .method-reiss{grid-template-columns:1fr}
+  #master-app .reiss-16{min-height:280px}
+}
+
+/* ── Percorso (timeline) ────────────────────────────────── */
+#master-app .path-grid{display:grid;grid-template-columns:.9fr 1.4fr;gap:clamp(36px,6vw,90px);align-items:start}
+#master-app .path-side{position:sticky;top:110px}
+#master-app .path-side .lead{margin-top:16px}
+#master-app .path-side .btn{margin-top:28px}
+#master-app .path-facts{
+  margin-top:34px;border-top:1px solid var(--hair);
+}
+#master-app .path-facts div{
+  display:flex;justify-content:space-between;gap:18px;
+  padding:13px 2px;border-bottom:1px solid var(--hair);font-size:15px;
+}
+#master-app .path-facts span{color:var(--ink-60)}
+#master-app .path-facts b{font-weight:650;text-align:right}
+#master-app .tl{position:relative;padding-left:34px}
+#master-app .tl::before{
+  content:"";position:absolute;left:8px;top:8px;bottom:8px;width:1px;
+  background:var(--hair);
+}
+#master-app .tl-item{position:relative;padding:0 0 52px}
+#master-app .tl-item:last-child{padding-bottom:0}
+#master-app .tl-item::before{
+  content:"";position:absolute;left:-30px;top:9px;width:13px;height:13px;
+  background:#fff;border:2px solid var(--azzurro);border-radius:50%;
+}
+#master-app .tl-item:last-child::before{background:var(--lime);border-color:var(--navy)}
+#master-app .tl-head{display:flex;align-items:center;gap:16px;margin-bottom:12px}
+#master-app .tl-ico{
+  flex:none;width:56px;height:56px;border-radius:var(--r-m);
+  display:grid;place-items:center;color:var(--azzurro);
+  background:var(--bg-tint);border:1px solid var(--hair);
+}
+#master-app.js-on .tl-ico svg *{
+  stroke-dasharray:120;stroke-dashoffset:120;
+}
+#master-app.js-on .tl-item.is-in .tl-ico svg *{
+  animation:m-draw 1.4s var(--ease) .2s forwards;
+}
+@keyframes m-draw{to{stroke-dashoffset:0}}
+#master-app .tl-k{
+  font-size:13.5px;font-weight:750;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--azzurro);display:block;margin-bottom:6px;
+}
+#master-app .tl-item h3{font-size:clamp(24px,2.6vw,31px);font-weight:700;letter-spacing:-0.03em}
+#master-app .tl-item p{font-size:16.5px;color:var(--ink-60);line-height:1.62;max-width:58ch}
+@media(max-width:900px){
+  #master-app .path-grid{grid-template-columns:1fr}
+  #master-app .path-side{position:static}
+}
+
+/* ── Fondatori ──────────────────────────────────────────── */
+#master-app .founders-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+#master-app .f-card{
+  border:1px solid var(--hair);border-radius:var(--r-m);overflow:hidden;background:#fff;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+#master-app .f-card:hover{transform:translateY(-4px);box-shadow:0 24px 50px -30px rgba(11,31,58,.25)}
+#master-app .f-photo{
+  aspect-ratio:4/3;background:var(--bg-tint);position:relative;overflow:hidden;
+}
+#master-app .f-photo img{width:100%;height:100%;object-fit:cover;object-position:top center}
+#master-app .f-body{padding:28px 30px 32px;border-top:3px solid var(--lime)}
+#master-app .f-body .fr{
+  font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--azzurro);display:block;margin-bottom:8px;
+}
+#master-app .f-body h3{font-size:25px;font-weight:700;letter-spacing:-0.03em;margin-bottom:10px}
+#master-app .f-body p{font-size:15.5px;color:var(--ink-60);line-height:1.62}
+#master-app .founders-quote{
+  margin-top:clamp(40px,5vw,60px);text-align:center;
+  font-size:clamp(21px,2.6vw,30px);font-weight:600;letter-spacing:-0.02em;
+  max-width:30ch;margin-inline:auto;text-wrap:balance;
+}
+#master-app .founders-quote .mark{white-space:normal}
+@media(max-width:800px){#master-app .founders-grid{grid-template-columns:1fr}}
+
+/* ── Social proof ───────────────────────────────────────── */
+#master-app .proof{background:var(--bg-tint);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+#master-app .quote-hero{
+  font-size:clamp(24px,3.4vw,42px);font-weight:700;letter-spacing:-0.035em;
+  line-height:1.14;max-width:26ch;text-wrap:balance;margin-bottom:clamp(40px,5vw,60px);
+}
+#master-app .quote-hero em{font-style:normal;background:linear-gradient(transparent 58%,var(--lime) 58%)}
+#master-app .proof-rating{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:30px;
+}
+#master-app .proof-rating .big{font-size:34px;font-weight:750;letter-spacing:-0.03em}
+#master-app .proof-rating .stars{color:#F59E0B;font-size:19px;letter-spacing:2px}
+#master-app .proof-rating span{font-size:14.5px;color:var(--ink-60)}
+#master-app .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+#master-app .t-card{
+  background:#fff;border:1px solid var(--hair);border-radius:var(--r-m);
+  padding:30px 28px;display:flex;flex-direction:column;gap:18px;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+#master-app .t-card:hover{transform:translateY(-3px);box-shadow:0 20px 44px -28px rgba(11,31,58,.28)}
+#master-app .t-card .stars{color:#F59E0B;letter-spacing:2px;font-size:15px}
+#master-app .t-card blockquote{font-size:16px;line-height:1.62;color:var(--ink);flex:1}
+#master-app .t-who{display:flex;align-items:center;gap:13px;border-top:1px solid var(--hair-soft);padding-top:18px}
+#master-app .t-avatar{
+  width:44px;height:44px;border-radius:50%;flex:none;
+  display:grid;place-items:center;font-weight:700;font-size:15px;color:#fff;
+  background:linear-gradient(135deg,var(--azzurro),var(--navy));
+}
+#master-app .t-avatar.av-2{background:linear-gradient(135deg,#7fb61f,#2F80ED)}
+#master-app .t-avatar.av-3{background:linear-gradient(135deg,var(--navy),#2F80ED)}
+#master-app .t-avatar.av-4{background:linear-gradient(135deg,#F59E0B,#e5533d)}
+#master-app .t-avatar.av-5{background:linear-gradient(135deg,#8B5CF6,#2F80ED)}
+#master-app .t-avatar.av-6{background:linear-gradient(135deg,#0d9488,#A3E635)}
+#master-app .t-who b{display:block;font-size:15px;font-weight:650}
+#master-app .t-who span{font-size:13px;color:var(--ink-60)}
+#master-app .t-more{display:none}
+#master-app .t-more.show{display:contents}
+#master-app .t-expand{
+  margin:30px auto 0;display:flex;
+}
+@media(max-width:900px){#master-app .t-grid{grid-template-columns:1fr}}
+
+/* ── FAQ ────────────────────────────────────────────────── */
+#master-app .faq-list{max-width:860px;border-top:1px solid var(--hair)}
+#master-app .faq-item{border-bottom:1px solid var(--hair)}
+#master-app .faq-q{
+  width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;
+  padding:24px 4px;text-align:left;
+  font-size:clamp(17px,1.8vw,20px);font-weight:650;letter-spacing:-0.015em;
+  transition:color .25s var(--ease);
+}
+#master-app .faq-q:hover{color:var(--azzurro)}
+#master-app .faq-x{
+  flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--hair);
+  display:grid;place-items:center;transition:transform .35s var(--ease),background .35s var(--ease),border-color .35s var(--ease);
+}
+#master-app .faq-item.open .faq-x{transform:rotate(45deg);background:var(--lime);border-color:var(--lime);color:var(--navy)}
+#master-app .faq-a{
+  max-height:0;overflow:hidden;transition:max-height .5s var(--ease);
+}
+#master-app .faq-a p{
+  padding:0 4px 26px;font-size:16px;color:var(--ink-60);line-height:1.65;max-width:66ch;
+}
+
+/* ── CTA finale + form ──────────────────────────────────── */
+#master-app .final{padding:clamp(80px,10vw,140px) 0}
+#master-app .final-panel{
+  background:var(--navy);color:#EAF1FB;border-radius:14px;
+  overflow:hidden;position:relative;
+  display:grid;grid-template-columns:1.05fr .95fr;
+}
+#master-app .final-panel::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(55% 70% at 85% 0%,rgba(47,128,237,.4),transparent 60%),
+    radial-gradient(40% 55% at 0% 100%,rgba(163,230,53,.15),transparent 55%);
+}
+#master-app .final-txt{padding:clamp(40px,5vw,72px);position:relative}
+#master-app .final-txt .eyebrow{color:rgba(234,241,251,.65)}
+#master-app .final-txt h2{
+  font-size:clamp(30px,4vw,52px);font-weight:700;letter-spacing:-0.04em;
+  line-height:1.04;margin:20px 0 18px;
+}
+#master-app .final-txt h2 em{font-style:normal;color:var(--lime)}
+#master-app .final-txt p{font-size:17px;color:rgba(234,241,251,.68);line-height:1.6;max-width:46ch}
+#master-app .final-points{margin-top:28px;display:grid;gap:13px}
+#master-app .final-points li{
+  display:flex;gap:12px;align-items:flex-start;font-size:15.5px;color:rgba(234,241,251,.82);
+}
+#master-app .final-points svg{flex:none;margin-top:3px;color:var(--lime)}
+#master-app .final-cd{margin-top:32px;padding-top:26px;border-top:1px solid rgba(234,241,251,.16)}
+#master-app .final-cd .cd-label{display:block;margin-bottom:12px;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+#master-app .seats{margin-top:22px}
+#master-app .seats-txt{
+  display:flex;justify-content:space-between;font-size:13.5px;
+  color:rgba(234,241,251,.75);margin-bottom:9px;font-weight:600;
+}
+#master-app .seats-txt b{color:var(--lime)}
+#master-app .seats-bar{
+  height:8px;border-radius:99px;background:rgba(234,241,251,.14);overflow:hidden;
+}
+#master-app .seats-fill{
+  height:100%;width:0;border-radius:99px;background:var(--grad);
+  transition:width 1.4s var(--ease) .4s;
+}
+#master-app .final-form{
+  position:relative;background:#fff;color:var(--ink);
+  padding:clamp(34px,4vw,52px);
+  display:flex;flex-direction:column;
+}
+#master-app .final-form h3{font-size:23px;font-weight:700;letter-spacing:-0.025em;margin-bottom:6px}
+#master-app .final-form>p{font-size:14.5px;color:var(--ink-60);margin-bottom:24px}
+#master-app .brevo-slot{flex:1;min-height:360px}
+#master-app .brevo-ph{
+  height:100%;min-height:360px;border:2px dashed rgba(47,128,237,.4);border-radius:var(--r-m);
+  display:grid;place-items:center;text-align:center;padding:30px;
+  background:rgba(47,128,237,.04);
+  font-size:14px;color:var(--ink-60);line-height:1.6;
+}
+#master-app .brevo-ph b{display:block;color:var(--azzurro);margin-bottom:6px;font-size:15px}
+#master-app .final-privacy{margin-top:16px;font-size:12.5px;color:var(--ink-40);line-height:1.5}
+@media(max-width:940px){#master-app .final-panel{grid-template-columns:1fr}}
+
+/* ── Footer ─────────────────────────────────────────────── */
+#master-app .footer{border-top:1px solid var(--hair);padding:44px 0 54px}
+#master-app .footer-in{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px}
+#master-app .footer img{height:30px;width:auto}
+#master-app .footer p{font-size:13.5px;color:var(--ink-40)}
+#master-app .footer a:hover{color:var(--azzurro)}
+
+/* ── Override form Brevo (integrazione design MONUMENT) ── */
+#master-app .sib-form{background:transparent;padding:0;text-align:left}
+#master-app #sib-form-container,#master-app #sib-container{background:transparent!important;border:none!important;padding:0!important;max-width:none!important;text-align:left}
+#master-app #sib-form .sib-form-block{padding:7px 0}
+#master-app #sib-form .entry__label{font-family:var(--display);font-size:14px;font-weight:650;color:var(--navy);padding-bottom:5px}
+#master-app #sib-form .input{font-family:var(--display);font-size:15.5px;color:var(--ink);background:#fff;border:1px solid var(--hair);border-radius:var(--r-s);padding:13px 14px;width:100%}
+#master-app #sib-form .input:focus{border-color:var(--azzurro);outline:2px solid rgba(47,128,237,.15)}
+#master-app #sib-form .entry__error{font-family:var(--display);font-size:13px;color:#b02a2a;background:transparent;border:none}
+#master-app #sib-form .sib-form-block__button{font-family:var(--display);font-size:16.5px;font-weight:650;color:#fff;background:var(--navy);border:none;border-radius:var(--r-s);width:100%;padding:16px 24px;cursor:pointer;transition:background .25s,transform .25s}
+#master-app #sib-form .sib-form-block__button:hover{background:var(--azzurro);transform:translateY(-2px)}
+#master-app .sib-form-message-panel{border-radius:var(--r-s);padding:12px 14px;margin-bottom:12px;font-family:var(--display);font-size:14.5px;max-width:none}
+#master-app #error-message{color:#7a1f1f;background:#ffecec;border:1px solid #f3b6b6}
+#master-app #success-message{color:#1d5c33;background:#e9f9ef;border:1px solid #ade2c0}
+</style>
+
+<div id="master-app">
+
+  <!-- ═══ TOPBAR ═══ -->
+  <header class="topbar">
+    <div class="wrap topbar-in">
+      <a href="#top"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/karakter-logo-gradient.svg" alt="Karakter Coaching School"></a>
+      <div class="topbar-meta"><span class="dot"></span> Edizione Ottobre 2026</div>
+      <a class="btn btn-primary" href="#richiedi">Richiedi informazioni</a>
+    </div>
+    <div class="progress" id="scrollProgress"></div>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-in">
+        <span class="eyebrow rv">Master K-Coach Professionisti · Accreditato ICF Level 2</span>
+        <h1 class="h-xl rv rv-d1">Trasforma la tua capacità di capire le persone in una <span class="mark">professione certificata</span>.</h1>
+        <p class="lead rv rv-d2">Smetti di essere "quello bravo ad ascoltare". In <strong>170 ore</strong> diventi coach professionista <strong>certificato ICF</strong>, con un metodo che nessun'altra scuola in Italia può darti: il <span class="acc">Reiss Motivation Profile</span>. Prima impari a leggere te stesso, poi a <span class="lm">far crescere gli altri</span>. Per professione.</p>
+        <div class="hero-cta rv rv-d3">
+          <a class="btn btn-lime" href="#richiedi">Richiedi informazioni <span class="arr">→</span></a>
+        </div>
+        <div class="hero-urgency rv rv-d3">
+          <span class="chip-scarcity"><span class="pulse"></span> Solo 30 posti rimanenti · Early bird attivo</span>
+          <span class="cd" id="cdHero" data-deadline="2026-10-01T09:00:00">
+            <span class="cd-label">L'edizione parte tra</span>
+            <span class="cd-box"><b data-cd="d">–</b><span>giorni</span></span>
+            <span class="cd-box"><b data-cd="h">–</b><span>ore</span></span>
+            <span class="cd-box"><b data-cd="m">–</b><span>min</span></span>
+            <span class="cd-box"><b data-cd="s">–</b><span>sec</span></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="hero-meta rv">
+        <div><b>170 ore</b><span>di formazione completa</span></div>
+        <div><b>ICF Level 2</b><span>144h ACSTH accreditate</span></div>
+        <div><b>Roma + Online</b><span>in presenza e a distanza</span></div>
+        <div><b>Ottobre 2026</b><span>prossima edizione</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ VIDEO ═══ -->
+  <section class="video-sec" id="video">
+    <div class="wrap">
+      <div class="video-frame rv">
+        <!-- ▸▸▸ VIDEO: quando pronto, sostituire il placeholder con:
+        <video controls preload="metadata" poster="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/video-poster.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <source src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/master-intro.mp4" type="video/mp4">
+        </video>
+        -->
+        <img class="video-poster" src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/video-poster.png" alt="Marco Angeletti nello studio Karakter">
+        <div class="video-ph video-ph--img">
+          <button class="play" type="button" aria-label="Guarda il video">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <span class="video-ph-label">Video · Il Master K-Coach in 2 minuti</span>
+        </div>
+      </div>
+      <div class="video-cap rv">
+        <span>Marco Angeletti, Program Owner: cosa significa diventare coach oggi</span>
+        <span>2:00 min</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TRUST LOGHI ═══ -->
+  <section class="trust">
+    <div class="wrap">
+      <p class="trust-label rv">Accreditamenti e partnership</p>
+      <div class="trust-marquee rv rv-d1">
+        <div class="trust-track">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/icf.jpg" alt="International Coaching Federation">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/rmp.jpg" alt="RMP Certified Partner — Reiss Motivation Profile">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/unimilano.png" alt="Università di Milano">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/asi.svg" alt="ASI">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/uaw.png" alt="UAW">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/saef.jpg" alt="SAEF">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/domus.jpg" alt="Domus de Luna">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/icf.jpg" alt="" aria-hidden="true">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/rmp.jpg" alt="" aria-hidden="true">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/unimilano.png" alt="" aria-hidden="true">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/asi.svg" alt="" aria-hidden="true">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/uaw.png" alt="" aria-hidden="true">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/saef.jpg" alt="" aria-hidden="true">
+          <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/domus.jpg" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NUMERI ═══ -->
+  <section class="stats">
+    <div class="wrap stats-in">
+      <div class="stat rv"><b><span data-count="2011">2011</span></b><i class="stat-bar"></i><small>Fondata a Roma<br>15 anni di scuola</small></div>
+      <div class="stat rv rv-d1"><b><span data-count="500">500</span><span class="plus">+</span></b><i class="stat-bar"></i><small>Coach formati<br>nel nostro metodo</small></div>
+      <div class="stat rv rv-d2"><b><span data-count="170">170</span></b><i class="stat-bar"></i><small>Ore di formazione<br>nel Master</small></div>
+      <div class="stat rv rv-d3"><b><span data-count="16">16</span></b><i class="stat-bar"></i><small>Motivazioni mappate<br>dal Test Reiss</small></div>
+    </div>
+  </section>
+
+  <!-- ═══ 01 PROBLEMA ═══ -->
+  <section class="problem">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">01</span>
+        <span class="sec-label">Il problema</span>
+        <h2 class="sec-title h-lg">Il talento non basta. E lo sai.</h2>
+        <p class="lead sec-intro">Ti dicono che <strong>ascolti bene</strong>, che con te le persone si aprono. Lo pensi anche tu, da anni. Ma tra "essere portato" ed <strong>essere un professionista</strong> c'è un passaggio che <span class="lm">nessuno ti regala</span>.</p>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card rv">
+          <span class="pn">/01</span>
+          <h3>Un mercato pieno di corsi improvvisati</h3>
+          <p>Weekend "trasformazionali", <strong>attestati che non valgono nulla</strong>, promesse gonfiate. Chi vuole fare questo mestiere seriamente fatica a distinguere la <span class="lm">formazione vera</span> da quella di facciata.</p>
+        </div>
+        <div class="problem-card rv rv-d1">
+          <span class="pn">/02</span>
+          <h3>Strumenti che semplificano troppo</h3>
+          <p>Test che dividono le persone in <span class="acc">4 colori</span> o 4 categorie. Ma <strong>nessuna persona è riducibile a una casella</strong>. E i tuoi futuri clienti se ne accorgono subito.</p>
+        </div>
+        <div class="problem-card rv rv-d2">
+          <span class="pn">/03</span>
+          <h3>La paura di non essere credibile</h3>
+          <p>"<em>Chi sono io per accompagnare gli altri?</em>" Senza una certificazione seria, un metodo solido e pratica reale, quella domanda resta. <span class="lm">E ti blocca</span>.</p>
+        </div>
+      </div>
+      <img class="prob-img rv" src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/problema-scelta.png" alt="Il momento prima di scegliere" loading="lazy" style="margin-top:clamp(36px,5vw,60px)">
+      <p class="problem-punch rv">Per questo non partiamo dalle tecniche. Partiamo <em>da te</em>.</p>
+    </div>
+  </section>
+
+  <!-- ═══ 02 COSA OTTIENI ═══ -->
+  <section class="sec" id="benefici">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">02</span>
+        <span class="sec-label">Cosa ottieni</span>
+        <h2 class="sec-title h-lg">Non esci con un attestato. Esci con una competenza distintiva.</h2>
+      </div>
+      <div class="benefit-grid">
+        <div class="b-card rv">
+          <div class="b-img"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/benefit-icf.png" alt="Certificazione ICF Level 2" loading="lazy"></div>
+          <div class="b-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13l1.5 8-5-3-5 3 1.5-8"/></svg></div>
+          <h3>Certificazione ICF Level 2</h3>
+          <p>144 ore ACSTH accreditate dalla International Coaching Federation: <strong>il riconoscimento più autorevole al mondo</strong> per la professione di coach. Vali fuori da qui, <span class="lm">ovunque</span>.</p>
+          <span class="tag">Riconosciuta a livello internazionale</span>
+        </div>
+        <div class="b-card rv rv-d1">
+          <div class="b-img"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/benefit-reiss.png" alt="La mappa delle 16 motivazioni" loading="lazy"></div>
+          <div class="b-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></div>
+          <h3>Il Reiss come strumento professionale</h3>
+          <p>Impari a usare il Reiss Motivation Profile, <strong>la mappa delle 16 motivazioni fondamentali</strong>: prima su di te, poi sui tuoi clienti. <span class="acc">Nessun'altra scuola in Italia</span> lo integra nel percorso.</p>
+          <span class="tag">Unico in Italia</span>
+        </div>
+        <div class="b-card rv rv-d2">
+          <div class="b-img"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/benefit-sessione.png" alt="Sessione di coaching" loading="lazy"></div>
+          <div class="b-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 114 4L7.5 20.5 2 22l1.5-5.5z"/></svg></div>
+          <h3>Pratica supervisionata e mentoring</h3>
+          <p>Sessioni reali, osservate e restituite da coach senior. Non teoria da manuale: <strong>ore di pratica vera</strong> con feedback puntuale, finché condurre una sessione non diventa <span class="lm">naturale</span>.</p>
+        </div>
+        <div class="b-card rv rv-d3">
+          <div class="b-img"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/benefit-community.png" alt="La community di coach Karakter" loading="lazy"></div>
+          <div class="b-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <h3>Una community di 500+ coach</h3>
+          <p>Entri in una rete di alumni che cresce <strong>dal 2011</strong>: supervisioni, K-Day, occasioni professionali. Il percorso finisce, <span class="lm">la scuola resta con te</span>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 03 A CHI È RIVOLTO ═══ -->
+  <section class="sec" id="perchi" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">03</span>
+        <span class="sec-label">A chi è rivolto</span>
+        <h2 class="sec-title h-lg">Se ti riconosci qui, sei nel posto giusto.</h2>
+      </div>
+      <div class="who-wrap">
+      <div class="who-list rv">
+        <div class="who-item">
+          <span class="who-num">/01</span>
+          <div>
+            <h3>Vuoi diventare coach professionista</h3>
+            <p>Cerchi una <strong>certificazione ICF seria</strong> e un metodo che ti distingua davvero sul mercato, non l'ennesimo attestato da appendere.</p>
+          </div>
+          <span class="who-check"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        </div>
+        <div class="who-item">
+          <span class="who-num">/02</span>
+          <div>
+            <h3>Sei un professionista delle persone</h3>
+            <p>HR, manager, formatore, psicologo: vuoi aggiungere una competenza rara, <strong>leggere le motivazioni profonde</strong> di chi hai davanti. E certificarla.</p>
+          </div>
+          <span class="who-check"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        </div>
+        <div class="who-item">
+          <span class="who-num">/03</span>
+          <div>
+            <h3>Sei in una fase di transizione</h3>
+            <p>Vuoi ripartire da una domanda seria (<em>chi sono, davvero?</em>) e costruirci sopra una <strong>seconda carriera</strong> con fondamenta solide.</p>
+          </div>
+          <span class="who-check"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        </div>
+        <div class="who-item">
+          <span class="who-num">/04</span>
+          <div>
+            <h3>Hai già fatto formazione, ma ti manca il metodo</h3>
+            <p>Hai seguito corsi, letto libri, magari coachato in modo informale. Ora vuoi <strong>la struttura, la pratica supervisionata e la credenziale</strong> che mancano.</p>
+          </div>
+          <span class="who-check"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        </div>
+      </div>
+      <div class="who-side rv rv-d1">
+        <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/perchi-percorsi.png" alt="Persone diverse, un unico percorso" loading="lazy">
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 04 IL METODO ═══ -->
+  <section class="sec method" id="metodo">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">04</span>
+        <span class="sec-label">Il metodo Karakter</span>
+        <h2 class="sec-title h-lg">Un sistema in tre movimenti.</h2>
+        <p class="lead sec-intro">Ogni persona è un Karakter: un intreccio irripetibile di motivazioni, bisogni e potenzialità. Il nostro metodo ti insegna a leggerlo, <span class="lm">a partire dal tuo</span>.</p>
+      </div>
+      <div class="method-steps">
+        <div class="m-step rv">
+          <span class="ms-k">Movimento I</span>
+          <h3>Scopri</h3>
+          <p>Il Test Reiss rivela il tuo profilo di 16 motivazioni. Ti vedi per come sei fatto <strong>davvero</strong>: è il punto di partenza di tutto il percorso.</p>
+        </div>
+        <div class="m-step rv rv-d1">
+          <span class="ms-k">Movimento II</span>
+          <h3>Comprendi</h3>
+          <p>Il Reiss che hai sperimentato su di te diventa lo strumento con cui leggerai i tuoi clienti. Da "conosco me stesso" a "<strong>so leggere gli altri</strong>".</p>
+        </div>
+        <div class="m-step rv rv-d2">
+          <span class="ms-k">Movimento III</span>
+          <h3>Fai Crescere</h3>
+          <p>Entri nel mercato con una competenza distintiva: sai che ogni persona è unica e sai come lavorare, concretamente, con quella unicità.</p>
+        </div>
+      </div>
+      <div class="method-reiss rv">
+        <div class="method-reiss-txt">
+          <span class="eyebrow">Reiss Motivation Profile</span>
+          <h3>16 motivazioni, non 4 colori.</h3>
+          <p>Dove altri strumenti dividono le persone in quattro categorie, il Reiss Motivation Profile mappa <strong>sedici motivazioni fondamentali</strong>. È la differenza tra semplificare e <em>comprendere davvero</em>.</p>
+          <p><strong>Siamo l'unica scuola in Italia a integrarlo nel percorso formativo.</strong> Il Reiss non giudica: rivela. E non esiste un Karakter sbagliato.</p>
+        </div>
+        <div class="reiss-16" aria-hidden="true">
+          <svg viewBox="0 0 400 300" id="reissRadar" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 05 COME SI SVOLGE ═══ -->
+  <section class="sec" id="percorso">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">05</span>
+        <span class="sec-label">Come si svolge</span>
+        <h2 class="sec-title h-lg">Il percorso, passo per passo.</h2>
+      </div>
+      <div class="path-grid">
+        <div class="path-side rv">
+          <h3 class="h-md">170 ore che ti cambiano il modo di lavorare con le persone.</h3>
+          <p class="lead">Aula a Roma e online, in un ritmo <strong>pensato per chi lavora</strong>. Piccoli gruppi, tanta pratica, <span class="lm">zero teoria fine a sé stessa</span>.</p>
+          <img class="path-img rv" src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/aula-karakter.jpg" alt="L'aula Karakter durante una lezione" loading="lazy" style="margin-top:28px">
+          <div class="path-facts">
+            <div><span>Durata</span><b>170 ore complessive</b></div>
+            <div><span>Accreditamento</span><b>ICF Level 2 · 144h ACSTH</b></div>
+            <div><span>Formato</span><b>Roma (Viale G. Rossini) + online</b></div>
+            <div><span>Prossima edizione</span><b>Ottobre 2026</b></div>
+            <div><span>Agevolazioni</span><b>Under 30 · Over 60 · Early bird</b></div>
+          </div>
+          <a class="btn btn-primary" href="#richiedi">Richiedi il programma completo <span class="arr">→</span></a>
+        </div>
+        <div class="tl">
+          <div class="tl-item rv">
+            <div class="tl-head">
+              <span class="tl-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg></span>
+              <div>
+                <span class="tl-k">Fase 1 · Le fondamenta</span>
+                <h3>Parti da te: il tuo Karakter</h3>
+              </div>
+            </div>
+            <p>Fai il Test Reiss e lavori sul tuo profilo con una restituzione individuale. Scopri le tue 16 motivazioni e capisci perché un coach deve conoscere sé stesso prima di accompagnare gli altri.</p>
+          </div>
+          <div class="tl-item rv">
+            <div class="tl-head">
+              <span class="tl-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-9 8.35 8.5 8.5 0 01-3.4-.65L3 21l1.8-5.6A8.38 8.38 0 013.5 11.5a8.5 8.5 0 018.5-8.5 8.38 8.38 0 019 8.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg></span>
+              <div>
+                <span class="tl-k">Fase 2 · Le competenze</span>
+                <h3>Il cuore del coaching professionale</h3>
+              </div>
+            </div>
+            <p>Le competenze chiave ICF: ascolto profondo, domande potenti, struttura della sessione, alleanza con il cliente. Ogni modulo alterna teoria essenziale e pratica immediata in aula.</p>
+          </div>
+          <div class="tl-item rv">
+            <div class="tl-head">
+              <span class="tl-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="3.5"/></svg></span>
+              <div>
+                <span class="tl-k">Fase 3 · Lo strumento</span>
+                <h3>Il Reiss nelle tue mani</h3>
+              </div>
+            </div>
+            <p>Impari a usare il Reiss Motivation Profile come strumento professionale: leggere un profilo, restituirlo, costruirci sopra un percorso di coaching. La competenza che ti distingue da ogni altro coach.</p>
+          </div>
+          <div class="tl-item rv">
+            <div class="tl-head">
+              <span class="tl-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="3.5"/><circle cx="16.5" cy="9.5" r="2.8"/><path d="M2.5 20c0-3.3 2.5-5.3 5.5-5.3s5.5 2 5.5 5.3M14.5 15.4c2.8.2 5 2 5 4.6"/></svg></span>
+              <div>
+                <span class="tl-k">Fase 4 · La pratica</span>
+                <h3>Sessioni reali, supervisionate</h3>
+              </div>
+            </div>
+            <p>Coaching vero con clienti veri, sotto la supervisione di coach senior. Mentoring individuale e di gruppo, feedback puntuali, finché la qualità non diventa costanza.</p>
+          </div>
+          <div class="tl-item rv">
+            <div class="tl-head">
+              <span class="tl-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M9 4.5l3-2 3 2M15 13.5l1.5 8-4.5-2.7-4.5 2.7 1.5-8"/></svg></span>
+              <div>
+                <span class="tl-k">Fase 5 · La professione</span>
+                <h3>Certificazione e ingresso nella community</h3>
+              </div>
+            </div>
+            <p>Completi il percorso accreditato ICF Level 2 e entri nella rete alumni Karakter: supervisioni continue, K-Day, occasioni professionali. Da qui in poi, sei un collega.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 06 DA CHI ═══ -->
+  <section class="sec" id="fondatori" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">06</span>
+        <span class="sec-label">Da chi imparerai</span>
+        <h2 class="sec-title h-lg">Il carattere di una scuola è fatto dalle sue persone.</h2>
+      </div>
+      <div class="founders-grid">
+        <div class="f-card rv">
+          <div class="f-photo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/marco.png" alt="Marco Angeletti"></div>
+          <div class="f-body">
+            <span class="fr">Fondatore · Program Owner · Coach ICF PCC</span>
+            <h3>Marco Angeletti</h3>
+            <p>Guida il percorso formativo di Karakter dal 2011. In quindici anni ha costruito un metodo che unisce rigore scientifico e profondità umana, formando oltre 500 coach professionisti.</p>
+          </div>
+        </div>
+        <div class="f-card rv rv-d1">
+          <div class="f-photo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/alessandra.png" alt="Alessandra Abbattista"></div>
+          <div class="f-body">
+            <span class="fr">Co-fondatrice</span>
+            <h3>Alessandra Abbattista</h3>
+            <p>Insieme a Marco ha fondato Karakter, dando forma a una scuola che parte dalla persona prima che dalla tecnica. È la voce che ti accompagna dentro e fuori dall'aula.</p>
+          </div>
+        </div>
+      </div>
+      <p class="founders-quote rv">«Non parliamo dalla torre d'avorio. <span class="mark">Ci sediamo di fronte a te.</span>»</p>
+    </div>
+  </section>
+
+  <!-- ═══ 07 SOCIAL PROOF ═══ -->
+  <section class="sec proof" id="voci">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">07</span>
+        <span class="sec-label">Le voci di chi l'ha fatto</span>
+        <h2 class="sec-title h-lg">500+ coach prima di te.</h2>
+      </div>
+      <p class="quote-hero rv">Quindici anni, <em>zero scorciatoie</em>: le parole dei nostri alumni valgono più delle nostre.</p>
+      <div class="proof-rating rv">
+        <span class="big">4,9<span style="font-size:.55em;color:var(--ink-40)">/5</span></span>
+        <span class="stars">★★★★★</span>
+        <span>Valutazione media degli alumni del Master K-Coach</span>
+      </div>
+      <!-- ▸▸▸ TESTIMONIANZE: nomi/testi realistici ma DA VALIDARE o sostituire con recensioni vere -->
+      <div class="t-grid">
+        <div class="t-card rv">
+          <span class="stars">★★★★★</span>
+          <blockquote>«Sono arrivata al Master dopo dieci anni in azienda, con il terrore di buttare 170 ore. Invece già dal primo weekend ho capito la differenza: qui non ti insegnano frasi fatte, ti smontano e ti rimontano. Il Reiss su me stessa è stato uno specchio scomodo. E la cosa più utile che abbia mai fatto per il mio lavoro.»</blockquote>
+          <div class="t-who">
+            <span class="t-avatar">FR</span>
+            <div><b>Federica Romano</b><span>Da HR Manager a Coach professionista · Alumni 2024</span></div>
+          </div>
+        </div>
+        <div class="t-card rv rv-d1">
+          <span class="stars">★★★★★</span>
+          <blockquote>«Avevo già frequentato un altro corso di coaching, di quelli da weekend "motivazionale". Qui è un altro pianeta: pratica vera, supervisione vera, feedback che a volte bruciano ma ti fanno crescere. Sono uscito con clienti già attivi, non con un attestato da cassetto.»</blockquote>
+          <div class="t-who">
+            <span class="t-avatar av-2">LM</span>
+            <div><b>Lorenzo Marini</b><span>Business Coach, Milano · Alumni 2023</span></div>
+          </div>
+        </div>
+        <div class="t-card rv rv-d2">
+          <span class="stars">★★★★★</span>
+          <blockquote>«La cosa che nessuno ti dice: il valore vero è la community. A due anni dal diploma sento ancora Marco e Alessandra, faccio supervisioni con i colleghi di corso e i primi clienti sono arrivati proprio dalla rete Karakter. Non compri un corso, entri in una scuola.»</blockquote>
+          <div class="t-who">
+            <span class="t-avatar av-3">GC</span>
+            <div><b>Giulia Conti</b><span>Executive Coach, Roma · Alumni 2022</span></div>
+          </div>
+        </div>
+        <div class="t-more" id="tMore">
+        <div class="t-card rv">
+          <span class="stars">★★★★★</span>
+          <blockquote>«A 52 anni pensavo fosse tardi per ricominciare. Il percorso mi ha dato metodo, credenziale e, soprattutto, la sicurezza di presentarmi come professionista. Oggi affianco manager della mia ex industria: quello che prima facevo gratis al bar, ora è il mio lavoro.»</blockquote>
+          <div class="t-who">
+            <span class="t-avatar av-4">PB</span>
+            <div><b>Paolo Bernardi</b><span>Career Coach, ex dirigente · Alumni 2023</span></div>
+          </div>
+        </div>
+        <div class="t-card rv rv-d1">
+          <span class="stars">★★★★★</span>
+          <blockquote>«Da psicologa cercavo uno strumento in più, non l'ennesima etichetta. Il Reiss con le sue 16 motivazioni è rigoroso, niente a che vedere con i test "a 4 colori" che giravano nei corsi che avevo visto. Lo uso ogni settimana con i miei clienti.»</blockquote>
+          <div class="t-who">
+            <span class="t-avatar av-5">SDA</span>
+            <div><b>Silvia D'Angelo</b><span>Psicologa e Coach · Alumni 2024</span></div>
+          </div>
+        </div>
+        <div class="t-card rv rv-d2">
+          <span class="stars">★★★★★</span>
+          <blockquote>«Lavoro a tempo pieno e ho seguito quasi tutto in versione mista Roma + online: il ritmo è pensato per chi ha una vita vera. In aula eravamo pochi, seguiti uno a uno. Se stai valutando più scuole, fai come me: fatti la call conoscitiva e confronta. Poi mi dirai.»</blockquote>
+          <div class="t-who">
+            <span class="t-avatar av-6">AF</span>
+            <div><b>Andrea Fabbri</b><span>Team Leader IT e Coach · Alumni 2025</span></div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <button class="btn btn-ghost t-expand rv" type="button" id="tExpand">Leggi altre recensioni ↓</button>
+    </div>
+  </section>
+
+  <!-- ═══ 08 FAQ ═══ -->
+  <section class="sec" id="faq">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">08</span>
+        <span class="sec-label">Domande frequenti</span>
+        <h2 class="sec-title h-lg">Quello che ci chiedono tutti.</h2>
+      </div>
+      <div class="faq-list rv">
+        <div class="faq-item">
+          <button class="faq-q" type="button">Serve una laurea o un'esperienza pregressa per iscriversi?<span class="faq-x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="faq-a"><p>No. Il Master è progettato per partire dalle fondamenta: quello che serve è la motivazione a lavorare seriamente, prima di tutto su te stesso. In aula troverai profili diversissimi: ed è una ricchezza, non un limite.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">È compatibile con un lavoro a tempo pieno?<span class="faq-x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="faq-a"><p>Sì: il calendario è costruito per chi lavora, con un ritmo sostenibile distribuito nei mesi e la possibilità di seguire parte del percorso online. La maggior parte dei nostri alumni ha completato il Master lavorando.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Che valore ha la certificazione ICF Level 2?<span class="faq-x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="faq-a"><p>La International Coaching Federation è l'organismo di accreditamento più autorevole al mondo per il coaching. Il Level 2 (144h ACSTH) è il percorso completo: ti prepara alla credenziale ICF ed è riconosciuto a livello internazionale, da aziende e clienti.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Cosa rende diverso questo Master dagli altri?<span class="faq-x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="faq-a"><p>Tre cose: il Reiss Motivation Profile integrato nel percorso (unici in Italia), un metodo che parte da te prima che dalle tecniche, e quindici anni di scuola con oltre 500 coach formati. Non un weekend trasformazionale: una formazione professionale vera.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Quanto costa il Master?<span class="faq-x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="faq-a"><p>L'investimento dipende dal tuo profilo: sono previste agevolazioni per under 30 e over 60 e condizioni early bird per chi si iscrive in anticipo. Richiedi informazioni e ti presenteremo il quadro completo in una call conoscitiva, senza alcun impegno.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Cosa succede dopo che invio la richiesta?<span class="faq-x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="faq-a"><p>Ricevi subito il programma completo via email e ti contattiamo entro 48 ore per fissare una call conoscitiva con la scuola: ci racconti il tuo percorso, ti raccontiamo il Master, e capiamo insieme se è la strada giusta per te.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 09 CTA FINALE + FORM ═══ -->
+  <section class="final" id="richiedi">
+    <div class="wrap">
+      <div class="final-panel rv">
+        <div class="final-txt">
+          <span class="eyebrow" style="color:rgba(234,241,251,.65)">Edizione Ottobre 2026 · Posti limitati</span>
+          <h2>Il primo passo è una <em>richiesta di informazioni</em>. Il resto lo costruiamo insieme.</h2>
+          <p>Compila il form: ricevi il <strong>programma completo</strong> del Master K-Coach e una <strong>call conoscitiva</strong> con la scuola. Nessun impegno, nessuna pressione: solo le informazioni che ti servono per decidere.</p>
+          <ul class="final-points">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg> Programma completo delle 170 ore via email</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg> Call conoscitiva con la scuola entro 48 ore</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg> Dettagli su agevolazioni under 30 / over 60 ed early bird</li>
+          </ul>
+          <div class="final-cd">
+            <span class="cd-label">L'edizione di Ottobre 2026 parte tra</span>
+            <span class="cd cd--big" data-deadline="2026-10-01T09:00:00">
+              <span class="cd-box"><b data-cd="d">–</b><span>giorni</span></span>
+              <span class="cd-box"><b data-cd="h">–</b><span>ore</span></span>
+              <span class="cd-box"><b data-cd="m">–</b><span>min</span></span>
+              <span class="cd-box"><b data-cd="s">–</b><span>sec</span></span>
+            </span>
+            <div class="seats">
+              <div class="seats-txt"><span>Posti rimanenti per questa edizione</span><b>30</b></div>
+              <div class="seats-bar"><div class="seats-fill" data-fill="40"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="final-form">
+          <h3>Richiedi informazioni</h3>
+          <p>Edizione Ottobre 2026 · Roma + Online</p>
+          <!-- FORM BREVO "Lead Master K-Coach" — embed ufficiale (prefissi ridotti ai principali) -->
+          <div class="brevo-slot" id="masterBrevo">
+            <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+            <div class="sib-form">
+              <div id="sib-form-container" class="sib-form-container">
+                <div id="error-message" class="sib-form-message-panel"><div class="sib-form-message-panel__text sib-form-message-panel__text--center"><span class="sib-form-message-panel__inner-text">La tua richiesta non può essere inviata. Controlla i campi e riprova.</span></div></div>
+                <div></div>
+                <div id="success-message" class="sib-form-message-panel"><div class="sib-form-message-panel__text sib-form-message-panel__text--center"><span class="sib-form-message-panel__inner-text">Richiesta ricevuta. Ti contatteremo nelle prossime 48 ore.</span></div></div>
+                <div></div>
+                <div id="sib-container" class="sib-container--large sib-container--vertical">
+                  <form id="sib-form" method="POST" action="https://b9cb86d9.sibforms.com/serve/MUIFAB2BgwfdmKydcbvvtFl4-ugllO4F81ujfG-Bx6O3LT7DLs-cM4uwPC9wVJ0R6tsr0--6n-yBrA4f2owDx6Kw2v7llMiaoHBKwLZ9ma4LsX08phGBXQk0BBa-YALuW-rDpz8MQN6rI1wwnSWT1pSekSKDS_Q-1JwYlmkcRcQVqDIzGMjTVgQopLFFlaY02KWFc1b6wVW1NlHXZg==" data-type="subscription">
+                    <div class="sib-input sib-form-block"><div class="form__entry entry_block"><div class="form__label-row">
+                      <label class="entry__label" for="NOME" data-required="*">Il tuo nome</label>
+                      <div class="entry__field"><input class="input" maxlength="200" type="text" id="NOME" name="NOME" autocomplete="off" placeholder="Nome" data-required="true" required /></div>
+                    </div><label class="entry__error entry__error--primary"></label></div></div>
+                    <div class="sib-input sib-form-block"><div class="form__entry entry_block"><div class="form__label-row">
+                      <label class="entry__label" for="EMAIL" data-required="*">La tua email</label>
+                      <div class="entry__field"><input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" value="" placeholder="nome@email.com" data-required="true" required /></div>
+                    </div><label class="entry__error entry__error--primary"></label></div></div>
+                    <div class="sib-sms-field sib-form-block"><div class="form__entry entry_block"><div class="form__label-row">
+                      <label class="entry__label" for="SMS" data-required="*">Il tuo numero</label>
+                      <div class="sib-sms-input-wrapper" style="direction:ltr">
+                        <div class="sib-sms-input" data-placeholder="SMS" data-required="true" data-country-code="IT" data-value="" data-attributename="SMS">
+                          <div class="entry__field">
+                            <select class="input" name="SMS__COUNTRY_CODE" data-required="true">
+                              <option value="+39" selected>+39 IT</option>
+                              <option value="+41">+41 CH</option>
+                              <option value="+44">+44 GB</option>
+                              <option value="+33">+33 FR</option>
+                              <option value="+49">+49 DE</option>
+                              <option value="+34">+34 ES</option>
+                              <option value="+43">+43 AT</option>
+                              <option value="+32">+32 BE</option>
+                              <option value="+31">+31 NL</option>
+                              <option value="+351">+351 PT</option>
+                              <option value="+353">+353 IE</option>
+                              <option value="+378">+378 SM</option>
+                              <option value="+1">+1 US</option>
+                            </select>
+                          </div>
+                          <div class="entry__field" style="width:100%"><input type="tel" class="input" id="SMS" name="SMS" autocomplete="off" placeholder="3xx xxx xxxx" data-required="true" required /></div>
+                        </div>
+                      </div>
+                    </div><label class="entry__error entry__error--primary"></label><label class="entry__error entry__error--secondary"></label></div></div>
+                    <div class="sib-form-block" style="text-align:center;padding-top:14px">
+                      <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">
+                        <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512"><path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z"/></svg>
+                        Richiedi informazioni
+                      </button>
+                    </div>
+                    <input type="text" name="email_address_check" value="" class="input--hidden">
+                    <input type="hidden" name="locale" value="it">
+                  </form>
+                </div>
+              </div>
+            </div>
+            <script>
+              window.REQUIRED_CODE_ERROR_MESSAGE = 'Scegli un prefisso paese';
+              window.LOCALE = 'it';
+              window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "Le informazioni fornite non sono valide. Controlla il formato del campo e riprova.";
+              window.REQUIRED_ERROR_MESSAGE = "Questo campo non può essere lasciato vuoto. ";
+              window.GENERIC_INVALID_MESSAGE = "Le informazioni fornite non sono valide. Controlla il formato del campo e riprova.";
+              window.INVALID_NUMBER = window.GENERIC_INVALID_MESSAGE;
+              window.INVALID_DATE = "Inserisci una data valida";
+              window.REQUIRED_MULTISELECT_MESSAGE = 'Seleziona almeno 1 opzione';
+              window.translation = { common: { selectedList: '{quantity} lista selezionata', selectedLists: '{quantity} liste selezionate', selectedOption: '{quantity} selezionato', selectedOptions: '{quantity} selezionati' } };
+              var AUTOHIDE = Boolean(0);
+            </script>
+            <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+          </div>
+          <p class="final-privacy">Inviando il form accetti la nostra privacy policy. I tuoi dati non verranno mai ceduti a terzi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="wrap footer-in">
+      <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/master-landing/img/karakter-logo-gradient.svg" alt="Karakter Coaching School">
+      <p>Karakter Coaching School · Roma, Viale G. Rossini · dal 2011 · Accreditata ICF Level 2</p>
+      <p><a href="#top">Torna su ↑</a></p>
+    </div>
+    <div class="wrap" style="margin-top:28px"><hr class="sig"></div>
+  </footer>
+
+</div>
+
+<script>
+/* ═══ KARAKTER · LP Master — script v2 (inline) ═══ */
+(function () {
+  var app = document.getElementById('master-app');
+  if (!app) return;
+  app.classList.add('js-on'); /* senza JS la pagina resta interamente visibile */
+
+  /* ── Reveal on scroll + marker sweep ── */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('is-in');
+      e.target.querySelectorAll('.mark').forEach(function (m) { m.classList.add('is-on'); });
+      if (e.target.classList.contains('mark')) e.target.classList.add('is-on');
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.18, rootMargin: '0px 0px -40px 0px' });
+
+  app.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+  app.querySelectorAll('.mark').forEach(function (el) { io.observe(el); });
+
+  /* ── Progress bar topbar ── */
+  var prog = document.getElementById('scrollProgress');
+  if (prog) {
+    var onScroll = function () {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      prog.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  /* ── Count-up numeri ── */
+  var counters = app.querySelectorAll('[data-count]');
+  var cio = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      cio.unobserve(e.target);
+      var el = e.target, target = parseInt(el.getAttribute('data-count'), 10);
+      var start = null, dur = 1400;
+      var from = target > 1000 ? target - 90 : 0;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = String(Math.round(from + (target - from) * eased));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }, { threshold: 0.6 });
+  counters.forEach(function (el) { cio.observe(el); });
+
+  /* ── FAQ accordion ── */
+  app.querySelectorAll('.faq-item').forEach(function (item) {
+    var q = item.querySelector('.faq-q');
+    var a = item.querySelector('.faq-a');
+    q.addEventListener('click', function () {
+      var open = item.classList.contains('open');
+      app.querySelectorAll('.faq-item.open').forEach(function (o) {
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = '0px';
+      });
+      if (!open) {
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  /* ── Smooth scroll anchor (compensa topbar) ── */
+  app.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (ev) {
+      var id = link.getAttribute('href');
+      if (id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      ev.preventDefault();
+      var y = target.getBoundingClientRect().top + window.pageYOffset - 76;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    });
+  });
+
+  /* ── Radar Reiss: 16 punte generate via SVG ── */
+  var radar = document.getElementById('reissRadar');
+  if (radar) {
+    var NS = 'http://www.w3.org/2000/svg';
+    var cx = 200, cy = 150, R = 118;
+    var vals = [.82, .55, .9, .48, .7, .62, .95, .4, .75, .58, .88, .5, .68, .8, .45, .72];
+    var g = function (tag, attrs) {
+      var el = document.createElementNS(NS, tag);
+      for (var k in attrs) el.setAttribute(k, attrs[k]);
+      return el;
+    };
+    [0.33, 0.66, 1].forEach(function (r) {
+      radar.appendChild(g('circle', { cx: cx, cy: cy, r: R * r, fill: 'none', stroke: 'rgba(234,241,251,.14)', 'stroke-width': 1 }));
+    });
+    for (var i = 0; i < 16; i++) {
+      var ang = (Math.PI * 2 * i) / 16 - Math.PI / 2;
+      radar.appendChild(g('line', {
+        x1: cx, y1: cy,
+        x2: cx + Math.cos(ang) * R, y2: cy + Math.sin(ang) * R,
+        stroke: 'rgba(234,241,251,.1)', 'stroke-width': 1
+      }));
+    }
+    var pts = vals.map(function (v, i) {
+      var ang = (Math.PI * 2 * i) / 16 - Math.PI / 2;
+      return (cx + Math.cos(ang) * R * v) + ',' + (cy + Math.sin(ang) * R * v);
+    }).join(' ');
+    var grad = g('linearGradient', { id: 'rg', x1: '0', y1: '0', x2: '1', y2: '1' });
+    grad.appendChild(g('stop', { offset: '0%', 'stop-color': '#2F80ED', 'stop-opacity': '.55' }));
+    grad.appendChild(g('stop', { offset: '100%', 'stop-color': '#A3E635', 'stop-opacity': '.4' }));
+    var defs = g('defs', {}); defs.appendChild(grad); radar.appendChild(defs);
+    radar.appendChild(g('polygon', { points: pts, fill: 'url(#rg)', stroke: '#A3E635', 'stroke-width': 1.5, 'stroke-linejoin': 'round' }));
+    vals.forEach(function (v, i) {
+      var ang = (Math.PI * 2 * i) / 16 - Math.PI / 2;
+      radar.appendChild(g('circle', {
+        cx: cx + Math.cos(ang) * R * v, cy: cy + Math.sin(ang) * R * v,
+        r: 3, fill: '#A3E635'
+      }));
+    });
+    var label = g('text', { x: cx, y: cy + 4, 'text-anchor': 'middle', fill: 'rgba(234,241,251,.85)', 'font-size': '13', 'font-weight': '700', 'letter-spacing': '2', 'font-family': 'Inter Tight, sans-serif' });
+    label.textContent = '16 MOTIVAZIONI';
+    radar.appendChild(label);
+  }
+
+  /* ── Countdown (target in data-deadline, ISO) ── */
+  var cds = app.querySelectorAll('.cd[data-deadline]');
+  if (cds.length) {
+    var pad = function (n) { return n < 10 ? '0' + n : String(n); };
+    var tick = function () {
+      cds.forEach(function (cd) {
+        var diff = new Date(cd.getAttribute('data-deadline')).getTime() - Date.now();
+        if (diff < 0) diff = 0;
+        var d = Math.floor(diff / 86400000),
+            h = Math.floor(diff / 3600000) % 24,
+            m = Math.floor(diff / 60000) % 60,
+            s = Math.floor(diff / 1000) % 60;
+        var set = function (k, v) {
+          var el = cd.querySelector('[data-cd="' + k + '"]');
+          if (el) el.textContent = v;
+        };
+        set('d', d); set('h', pad(h)); set('m', pad(m)); set('s', pad(s));
+      });
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  /* ── Recensioni: espandi ── */
+  var tExpand = document.getElementById('tExpand');
+  var tMore = document.getElementById('tMore');
+  if (tExpand && tMore) {
+    tExpand.addEventListener('click', function () {
+      tMore.classList.add('show');
+      tMore.querySelectorAll('.rv').forEach(function (el) { el.classList.add('is-in'); });
+      tExpand.style.display = 'none';
+    });
+  }
+
+  /* ── Barra posti disponibili ── */
+  var fill = app.querySelector('.seats-fill');
+  if (fill) {
+    var fio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        fill.style.width = (fill.getAttribute('data-fill') || 60) + '%';
+        fio.unobserve(e.target);
+      });
+    }, { threshold: 0.4 });
+    fio.observe(fill);
+  }
+
+  /* ── Video: il play scrolla al form finché non c'è il video ── */
+  var play = app.querySelector('.play');
+  if (play) {
+    play.addEventListener('click', function () {
+      var v = app.querySelector('.video-frame video');
+      if (v) { v.play(); } else {
+        var t = document.getElementById('richiedi');
+        if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 76, behavior: 'smooth' });
+      }
+    });
+  }
+})();
+</script>

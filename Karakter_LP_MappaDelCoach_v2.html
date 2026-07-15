@@ -1,0 +1,484 @@
+<!-- KARAKTER COACHING SCHOOL — LP "La Mappa del Coach" · DESIGN SYSTEM "ATLANTE" v2
+     Template: Elementor Canvas → widget HTML full-width
+     Sistema: carta #F6F4EF, inchiostro navy #0B1F3A, isoipse azzurre #2F80ED, lime #A3E635 solo evidenziatore
+     Font: Fraunces (display) · Source Serif 4 (testo) · IBM Plex Mono (label)
+     Versione: 2.0 — Luglio 2026 — SOSTITUISCE la v1 (dark)
+
+     ⚠️ IMMAGINI: servite via jsDelivr dal repo GitHub Haise02/scopri-il-tuo-karakter, cartella mappa/.
+     Il commit "Add immagini LP + TYP Mappa del Coach" è già pronto in locale: fai SOLO `git push origin main`
+     dalla cartella Karakter (o GitHub Desktop → Push). Dopo il push le immagini sono live in 1-2 minuti.
+
+     ✅ FORM BREVO INTEGRATO (14/07): embed ufficiale "Mappa del Coach — Download" restilizzato Atlante,
+        prefissi telefonici ridotti ai principali. Cerca "mappaBrevo".
+     ⚠️ Resta da fare su Brevo: automation lista #8 → 1 min → Email 0 (vedi Karakter_MappaDelCoach_EmailSequence.docx)
+-->
+<div id="atlante-app">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+#atlante-app *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+#atlante-app div,#atlante-app p,#atlante-app h1,#atlante-app h2,#atlante-app h3,#atlante-app h4,#atlante-app span,#atlante-app li,#atlante-app a,#atlante-app button{color:inherit;font-family:inherit;}
+#atlante-app img{max-width:100%;display:block;}
+
+#atlante-app{
+  --paper:#F6F4EF; --paper2:#EFECE4; --ink:#0B1F3A; --blue:#2F80ED; --lime:#A3E635;
+  --gray:#5A6B7D; --hair:#C8CFD6;
+  --f-disp:'Fraunces',Georgia,serif;
+  --f-body:'Source Serif 4',Georgia,serif;
+  --f-mono:'IBM Plex Mono',monospace;
+  background:var(--paper); font-family:var(--f-body); color:var(--ink);
+  line-height:1.65; font-size:17px;
+}
+#atlante-app .inner{max-width:1080px;margin:0 auto;padding:0 24px;}
+#atlante-app .mono{font-family:var(--f-mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;}
+#atlante-app .mk{background:var(--lime);padding:0 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+
+/* contour bg */
+#atlante-app .contours{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'%3E%3Cg fill='none' stroke='%232F80ED' stroke-opacity='.12' stroke-width='1'%3E%3Cpath d='M-20 390 C90 350 100 260 200 250 S370 300 500 235'/%3E%3Cpath d='M-20 425 C100 385 125 285 225 275 S385 330 500 275'/%3E%3Cpath d='M-20 460 C115 415 150 315 250 305 S395 365 500 315'/%3E%3Cpath d='M70 -20 C70 70 160 100 170 190 S100 340 145 500'/%3E%3Cpath d='M115 -20 C115 62 205 95 215 180 S145 330 190 500'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:480px 480px;
+}
+
+/* ---------- BUTTONS: print style, hard shadow ---------- */
+#atlante-app .btn{
+  display:inline-block; background:var(--lime); color:var(--ink);
+  font-family:var(--f-mono); font-weight:500; font-size:14px; letter-spacing:.1em; text-transform:uppercase;
+  padding:17px 32px; border:2px solid var(--ink); cursor:pointer; text-decoration:none;
+  box-shadow:5px 5px 0 var(--ink); transition:transform .15s, box-shadow .15s;
+}
+#atlante-app .btn:hover{transform:translate(2px,2px); box-shadow:3px 3px 0 var(--ink);}
+#atlante-app .btn-sub{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.08em;color:var(--gray);margin-top:16px;}
+
+/* ---------- CORNER TICKS CARD ---------- */
+#atlante-app .tick-card{border:1.5px solid var(--ink); background:var(--paper); position:relative; padding:28px 26px;}
+#atlante-app .tick-card::before,#atlante-app .tick-card::after{
+  content:'+'; position:absolute; font-family:var(--f-mono); font-size:14px; color:var(--blue);
+}
+#atlante-app .tick-card::before{top:-9px;left:-6px;}
+#atlante-app .tick-card::after{bottom:-11px;right:-6px;}
+
+/* ---------- HERO ---------- */
+#atlante-app .hero{padding:0; border-bottom:1.5px solid var(--ink);}
+#atlante-app .hero-frame{padding:36px 0 72px;}
+#atlante-app .hero-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:1px solid var(--hair);margin-bottom:56px;}
+#atlante-app .hero-top img{width:160px;}
+#atlante-app .hero-top a{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);text-decoration:none;border:1.5px solid var(--ink);padding:10px 20px;background:var(--paper);box-shadow:3px 3px 0 var(--ink);transition:transform .15s, box-shadow .15s;}
+#atlante-app .hero-top a:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink);}
+#atlante-app .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;}
+#atlante-app .hero-kicker{color:var(--blue);margin-bottom:22px;}
+#atlante-app .hero h1{
+  font-family:var(--f-disp); font-weight:900; letter-spacing:-.01em;
+  font-size:clamp(42px,5.6vw,68px); line-height:1.02; margin-bottom:24px;
+}
+#atlante-app .hero h1 em{font-style:italic;font-weight:400;}
+#atlante-app .hero-sub{font-size:19px;line-height:1.6;color:#2E3E4E;max-width:520px;margin-bottom:34px;}
+#atlante-app .hero-sub strong{font-weight:600;color:var(--ink);}
+#atlante-app .hero-route{margin:38px 0 0;}
+
+/* booklet mockup — immagine reale */
+#atlante-app .mock-wrap{display:flex;justify-content:center;position:relative;}
+#atlante-app .mock-img{
+  width:100%; max-width:440px; border:1.5px solid var(--ink);
+  box-shadow:10px 10px 0 var(--ink); display:block;
+}
+#atlante-app .img-frame{border:1.5px solid var(--ink); box-shadow:8px 8px 0 var(--ink); display:block; width:100%;}
+
+/* ---------- SECTIONS ---------- */
+#atlante-app section{padding:84px 0;}
+#atlante-app .sec-head{max-width:700px;margin-bottom:52px;}
+#atlante-app .sec-head .mono{color:var(--blue);display:block;margin-bottom:14px;}
+#atlante-app .sec-head h2{font-family:var(--f-disp);font-weight:900;font-size:clamp(32px,4.2vw,46px);line-height:1.06;letter-spacing:-.005em;}
+#atlante-app .sec-head h2 em{font-style:italic;font-weight:400;}
+#atlante-app .sec-head p{margin-top:16px;font-size:17.5px;color:#3A4A5A;}
+
+/* dashed divider with waypoints */
+#atlante-app .route-div{border:none;position:relative;height:40px;margin:0;}
+#atlante-app .route-div svg{display:block;margin:0 auto;}
+
+/* Agitazione */
+#atlante-app .pain{border-bottom:1.5px solid var(--ink);}
+#atlante-app .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+#atlante-app .pain-q{font-family:var(--f-disp);font-style:italic;font-weight:400;font-size:22px;line-height:1.3;margin-bottom:14px;}
+#atlante-app .pain-grid p{font-size:15px;color:#3A4A5A;line-height:1.65;}
+#atlante-app .pain-grid p strong{font-weight:600;color:var(--ink);}
+#atlante-app .pain-close{margin-top:52px;text-align:center;font-size:19px;color:#3A4A5A;}
+#atlante-app .pain-close strong{font-weight:600;color:var(--ink);}
+
+/* Capitoli — indice cartografico */
+#atlante-app .chapters{background:var(--paper2);border-bottom:1.5px solid var(--ink);}
+#atlante-app .ch-list{border:1.5px solid var(--ink);background:var(--paper);}
+#atlante-app .ch-row{display:grid;grid-template-columns:64px 1fr 1.1fr;gap:18px;align-items:center;padding:18px 24px;border-bottom:1px solid var(--hair);}
+#atlante-app .ch-row:last-child{border-bottom:none;}
+#atlante-app .ch-row:hover{background:#F1F7DF;}
+#atlante-app .ch-wp{width:34px;height:34px;border:1.5px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-disp);font-weight:600;font-size:15px;background:var(--paper);}
+#atlante-app .ch-t{font-family:var(--f-disp);font-weight:600;font-size:17.5px;line-height:1.25;}
+#atlante-app .ch-d{font-size:13.5px;color:var(--gray);line-height:1.5;}
+#atlante-app .ch-cta{text-align:center;margin-top:52px;}
+
+/* Chi siamo */
+#atlante-app .who{border-bottom:1.5px solid var(--ink);}
+#atlante-app .who-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:start;}
+#atlante-app .who p{color:#2E3E4E;font-size:17px;line-height:1.7;margin-bottom:16px;}
+#atlante-app .who p strong{font-weight:600;color:var(--ink);}
+#atlante-app .who-stats{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1.5px solid var(--ink);}
+#atlante-app .ws{padding:24px 22px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);}
+#atlante-app .ws:nth-child(2n){border-right:none;}
+#atlante-app .ws:nth-child(3),#atlante-app .ws:nth-child(4){border-bottom:none;}
+#atlante-app .ws b{display:block;font-family:var(--f-disp);font-weight:900;font-size:34px;letter-spacing:-.01em;margin-bottom:4px;}
+#atlante-app .ws b .mk{padding:0 4px;}
+#atlante-app .ws span{font-size:13px;color:var(--gray);line-height:1.45;display:block;}
+
+/* Form */
+#atlante-app .getit{background:var(--paper);}
+#atlante-app .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+#atlante-app .fb{list-style:none;padding:0;}
+#atlante-app .fb li{padding-left:34px;position:relative;margin-bottom:18px;font-size:16px;color:#3A4A5A;line-height:1.55;}
+#atlante-app .fb li strong{font-weight:600;color:var(--ink);}
+#atlante-app .fb li::before{
+  content:'✓'; position:absolute; left:0; top:2px; width:20px; height:20px;
+  background:var(--lime); border:1.5px solid var(--ink); border-radius:50%;
+  color:var(--ink); font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center;
+}
+#atlante-app .form-card h3{font-family:var(--f-disp);font-weight:900;font-size:24px;margin-bottom:6px;}
+#atlante-app .form-card .fc-sub{font-size:14.5px;font-style:italic;color:var(--gray);margin-bottom:20px;}
+#atlante-app .form-card iframe{display:block;margin:0 auto;max-width:100%;border:none;background:#fff;}
+#atlante-app .form-note{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.04em;color:var(--gray);margin-top:16px;line-height:1.8;text-transform:uppercase;}
+
+/* FAQ */
+#atlante-app .faq{background:var(--paper2);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);}
+#atlante-app .faq-item{background:var(--paper);border:1.5px solid var(--ink);margin-bottom:14px;}
+#atlante-app .faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:20px 24px;font-family:var(--f-disp);font-weight:600;font-size:17.5px;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:16px;}
+#atlante-app .faq-q::after{content:'+';font-family:var(--f-mono);font-size:22px;color:var(--blue);transition:transform .25s;flex-shrink:0;}
+#atlante-app .faq-item.open .faq-q::after{transform:rotate(45deg);}
+#atlante-app .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+#atlante-app .faq-a p{padding:0 24px 20px;font-size:15.5px;color:#3A4A5A;line-height:1.7;}
+
+/* Final */
+#atlante-app .final{text-align:center;padding:96px 0;}
+#atlante-app .final .mono{color:var(--blue);display:block;margin-bottom:18px;}
+#atlante-app .final h2{font-family:var(--f-disp);font-weight:900;font-size:clamp(32px,4.6vw,50px);line-height:1.08;max-width:780px;margin:0 auto 18px;}
+#atlante-app .final h2 em{font-style:italic;font-weight:400;}
+#atlante-app .final p{color:#3A4A5A;font-size:17.5px;max-width:560px;margin:0 auto 36px;}
+#atlante-app .footer{border-top:1.5px solid var(--ink);padding:26px 0;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--gray);text-align:center;text-transform:uppercase;}
+
+/* Reveal */
+#atlante-app .rv{transition:opacity .7s ease, transform .7s ease;}
+#atlante-app.js-on .rv{opacity:0;transform:translateY(28px);}
+#atlante-app .rv.on,#atlante-app.js-on .rv.on{opacity:1;transform:translateY(0);}
+
+/* ---------- MOBILE ---------- */
+@media(max-width:900px){
+  #atlante-app .hero-frame{padding:24px 0 56px;}
+  #atlante-app .hero-top{margin-bottom:40px;}
+  #atlante-app .hero-top img{width:130px;}
+  #atlante-app .hero-grid{grid-template-columns:1fr;gap:48px;}
+  #atlante-app .mock-img{max-width:340px;}
+  #atlante-app section{padding:60px 0;}
+  #atlante-app .pain-grid{grid-template-columns:1fr;}
+  #atlante-app .ch-row{grid-template-columns:44px 1fr;padding:16px 18px;}
+  #atlante-app .ch-d{grid-column:2;}
+  #atlante-app .who-grid,#atlante-app .form-grid{grid-template-columns:1fr;gap:40px;}
+}
+</style>
+
+<!-- ============ HERO ============ -->
+<div class="hero contours">
+  <div class="inner hero-frame">
+    <div class="hero-top">
+      <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/karakter-logo-orizzontale-gradient-rgb.svg" alt="Karakter Coaching School">
+      <a href="#scarica">Scarica la guida</a>
+    </div>
+    <div class="hero-grid">
+      <div>
+        <div class="mono hero-kicker">// Guida in PDF · 18 pagine · lettura 30 min</div>
+        <h1>Il coaching è la tua strada?<br><em>Scoprilo</em> <span class="mk">prima</span> di investirci anni.</h1>
+        <p class="hero-sub">Te lo dicono da tempo: <strong>"dovresti farlo di mestiere"</strong>. La Mappa del Coach ti dà quello che serve per rispondere sul serio: i dati reali della professione, i 4 percorsi a confronto, un test di autovalutazione e il piano dei prossimi 90 giorni.</p>
+        <a class="btn" href="#scarica">→ Inviami la Mappa</a>
+        <svg class="hero-route" width="100%" height="44" viewBox="0 0 520 44" preserveAspectRatio="xMinYMid meet">
+          <path d="M8 34 C110 28 150 10 250 16 S430 30 500 10" fill="none" stroke="#0B1F3A" stroke-width="1.8" stroke-dasharray="6 5"/>
+          <circle cx="8" cy="34" r="6" fill="#F6F4EF" stroke="#0B1F3A" stroke-width="1.8"/>
+          <circle cx="190" cy="14" r="6" fill="#F6F4EF" stroke="#0B1F3A" stroke-width="1.8"/>
+          <circle cx="360" cy="22" r="6" fill="#F6F4EF" stroke="#0B1F3A" stroke-width="1.8"/>
+          <g transform="translate(500,10)"><rect x="-8" y="-8" width="16" height="16" fill="#A3E635" transform="rotate(45)"/><path d="M-4 -4 L4 4 M-4 4 L4 -4" stroke="#0B1F3A" stroke-width="2"/></g>
+        </svg>
+      </div>
+      <div class="mock-wrap">
+        <img class="mock-img" src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/mappa/mappa-hero-mockup.jpg" alt="La Mappa del Coach — guida PDF di Karakter Coaching School">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ AGITAZIONE ============ -->
+<section class="pain">
+  <div class="inner">
+    <div class="sec-head rv">
+      <span class="mono">// se ci pensi da anni, è per una di queste tre</span>
+      <h2>Cosa ti tiene fermo <em>non è il talento.</em></h2>
+    </div>
+    <div class="pain-grid">
+      <div class="tick-card rv">
+        <div class="pain-q">"E se fosse troppo tardi?"</div>
+        <p>La maggior parte dei coach professionisti arriva a questo mestiere <strong>dopo i 35 anni</strong>, da una prima carriera. L'esperienza di vita non è il tuo ritardo: è la tua materia prima. Il dato completo è nel capitolo 3.</p>
+      </div>
+      <div class="tick-card rv">
+        <div class="pain-q">"E se scegliessi il percorso sbagliato?"</div>
+        <p>È la paura più fondata delle tre: tra corsi lampo e scuole improvvisate, <strong>sbagliare percorso costa anni e migliaia di euro</strong>. Per questo la guida confronta i 4 percorsi possibili, con costi e rischi veri, e ti dà le 7 domande da fare a ogni scuola.</p>
+      </div>
+      <div class="tick-card rv">
+        <div class="pain-q">"Ma ci si vive davvero?"</div>
+        <p>Risposta onesta: <strong>dipende da come ci entri</strong>. Il mercato mondiale è quasi raddoppiato in due anni, ma premia solo chi ha credenziali e metodo. Nella guida trovi i numeri veri — quelli di ICF, non delle sponsorizzate.</p>
+      </div>
+    </div>
+    <p class="pain-close rv">La Mappa del Coach esiste per una cosa sola: farti <strong>decidere con i dati</strong>, non con la paura.</p>
+  </div>
+</section>
+
+<!-- ============ CAPITOLI (indice) ============ -->
+<section class="chapters" id="capitoli">
+  <div class="inner">
+    <div class="sec-head rv">
+      <span class="mono">// itinerario · cosa trovi dentro</span>
+      <h2>9 tappe. Zero fuffa.<br><em>Una decisione.</em></h2>
+    </div>
+    <div class="ch-list rv">
+      <div class="ch-row"><div class="ch-wp">1</div><div class="ch-t">I 7 segnali che il coaching ti sta chiamando</div><div class="ch-d">Il test di auto-riconoscimento: quanti te ne appartengono?</div></div>
+      <div class="ch-row"><div class="ch-wp">2</div><div class="ch-t">Cosa fa davvero un coach (e cosa non è)</div><div class="ch-d">Né psicologo, né consulente, né motivatore: la tabella che chiarisce tutto.</div></div>
+      <div class="ch-row"><div class="ch-wp">3</div><div class="ch-t">I numeri della professione</div><div class="ch-d">122.974 coach nel mondo, +54% in sei anni. E i dati (pochi ma veri) dell'Italia.</div></div>
+      <div class="ch-row"><div class="ch-wp">4</div><div class="ch-t">Le 5 competenze del coach professionista</div><div class="ch-d">Cosa distingue chi esercita da chi resta a metà — e come si allena ciascuna.</div></div>
+      <div class="ch-row"><div class="ch-wp">5</div><div class="ch-t">Il fattore invisibile: le motivazioni</div><div class="ch-d">Perché i cambi di carriera falliscono, e le 16 motivazioni che guidano ogni scelta.</div></div>
+      <div class="ch-row"><div class="ch-wp">6</div><div class="ch-t">I 4 percorsi per diventare coach</div><div class="ch-d">Autodidatta, corso online, scuola libera, scuola ICF: confronto con costi reali.</div></div>
+      <div class="ch-row"><div class="ch-wp">7</div><div class="ch-t">Le 7 domande da fare a ogni scuola</div><div class="ch-d">La checklist che smaschera le risposte vaghe. Portala anche da noi.</div></div>
+      <div class="ch-row"><div class="ch-wp">8</div><div class="ch-t">Il test: sei pronto?</div><div class="ch-d">12 domande con punteggio per capire dove sei adesso, con onestà.</div></div>
+      <div class="ch-row"><div class="ch-wp">9</div><div class="ch-t">La tua mappa in 90 giorni</div><div class="ch-d">Esplora, valuta, decidi: il piano d'azione concreto, settimana per settimana.</div></div>
+    </div>
+    <div class="ch-cta rv">
+      <a class="btn" href="#scarica">→ Voglio la Mappa</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STRIP VISIVA ============ -->
+<section style="padding:0;border-bottom:1.5px solid #0B1F3A;">
+  <div class="inner" style="padding-top:64px;padding-bottom:64px;">
+    <img class="img-frame rv" src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/mappa/mappa-flatlay-wide.jpg" alt="La Mappa del Coach sulla mappa del percorso" loading="lazy">
+  </div>
+</section>
+
+<!-- ============ CHI SIAMO ============ -->
+<section class="who contours">
+  <div class="inner">
+    <div class="who-grid">
+      <div class="rv">
+        <div class="sec-head" style="margin-bottom:24px;">
+          <span class="mono">// chi te la manda</span>
+          <h2>Formiamo coach professionisti <em>dal 2011.</em></h2>
+        </div>
+        <p>Karakter Coaching School nasce a Roma da <strong>Marco Angeletti (ICF PCC)</strong> e <strong>Alessandra Abbattista</strong>. In quindici anni abbiamo visto centinaia di persone attraversare esattamente il bivio in cui sei tu — e abbiamo imparato a riconoscere chi è pronto, chi non ancora, e chi ha solo bisogno della mappa giusta.</p>
+        <p>Questa guida è la sintesi onesta di quell'esperienza. <strong>Non ti diremo che il coaching è per tutti.</strong> Ti aiuteremo a capire se è per te.</p>
+      </div>
+      <div class="rv">
+        <img class="img-frame" src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/mappa/mappa-roma.jpg" alt="Roma — sede di Karakter Coaching School dal 2011" loading="lazy" style="margin-bottom:20px;">
+        <div class="who-stats">
+        <div class="ws"><b>500+</b><span>coach formati dal 2011</span></div>
+        <div class="ws"><b><span class="mk">ICF L2</span></b><span>accreditamento internazionale di livello più alto per una scuola</span></div>
+        <div class="ws"><b>170h</b><span>di formazione nel percorso Master K-Coach</span></div>
+        <div class="ws"><b><span class="mk">Unica</span></b><span>scuola in Italia con il Reiss Motivation Profile integrato</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORM ============ -->
+<section class="getit" id="scarica">
+  <div class="inner">
+    <div class="sec-head rv">
+      <span class="mono">// punto di consegna</span>
+      <h2>La Mappa arriva <em>nella tua email.</em></h2>
+    </div>
+    <div class="form-grid">
+      <ul class="fb rv">
+        <li><strong>18 pagine, lettura di 30 minuti.</strong> Scritta per chi lavora e ha poco tempo: niente riempitivi, solo quello che serve per decidere.</li>
+        <li><strong>Dati ICF Global Coaching Study 2025.</strong> Il mercato vero, non le promesse da sponsorizzata.</li>
+        <li><strong>Il test di autovalutazione in 12 domande.</strong> Con tre profili di lettura onesti, incluso "non è il tuo momento".</li>
+        <li><strong>Il piano dei 90 giorni.</strong> Per uscire, in un senso o nell'altro, dall'anno infinito del "ci penso".</li>
+        <li><strong>Nessuno spam.</strong> Ricevi la guida e qualche email di accompagnamento utile. Ti disiscrivi quando vuoi, con un click.</li>
+      </ul>
+      <div class="tick-card form-card rv">
+        <h3>Ricevi La Mappa del Coach</h3>
+        <div class="fc-sub">Compila e controlla la posta: arriva in un minuto.</div>
+        <!-- FORM BREVO "Mappa del Coach — Download" (Lista #8) — embed ufficiale restilizzato Atlante (prefissi ridotti ai principali) -->
+        <div id="mappaBrevo">
+          <style>
+            #atlante-app .sib-form{background:transparent;padding:0;text-align:left}
+            #atlante-app #sib-form-container,#atlante-app #sib-container{background:transparent!important;border:none!important;padding:0!important;max-width:none!important;text-align:left}
+            #atlante-app #sib-form .sib-form-block{padding:7px 0}
+            #atlante-app #sib-form .entry__label{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#0B1F3A;padding-bottom:6px}
+            #atlante-app #sib-form .input{font-family:'Source Serif 4',Georgia,serif;font-size:15.5px;color:#0B1F3A;background:#fff;border:1.5px solid #0B1F3A;border-radius:0;padding:12px 14px;width:100%}
+            #atlante-app #sib-form .input:focus{outline:2px solid #2F80ED;outline-offset:1px}
+            #atlante-app #sib-form .entry__error{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#b02a2a;background:transparent;border:none}
+            #atlante-app #sib-form .sib-form-block__button{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#F6F4EF;background:#0B1F3A;border:1.5px solid #0B1F3A;border-radius:0;width:100%;padding:16px 24px;cursor:pointer;box-shadow:4px 4px 0 #A3E635;transition:transform .15s,box-shadow .15s}
+            #atlante-app #sib-form .sib-form-block__button:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #A3E635}
+            #atlante-app .sib-form-message-panel{border-radius:0;padding:12px 14px;margin-bottom:12px;font-family:'Source Serif 4',Georgia,serif;font-size:14.5px;max-width:none}
+            #atlante-app #error-message{color:#7a1f1f;background:#ffecec;border:1.5px solid #b02a2a}
+            #atlante-app #success-message{color:#1d5c33;background:#eef7e9;border:1.5px solid #4c7a3d}
+          </style>
+          <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+          <div class="sib-form">
+            <div id="sib-form-container" class="sib-form-container">
+              <div id="error-message" class="sib-form-message-panel"><div class="sib-form-message-panel__text sib-form-message-panel__text--center"><span class="sib-form-message-panel__inner-text">La tua richiesta non può essere inviata. Controlla i campi e riprova.</span></div></div>
+              <div></div>
+              <div id="success-message" class="sib-form-message-panel"><div class="sib-form-message-panel__text sib-form-message-panel__text--center"><span class="sib-form-message-panel__inner-text">Grazie per aver scaricato la Mappa del Coach. Controlla la tua email!</span></div></div>
+              <div></div>
+              <div id="sib-container" class="sib-container--large sib-container--vertical">
+                <form id="sib-form" method="POST" action="https://b9cb86d9.sibforms.com/serve/MUIFAM4j18yKawqKj_4irkhGAI5tV4zVG0EznzhMhTuQnE5AuEa-ck3latPPvxsKqLPok1TY5Ngsnp5JwITrsBioFAUhM4qc2R8EkQiM4RcAQhDAsMzTqn-_Qt4pjD6_Z6BfcElkP0qJyIKeQVK8YPtZWALQTIvEHx1vg-v4n70DSITKvcW3OYQhNXWCImLBIt6sOyzFAYpY5GyPSA==" data-type="subscription">
+                  <div class="sib-input sib-form-block"><div class="form__entry entry_block"><div class="form__label-row">
+                    <label class="entry__label" for="NOME" data-required="*">Il tuo nome</label>
+                    <div class="entry__field"><input class="input" maxlength="200" type="text" id="NOME" name="NOME" autocomplete="off" placeholder="Nome" data-required="true" required /></div>
+                  </div><label class="entry__error entry__error--primary"></label></div></div>
+                  <div class="sib-input sib-form-block"><div class="form__entry entry_block"><div class="form__label-row">
+                    <label class="entry__label" for="EMAIL" data-required="*">La tua email</label>
+                    <div class="entry__field"><input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" value="" placeholder="nome@email.com" data-required="true" required /></div>
+                  </div><label class="entry__error entry__error--primary"></label></div></div>
+                  <div class="sib-sms-field sib-form-block"><div class="form__entry entry_block"><div class="form__label-row">
+                    <label class="entry__label" for="SMS" data-required="*">Il tuo numero</label>
+                    <div class="sib-sms-input-wrapper" style="direction:ltr">
+                      <div class="sib-sms-input" data-placeholder="SMS" data-required="true" data-country-code="IT" data-value="" data-attributename="SMS">
+                        <div class="entry__field">
+                          <select class="input" name="SMS__COUNTRY_CODE" data-required="true">
+                            <option value="+39" selected>+39 IT</option>
+                            <option value="+41">+41 CH</option>
+                            <option value="+44">+44 GB</option>
+                            <option value="+33">+33 FR</option>
+                            <option value="+49">+49 DE</option>
+                            <option value="+34">+34 ES</option>
+                            <option value="+43">+43 AT</option>
+                            <option value="+32">+32 BE</option>
+                            <option value="+31">+31 NL</option>
+                            <option value="+351">+351 PT</option>
+                            <option value="+353">+353 IE</option>
+                            <option value="+378">+378 SM</option>
+                            <option value="+1">+1 US</option>
+                          </select>
+                        </div>
+                        <div class="entry__field" style="width:100%"><input type="tel" class="input" id="SMS" name="SMS" autocomplete="off" placeholder="3xx xxx xxxx" data-required="true" required /></div>
+                      </div>
+                    </div>
+                  </div><label class="entry__error entry__error--primary"></label><label class="entry__error entry__error--secondary"></label></div></div>
+                  <div class="sib-form-block" style="text-align:center;padding-top:12px">
+                    <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">
+                      <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512"><path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z"/></svg>
+                      → Scarica la Mappa
+                    </button>
+                  </div>
+                  <input type="text" name="email_address_check" value="" class="input--hidden">
+                  <input type="hidden" name="locale" value="it">
+                </form>
+              </div>
+            </div>
+          </div>
+          <script>
+            window.REQUIRED_CODE_ERROR_MESSAGE = 'Scegli un prefisso paese';
+            window.LOCALE = 'it';
+            window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "Le informazioni fornite non sono valide. Controlla il formato del campo e riprova.";
+            window.REQUIRED_ERROR_MESSAGE = "Questo campo non può essere lasciato vuoto. ";
+            window.GENERIC_INVALID_MESSAGE = "Le informazioni fornite non sono valide. Controlla il formato del campo e riprova.";
+            window.INVALID_NUMBER = window.GENERIC_INVALID_MESSAGE;
+            window.INVALID_DATE = "Inserisci una data valida";
+            window.REQUIRED_MULTISELECT_MESSAGE = 'Seleziona almeno 1 opzione';
+            window.translation = { common: { selectedList: '{quantity} lista selezionata', selectedLists: '{quantity} liste selezionate', selectedOption: '{quantity} selezionato', selectedOptions: '{quantity} selezionati' } };
+            var AUTOHIDE = Boolean(0);
+          </script>
+          <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+        </div>
+        <div class="form-note">I tuoi dati sono al sicuro: li usiamo solo per inviarti la guida e i contenuti collegati. Niente cessioni a terzi, mai.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq">
+  <div class="inner">
+    <div class="sec-head rv">
+      <span class="mono">// domande frequenti</span>
+      <h2>Prima che tu lo chieda.</h2>
+    </div>
+    <div class="faq-item rv">
+      <button class="faq-q">Quanto costa la guida?</button>
+      <div class="faq-a"><p>Niente. È il materiale con cui vogliamo presentarci: se un giorno valuterai una scuola di coaching, preferiamo che tu arrivi informato — da noi o altrove. L'unico "costo" è la tua email, e puoi disiscriverti in ogni momento.</p></div>
+    </div>
+    <div class="faq-item rv">
+      <button class="faq-q">Non ho una laurea in psicologia. Ha senso per me?</button>
+      <div class="faq-a"><p>Sì. Il coaching è una professione distinta dalla psicoterapia, con competenze e confini propri (li chiariamo nel capitolo 2). I coach arrivano da HR, management, insegnamento, sport, libera professione: la prima carriera è materia prima, non un requisito mancato.</p></div>
+    </div>
+    <div class="faq-item rv">
+      <button class="faq-q">Ho più di 45 anni. È tardi?</button>
+      <div class="faq-a"><p>È l'obiezione più comune e la meno fondata: gran parte dei coach professionisti inizia dopo i 35, e l'esperienza di vita è un vantaggio competitivo in sessione. Nel capitolo 3 trovi i numeri; nel capitolo 8, il test per capire se sei pronto tu — che è l'unica domanda che conta.</p></div>
+    </div>
+    <div class="faq-item rv">
+      <button class="faq-q">Mi state per vendere un corso?</button>
+      <div class="faq-a"><p>Trasparenza totale: Karakter è una scuola di coaching, e se la guida ti sarà utile forse un giorno vorrai conoscerci. Ma la Mappa è pensata per valere da sola — include perfino le 7 domande per mettere alla prova qualsiasi scuola, compresa la nostra.</p></div>
+    </div>
+    <div class="faq-item rv">
+      <button class="faq-q">Quanto tempo mi serve per leggerla?</button>
+      <div class="faq-a"><p>30 minuti per la lettura, 10 per il test del capitolo 8. Il piano dei 90 giorni, invece, è pensato per essere vissuto — un passo alla settimana, compatibile con qualunque lavoro a tempo pieno.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final contours">
+  <div class="inner">
+    <img class="img-frame rv" src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/mappa/mappa-hero-hand.jpg" alt="La Mappa del Coach tra le mani" loading="lazy" style="max-width:320px;margin:0 auto 40px;">
+    <span class="mono">// l'ultima cosa che ti diciamo</span>
+    <h2>Tra un anno questa idea sarà ancora lì.<br><em>La differenza è</em> <span class="mk">cosa ne avrai fatto.</span></h2>
+    <p>Scarica la Mappa, leggila con calma, fai il test. Qualunque cosa scoprirai su di te, sarà più di quello che sai adesso.</p>
+    <a class="btn" href="#scarica">→ Inviami la Mappa del Coach</a>
+    <div class="btn-sub">PDF · 18 PAGINE · ARRIVA VIA EMAIL IN 1 MINUTO</div>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="inner">Karakter Coaching School · Viale G. Rossini, Roma · dal 2011 · karaktercoaching.it · info@karakter.it</div>
+</div>
+
+<script>
+(function(){
+  var _app=document.getElementById('atlante-app');
+  if(_app){_app.classList.add('js-on');} /* senza JS la pagina resta interamente visibile */
+  // Segnaposto form Brevo finché l'URL non è impostato
+  var fr=document.getElementById('brevo-mappa');
+  if(fr && fr.getAttribute('src').indexOf('INCOLLA_QUI')!==-1){
+    var ph=document.createElement('div');
+    ph.style.cssText='height:305px;display:flex;align-items:center;justify-content:center;text-align:center;border:2px dashed #C8CFD6;background:#fff;color:#5A6B7D;font-family:IBM Plex Mono,monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:24px;line-height:2;';
+    ph.innerHTML='[ Form Brevo ]<br>incolla qui l’URL del form<br>“Mappa del Coach — Download” (lista #8)';
+    fr.parentNode.replaceChild(ph,fr);
+  }
+  document.querySelectorAll('#atlante-app a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+    });
+  });
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(en){ if(en.isIntersecting){en.target.classList.add('on');obs.unobserve(en.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('#atlante-app .rv').forEach(function(el){obs.observe(el);});
+  document.querySelectorAll('#atlante-app .faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var it=q.parentElement, a=it.querySelector('.faq-a'), open=it.classList.contains('open');
+      document.querySelectorAll('#atlante-app .faq-item.open').forEach(function(o){
+        o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight='0';
+      });
+      if(!open){ it.classList.add('open'); a.style.maxHeight=a.scrollHeight+'px'; }
+    });
+  });
+})();
+</script>
+
+</div>

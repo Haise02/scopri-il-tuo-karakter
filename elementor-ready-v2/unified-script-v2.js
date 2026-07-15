@@ -97,18 +97,18 @@ function filterFaq(cat,btn){
   if(!container)return;
   var items=[];
   var shapes=[
-    {color:'#8B1A1A',pattern:'grid'},
+    {color:'#2F80ED',pattern:'grid'},
     {color:'#c4a0e8',pattern:'plus'},
     {color:'#e8e048',pattern:'squares'},
     {color:'#6cd47e',pattern:'triangles'},
     {color:'#7ec8e3',pattern:'dots'},
-    {color:'#3a3a3a',pattern:'cross'},
+    {color:'#0B1F3A',pattern:'cross'},
     {color:'#f5a623',pattern:'grid'},
     {color:'#b88be8',pattern:'plus'},
-    {color:'#8B1A1A',pattern:'squares'},
+    {color:'#2F80ED',pattern:'squares'},
     {color:'#6cd47e',pattern:'dots'},
     {color:'#7ec8e3',pattern:'cross'},
-    {color:'#3a3a3a',pattern:'triangles'}
+    {color:'#0B1F3A',pattern:'triangles'}
   ];
   function createCloverSVG(color,pattern,size){
     var r=size/2;var lr=r*0.42;
@@ -466,7 +466,7 @@ function showFormSection(results){
     if(tc){
       var h='';
       results.top3.forEach(function(t){
-        h+='<span style="background:var(--k-bg-warm);border:1px solid rgba(139,26,26,.25);padding:8px 18px;border-radius:100px;font-weight:600;font-size:13px;">'+TRAITS[t].name+'</span>';
+        h+='<span style="background:var(--k-bg-warm);border:1px solid rgba(47,128,237,.25);padding:8px 18px;border-radius:100px;font-weight:600;font-size:13px;">'+TRAITS[t].name+'</span>';
       });
       tc.innerHTML=h;
     }

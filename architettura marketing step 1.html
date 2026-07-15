@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karakter - Strategia Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f5f5f0;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.canvas{position:relative;width:1200px;margin:40px auto;padding:48px;min-height:100vh}
+.header{text-align:center;margin-bottom:80px}
+.header .tag{display:inline-block;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#a09a8c;border:1px solid #d5d0c4;border-radius:20px;padding:5px 16px;margin-bottom:14px}
+.header h1{font-size:28px;font-weight:600;color:#1a1a18;margin-bottom:6px}
+.header p{font-size:14px;color:#8a857a}
+svg.arrows{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.node{position:absolute;border-radius:10px;cursor:default;transition:box-shadow .2s,transform .15s;z-index:1}
+.node:hover{box-shadow:0 4px 20px rgba(0,0,0,.08);transform:translateY(-1px)}
+.node-inner{padding:14px 18px}
+.node .n-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:4px}
+.node .n-title{font-size:14px;font-weight:500;color:#1a1a18;line-height:1.3;margin-bottom:2px}
+.node .n-sub{font-size:11px;color:#8a857a;line-height:1.4}
+.node.teal{background:#e8f6f0;border:1px solid #b2e0cc}
+.node.teal .n-label{color:#0f6e56}
+.node.purple{background:#eeedfe;border:1px solid #c5c1f0}
+.node.purple .n-label{color:#534ab7}
+.node.amber{background:#fef6e0;border:1px solid #f0d68a}
+.node.amber .n-label{color:#8a6d10}
+.node.coral{background:#fdeee8;border:1px solid #f0b8a0}
+.node.coral .n-label{color:#993c1d}
+.node.gray{background:#fff;border:1px solid #ddd8cc}
+.node.gray .n-label{color:#8a857a}
+.node.dark{background:#1a1a18;border:1px solid #333}
+.node.dark .n-title{color:#f5f5f0}
+.node.dark .n-sub{color:#a09a8c}
+.node.dark .n-label{color:#d4a017}
+.section-label{position:absolute;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#b0aa9c;font-weight:500;z-index:1}
+.group-box{position:absolute;border:1.5px dashed #d0cbc0;border-radius:16px;z-index:0}
+.group-box .g-label{position:absolute;top:-10px;left:20px;background:#f5f5f0;padding:0 10px;font-size:11px;font-weight:500;color:#a09a8c;letter-spacing:1px}
+.arrow-label{position:absolute;font-size:10px;color:#a09a8c;background:#f5f5f0;padding:0 6px;z-index:1;white-space:nowrap}
+.tooltip{display:none;position:fixed;z-index:100;max-width:340px;background:#fff;border:1px solid #e0dbd0;border-radius:12px;padding:18px 20px;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.04)}
+.tooltip.visible{display:block}
+.tooltip .tt-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.tooltip .tt-label.teal{color:#0f6e56}
+.tooltip .tt-label.purple{color:#534ab7}
+.tooltip .tt-label.amber{color:#8a6d10}
+.tooltip .tt-label.coral{color:#993c1d}
+.tooltip .tt-label.gray{color:#8a857a}
+.tooltip .tt-title{font-size:14px;font-weight:500;color:#1a1a18;margin-bottom:8px;line-height:1.3}
+.tooltip .tt-body{font-size:12px;color:#6a655a;line-height:1.6}
+.tooltip .tt-body strong{color:#1a1a18;font-weight:500}
+</style>
+</head>
+<body>
+<div class="canvas" id="canvas">
+<div class="header">
+<div class="tag">Karakter Coaching School 2026</div>
+<h1>Architettura Funnel Marketing</h1>
+<p>Tre funnel paralleli, un ecosistema. Hover su ogni elemento per approfondire.</p>
+</div>
+<svg class="arrows" id="arrows"></svg>
+
+<div class="group-box" style="left:48px;top:170px;width:440px;height:580px"><div class="g-label">Funnel 1: Discovery</div></div>
+
+<div class="node teal" id="f1-tofu" data-tt="f1-tofu" style="left:80px;top:200px;width:376px"><div class="node-inner"><div class="n-label">Top of funnel</div><div class="n-title">Quiz "Scopri il tuo Karakter"</div><div class="n-sub">Ads social, SEO, organico, partnership</div></div></div>
+<div class="arrow-label" style="left:240px;top:290px">contatto acquisito</div>
+<div class="node purple" id="f1-mofu" data-tt="f1-mofu" style="left:80px;top:320px;width:376px"><div class="node-inner"><div class="n-label">Middle of funnel</div><div class="n-title">Nurturing e qualificazione</div><div class="n-sub">Email, contenuti organici, retargeting, social proof</div></div></div>
+<div class="arrow-label" style="left:228px;top:410px">lead qualificata</div>
+<div class="node amber" id="f1-bofu" data-tt="f1-bofu" style="left:80px;top:440px;width:376px"><div class="node-inner"><div class="n-label">Bottom of funnel</div><div class="n-title">Conversione Test Reiss</div><div class="n-sub">300€ + IVA, restituzione individuale 1h</div></div></div>
+<div class="arrow-label" style="left:210px;top:528px">nurturing continuo</div>
+<div class="node coral" id="f1-master" data-tt="f1-master" style="left:80px;top:556px;width:376px"><div class="node-inner"><div class="n-label">Upsell naturale</div><div class="n-title">Master K-Coach Professionisti</div><div class="n-sub">6.500€, 170h, ICF Level 2</div></div></div>
+
+<div class="group-box" style="left:536px;top:170px;width:280px;height:420px"><div class="g-label">Funnel 2: Reiss direct</div></div>
+
+<div class="node teal" id="f2-tofu" data-tt="f2-tofu" style="left:562px;top:200px;width:230px"><div class="node-inner"><div class="n-label">Tofu</div><div class="n-title">SEO, LinkedIn, Google Ads</div><div class="n-sub">HR, manager, assessment</div></div></div>
+<div class="node purple" id="f2-mofu" data-tt="f2-mofu" style="left:562px;top:320px;width:230px"><div class="node-inner"><div class="n-label">Mofu</div><div class="n-title">Nurturing + proposta</div><div class="n-sub">Comunicazioni mirate, call B2B</div></div></div>
+<div class="node amber" id="f2-bofu" data-tt="f2-bofu" style="left:562px;top:440px;width:230px"><div class="node-inner"><div class="n-label">Bofu</div><div class="n-title">Acquisto Reiss</div><div class="n-sub">Privati online o proposta B2B</div></div></div>
+
+<div class="group-box" style="left:854px;top:170px;width:280px;height:420px"><div class="g-label">Funnel 3: Master direct</div></div>
+
+<div class="node teal" id="f3-tofu" data-tt="f3-tofu" style="left:880px;top:200px;width:230px"><div class="node-inner"><div class="n-label">Tofu</div><div class="n-title">SEO, referral, K-Day</div><div class="n-sub">Chi vuole diventare coach</div></div></div>
+<div class="node purple" id="f3-mofu" data-tt="f3-mofu" style="left:880px;top:320px;width:230px"><div class="node-inner"><div class="n-label">Mofu</div><div class="n-title">Contatto diretto + K-Day</div><div class="n-sub">Call, eventi, nurturing</div></div></div>
+<div class="node amber" id="f3-bofu" data-tt="f3-bofu" style="left:880px;top:440px;width:230px"><div class="node-inner"><div class="n-label">Bofu</div><div class="n-title">Iscrizione master</div><div class="n-sub">Pagamento, onboarding</div></div></div>
+
+<div class="node dark" id="convergence" data-tt="convergence" style="left:536px;top:640px;width:598px"><div class="node-inner"><div class="n-label">Convergenza</div><div class="n-title">Master K-Coach Professionisti</div><div class="n-sub">Punto di arrivo di tutti e tre i funnel. 170 ore, ICF Level 2, Reiss integrato.</div></div></div>
+
+<div class="section-label" style="left:48px;top:790px">Interconnessioni</div>
+<div class="node gray" id="conn-1" data-tt="conn-1" style="left:48px;top:820px;width:220px"><div class="node-inner"><div class="n-label">Percorso</div><div class="n-title">Quiz &rarr; Reiss &rarr; Master</div><div class="n-sub">Discovery completo</div></div></div>
+<div class="node gray" id="conn-2" data-tt="conn-2" style="left:296px;top:820px;width:220px"><div class="node-inner"><div class="n-label">Percorso</div><div class="n-title">Reiss B2B &rarr; Master</div><div class="n-sub">Da progetto aziendale a formazione</div></div></div>
+<div class="node gray" id="conn-3" data-tt="conn-3" style="left:544px;top:820px;width:220px"><div class="node-inner"><div class="n-label">Percorso</div><div class="n-title">Alumni &rarr; Referral</div><div class="n-sub">Coach formati come ambasciatori</div></div></div>
+
+<div class="section-label" style="left:48px;top:920px">Canali trasversali</div>
+<div class="node gray" id="ch-ig" data-tt="ch-ig" style="left:48px;top:950px;width:140px"><div class="node-inner"><div class="n-title">Instagram</div></div></div>
+<div class="node gray" id="ch-tk" data-tt="ch-tk" style="left:208px;top:950px;width:120px"><div class="node-inner"><div class="n-title">TikTok</div></div></div>
+<div class="node gray" id="ch-li" data-tt="ch-li" style="left:348px;top:950px;width:130px"><div class="node-inner"><div class="n-title">LinkedIn</div></div></div>
+<div class="node gray" id="ch-em" data-tt="ch-em" style="left:498px;top:950px;width:160px"><div class="node-inner"><div class="n-title">Email marketing</div></div></div>
+<div class="node gray" id="ch-seo" data-tt="ch-seo" style="left:678px;top:950px;width:140px"><div class="node-inner"><div class="n-title">SEO / Blog</div></div></div>
+</div>
+
+<div class="tooltip" id="tooltip"><div class="tt-label" id="tt-label"></div><div class="tt-title" id="tt-title"></div><div class="tt-body" id="tt-body"></div></div>
+
+<script>
+const data={"f1-tofu":{label:"teal",labelText:"Funnel Discovery / TOFU",title:"Quiz \"Scopri il tuo Karakter\"",body:"Quiz online proprietario, 10-15 domande, esperienza visiva brandizzata. Restituisce un profilo personalizzato basato sulle dimensioni motivazionali Reiss in versione semplificata. <strong>Non è il Reiss, è l'assaggio che genera curiosità.</strong> Risultato condivisibile sui social. Email raccolta prima del risultato. Lead profilata per tipo di Karakter nel CRM."},"f1-mofu":{label:"purple",labelText:"Funnel Discovery / MOFU",title:"Nurturing e qualificazione",body:"Il contatto acquisito dal quiz viene intercettato e nutrito attraverso <strong>comunicazioni mirate, contenuti organici, retargeting e social proof.</strong> L'obiettivo è educare sul valore del Reiss e far percepire il gap tra il quiz (intrattenimento) e lo strumento scientifico vero. Chi mostra interesse viene qualificato, chi non è pronto resta nel bacino e continua a ricevere contenuti di valore."},"f1-bofu":{label:"amber",labelText:"Funnel Discovery / BOFU",title:"Conversione Test Reiss (300€+IVA)",body:"Messaggio chiaro: hai i tratti dominanti, ora scopri il profilo completo. <strong>16 motivazioni in combinazioni uniche</strong>, sessione di restituzione 1h con profiler certificato. Conversione via CTA email, pagina dedicata, retargeting quiz."},"f1-master":{label:"coral",labelText:"Funnel Discovery / Upsell",title:"Master K-Coach (6.500€)",body:"Chi ha fatto il Reiss ha sperimentato la potenza di essere letto in profondità. <strong>Vuoi saper fare questo con gli altri?</strong> Il profiler che restituisce il Reiss è il primo ambasciatore del master. Il contatto viene nutrito con contenuti, storie di alumni e informazioni sulle edizioni in partenza."},"f2-tofu":{label:"teal",labelText:"Reiss Direct / TOFU",title:"Intercettazione ricerca diretta",body:"Pagina Reiss ottimizzata SEO per \"test motivazionale\", \"reiss motivation profile\", \"assessment team\". <strong>Google Ads su keyword specifiche.</strong> LinkedIn per target B2B: HR manager, responsabili formazione, imprenditori."},"f2-mofu":{label:"purple",labelText:"Reiss Direct / MOFU",title:"Nurturing e proposta",body:"<strong>Privati:</strong> comunicazioni mirate con casi reali e approfondimenti sul valore del Reiss. <strong>Aziende:</strong> call personalizzata, preventivo per assessment di team (Reiss individuali + restituzione di squadra). Il contatto viene accompagnato alla decisione con contenuti e social proof."},"f2-bofu":{label:"amber",labelText:"Reiss Direct / BOFU",title:"Acquisto Reiss",body:"Privati: acquisto online o prenotazione call. Aziende: chiusura commerciale. <strong>Post-acquisto: restituzione impeccabile.</strong> È il momento in cui il cliente capisce il valore reale. Da qui si apre la porta verso master o progetti aziendali."},"f3-tofu":{label:"teal",labelText:"Master Direct / TOFU",title:"Lead che ha già deciso",body:"Cerca \"scuola coaching Roma\", \"master coaching ICF\". <strong>Arriva da SEO, passaparola alumni, K-Day.</strong> Landing completa: struttura, docenti, accreditamenti, Reiss integrato, prezzo, early bird."},"f3-mofu":{label:"purple",labelText:"Master Direct / MOFU",title:"Contatto diretto + K-Day",body:"La lead viene ricontattata per una call di approfondimento. <strong>I K-Day (eventi gratuiti in sede o online) sono il touchpoint esperienziale</strong> dove i potenziali iscritti conoscono i docenti e vivono un assaggio del percorso. Chi non è pronto viene nutrito con contenuti e aggiornamenti sulle edizioni."},"f3-bofu":{label:"amber",labelText:"Master Direct / BOFU",title:"Iscrizione master",body:"Chiusura con pagamento o rateizzazione. <strong>Pricing:</strong> 6.500€ (piena), early bird da aprile (40%, 35%, 30%...), under 30/over 60 al 50%. Due edizioni: febbraio e ottobre."},"convergence":{label:"coral",labelText:"Convergenza",title:"Master K-Coach Professionisti",body:"Tutti e tre i funnel convergono qui. <strong>Il quiz porta volume, il Reiss qualifica, il master converte.</strong> Chi arriva dal Discovery ha già fatto il Reiss. Chi dal Reiss Direct potrebbe averlo fatto in azienda. Chi dal Master Direct lo farà nel percorso."},"conn-1":{label:"gray",labelText:"Interconnessione",title:"Discovery completo",body:"Percorso più lungo e più solido. <strong>Quiz, poi Reiss, poi Master.</strong> Ogni step costruisce fiducia. Il ciclo dura settimane o mesi. Il CRM adatta la comunicazione a ogni passaggio."},"conn-2":{label:"gray",labelText:"Interconnessione",title:"Dal B2B alla formazione",body:"HR manager commissiona Reiss per il team. <strong>Durante il progetto scopre il valore e valuta di formarsi.</strong> Passaggio mediato dalla relazione con Marco, Alessandra o i profiler."},"conn-3":{label:"gray",labelText:"Interconnessione",title:"Circolo alumni",body:"Ogni coach formato è un ambasciatore. <strong>Programma referral da strutturare:</strong> incentivi per chi porta nuovi iscritti a master, Reiss o quiz. Sistematizzare il passaparola."},"ch-ig":{label:"gray",labelText:"Canale",title:"Instagram",body:"Contenuti sui profili Karakter, storie alumni, dietro le quinte. <strong>Quiz come contenuto principale.</strong> Reel per profilo, caroselli confronto, sondaggi storie. Target: 25-45."},"ch-tk":{label:"gray",labelText:"Canale",title:"TikTok",body:"Format brevi sui profili Karakter. <strong>Scene quotidiane riconoscibili, trend adattati.</strong> Tono giocoso, target under 30. Ogni contenuto rimanda al quiz. Prioritario per politica under 30."},"ch-li":{label:"gray",labelText:"Canale",title:"LinkedIn",body:"Posizionamento professionale, casi studio, thought leadership Marco e Alessandra. <strong>Target B2B e senior.</strong> Promozione Reiss come assessment. Ads per Funnel 2 e 3."},"ch-em":{label:"gray",labelText:"Canale",title:"Email marketing",body:"<strong>Comunicazioni segmentate per profilo e fase del funnel.</strong> Contenuti di valore, storie, aggiornamenti su edizioni e eventi. Il contatto riceve comunicazioni coerenti con il proprio punto nel percorso, mai generiche."},"ch-seo":{label:"gray",labelText:"Canale",title:"SEO / Blog",body:"Sito ristrutturato su Scopri/Comprendi/Fai Crescere. <strong>Quiz con landing dedicata</strong> per keyword alto volume. Blog su motivazioni e profili per ricerca organica."}};
+
+function drawArrows(){
+const svg=document.getElementById('arrows'),canvas=document.getElementById('canvas'),cr=canvas.getBoundingClientRect();
+svg.setAttribute('width',canvas.scrollWidth);svg.setAttribute('height',canvas.scrollHeight);svg.innerHTML='';
+const defs=document.createElementNS('http://www.w3.org/2000/svg','defs');
+function mkM(id,c){const m=document.createElementNS('http://www.w3.org/2000/svg','marker');m.setAttribute('id',id);m.setAttribute('viewBox','0 0 12 12');m.setAttribute('refX','10');m.setAttribute('refY','6');m.setAttribute('markerWidth','10');m.setAttribute('markerHeight','10');m.setAttribute('orient','auto');const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d','M2 2L10 6L2 10');p.setAttribute('fill','none');p.setAttribute('stroke',c);p.setAttribute('stroke-width','1.5');p.setAttribute('stroke-linecap','round');p.setAttribute('stroke-linejoin','round');m.appendChild(p);defs.appendChild(m)}
+mkM('ag','#c0bab0');mkM('aa','#c49520');svg.appendChild(defs);
+
+function gp(id){const el=document.getElementById(id);if(!el)return null;const r=el.getBoundingClientRect();return{cx:r.left-cr.left+r.width/2,cy:r.top-cr.top+r.height/2,t:r.top-cr.top,b:r.top-cr.top+r.height,l:r.left-cr.left,r:r.left-cr.left+r.width}}
+function ln(x1,y1,x2,y2,c,d,m){const l=document.createElementNS('http://www.w3.org/2000/svg','line');l.setAttribute('x1',x1);l.setAttribute('y1',y1);l.setAttribute('x2',x2);l.setAttribute('y2',y2);l.setAttribute('stroke',c);l.setAttribute('stroke-width','1.5');if(d)l.setAttribute('stroke-dasharray','8 5');if(m)l.setAttribute('marker-end','url(#'+m+')');svg.appendChild(l)}
+function pt(d,c,da,m){const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',d);p.setAttribute('stroke',c);p.setAttribute('stroke-width','1.5');p.setAttribute('fill','none');if(da)p.setAttribute('stroke-dasharray','8 5');if(m)p.setAttribute('marker-end','url(#'+m+')');svg.appendChild(p)}
+
+[['f1-tofu','f1-mofu'],['f1-mofu','f1-bofu'],['f1-bofu','f1-master']].forEach(([a,b])=>{const pa=gp(a),pb=gp(b);if(pa&&pb)ln(pa.cx,pa.b,pb.cx,pb.t,'#c0bab0',false,'ag')});
+[['f2-tofu','f2-mofu'],['f2-mofu','f2-bofu']].forEach(([a,b])=>{const pa=gp(a),pb=gp(b);if(pa&&pb)ln(pa.cx,pa.b,pb.cx,pb.t,'#c0bab0',false,'ag')});
+[['f3-tofu','f3-mofu'],['f3-mofu','f3-bofu']].forEach(([a,b])=>{const pa=gp(a),pb=gp(b);if(pa&&pb)ln(pa.cx,pa.b,pb.cx,pb.t,'#c0bab0',false,'ag')});
+
+const f1m=gp('f1-master'),conv=gp('convergence');
+if(f1m&&conv)pt(`M${f1m.r} ${f1m.cy} Q${f1m.r+40} ${f1m.cy} ${f1m.r+40} ${conv.cy} L${conv.l}`,'#c49520',true,'aa');
+
+const f2b=gp('f2-bofu');
+if(f2b&&conv)ln(f2b.cx,f2b.b,f2b.cx,conv.t,'#c49520',true,'aa');
+
+const f3b=gp('f3-bofu');
+if(f3b&&conv)ln(f3b.cx,f3b.b,f3b.cx,conv.t,'#c49520',true,'aa');
+}
+
+const tooltip=document.getElementById('tooltip'),ttL=document.getElementById('tt-label'),ttT=document.getElementById('tt-title'),ttB=document.getElementById('tt-body');
+let act=null;
+document.querySelectorAll('[data-tt]').forEach(el=>{
+el.addEventListener('mouseenter',e=>{const d=data[el.getAttribute('data-tt')];if(!d)return;act=el;ttL.textContent=d.labelText;ttL.className='tt-label '+d.label;ttT.textContent=d.title;ttB.innerHTML=d.body;tooltip.classList.add('visible');mp(e)});
+el.addEventListener('mousemove',e=>{if(act===el)mp(e)});
+el.addEventListener('mouseleave',()=>{act=null;tooltip.classList.remove('visible')});
+});
+function mp(e){let x=e.clientX+16,y=e.clientY+16;if(x+340>window.innerWidth-16)x=e.clientX-356;tooltip.style.left=x+'px';tooltip.style.top=y+'px';requestAnimationFrame(()=>{if(y+tooltip.offsetHeight>window.innerHeight-16)tooltip.style.top=(e.clientY-tooltip.offsetHeight-16)+'px'})}
+
+window.addEventListener('load',drawArrows);
+window.addEventListener('resize',drawArrows);
+</script>
+</body>
+</html>

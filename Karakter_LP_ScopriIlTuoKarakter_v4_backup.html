@@ -1,0 +1,2012 @@
+<div id="karakter-app">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&family=Old+Standard+TT:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --k-amber: #f2b705;
+      --k-amber-light: #fffaeb;
+      --k-dark: #234456;
+      --k-teal: #1b5d7c;
+      --k-green: #4a7c6a;
+      --k-black: #0a0a0a;
+      --k-gray-100: #f8f8f8;
+      --k-gray-200: #e8e8e8;
+      --k-gray-300: #d4d4d4;
+      --k-gray-400: #999999;
+      --k-gray-500: #666666;
+      --k-gray-600: #444444;
+      --k-white: #ffffff;
+      --font-headline: 'Outfit', 'Helvetica Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+      --font-editorial: 'Old Standard TT', serif;
+    }
+
+    html, body {
+      font-family: var(--font-body);
+      color: var(--k-gray-600);
+      background: var(--k-white);
+    }
+
+    mark {
+      background: rgba(242, 183, 5, 0.15);
+      padding: 0 3px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+
+    .nav-pill {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      background: var(--k-amber);
+      color: var(--k-black);
+      border: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-pill:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-pill.active {
+      background: var(--k-amber);
+    }
+
+    .nav-pill.inactive {
+      background: var(--k-gray-200);
+      color: var(--k-gray-500);
+    }
+
+    /* ===== LANDING PAGE SECTION ===== */
+
+    .lp-section {
+      display: none;
+    }
+
+    .lp-section.active {
+      display: block;
+    }
+
+    /* NAV */
+    #nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 16px 20px;
+      background: var(--k-white);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+
+    #nav.dark-scroll {
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    .nav-container {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* HERO SECTION */
+    #hero {
+      padding: 60px 20px 80px;
+      background: var(--k-white);
+      text-align: center;
+    }
+
+    .hero-preheadline {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--k-gray-400);
+      margin-bottom: 16px;
+    }
+
+    .hero-main {
+      margin-bottom: 24px;
+    }
+
+    .hero-main-part1 {
+      font-family: var(--font-headline);
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--k-gray-600);
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .hero-main-part2 {
+      position: relative;
+      display: inline-block;
+      font-family: var(--font-headline);
+      font-size: clamp(64px, 12vw, 130px);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--k-black);
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .hero-main-part2::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--k-amber);
+      z-index: -1;
+      border-radius: 8px;
+      transform: scaleX(1.08) scaleY(1.05);
+    }
+
+    .hero-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f2b705, #ffdb4d);
+      margin-left: 6px;
+      animation: pulse-dot 1.5s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(0.8);
+        opacity: 0.6;
+      }
+    }
+
+    .hero-subhead {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 2.5vw, 20px);
+      line-height: 1.6;
+      color: var(--k-gray-500);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-subhead strong {
+      color: var(--k-gray-600);
+      font-weight: 700;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--k-amber);
+      color: var(--k-black);
+      border: none;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 40px;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(242, 183, 5, 0.3);
+    }
+
+    .hero-social {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--k-gray-400);
+      margin-bottom: 60px;
+    }
+
+    .hero-social strong {
+      color: var(--k-gray-500);
+    }
+
+    /* HERO WIDGET */
+    .hero-widget {
+      background: var(--k-dark);
+      color: var(--k-white);
+      border-radius: 12px;
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-widget::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+
+    .hero-widget-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .typewriter-section {
+      margin-bottom: 40px;
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.6;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .typewriter-text {
+      min-height: 1.5em;
+    }
+
+    .trait-cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .trait-card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 140px;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .trait-card:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--k-amber);
+    }
+
+    .trait-card-name {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--k-amber);
+      margin-bottom: 8px;
+    }
+
+    .trait-card-desc {
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* FEATURE CARDS CAROUSEL */
+    #come-funziona {
+      padding: 80px 20px;
+      background: var(--k-white);
+    }
+
+    .section-headline {
+      font-family: var(--font-headline);
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--k-black);
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 60px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .carousel-wrapper {
+      display: flex;
+      gap: 24px;
+      animation: carousel-scroll 20s linear infinite;
+    }
+
+    .carousel-card {
+      flex: 0 0 calc(33.333% - 16px);
+      background: var(--k-white);
+      border-radius: 8px;
+      padding: 30px;
+      border: 1px solid var(--k-gray-200);
+      transition: all 0.3s ease;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 768px) {
+      .carousel-card {
+        flex: 0 0 calc(100% - 0px);
+      }
+    }
+
+    .carousel-card:hover {
+      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+    }
+
+    .carousel-card-title {
+      font-family: var(--font-headline);
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.3;
+      color: var(--k-black);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .carousel-card-desc {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--k-gray-500);
+      flex-grow: 1;
+    }
+
+    @keyframes carousel-scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-100% - 120px));
+      }
+    }
+
+    .carousel-wrapper {
+      animation: carousel-scroll 25s linear infinite;
+    }
+
+    .carousel-edge {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 100px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .carousel-edge.left {
+      left: 0;
+      background: linear-gradient(to right, var(--k-white) 0%, rgba(255,255,255,0) 100%);
+    }
+
+    .carousel-edge.right {
+      right: 0;
+      background: linear-gradient(to left, var(--k-white) 0%, rgba(255,255,255,0) 100%);
+    }
+
+    /* FEATURES WITH WIDGETS */
+    #cosa-scoprirai {
+      padding: 80px 20px;
+      background: var(--k-gray-100);
+    }
+
+    .feat-row {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .feat-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feat-row.reverse {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .feat-row.reverse .feat-content {
+      order: 2;
+    }
+
+    .feat-row.reverse .feat-widget {
+      order: 1;
+    }
+
+    @media (max-width: 768px) {
+      .feat-row.reverse {
+        grid-template-columns: 1fr;
+      }
+      .feat-row.reverse .feat-content {
+        order: unset;
+      }
+      .feat-row.reverse .feat-widget {
+        order: unset;
+      }
+    }
+
+    .feat-content h3 {
+      font-family: var(--font-headline);
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--k-black);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .feat-content p {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--k-gray-500);
+      margin-bottom: 16px;
+    }
+
+    /* STRENGTH BARS WIDGET */
+    .strength-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .strength-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .strength-bar-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--k-gray-600);
+      min-width: 80px;
+    }
+
+    .strength-bar-track {
+      flex-grow: 1;
+      height: 8px;
+      background: var(--k-gray-200);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .strength-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--k-amber), #ffdb4d);
+      border-radius: 4px;
+      animation: bar-pulse 3s infinite;
+      transition: width 0.6s ease;
+    }
+
+    @keyframes bar-pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.8;
+      }
+    }
+
+    /* COMMAND PALETTE WIDGET */
+    .command-palette {
+      background: rgba(0,0,0,0.05);
+      border-radius: 8px;
+      padding: 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.8;
+      color: var(--k-gray-600);
+    }
+
+    .command-item {
+      padding: 8px 12px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .command-item.active {
+      background: var(--k-amber);
+      color: var(--k-black);
+      font-weight: 700;
+    }
+
+    /* STATS GRID */
+    #stats-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      #stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stat-card {
+      background: var(--k-white);
+      border-radius: 8px;
+      padding: 32px;
+      border-left: 4px solid var(--k-amber);
+      background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(255,250,235,0.3) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card:nth-child(1) {
+      border-left-color: var(--k-amber);
+    }
+
+    .stat-card:nth-child(2) {
+      border-left-color: var(--k-teal);
+    }
+
+    .stat-card:nth-child(3) {
+      border-left-color: var(--k-green);
+    }
+
+    .stat-card:nth-child(4) {
+      border-left-color: var(--k-dark);
+    }
+
+    .stat-icon {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 12px;
+      opacity: 0.7;
+    }
+
+    .stat-number {
+      font-family: var(--font-headline);
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--k-black);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--k-gray-500);
+      margin-bottom: 12px;
+    }
+
+    .stat-desc {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--k-gray-500);
+    }
+
+    /* DIFFERENCE BLOCK */
+    #differenza {
+      padding: 80px 20px;
+      background: var(--k-dark);
+      color: var(--k-white);
+    }
+
+    .differenza-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .differenza-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .differenza-content h2 {
+      font-family: var(--font-headline);
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .differenza-content p {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 16px;
+    }
+
+    .differenza-cta {
+      display: inline-block;
+      padding: 12px 28px;
+      background: var(--k-amber);
+      color: var(--k-black);
+      border: none;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .differenza-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(242, 183, 5, 0.3);
+    }
+
+    .differenza-image {
+      width: 100%;
+      height: 300px;
+      border: 2px dashed var(--k-gray-300);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.3);
+      font-family: var(--font-body);
+      font-size: 14px;
+    }
+
+    /* TESTIMONIALS */
+    #testimonials {
+      padding: 80px 20px;
+      background: var(--k-white);
+    }
+
+    .testimonials-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .testimonial-card {
+      background: var(--k-white);
+      border-radius: 8px;
+      padding: 32px;
+      border: 1px solid var(--k-gray-200);
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+
+    .testimonial-stars {
+      font-size: 16px;
+      color: var(--k-amber);
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-quote {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--k-gray-500);
+      margin-bottom: 16px;
+    }
+
+    .testimonial-author {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--k-gray-600);
+    }
+
+    .testimonial-role {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--k-gray-400);
+      margin-top: 4px;
+    }
+
+    /* FAQ */
+    #faq {
+      padding: 80px 20px;
+      background: var(--k-gray-100);
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 40px;
+      border-bottom: 2px solid var(--k-gray-200);
+    }
+
+    .faq-tab {
+      padding: 12px 16px;
+      background: none;
+      border: none;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--k-gray-400);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+      margin-bottom: -2px;
+    }
+
+    .faq-tab.active {
+      color: var(--k-black);
+      border-bottom-color: var(--k-amber);
+    }
+
+    .faq-content {
+      display: none;
+    }
+
+    .faq-content.active {
+      display: block;
+    }
+
+    .faq-item {
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--k-gray-200);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--k-black);
+      margin-bottom: 12px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-toggle {
+      font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.open .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    .faq-a {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--k-gray-500);
+      display: none;
+    }
+
+    .faq-item.open .faq-a {
+      display: block;
+    }
+
+    /* FOOTER CTA */
+    #footer-cta {
+      padding: 80px 20px;
+      background: var(--k-black);
+      color: var(--k-white);
+      text-align: center;
+    }
+
+    .footer-cta-content {
+      max-width: 600px;
+      margin: 0 auto 60px;
+    }
+
+    .footer-cta-headline {
+      font-family: var(--font-headline);
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .footer-cta-text {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 32px;
+    }
+
+    .footer-cta-button {
+      display: inline-block;
+      padding: 14px 36px;
+      background: var(--k-amber);
+      color: var(--k-black);
+      border: none;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .footer-cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(242, 183, 5, 0.3);
+    }
+
+    /* FALLING OBJECTS */
+    #falling-container {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      margin-top: 60px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .falling-pill {
+      position: absolute;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--k-black);
+      background: var(--k-amber);
+      cursor: grab;
+      user-select: none;
+      pointer-events: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: box-shadow 0.2s;
+    }
+
+    .falling-pill:hover {
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+
+    .falling-pill:active {
+      cursor: grabbing;
+    }
+
+    .falling-pill:nth-child(1) { background: var(--k-amber); }
+    .falling-pill:nth-child(2) { background: #e89b1f; }
+    .falling-pill:nth-child(3) { background: var(--k-teal); }
+    .falling-pill:nth-child(4) { background: #1a4d63; }
+    .falling-pill:nth-child(5) { background: var(--k-green); }
+    .falling-pill:nth-child(6) { background: #3a6c59; }
+    .falling-pill:nth-child(7) { background: var(--k-amber); }
+    .falling-pill:nth-child(8) { background: #e89b1f; }
+    .falling-pill:nth-child(9) { background: var(--k-teal); }
+    .falling-pill:nth-child(10) { background: #1a4d63; }
+    .falling-pill:nth-child(11) { background: var(--k-green); }
+    .falling-pill:nth-child(12) { background: #3a6c59; }
+    .falling-pill:nth-child(13) { background: var(--k-amber); }
+    .falling-pill:nth-child(14) { background: #e89b1f; }
+    .falling-pill:nth-child(15) { background: var(--k-teal); }
+
+    /* BRAND FOOTER */
+    #brand-footer {
+      padding: 40px 20px;
+      background: #050505;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .brand-footer-text {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ===== QUIZ SECTION ===== */
+
+    #quiz-section {
+      padding: 60px 20px;
+      background: var(--k-white);
+      min-height: 100vh;
+      display: none;
+    }
+
+    #quiz-section.active {
+      display: block;
+    }
+
+    .quiz-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .progress-container {
+      margin-bottom: 40px;
+    }
+
+    .progress-label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--k-gray-500);
+      margin-bottom: 12px;
+    }
+
+    .progress-track {
+      height: 6px;
+      background: var(--k-gray-200);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--k-amber), #ffdb4d);
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
+
+    .q-container {
+      position: relative;
+      min-height: 400px;
+    }
+
+    .q-card {
+      position: absolute;
+      width: 100%;
+      transition: all 0.3s ease;
+      opacity: 1;
+    }
+
+    .q-card.exiting {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    .q-card.entering {
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .q-block-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--k-gray-400);
+      margin-bottom: 16px;
+    }
+
+    .q-star {
+      display: inline-block;
+      margin-left: 8px;
+      color: var(--k-amber);;
+      font-size: 14px;
+    }
+
+    .q-text {
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.5;
+      color: var(--k-black);
+      margin-bottom: 32px;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .quiz-opt {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px;
+      background: var(--k-gray-100);
+      border: 2px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--k-gray-600);
+    }
+
+    .quiz-opt:hover {
+      background: rgba(242, 183, 5, 0.08);
+      border-color: var(--k-amber);
+    }
+
+    .quiz-opt.selected {
+      background: var(--k-amber);
+      border-color: var(--k-amber);
+      color: var(--k-black);
+      font-weight: 700;
+    }
+
+    .quiz-letter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      height: 32px;
+      background: rgba(0,0,0,0.1);
+      border-radius: 50%;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .quiz-opt.selected .quiz-letter {
+      background: var(--k-black);
+      color: var(--k-amber);
+    }
+
+    .quiz-controls {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .btn-quiz-back, .btn-quiz-next {
+      padding: 12px 24px;
+      border: 2px solid var(--k-gray-300);
+      background: var(--k-white);
+      color: var(--k-gray-600);
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-quiz-next {
+      background: var(--k-amber);
+      color: var(--k-black);
+      border-color: var(--k-amber);
+    }
+
+    .btn-quiz-back:hover {
+      border-color: var(--k-gray-500);
+      color: var(--k-gray-600);
+    }
+
+    .btn-quiz-next:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(242, 183, 5, 0.3);
+    }
+
+    .btn-quiz-back:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* ===== FORM GATE SECTION ===== */
+
+    #form-gate {
+      padding: 60px 20px;
+      background: var(--k-white);
+      min-height: 100vh;
+      display: none;
+    }
+
+    #form-gate.active {
+      display: block;
+    }
+
+    .form-gate-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .form-gate-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .form-gate-headline {
+      font-family: var(--font-headline);
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--k-black);
+      margin-bottom: 16px;
+    }
+
+    .form-gate-subheadline {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--k-gray-500);
+    }
+
+    .form-gate-teaser {
+      background: linear-gradient(135deg, rgba(242,183,5,0.1) 0%, rgba(27,93,124,0.05) 100%);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 40px;
+      position: relative;
+      backdrop-filter: blur(10px);
+      filter: blur(3px);
+      pointer-events: none;
+    }
+
+    .form-gate-teaser-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--k-gray-400);
+      margin-bottom: 12px;
+    }
+
+    .form-gate-teaser-traits {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .trait-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      background: var(--k-amber);
+      color: var(--k-black);
+      border-radius: 20px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    #hubspot-form-wrapper {
+      border-radius: 8px;
+    }
+
+    #hubspot-form-wrapper .hbspt-form {
+      border: none;
+    }
+  </style>
+
+  <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/embed/v2.js"></script>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-container">
+      <button class="nav-pill active" onclick="showSection('landing')">La Landing</button>
+      <button class="nav-pill inactive" onclick="showSection('quiz')">Il Quiz</button>
+    </div>
+  </nav>
+
+  <!-- LANDING PAGE SECTION -->
+  <div id="landing" class="lp-section active">
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-preheadline">Il quiz motivazionale di Karakter Coaching School</div>
+
+      <div class="hero-main">
+        <div class="hero-main-part1">Scopri il tuo</div>
+        <div class="hero-main-part2">KARAKTER<span class="hero-dot"></span></div>
+      </div>
+
+      <div class="hero-subhead">
+        24 domande e una mappa delle <mark>12 motivazioni</mark> che guidano ogni scelta che fai.
+      </div>
+
+      <button class="hero-cta" onclick="showSection('quiz')">Inizia il quiz gratuito</button>
+
+      <div class="hero-social">
+        <strong>Migliaia di persone</strong> hanno scoperto il loro Karakter
+      </div>
+
+      <!-- HERO WIDGET -->
+      <div class="hero-widget">
+        <div class="hero-widget-content">
+          <div class="typewriter-section">
+            <div class="typewriter-text" id="typewriter"></div>
+          </div>
+
+          <div class="trait-cards-container" id="trait-cards-container">
+            <!-- Will be populated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COME FUNZIONA (Carousel) -->
+    <section id="come-funziona">
+      <h2 class="section-headline">Come funziona</h2>
+
+      <div class="carousel-container">
+        <div class="carousel-wrapper">
+          <div class="carousel-card">
+            <h3 class="carousel-card-title">Scenari reali</h3>
+            <p class="carousel-card-desc">Non troverai domande astratte. Troverai il progetto che si blocca, la <mark>decisione difficile</mark>, il collega che ti chiede aiuto.</p>
+          </div>
+          <div class="carousel-card">
+            <h3 class="carousel-card-title">Rispondi istintivo</h3>
+            <p class="carousel-card-desc">Le risposte che dai in 2 secondi dicono piu' di quelle riflessive. Il quiz non guarda quello che sai, guarda <mark>come ragioni</mark>.</p>
+          </div>
+          <div class="carousel-card">
+            <h3 class="carousel-card-title">Una mappa personale</h3>
+            <p class="carousel-card-desc">Scopri le 12 motivazioni che guidano le tue scelte. Non etichette, ma <mark>mappe di senso</mark> che puoi usare subito.</p>
+          </div>
+          <div class="carousel-card">
+            <h3 class="carousel-card-title">In 5 minuti</h3>
+            <p class="carousel-card-desc">Il tempo che basta per 24 domande veloci. Niente form lunghe, niente aspettative di dettagli che non servono a <mark>nessuno</mark>.</p>
+          </div>
+          <div class="carousel-card">
+            <h3 class="carousel-card-title">100% gratuito</h3>
+            <p class="carousel-card-desc">Scopri il tuo Karakter, scarica la mappa, usa quello che impari. Niente costi nascosti, niente <mark>promesse strane</mark>.</p>
+          </div>
+        </div>
+        <div class="carousel-edge left"></div>
+        <div class="carousel-edge right"></div>
+      </div>
+    </section>
+
+    <!-- COSA SCOPRIRAI (Features with animated widgets) -->
+    <section id="cosa-scoprirai">
+      <h2 class="section-headline">Cosa scoprirai</h2>
+
+      <!-- Feature 1: Strength Bars -->
+      <div class="feat-row">
+        <div class="feat-content">
+          <h3>Le tue 12 motivazioni</h3>
+          <p>Non una, dodici. Ognuna ha un ruolo diverso a seconda del contesto. Scopri come si combinano in te, quale e' <mark>il tuo ordine naturale</mark>.</p>
+        </div>
+        <div class="feat-widget">
+          <div class="strength-bars" id="strength-bars-demo">
+            <!-- Will be populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2: Command Palette -->
+      <div class="feat-row reverse">
+        <div class="feat-content">
+          <h3>Le tue scelte</h3>
+          <p>Non e' solo quello che fai, ma il <mark>perche' lo fai</mark>. Vedi come ogni motivazione ti porta a decisioni diverse.</p>
+        </div>
+        <div class="feat-widget">
+          <div class="command-palette" id="command-palette-demo">
+            <!-- Will be populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 3: Stats Grid -->
+      <div class="feat-row">
+        <div class="feat-content">
+          <h3>I tuoi pattern</h3>
+          <p>Le combinazioni che contano. Vedi le <mark>spiegazioni concrete</mark> di quello che ti blocca, di quello che ti accende, di quello che cerchi.</p>
+        </div>
+        <div class="feat-widget">
+          <div id="stats-grid">
+            <div class="stat-card">
+              <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <div class="stat-number">12</div>
+              <div class="stat-label">Tratti</div>
+              <div class="stat-desc">Una per ogni motivazione</div>
+            </div>
+            <div class="stat-card">
+              <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+              <div class="stat-number">66</div>
+              <div class="stat-label">Combinazioni</div>
+              <div class="stat-desc">Possibili tra i 12 tratti</div>
+            </div>
+            <div class="stat-card">
+              <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <div class="stat-number">24</div>
+              <div class="stat-label">Domande</div>
+              <div class="stat-desc">Scenari della vita reale</div>
+            </div>
+            <div class="stat-card">
+              <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <div class="stat-number">5</div>
+              <div class="stat-label">Minuti</div>
+              <div class="stat-desc">Per completare il quiz</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LA DIFFERENZA -->
+    <section id="differenza">
+      <div class="differenza-container">
+        <div class="differenza-content">
+          <h2>La differenza</h2>
+          <p>Non e' un test di personalita'. Non e' uno strumento per etichettarti. E' una mappa motivazionale. Vedi come decidi, come reagisci, cosa ti <mark>porta a scegliere</mark> cio' che scegli.</p>
+          <p>E soprattutto: cosa puoi fare con questa consapevolezza.</p>
+          <button class="differenza-cta" onclick="showSection('quiz')">Fai il quiz gratuito →</button>
+        </div>
+        <div class="differenza-image">Immagine</div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <h2 class="section-headline">Quello che dicono</h2>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-quote">"Ho scoperto che non mi blocco per mancanza di competenza, ma quando <mark>non riesco a vedere il senso</mark>. Tutto e' cambiato da quando l'ho capito."</div>
+          <div class="testimonial-author">Maria R.</div>
+          <div class="testimonial-role">Manager, Tech</div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-quote">"Il Karakter non mi ha detto niente che non sapessi, ma l'ha messo <mark>nel posto giusto</mark>. Adesso riesco a spiegare me stesso agli altri."</div>
+          <div class="testimonial-author">Luca T.</div>
+          <div class="testimonial-role">Founder, Startup</div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-quote">"Sapevo che ero fatto diverso dagli altri nel mio team. Sapere come, <mark>perche', e dove</mark>, ha cambiato come collaboro con loro."</div>
+          <div class="testimonial-author">Giulia M.</div>
+          <div class="testimonial-role">Product Lead, Digital</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2 class="section-headline">Domande frequenti</h2>
+
+      <div class="faq-container">
+        <div class="faq-tabs">
+          <button class="faq-tab active" onclick="switchFaqTab(0)">Generale</button>
+          <button class="faq-tab" onclick="switchFaqTab(1)">Il Quiz</button>
+          <button class="faq-tab" onclick="switchFaqTab(2)">I risultati</button>
+        </div>
+
+        <!-- Tab 1: Generale -->
+        <div class="faq-content active" id="faq-tab-0">
+          <div class="faq-item">
+            <div class="faq-q onclick="toggleFaq(this)">Cos'e' Karakter? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">Karakter e' uno strumento che ti aiuta a capire come decidi. Non e' basato su personalita', but su motivazioni — i driver che ti portano a scegliere quello che scegli.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Chi l'ha creato? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">Karakter Coaching School, con anni di ricerca su come le persone prendono decisioni e su cosa le motiva veramente nel lavoro.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Vale davvero? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">Se il questionario e' ben costruito e basato su ricerca — si'. Se il test e' serio, i risultati hanno peso. Prova tu stesso e decidi.</div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Il Quiz -->
+        <div class="faq-content" id="faq-tab-1">
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Quanto tempo dura? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">Tra i 5 e gli 8 minuti. Le domande sono scenari brevi e concreti: rispondi in modo istintivo. E' anche quello il punto.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Ci sono risposte giuste? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">No. Non esistono risposte corrette. Ogni risposta mostra come ragioni in quella situazione. Il test non giudica, descrive.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Posso rifarlo? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">Si'. Le motivazioni non cambiano spesso, ma se vuoi rifarlo e vedere se i risultati sono consistenti, fallo pure.</div>
+          </div>
+        </div>
+
+        <!-- Tab 3: I Risultati -->
+        <div class="faq-content" id="faq-tab-2">
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Ricevo i risultati quando finisco? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">Si', completamente. Non serve registrarsi, non ci sono step nascosti. Fai le 24 domande, ricevi la tua mappa motivazionale.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Posso scaricare la mappa? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">Si', puoi salvarla, stamparla, condividerla. E' tua. Usala come meglio credi — per una conversazione al lavoro, per capire te stesso, per parlare con un coach.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Come uso i risultati? <span class="faq-toggle">+</span></div>
+            <div class="faq-a">Leggili, capisci cosa dicono di te, e poi scegli. Parla con un collega, porta la mappa a un coach, usa quello che impari per negoziare un ruolo che ti si addice di piu'.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <section id="footer-cta">
+      <div class="footer-cta-content">
+        <h2 class="footer-cta-headline">Scopri il tuo Karakter</h2>
+        <p class="footer-cta-text">24 domande. 5 minuti. <mark>Nessun costo</mark>.</p>
+        <button class="footer-cta-button" onclick="showSection('quiz')">Inizia il quiz gratuito</button>
+      </div>
+
+      <!-- FALLING OBJECTS -->
+      <div id="falling-container"></div>
+    </section>
+
+    <!-- BRAND FOOTER -->
+    <footer id="brand-footer">
+      <div class="brand-footer-text">&copy; 2026 Karakter Coaching School. Tutti i diritti riservati.</div>
+    </footer>
+  </div>
+
+  <!-- QUIZ SECTION -->
+  <section id="quiz-section">
+    <div class="quiz-container">
+      <div class="progress-container">
+        <div class="progress-label" id="prog-label">Domanda 1 di 24</div>
+        <div class="progress-track">
+          <div class="progress-fill" id="prog-fill" style="width: 4.17%;"></div>
+        </div>
+      </div>
+
+      <div class="q-container" id="q-container">
+        <div class="q-card" id="q-card">
+          <!-- Will be populated by JS -->
+        </div>
+      </div>
+
+      <div class="quiz-controls">
+        <button class="btn-quiz-back" id="btn-back" onclick="quizBack()" disabled>← Indietro</button>
+        <button class="btn-quiz-next" id="btn-next" onclick="quizNext()">Avanti</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM GATE SECTION -->
+  <section id="form-gate">
+    <div class="form-gate-container">
+      <div class="form-gate-header">
+        <h2 class="form-gate-headline">Il tuo Karakter</h2>
+        <p class="form-gate-subheadline">Scopri le tue 3 motivazioni principali. Completa il modulo per ricevere la mappa completa.</p>
+      </div>
+
+      <div class="form-gate-teaser">
+        <div class="form-gate-teaser-label">Le tue 3 motivazioni principali:</div>
+        <div class="form-gate-teaser-traits" id="teaser-traits">
+          <!-- Will be populated by JS -->
+        </div>
+      </div>
+
+      <div id="hubspot-form-wrapper"></div>
+    </div>
+  </section>
+
+  <script>
+    // ========== TRAITS & SCORING ==========
+    var TRAITS={
+      BUSSOLA:{name:"La Bussola"},
+      FUOCO:{name:"Il Fuoco"},
+      MAPPA:{name:"La Mappa"},
+      FILO:{name:"Il Filo"},
+      RADICE:{name:"La Radice"},
+      ONDA:{name:"L'Onda"},
+      SCUDO:{name:"Lo Scudo"},
+      PALCO:{name:"Il Palco"},
+      PONTE:{name:"Il Ponte"},
+      RITMO:{name:"Il Ritmo"},
+      LENTE:{name:"La Lente"},
+      VENTO:{name:"Il Vento"}
+    };
+
+    var SCORING=[
+      ["PONTE","FUOCO","LENTE","BUSSOLA"],
+      ["MAPPA","FILO","FUOCO","ONDA"],
+      ["PALCO","PONTE","SCUDO","LENTE"],
+      ["SCUDO","MAPPA","LENTE","FILO"],
+      ["RADICE","ONDA","SCUDO","VENTO"],
+      ["MAPPA","RADICE","SCUDO","BUSSOLA"],
+      ["PONTE","VENTO","PALCO","RITMO"],
+      ["LENTE","SCUDO","FILO","FUOCO"],
+      ["MAPPA","RITMO","RADICE","SCUDO"],
+      ["PALCO","FUOCO","LENTE","FILO"],
+      ["RITMO","ONDA","MAPPA","PONTE"],
+      ["MAPPA","FILO","RADICE","BUSSOLA"],
+      ["PALCO","PONTE","SCUDO","BUSSOLA"],
+      ["RITMO","BUSSOLA","FUOCO","VENTO"],
+      ["PALCO","VENTO","MAPPA","LENTE"],
+      ["ONDA","PALCO","VENTO","SCUDO"],
+      ["ONDA","BUSSOLA","FILO","PONTE"],
+      ["FILO","MAPPA","RADICE","LENTE"],
+      ["RADICE","ONDA","VENTO","LENTE"],
+      ["BUSSOLA","FUOCO","RITMO","RADICE"],
+      ["VENTO","PALCO","ONDA","RITMO"],
+      ["BUSSOLA","PONTE","FILO","RITMO"],
+      ["FUOCO","ONDA","VENTO","RADICE"],
+      ["PALCO","RITMO","FUOCO","PONTE"]
+    ];
+
+    // ========== QUESTIONS ==========
+    var QUESTIONS=[
+      {block:1,tag:"Vita quotidiana",text:"Stai per iniziare un nuovo progetto con un team che non conosci. Il primo briefing dura venti minuti. Come arrivi alla prima riunione operativa?",opts:[{l:"A",t:"Hai gia' capito come si collegano i diversi ruoli e hai in testa una proposta su come far fluire meglio il lavoro."},{l:"B",t:"Hai identificato chi ha piu' influenza nel gruppo e stai gia' pensando a come posizionarti per guidare le decisioni chiave."},{l:"C",t:"Hai fatto ricerche su ogni componente del team e sul contesto del progetto — vuoi capire prima di muoverti."},{l:"D",t:"Sai gia' se il progetto ti sembra coerente con quello in cui credi. Se non lo e', comincerai a chiederti quanto ci vuole ad allinearlo."}]},
+      {block:1,tag:"Vita quotidiana",text:"Un collega ti chiede aiuto con un problema che non e' di tua competenza, ma che sai risolvere. Sei nel mezzo di qualcos'altro. Come reagisci?",opts:[{l:"A",t:"Ti fermi un attimo, ascolti e valuti se puoi capire la radice del problema prima di rispondere."},{l:"B",t:"Lo aiuti, ma anche perche' il legame con lui conta — sai che la prossima volta si ricordera'."},{l:"C",t:"Ti interessa capire se e' un problema che vale la pena risolvere davvero, o se e' un sintomo di qualcosa di piu' grande."},{l:"D",t:"Ti alzi, vai a vederlo di persona, e se puoi lo risolvi in cinque minuti — stare fermi a parlarne ti sembra uno spreco."}]},
+      {block:1,tag:"Vita quotidiana",text:"Devi presentare i risultati di sei mesi di lavoro a un pubblico misto: colleghi, clienti, management. Hai due ore per prepararti. Dove le passi?",opts:[{l:"A",t:"Lavori sulla forma: struttura delle slide, tono della narrazione, i dettagli che rendono la presentazione memorabile."},{l:"B",t:"Pensi prima a chi sara' in sala e a come ogni persona recepira' il messaggio — costruisci una storia su misura."},{l:"C",t:"Costruisci uno schema solido: punti chiave, dati di supporto, possibili domande difficili — vuoi sentirti preparato."},{l:"D",t:"Controlli che i dati reggano e che non ci siano contraddizioni — preferiresti avere piu' tempo, ma ti concentri sui punti critici."}]},
+      {block:1,tag:"Vita quotidiana",text:"Una mattina scopri che un processo su cui lavori da settimane verra' cambiato radicalmente, con poco preavviso. Come gestisci il momento?",opts:[{l:"A",t:"Ascolti, poi tieni il campo: non ti scomponi davanti agli altri, ma dentro stai gia' analizzando i rischi."},{l:"B",t:"Fai subito domande per capire cosa cambia nel concreto — hai bisogno di sapere come adattarti rapidamente."},{l:"C",t:"Ti prendi il tempo di capire l'impatto sul lavoro degli altri, non solo sul tuo — e se vedi qualcosa di storto, lo dici."},{l:"D",t:"Chiedi i dettagli tecnici: vuoi ricostruire il quadro completo prima di formarti un'opinione."}]},
+      {block:1,tag:"Vita quotidiana",text:"Il tuo team lavora da mesi su un obiettivo comune. Siete quasi arrivati, ma mancano ancora alcune settimane. Qual e' il tuo atteggiamento?",opts:[{l:"A",t:"Tieni il ritmo — sai che la coerenza nelle ultime settimane e' quello che spesso fa la differenza tra un buon lavoro e un ottimo lavoro."},{l:"B",t:"Senti l'energia salire: la fase finale ti piace, sei abituato a tirare fuori il meglio quando c'e' qualcosa in gioco."},{l:"C",t:"Ti assicuri che tutto sia ancora in equilibrio — e' il momento in cui si tendono a tagliare le fondamenta per correre."},{l:"D",t:"Preferiresti avere piu' liberta' su come usare queste ultime settimane — la struttura rigida ti pesa un po'."}]},
+      {block:1,tag:"Vita quotidiana",text:"Stai valutando se accettare un incarico nuovo e interessante, ma con qualche punto di ambiguita'. Cosa pesa di piu' nella tua decisione?",opts:[{l:"A",t:"Vuoi capire a fondo il contesto — non riesci a decidere senza avere un quadro chiaro di cosa stai davvero facendo."},{l:"B",t:"Valuti la solidita': quanto durera', cosa c'e' dietro, se e' qualcosa su cui vale la pena costruire nel tempo."},{l:"C",t:"Ti chiedi se hai le energie per gestire l'incertezza — l'ambiguita' non ti spaventa, ma vuoi essere lucido."},{l:"D",t:"Ti chiedi se il progetto ha senso per te — non e' una questione di soldi, e' una questione di dove ti porta."}]},
+      {block:1,tag:"Vita quotidiana",text:"Sei a una conferenza professionale. Tra i partecipanti ci sono persone che ammiri. Come vivi la giornata?",opts:[{l:"A",t:"Ascolti molto, connetti le idee con cio' in cui credi — se senti qualcosa di importante per la tua causa, lo segni e lo porti avanti."},{l:"B",t:"Ti muovi liberamente: una sessione ti annoia, esci, vai a parlare con qualcuno fuori dalla sala — il format non ti vincola."},{l:"C",t:"Ti preoccupi di come ti presenti — vuoi che la tua presenza lasci un segno, non un'impressione anonima."},{l:"D",t:"Vivi la giornata seguendo un ritmo che funziona per te: sessioni scelte con cura, pause vere, nessuna sovrastimolazione."}]},
+      {block:1,tag:"Vita quotidiana",text:"Il tuo team ha appena preso una decisione che ritieni discutibile. Non e' stata chiesta la tua opinione. Come ti comporti?",opts:[{l:"A",t:"La analizzi in dettaglio: cosa potrebbe andare storto, quali dati mancavano, dove si e' ragionato in modo approssimativo."},{l:"B",t:"Non ti spaventa — sai che spesso le decisioni si correggono in corsa, e hai gia' visto scenari peggiori."},{l:"C",t:"Parli con qualcuno di fiducia — non per lamentarti, ma per capire se anche gli altri hanno visto quello che hai visto tu."},{l:"D",t:"Torni sulla decisione con dati alla mano: non lo fai per avere ragione, ma perche' non riesci a lasciar passare qualcosa che non ti sembra giusto."}]},
+      {block:2,tag:"Relazioni e sfide",text:"Una persona che lavora con te da mesi ti chiede un feedback sincero. Sai che alcune cose non funzionano. Come gestisci la conversazione?",opts:[{l:"A",t:"Prepari il feedback con cura: vuoi che le osservazioni siano precise, documentate, comprensibili — non improvvisi."},{l:"B",t:"Prima di parlare, ti assicuri di stare bene: una conversazione difficile richiede energia e presenza."},{l:"C",t:"Sei diretto, ma costruttivo — sai che il feedback vero e' quello che aiuta, non quello che fa sentire bene chi lo da'."},{l:"D",t:"Ascolti prima: vuoi capire il suo punto di vista prima di portare il tuo — spesso il problema e' diverso da come sembra."}]},
+      {block:2,tag:"Relazioni e sfide",text:"Stai lavorando su qualcosa che hai costruito da zero. Un responsabile suggerisce di cambiare l'impostazione in modo significativo. Come reagisci?",opts:[{l:"A",t:"Ascolti, ma poi fai capire qual e' la tua visione — non ti sottrai al confronto, anzi lo cerchi."},{l:"B",t:"Prendi nota dei dettagli: ti interessa capire se la proposta regge tecnicamente prima di formarti un parere."},{l:"C",t:"Difendi il lavoro fatto, ma non a prescindere — sei disposto a cambiare se le ragioni sono solide."},{l:"D",t:"Prima di rispondere, senti dove ti porta la proposta: hai qualcosa di costruito con cura e non vuoi smontarlo senza un motivo valido."}]},
+      {block:2,tag:"Relazioni e sfide",text:"Un progetto a cui tieni molto si blocca per ragioni esterne. Sai che riprendera', ma non sai quando. Come vivi l'attesa?",opts:[{l:"A",t:"Sfrutti il tempo per ricaricarti: il corpo e la testa hanno bisogno di pause e questa e' una di quelle."},{l:"B",t:"Ti adatti: inizi a esplorare altre direzioni, non resti fermo ad aspettare — il movimento ti aiuta a pensare meglio."},{l:"C",t:"Usi il tempo per approfondire — leggi, studi, esplori aspetti che non avevi avuto modo di capire a fondo."},{l:"D",t:"Tieni i fili: mantieni i contatti, fai in modo che chi e' coinvolto resti connesso — non vuoi che il progetto si spenga."}]},
+      {block:2,tag:"Relazioni e sfide",text:"Ti viene proposto un gruppo di lavoro su un tema che conosci bene, con persone nuove. Il tuo contributo sarebbe importante. Cosa valuti?",opts:[{l:"A",t:"Vuoi capire bene il framework prima di entrare — hai bisogno di sapere come lavorano, con quali metodi."},{l:"B",t:"Ti interessa sapere chi c'e': il gruppo funzionera' solo se le persone si fidano tra loro."},{l:"C",t:"Valuti se e' qualcosa che reggera' nel tempo — non vuoi investire energia in un progetto che si smonta dopo tre incontri."},{l:"D",t:"Guardi se c'e' spazio per portare il tuo punto di vista autentico, senza doverlo annacquare."}]},
+      {block:2,tag:"Relazioni e sfide",text:"Qualcuno ha preso credito per un tuo lavoro, in modo non intenzionale ma evidente. Come gestisci la situazione?",opts:[{l:"A",t:"Non ci passi sopra: trovi il modo di chiarire, senza drammi ma con precisione — il riconoscimento e' importante."},{l:"B",t:"Lo vedi come un dato: questa persona in futuro fara' probabilmente la stessa cosa, e ne terrai conto."},{l:"C",t:"Ti misuri con la sensazione di ingiustizia — non per vanita', ma perche' quel contributo meritava riconoscimento."},{l:"D",t:"Rimani calmo, anche se dentro ti da' fastidio — gestisci la cosa con lucidita', non con reattivita'."}]},
+      {block:2,tag:"Relazioni e sfide",text:"Stai attraversando un periodo di lavoro intenso. Le giornate sono lunghe, il weekend spesso non esiste. Come stai?",opts:[{l:"A",t:"Il corpo ti sta dando segnali — stai perdendo ritmo, e sai che se non ti fermi, quello che perdi non si recupera in fretta."},{l:"B",t:"Stai dentro, ma monitori: sai dove sei e dove vuoi arrivare — l'intensita' ha senso se e' per qualcosa che vale."},{l:"C",t:"Stai reggendo bene, forse troppo bene — sei abituato a tenere il campo anche quando sarebbe ragionevole rallentare."},{l:"D",t:"L'energia ce l'hai, ma senti il bisogno di spazio — la struttura rigida ti pesa piu' del carico di lavoro."}]},
+      {block:2,tag:"Relazioni e sfide",text:"Un collega ti mostra qualcosa di cui va molto fiero. Non e' all'altezza di come avrebbe potuto essere. Cosa fai?",opts:[{l:"A",t:"Noti la forma: mancano cura, dettaglio, qualcosa che avrebbe potuto rendere quel lavoro davvero bello. Non riesci a non vederlo."},{l:"B",t:"Trovi qualcosa di genuino su cui essere onesto — non senti il bisogno di adeguarti, ma non vuoi essere gratuito."},{l:"C",t:"Cerchi la struttura che manca: quali passaggi logici non reggono, dove c'e' un salto che non e' stato risolto."},{l:"D",t:"Vedi quello che avrebbe potuto essere e pensi a come aiutarlo a migliorarlo — senza che lo percepisca come una critica."}]},
+      {block:2,tag:"Relazioni e sfide",text:"Ti viene chiesto di coordinarti con una persona molto diversa da te — metodica dove tu sei fluido. Come vivi la collaborazione?",opts:[{l:"A",t:"Ti adatti fino a un certo punto, poi senti il bisogno di respirare — la struttura troppo rigida ti toglie capacita'."},{l:"B",t:"Apprezzi la cura con cui costruisce le cose — anche se il vostro ritmo e' diverso, c'e' qualcosa da imparare."},{l:"C",t:"Vai per la tua strada dove puoi, e negozi dove devi — non ti interessa convincerlo, vuoi solo lo spazio di farlo."},{l:"D",t:"Tieni la rotta: le differenze di stile sono normali, e non ti scomponi — fai funzionare la collaborazione."}]},
+      {block:3,tag:"Valori e scelte",text:"Hai davanti una scelta che potrebbe cambiare i prossimi anni: un'opportunita' grande, ma con un costo personale significativo. Come la affronti?",star:true,opts:[{l:"A",t:"Hai bisogno di spazio fisico per pensarci — cammini, ti muovi, e aspetti che il corpo ti dica qualcosa che la testa da sola non riuscira' a dirti."},{l:"B",t:"Torni ai fondamentali: cos'e' che per te non e' negoziabile? Quella risposta guida tutto il resto."},{l:"C",t:"Ne parli con le persone che contano per te — non per delegare la decisione, ma per sentire il loro sguardo."},{l:"D",t:"Pensi all'impatto a lungo termine: non solo su di te, ma su chi ti sta intorno e su cosa stai costruendo."}]},
+      {block:3,tag:"Valori e scelte",text:"Stai lavorando su qualcosa di importante. Un evento imprevisto mette tutto in dubbio. Dove trovi la risposta?",star:true,opts:[{l:"A",t:"Nelle relazioni: le persone con cui stai costruendo ti diranno molto di piu' di qualsiasi analisi."},{l:"B",t:"Tornando al perche' iniziale: vuoi capire se quell'evento ha cambiato la sostanza o solo la forma."},{l:"C",t:"Nelle fondamenta: se quello che hai costruito e' solido, l'evento diventa un ostacolo, non una fine."},{l:"D",t:"In una lettura precisa della situazione: raccogli i dati, analizzi le variabili, poi decidi."}]},
+      {block:3,tag:"Valori e scelte",text:"Qualcuno che stimi fa una scelta che non condividi. Non ti riguarda direttamente, ma ti colpisce. Come stai con questa cosa?",star:true,opts:[{l:"A",t:"La archivi: hai delle strutture interiori che ti permettono di tenere le cose al loro posto senza che ti consumino."},{l:"B",t:"Ti muove — non sai ancora dove, ma senti che non puoi comportarti come se non fosse successo."},{l:"C",t:"Cerchi di capire la logica di quella scelta: forse hai perso un pezzo, forse il quadro era diverso."},{l:"D",t:"Osservi i dettagli: cosa ha portato a quella scelta, quali segnali avevi gia' visto, cosa puoi imparare."}]},
+      {block:3,tag:"Valori e scelte",text:"Hai raggiunto qualcosa a cui tenevi molto. Passata la soddisfazione iniziale, cosa senti?",star:true,opts:[{l:"A",t:"Controlli che sia davvero quello che volevi raggiungere — c'e' qualcosa in te che continua a interrogarsi sul 'perche'."},{l:"B",t:"Vuoi gia' il prossimo obiettivo — il traguardo ti piace, ma la spinta vera viene dal costruire, non dall'essere arrivato."},{l:"C",t:"Hai bisogno di ricaricarti: hai dato tanto, e ora il corpo e la testa chiedono un momento di quiete vera."},{l:"D",t:"Pensi a come consolidare: cosa resta di quello che hai costruito, e come fai si' che non vada disperso."}]},
+      {block:3,tag:"Valori e scelte",text:"Ti viene proposto un ruolo che corrisponde a molte delle cose che vuoi, ma in un contesto con regole che non senti tue. Come decidi?",star:true,opts:[{l:"A",t:"Valuti fin dove puoi andare senza tradire te stesso — il compromesso e' accettabile, ma non a qualsiasi prezzo."},{l:"B",t:"Guardi se c'e' spazio per lasciare davvero un segno: se il ruolo ti permette di fare qualcosa di cui andare fiero, vale la pena."},{l:"C",t:"Hai bisogno di capire se c'e' autonomia reale — lavori bene solo quando hai spazio per muoverti a modo tuo."},{l:"D",t:"Pensi a cosa ti darebbe quel contesto in termini di crescita, relazioni, possibilita' — non solo al ruolo in se'."}]},
+      {block:3,tag:"Valori e scelte",text:"In un momento di difficolta' professionale, dove trovi il centro? Cosa ti aiuta a non perdere la rotta?",star:true,opts:[{l:"A",t:"Torni ai tuoi valori: c'e' qualcosa di stabile dentro di te che regge anche quando il contesto non regge."},{l:"B",t:"Pensi a chi conta su di te e a cosa stai costruendo insieme — quella responsabilita' ti da' una direzione."},{l:"C",t:"Ti ancori alle relazioni: le persone con cui hai costruito fiducia sono la tua risorsa piu' solida."},{l:"D",t:"Torni a un ritmo che conosci — qualcosa di concreto e fisico che ti aiuta a riallinearti."}]},
+      {block:3,tag:"Valori e scelte",text:"Devi scegliere tra due strade ugualmente valide: una piu' sicura ma meno stimolante, una piu' rischiosa ma piu' vicina a quello che sei. Come ti orienti?",star:true,opts:[{l:"A",t:"Scegli la sfida: il rischio controllato e' il tuo territorio naturale."},{l:"B",t:"Ascolti il corpo: c'e' una risposta somatica che precede quella razionale, e hai imparato a fidarti di quella."},{l:"C",t:"Scegli cio' che ti permette di essere davvero te stesso — se devi adattarti troppo, alla lunga non regge."},{l:"D",t:"Pensi alle radici: quale dei due percorsi ti permette di costruire qualcosa che durera' davvero?"}]},
+      {block:3,tag:"Valori e scelte",text:"Guardi indietro agli ultimi anni. C'e' qualcosa che ti ha reso piu' fiero — non il risultato, ma il modo in cui ci sei arrivato. Cosa e' stato?",star:true,opts:[{l:"A",t:"Qualcosa che hai fatto con cura — che si vedesse, che lasciasse un segno, che parlasse di chi sei davvero."},{l:"B",t:"Un ritmo che hai trovato — un modo di lavorare che ha rispettato le tue energie senza consumarti."},{l:"C",t:"Una vittoria costruita con determinazione — nonostante gli ostacoli, hai tenuto il filo e sei arrivato dove volevi."},{l:"D",t:"Qualcosa che ha servito una causa piu' grande — che ha avuto un impatto su altri, non solo su di te."}]}
+    ];
+
+    var currentQ=0,answers=new Array(QUESTIONS.length).fill(null);
+    var AUTO_ADVANCE_DELAY=700;
+    var results={};
+
+    function calcResults(){
+      var scores={},tb={};
+      Object.keys(TRAITS).forEach(function(k){scores[k]=0;tb[k]=0;});
+
+      answers.forEach(function(a,i){
+        if(a!==null){
+          var t=SCORING[i][a];
+          scores[t]++;
+          if(QUESTIONS[i].star)tb[t]+=2;
+        }
+      });
+
+      Object.keys(scores).forEach(function(k){scores[k]+=tb[k];});
+
+      var sorted=Object.keys(scores).sort(function(a,b){return scores[b]-scores[a];});
+      var top3=[sorted[0],sorted[1],sorted[2]];
+
+      return {scores:scores,top3:top3,topScore:scores[top3[0]]};
+    }
+
+    function renderQ(){
+      var q=QUESTIONS[currentQ],pct=Math.round(((currentQ+1)/QUESTIONS.length)*100);
+      document.getElementById('prog-fill').style.width=pct+'%';
+      document.getElementById('prog-label').textContent='Domanda '+(currentQ+1)+' di '+QUESTIONS.length;
+
+      var card=document.getElementById('q-card');
+      var html='<div class="q-block-label">'+q.tag;
+      if(q.star)html+=' <span class="q-star">★</span>';
+      html+='</div>';
+      html+='<div class="q-text">'+q.text+'</div>';
+      html+='<div class="quiz-options">';
+
+      q.opts.forEach(function(opt,idx){
+        var sel=answers[currentQ]===idx?' selected':'';
+        html+='<div class="quiz-opt'+sel+'" onclick="selectOpt('+idx+')"><div class="quiz-letter">'+opt.l+'</div><div>'+opt.t+'</div></div>';
+      });
+
+      html+='</div>';
+      card.innerHTML=html;
+
+      var btn=document.getElementById('btn-next');btn.textContent=currentQ===QUESTIONS.length-1?'Vedi il tuo Karakter':'Avanti';
+      document.getElementById('btn-back').disabled=currentQ===0;
+    }
+
+    function selectOpt(idx){
+      answers[currentQ]=idx;
+      var opts=document.querySelectorAll('.quiz-opt');
+      opts.forEach(function(o){o.classList.remove('selected');});
+      opts[idx].classList.add('selected');
+    }
+
+    function quizNext(){
+      if(currentQ<QUESTIONS.length-1){
+        var card=document.getElementById('q-card');
+        card.classList.add('exiting');
+        setTimeout(function(){
+          currentQ++;
+          renderQ();
+          card.classList.remove('exiting');
+          card.classList.add('entering');
+          setTimeout(function(){card.classList.remove('entering');},300);
+        },200);
+      } else {
+        results=calcResults();
+        showFormGate();
+      }
+    }
+
+    function quizBack(){
+      if(currentQ>0){
+        var card=document.getElementById('q-card');
+        card.classList.add('exiting');
+        setTimeout(function(){
+          currentQ--;
+          renderQ();
+          card.classList.remove('exiting');
+          card.classList.add('entering');
+          setTimeout(function(){card.classList.remove('entering');},300);
+        },200);
+      }
+    }
+
+    function showFormGate(){
+      document.getElementById('quiz-section').classList.remove('active');
+      document.getElementById('form-gate').classList.add('active');
+      renderFormGate();
+    }
+
+    function renderFormGate(){
+      var html='';
+      results.top3.forEach(function(t){
+        html+='<div class="trait-badge">'+TRAITS[t].name+'</div>';
+      });
+      document.getElementById('teaser-traits').innerHTML=html;
+
+      var fields=getHubSpotFields();
+      var container=document.getElementById('hubspot-form-wrapper');
+      if(container)container.innerHTML='';
+      if(typeof hbspt!=='undefined'){
+        hbspt.forms.create({
+          portalId:"140603915",
+          formId:"3066a724-8e22-49aa-b93a-3244016cc58d",
+          target:"#hubspot-form-wrapper",
+          region:"eu1",
+          onFormReady:function($f){
+            Object.keys(fields).forEach(function(n){
+              var ex=$f.find('input[name="'+n+'"]');
+              if(ex.length)ex.val(fields[n]);
+              else $f.append('<input type="hidden" name="'+n+'" value="'+fields[n].replace(/"/g,'&quot;')+'">');
+            });
+          },
+          onFormSubmitted:function(){
+            var p=btoa(JSON.stringify({top3:results.top3,scores:results.scores,sorted:results.sorted}));
+            window.location.href='/grazie-quiz/?d='+encodeURIComponent(p);
+          }
+        });
+      }else{
+        container.innerHTML='<div style="text-align:center;padding:2rem;"><div style="width:28px;height:28px;border:2px solid var(--k-gray-200);border-top-color:var(--k-amber);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 1rem;"></div><p style="font-size:13px;color:var(--k-gray-400);">Caricamento...</p></div>';
+        setTimeout(function(){renderFormGate();},800);
+      }
+    }
+
+    function getHubSpotFields(){
+      var f={};
+      f['quiz_tratto_1']=TRAITS[results.top3[0]].name;
+      f['quiz_tratto_2']=TRAITS[results.top3[1]].name;
+      f['quiz_tratto_3']=TRAITS[results.top3[2]].name;
+      Object.keys(results.scores).forEach(function(k){
+        f['quiz_score_'+k.toLowerCase()]=String(results.scores[k]);
+      });
+      QUESTIONS.forEach(function(q,i){
+        f['quiz_q'+(i+1)]=answers[i]!==null?q.opts[answers[i]].l:'';
+      });
+      return f;
+    }
+
+    function showSection(sec){
+      document.getElementById('landing').classList.remove('active');
+      document.getElementById('quiz-section').classList.remove('active');
+      document.getElementById('form-gate').classList.remove('active');
+
+      if(sec==='landing'){
+        document.getElementById('landing').classList.add('active');
+        document.querySelectorAll('.nav-pill').forEach(function(b){b.classList.remove('active');b.classList.add('inactive');});
+        document.querySelectorAll('.nav-pill')[0].classList.add('active');
+        document.querySelectorAll('.nav-pill')[0].classList.remove('inactive');
+      } else if(sec==='quiz'){
+        document.getElementById('quiz-section').classList.add('active');
+        document.querySelectorAll('.nav-pill')[1].classList.add('active');
+        document.querySelectorAll('.nav-pill')[1].classList.remove('inactive');
+        document.querySelectorAll('.nav-pill')[0].classList.add('inactive');
+        document.querySelectorAll('.nav-pill')[0].classList.remove('active');
+        if(currentQ===0)renderQ();
+      }
+    }
+
+    function switchFaqTab(idx){
+      document.querySelectorAll('.faq-tab').forEach(function(t){t.classList.remove('active');});
+      document.querySelectorAll('.faq-content').forEach(function(c){c.classList.remove('active');});
+      document.querySelectorAll('.faq-tab')[idx].classList.add('active');
+      document.getElementById('faq-tab-'+idx).classList.add('active');
+    }
+
+    function toggleFaq(el){
+      var item=el.closest('.faq-item');
+      item.classList.toggle('open');
+    }
+
+    // ===== TYPEWRITER EFFECT =====
+    function initTypewriter(){
+      var phrases=[
+        "La Bussola guida ogni scelta verso il senso.",
+        "Il Fuoco accende quando c'e' una sfida.",
+        "La Mappa costruisce strutture che reggono.",
+        "Il Filo connette te con gli altri."
+      ];
+      var phraseIdx=0,charIdx=0,typing=true;
+
+      function type(){
+        var el=document.getElementById('typewriter');
+        var phrase=phrases[phraseIdx];
+
+        if(typing){
+          el.textContent=phrase.substring(0,charIdx+1);
+          charIdx++;
+          if(charIdx>=phrase.length){
+            typing=false;
+            setTimeout(type,2000);
+          } else {
+            setTimeout(type,40);
+          }
+        } else {
+          el.textContent=phrase.substring(0,charIdx);
+          charIdx--;
+          if(charIdx<0){
+            typing=true;
+            phraseIdx=(phraseIdx+1)%phrases.length;
+            setTimeout(type,500);
+          } else {
+            setTimeout(type,30);
+          }
+        }
+      }
+      type();
+    }
+
+    // ===== TRAIT CARDS IN HERO =====
+    function initTraitCards(){
+      var container=document.getElementById('trait-cards-container');
+      var traits=['BUSSOLA','FUOCO','MAPPA','FILO'];
+      var descs=['Traguardo','Sfida','Struttura','Connessione'];
+      var html='';
+      traits.forEach(function(t,i){
+        html+='<div class="trait-card"><div class="trait-card-name">'+t+'</div><div class="trait-card-desc">'+descs[i]+'</div></div>';
+      });
+      container.innerHTML=html;
+    }
+
+    // ===== STRENGTH BARS ANIMATION =====
+    function initStrengthBars(){
+      var container=document.getElementById('strength-bars-demo');
+      var traits=['BUSSOLA','FUOCO','MAPPA','FILO','RADICE','ONDA'];
+      var widths=[65,80,45,70,55,60];
+      var html='';
+      traits.forEach(function(t,i){
+        html+='<div class="strength-bar">';
+        html+='<div class="strength-bar-label">'+t+'</div>';
+        html+='<div class="strength-bar-track"><div class="strength-bar-fill" style="width:'+widths[i]+'%;"></div></div>';
+        html+='</div>';
+      });
+      container.innerHTML=html;
+
+      setInterval(function(){
+        var fills=container.querySelectorAll('.strength-bar-fill');
+        fills.forEach(function(fill){
+          var newWidth=Math.floor(Math.random()*40)+40;
+          fill.style.width=newWidth+'%';
+        });
+      },3000);
+    }
+
+    // ===== COMMAND PALETTE ANIMATION =====
+    function initCommandPalette(){
+      var container=document.getElementById('command-palette-demo');
+      var items=['$ scopri_motivazioni()','$ analizza_pattern()','$ trova_tuo_ritmo()','$ leggi_risultati()'];
+      var html='';
+      items.forEach(function(item){
+        html+='<div class="command-item">'+item+'</div>';
+      });
+      container.innerHTML=html;
+
+      var activeIdx=0;
+      setInterval(function(){
+        var items=container.querySelectorAll('.command-item');
+        items.forEach(function(item){item.classList.remove('active');});
+        items[activeIdx].classList.add('active');
+        activeIdx=(activeIdx+1)%items.length;
+      },1500);
+    }
+
+    // ===== FALLING OBJECTS (physics sim) =====
+    function initFallingObjects(){
+      var container=document.getElementById('falling-container');
+      if(!container)return;
+      var traitNames=['BUSSOLA','FUOCO','MAPPA','FILO','RADICE','ONDA','SCUDO','PALCO','PONTE','RITMO','LENTE','VENTO','BUSSOLA','FUOCO','MAPPA'];
+      var W=container.offsetWidth,H=container.offsetHeight;
+      var pills=[],dragging=null,dragOff={x:0,y:0};
+      var spawnIdx=0,spawnTimer;
+
+      function spawnOne(){
+        if(spawnIdx>=traitNames.length)return;
+        var name=traitNames[spawnIdx];
+        var pill=document.createElement('div');
+        pill.className='falling-pill';
+        pill.textContent=name;
+        container.appendChild(pill);
+        var pw=pill.offsetWidth||80,ph=pill.offsetHeight||36;
+        var obj={el:pill,x:pw/2+Math.random()*(W-pw),y:-ph-Math.random()*60,vx:(Math.random()-0.5)*3,vy:0,w:pw,h:ph,held:false};
+        pills.push(obj);
+        spawnIdx++;
+        if(spawnIdx<traitNames.length)spawnTimer=setTimeout(spawnOne,150);
+      }
+      spawnOne();
+
+      function animate(){
+        W=container.offsetWidth;H=container.offsetHeight;
+        pills.forEach(function(p){
+          if(p.held)return;
+          p.vy+=0.35;
+          p.vx*=0.995;
+          p.x+=p.vx;p.y+=p.vy;
+          if(p.y+p.h>H){p.y=H-p.h;p.vy*=-0.55;if(Math.abs(p.vy)<0.8)p.vy=0;}
+          if(p.x<0){p.x=0;p.vx*=-0.7;}
+          if(p.x+p.w>W){p.x=W-p.w;p.vx*=-0.7;}
+          p.el.style.transform='translate3d('+p.x.toFixed(1)+'px,'+p.y.toFixed(1)+'px,0)';
+        });
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+
+      container.addEventListener('pointerdown',function(e){
+        var rect=container.getBoundingClientRect();
+        var mx=e.clientX-rect.left,my=e.clientY-rect.top;
+        for(var i=pills.length-1;i>=0;i--){
+          var p=pills[i];
+          if(mx>=p.x&&mx<=p.x+p.w&&my>=p.y&&my<=p.y+p.h){
+            dragging=p;p.held=true;p.vx=0;p.vy=0;
+            dragOff.x=mx-p.x;dragOff.y=my-p.y;
+            container.setPointerCapture(e.pointerId);
+            e.preventDefault();break;
+          }
+        }
+      });
+      container.addEventListener('pointermove',function(e){
+        if(!dragging)return;
+        var rect=container.getBoundingClientRect();
+        dragging.x=e.clientX-rect.left-dragOff.x;
+        dragging.y=e.clientY-rect.top-dragOff.y;
+        dragging.el.style.transform='translate3d('+dragging.x.toFixed(1)+'px,'+dragging.y.toFixed(1)+'px,0)';
+      });
+      container.addEventListener('pointerup',function(){
+        if(dragging){dragging.held=false;dragging.vy=2;dragging=null;}
+      });
+      container.addEventListener('pointercancel',function(){
+        if(dragging){dragging.held=false;dragging.vy=2;dragging=null;}
+      });
+    }
+
+    // ===== NAV SCROLL EFFECT =====
+    window.addEventListener('scroll',function(){
+      var nav=document.getElementById('nav');
+      if(window.scrollY>100){
+        nav.classList.add('dark-scroll');
+      } else {
+        nav.classList.remove('dark-scroll');
+      }
+    });
+
+    // ===== KEYBOARD NAVIGATION =====
+    document.addEventListener('keydown',function(e){
+      if(!document.getElementById('quiz-section').classList.contains('active'))return;
+
+      var key=e.key.toUpperCase();
+      if(['A','B','C','D'].indexOf(key)!==-1){
+        var idx={'A':0,'B':1,'C':2,'D':3}[key];
+        if(idx<QUESTIONS[currentQ].opts.length)selectOpt(idx);
+      } else if(key==='ENTER'){
+        quizNext();
+      } else if(key==='BACKSPACE'){
+        quizBack();
+      }
+    });
+
+    // ===== GTAG EVENT TRACKING =====
+    function trackQuizEvent(action,label){
+      if(typeof gtag!=='undefined'){
+        gtag('event',action,{'event_category':'quiz','event_label':label});
+      }
+      if(typeof dataLayer!=='undefined'){
+        dataLayer.push({'event':'quiz_event','action':action,'label':label});
+      }
+    }
+
+    // ===== INIT ON LOAD =====
+    window.addEventListener('load',function(){
+      initTypewriter();
+      initTraitCards();
+      initStrengthBars();
+      initCommandPalette();
+      initFallingObjects();
+    });
+  </script>
+</div>

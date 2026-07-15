@@ -7,6 +7,26 @@
 
 <!-- fonts + CSS loaded dynamically at end of file -->
 
+<!-- ════ CSS OVERRIDE: form Brevo full-width zero margini su mobile ════ -->
+<style>
+  @media (max-width: 768px) {
+    #form-gate-card{
+      padding:0 !important;
+      background:transparent !important;
+      border:none !important;
+      box-shadow:none !important;
+    }
+    #quizBrevoIframe{
+      width:100vw !important;
+      max-width:100vw !important;
+      margin-left:calc(50% - 50vw) !important;
+      margin-right:calc(50% - 50vw) !important;
+      border-radius:0 !important;
+      height:900px !important;
+    }
+  }
+</style>
+
 <!-- ══ NAV ══ -->
 <nav class="k-nav" id="k-nav">
   <div class="k-nav-inner">
@@ -576,11 +596,6 @@
   </div>
 
   <div class="form-gate-inner">
-    <!-- Karakter image in black box with fade -->
-    <div class="form-gate-image-wrap">
-      <img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/karakter%202.png" alt="Karakter" class="form-gate-image">
-      <div class="form-gate-image-fade"></div>
-    </div>
 
     <!-- Result preview -->
     <div style="margin-bottom:28px;">
@@ -604,7 +619,16 @@
     <p style="font-size:15px;color:var(--k-gray-500);line-height:1.6;margin-bottom:28px;">Inserisci i tuoi dati per ricevere la tua mappa motivazionale.</p>
 
     <div id="form-gate-card" class="form-gate-card">
-      <div id="email-form-container"></div>
+      <!-- Form Brevo Quiz ufficiale (iframe). Lista #6 Quiz Karakter. Dopo submit: redirect a /grazie-quiz -->
+      <iframe
+        id="quizBrevoIframe"
+        src="https://b9cb86d9.sibforms.com/serve/MUIFAHUF6dGBz672Z_JbuTbl4lUty66op4G4-8ywUhKjqJRkNouKmEtCs2963pvbqAmLV4CXkh6jBSs8bISRfLjVftvCp3Pb9dnpozKi1u_1yXRQhr76qTGNV9CXtwYXgVrRO17BRLMpvX5yXWTvrbIH9j5xyEYTZE9DemyPFemuBzrb8Hr0NyL4BKhJgjFw2CIMexRM5sHfluNsDw=="
+        width="100%"
+        height="820"
+        frameborder="0"
+        scrolling="no"
+        allowfullscreen
+        style="display:block; max-width:100%; border-radius:12px; background:#fff; overflow:hidden;"></iframe>
       <p style="font-size:11px;color:var(--k-gray-400);text-align:center;margin-top:14px;">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:3px;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         I tuoi dati sono al sicuro. Nessuno spam, mai.
@@ -617,4 +641,50 @@
 
 
 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onload="(function(){var h=document.head;var f=document.createElement('link');f.rel='preconnect';f.href='https://fonts.googleapis.com';h.appendChild(f);var f2=document.createElement('link');f2.rel='preconnect';f2.href='https://fonts.gstatic.com';f2.crossOrigin='anonymous';h.appendChild(f2);var g=document.createElement('link');g.rel='stylesheet';g.href='https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap';h.appendChild(g);var c=document.createElement('link');c.rel='stylesheet';c.href='https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/elementor-ready-v2/unified-style-v2.css';h.appendChild(c);var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/elementor-ready-v2/unified-script-v2.js';document.body.appendChild(s);})()" style="display:none" alt="">
+
+<!-- ════ BREVO INTEGRATION: cattura dati form Quiz e salva in localStorage ════
+     Così la Thank You Page può pre-popolare il form K-Lab senza chiedere di nuovo nome/email/sms.
+     Funziona se il form quiz è renderizzato direttamente nella pagina (non in iframe esterno). -->
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onload="(function(){
+  function captureFormData(form) {
+    if (!form) return;
+    var data = {};
+    var inputs = form.querySelectorAll('input, select, textarea');
+    inputs.forEach(function(input) {
+      var n = (input.name || input.id || '').toLowerCase();
+      var val = input.value;
+      if (!val) return;
+      if (input.type === 'email' || n.indexOf('email') !== -1)            data.email   = val;
+      else if (input.type === 'tel' || n.indexOf('phone') !== -1 || n.indexOf('tel') !== -1 || n.indexOf('sms') !== -1 || n.indexOf('numero') !== -1) data.sms = val;
+      else if (n.indexOf('cognome') !== -1 || n.indexOf('lastname') !== -1 || n.indexOf('lname') !== -1 || n.indexOf('surname') !== -1) data.cognome = val;
+      else if (n.indexOf('nome') !== -1 || n.indexOf('firstname') !== -1 || n.indexOf('fname') !== -1 || n === 'name') data.nome = val;
+    });
+    if (data.email) {
+      try { localStorage.setItem('karakterQuizUser', JSON.stringify(data)); } catch(e) {}
+    }
+  }
+
+  // Intercetta classic form submit (event in capture phase per arrivare prima del handler GitHub)
+  document.addEventListener('submit', function(e) { captureFormData(e.target); }, true);
+
+  // Cattura anche quando il bottone di submit viene cliccato (per form che usano onclick invece di submit)
+  document.addEventListener('click', function(e) {
+    var t = e.target;
+    if (!t) return;
+    var btn = (t.tagName === 'BUTTON' || t.type === 'submit') ? t : t.closest && t.closest('button, [type=submit]');
+    if (!btn) return;
+    var form = btn.closest('form');
+    if (form) captureFormData(form);
+  }, true);
+
+  // Fallback: salva i dati prima che la pagina si scarichi (es. redirect dopo submit)
+  window.addEventListener('beforeunload', function() {
+    var forms = document.querySelectorAll('form');
+    forms.forEach(function(f) {
+      var hasEmail = f.querySelector('input[type=email], input[name*=email i], input[id*=email i]');
+      if (hasEmail && hasEmail.value) captureFormData(f);
+    });
+  });
+})()" style="display:none" alt="">
+
 </div>
