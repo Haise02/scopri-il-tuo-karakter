@@ -489,9 +489,13 @@
 /* =======================================================
    REVEAL
    ======================================================= */
-#reiss-app [data-rise]{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-#reiss-app [data-clip]{opacity:0;transform:translateY(34px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
-#reiss-app [data-rise].in,#reiss-app [data-clip].in{opacity:1;transform:none}
+/* Difesa dal tema WordPress + reveal visibile anche senza JS */
+#reiss-app h1,#reiss-app h2,#reiss-app h3,#reiss-app h4,#reiss-app h5,#reiss-app p,#reiss-app span,#reiss-app li,#reiss-app a,#reiss-app blockquote,#reiss-app label,#reiss-app button{color:inherit;font-family:inherit}
+#reiss-app [data-rise]{transition:opacity .8s var(--ease),transform .8s var(--ease)}
+#reiss-app.js-on [data-rise]{opacity:0;transform:translateY(30px)}
+#reiss-app [data-clip]{transition:opacity .85s var(--ease),transform .85s var(--ease)}
+#reiss-app.js-on [data-clip]{opacity:0;transform:translateY(34px)}
+#reiss-app [data-rise].in,#reiss-app [data-clip].in,#reiss-app.js-on [data-rise].in,#reiss-app.js-on [data-clip].in{opacity:1;transform:none}
 
 /* =======================================================
    RESPONSIVE
@@ -537,12 +541,12 @@
   <!-- NAV -->
   <header class="nav">
     <div class="nav__pill">
-      <a href="LANDING_URL" class="nav__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/karakter-logo-bianco.svg" alt="Karakter Coaching School" /></a>
+      <a href="https://www.karaktercoaching.it/reiss-mp/" class="nav__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/karakter-logo-bianco.svg" alt="Karakter Coaching School" /></a>
       <nav class="nav__links" aria-label="Sezioni">
         <a href="#cosa-succede">Cosa succede ora</a>
         <a href="#nel-frattempo">Nel frattempo</a>
       </nav>
-      <a href="LANDING_URL" class="btn btn--outline nav__cta" style="color:#c5d3e2;border-color:rgba(217,225,232,.22)">Torna al Test Reiss</a>
+      <a href="https://www.karaktercoaching.it/reiss-mp/" class="btn btn--outline nav__cta" style="color:#c5d3e2;border-color:rgba(217,225,232,.22)">Torna al Test Reiss</a>
     </div>
   </header>
 
@@ -608,7 +612,7 @@
             <div class="wcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19V9M9 19V5M14 19v-7M19 19v-11"/></svg></div>
             <h3 class="wcard__t">Rileggi le 16 motivazioni</h3>
             <p class="wcard__d">Dai un'occhiata alle <strong>16 leve</strong> che il Reiss misura. Arrivare alla restituzione sapendo di cosa parliamo la rende molto più potente.</p>
-            <a class="wcard__link" href="LANDING_URL#motivazioni">Vai alle 16 motivazioni <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="wcard__link" href="https://www.karaktercoaching.it/reiss-mp/#motivazioni">Vai alle 16 motivazioni <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
         </article>
         <article class="wcard" data-rise>
@@ -616,7 +620,7 @@
             <div class="wcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11v4c0 1.5 3 3 6 3s6-1.5 6-3v-4"/></svg></div>
             <h3 class="wcard__t">Scopri il Master K-Coach</h3>
             <p class="wcard__d">Se il Reiss è la porta d'ingresso, il Master è il percorso: <strong>170 ore, ICF Level 2</strong>, con il Reiss integrato.</p>
-            <a class="wcard__link" href="https://www.karaktercoaching.it/" target="_blank" rel="noopener">Guarda il percorso <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="wcard__link" href="https://www.karaktercoaching.it/master-coach/" target="_blank" rel="noopener">Guarda il percorso <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
         </article>
       </div>
@@ -640,7 +644,7 @@
   <footer class="band band--dark dec-d-deep foot">
     <div class="wrap">
       <div class="foot__top">
-        <a href="LANDING_URL" class="foot__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/karakter-logo-bianco.svg" alt="Karakter Coaching School" /></a>
+        <a href="https://www.karaktercoaching.it/reiss-mp/" class="foot__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/karakter-logo-bianco.svg" alt="Karakter Coaching School" /></a>
         <div class="foot__meta">Karakter Coaching School · Viale G. Rossini, Roma · e online<br />Scrivici: <a href="mailto:info@karakter.it">info@karakter.it</a></div>
       </div>
       <hr class="foot__hr" />
@@ -663,6 +667,7 @@
   function boot() {
     var app = document.getElementById("reiss-app");
     if (!app) return;
+    app.classList.add("js-on"); /* senza JS la pagina resta interamente visibile */
     var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     /* ---- smooth scroll su anchor interni ---- */

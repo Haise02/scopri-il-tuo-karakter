@@ -1,0 +1,2037 @@
+<!-- ═══════════════════════════════════════════════════════════
+  KARAKTER · HOMEPAGE v2 (clone Framer) — ELEMENTOR SELF-CONTAINED · build 3
+  Incolla TUTTO in un widget HTML (pagina Elementor Canvas). Niente iframe.
+  Fix build 2: sticky/stack (overflow su body), immagini negli style inline → CDN.
+  ═══════════════════════════════════════════════════════════ -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..800;1,300..800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+
+<style>
+/* =========================================================
+   SKILLFUNNEL - Clone (vanilla)  •  v2  •  KARAKTER palette
+   Faithful layout of the Framer template by Flowcub,
+   re-skinned with the Karakter brand system + extra motion.
+   Images are neutral placeholders (.ph) - swap later.
+   ========================================================= */
+
+#kk-home{
+  --navy:#0B1F3A;
+  --azzurro:#2F80ED;
+  --lime:#A3E635;
+  --ice:#D9E1E8;
+
+  --bg:#060E1A;
+  --bg-2:#081326;
+  --surface:#0d1c33;
+  --surface-2:#112446;
+  --surface-3:#183056;
+  --line:rgba(217,225,232,.09);
+  --line-2:rgba(217,225,232,.17);
+
+  --txt:#eef3f7;
+  --txt-soft:#c0ccd8;
+  --txt-mut:#7d8ea2;
+  --txt-dim:#44566d;
+
+  --accent:#2F80ED;
+  --accent-2:#A3E635;
+  --accent-hover:#4a93f2;
+  --accent-soft:rgba(47,128,237,.16);
+  --grad:linear-gradient(120deg,#0B1F3A 0%,#2F80ED 52%,#A3E635 100%);
+  --grad-soft:linear-gradient(120deg,#2F80ED,#A3E635);
+  --green:#A3E635;
+  --red:#e0573f;
+
+  --radius:18px;
+  --radius-lg:26px;
+  --radius-sm:12px;
+
+  --container:1200px;
+  --pad:24px;
+
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --font:"Hanken Grotesk",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+
+#kk-home *, #kk-home *::before, #kk-home *::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+html.lenis, html.lenis body{height:auto}
+#kk-home .lenis.lenis-smooth{scroll-behavior:auto !important}
+#kk-home{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--txt);
+  line-height:1.5;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  /* overflow-x spostato su body (sticky-safe) */
+  
+}
+#kk-home @media (pointer:coarse){body{cursor:auto}}
+#kk-home img{display:block;max-width:100%}
+#kk-home a{color:inherit;text-decoration:none}
+#kk-home button{font-family:inherit;border:none;background:none;color:inherit}
+#kk-home ul{list-style:none}
+#kk-home section{position:relative}
+
+#kk-home .container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:var(--pad)}
+
+#kk-home ::selection{background:var(--accent);color:#fff}
+
+#kk-home /* CURSOR + PROGRESS */
+.cursor{
+  position:fixed;top:0;left:0;width:26px;height:26px;border-radius:50%;
+  border:1.5px solid rgba(217,225,232,.55);
+  transform:translate(-50%,-50%);pointer-events:none;z-index:9999;
+  transition:width .25s var(--ease),height .25s var(--ease),background .25s var(--ease),border-color .25s var(--ease);
+  mix-blend-mode:difference;
+}
+#kk-home .cursor.is-hover{width:54px;height:54px;background:rgba(217,225,232,.9);border-color:transparent}
+#kk-home @media (pointer:coarse){.cursor{display:none}}
+
+#kk-home .scroll-progress{
+  position:fixed;top:0;left:0;height:2px;width:0;z-index:9998;
+  background:var(--grad-soft);
+}
+
+#kk-home /* BUTTONS / PILLS / RATINGS */
+.btn{
+  display:inline-flex;align-items:center;gap:.5em;
+  padding:.85em 1.4em;border-radius:10px;font-weight:600;font-size:.95rem;
+  white-space:nowrap;transition:transform .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);
+  will-change:transform;
+}
+#kk-home .btn__chev{font-size:1.1em;line-height:0}
+#kk-home .btn--primary{background:var(--accent);color:#fff;box-shadow:0 8px 30px -10px rgba(47,128,237,.75)}
+#kk-home .btn--primary:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 12px 36px -10px rgba(47,128,237,.9)}
+#kk-home .btn--light{background:var(--ice);color:var(--navy)}
+#kk-home .btn--light:hover{background:#fff;transform:translateY(-2px)}
+#kk-home .btn--ghost{background:transparent;color:var(--txt)}
+#kk-home .btn--ghost:hover{color:var(--accent-2)}
+#kk-home .btn--block{display:flex;width:100%;justify-content:center}
+
+#kk-home .pill{
+  display:inline-flex;align-items:center;gap:.5em;
+  padding:.4em .8em;border-radius:8px;background:rgba(217,225,232,.05);
+  border:1px solid var(--line);font-size:.9rem;color:#5b8def;font-weight:500;
+  transition:background .3s var(--ease);
+}
+#kk-home .pill:hover{background:rgba(217,225,232,.1)}
+#kk-home .pill__icon{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:4px;background:#0a66c2;color:#fff;font-size:.7rem;font-weight:700;font-style:normal}
+
+#kk-home .rating{display:inline-flex;align-items:center;gap:.7em}
+#kk-home .rating--center{justify-content:center}
+#kk-home .rating__col{display:flex;flex-direction:column;gap:.1em}
+#kk-home .rating__stars{color:var(--accent);letter-spacing:2px;font-size:1rem}
+#kk-home .rating__stars--sm{font-size:.85rem;letter-spacing:1px;color:#6f7d8c}
+#kk-home .rating__stars--green{color:var(--lime)}
+#kk-home .rating__text{font-size:.92rem;color:var(--txt-soft)}
+
+#kk-home .avatars{display:inline-flex}
+#kk-home .avatars .ph--avatar{width:34px;height:34px;border-radius:50%;border:2px solid var(--bg);margin-left:-10px}
+#kk-home .avatars .ph--avatar:first-child{margin-left:0}
+#kk-home .avatars--sm .ph--avatar{width:28px;height:28px}
+
+#kk-home /* PLACEHOLDERS */
+.ph{
+  position:relative;overflow:hidden;border-radius:var(--radius-sm);
+  background:linear-gradient(135deg,rgba(217,225,232,.06),rgba(217,225,232,.02));
+  border:1px solid var(--line);
+}
+#kk-home .ph::after{
+  content:attr(data-ph);
+  position:absolute;inset:0;display:grid;place-items:center;text-align:center;
+  color:var(--txt-dim);font-size:.8rem;letter-spacing:.04em;padding:1em;
+}
+#kk-home .ph::before{
+  content:"";position:absolute;inset:0;opacity:.5;
+  background-image:repeating-linear-gradient(45deg,rgba(217,225,232,.03) 0 10px,transparent 10px 20px);
+}
+#kk-home .ph--avatar{border-radius:50%;background:linear-gradient(135deg,#1c3355,#122443)}
+#kk-home .ph--avatar::after, #kk-home .ph--avatar::before{display:none}
+#kk-home .ph--avatar-lg{width:42px;height:42px;border-radius:50%}
+#kk-home .ph--video{aspect-ratio:16/9;border-radius:var(--radius-lg)}
+#kk-home .ph--media{aspect-ratio:16/10;width:100%}
+#kk-home .ph--portrait{aspect-ratio:1/1;border-radius:var(--radius);background:linear-gradient(135deg,#c6d2dc,#9fb0c0)}
+#kk-home .ph--portrait::after{color:rgba(11,31,58,.5)}
+#kk-home .ph--bg{position:absolute;inset:0;border-radius:0;border:none;background:linear-gradient(135deg,#0d1c33,#183056)}
+#kk-home .ph--bg::after{color:rgba(217,225,232,.25)}
+
+#kk-home .play-btn{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:84px;height:64px;border-radius:18px;display:grid;place-items:center;
+  background:rgba(13,28,51,.55);backdrop-filter:blur(10px);
+  border:1px solid rgba(217,225,232,.18);color:#fff;
+  transition:transform .3s var(--ease),background .3s var(--ease);
+}
+#kk-home .play-btn:hover{transform:translate(-50%,-50%) scale(1.08);background:rgba(47,128,237,.9)}
+
+#kk-home .frame-canvas{
+  width:100%;aspect-ratio:16/10;display:block;margin:18px 0 6px;
+  border-radius:var(--radius-sm);border:1px solid var(--line);background:var(--surface-2);
+}
+
+#kk-home /* HEADINGS */
+.section-title{
+  font-size:clamp(2.1rem,5.2vw,4rem);
+  line-height:1.02;font-weight:700;letter-spacing:-.02em;text-align:center;
+}
+#kk-home .section-sub{
+  max-width:620px;margin:1.3rem auto 0;text-align:center;
+  color:var(--txt-soft);font-size:1.05rem;
+}
+#kk-home .accent{color:var(--accent)}
+#kk-home .accent--italic{font-style:italic;font-weight:600}
+#kk-home .accent--grad{
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+#kk-home .muted-italic{font-style:italic;font-weight:600;color:#93a3b5}
+
+#kk-home .word{display:inline-block}
+#kk-home .char{display:inline-block;will-change:transform,opacity}
+
+#kk-home [data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+#kk-home [data-reveal].in{opacity:1;transform:none}
+
+#kk-home /* STORYTELLING RAIL */
+.story-rail{
+  position:absolute;top:0;bottom:0;left:50%;width:2px;transform:translateX(-50%);
+  z-index:3;pointer-events:none;
+}
+#kk-home .story-rail__track{position:absolute;inset:0;background:var(--line-2);border-radius:2px}
+#kk-home .story-rail__fill{
+  position:absolute;top:0;left:0;width:100%;height:100%;border-radius:2px;
+  background:var(--grad);transform:scaleY(0);transform-origin:top;
+  box-shadow:0 0 14px rgba(47,128,237,.55);
+}
+#kk-home .story-rail__dot{
+  position:absolute;left:50%;width:13px;height:13px;border-radius:50%;
+  transform:translate(-50%,-50%);background:var(--surface-3);
+  border:2px solid var(--line-2);transition:background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease);
+}
+#kk-home .story-rail__dot.active{background:var(--lime);border-color:var(--lime);box-shadow:0 0 14px rgba(163,230,53,.7)}
+
+#kk-home /* NAVBAR */
+.nav{
+  position:fixed;top:0;left:0;width:100%;z-index:900;
+  padding:18px 0;transition:background .4s var(--ease),padding .4s var(--ease),backdrop-filter .4s var(--ease),border-color .4s;
+  border-bottom:1px solid transparent;
+}
+#kk-home .nav.scrolled{background:rgba(6,14,26,.72);backdrop-filter:blur(14px);padding:11px 0;border-bottom-color:var(--line)}
+#kk-home .nav__inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:var(--container);margin-inline:auto;padding-inline:var(--pad)}
+#kk-home .nav__logo{display:flex;align-items:center;gap:.55em;font-weight:700;font-size:1.25rem}
+#kk-home .nav__logo-mark{
+  width:30px;height:30px;border-radius:50%;flex:none;
+  background:conic-gradient(from 0deg,var(--navy),var(--azzurro),var(--lime),var(--navy));
+}
+#kk-home .nav__links{display:flex;gap:2rem}
+#kk-home .nav__link{font-size:.96rem;color:var(--txt-soft);transition:color .25s var(--ease);position:relative}
+#kk-home .nav__link:hover{color:var(--txt)}
+#kk-home .nav__link.active{color:var(--accent-2)}
+#kk-home .nav__cta{font-size:.9rem;padding:.6em 1.1em}
+#kk-home .nav__burger{display:none;flex-direction:column;gap:5px;width:30px}
+#kk-home .nav__burger span{height:2px;width:100%;background:var(--txt);transition:.3s var(--ease)}
+
+#kk-home /* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:140px 0 60px;overflow:hidden}
+#kk-home .hero__glow{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(60% 50% at 50% 40%,rgba(47,128,237,.32),transparent 70%),
+    radial-gradient(42% 42% at 12% 22%,rgba(163,230,53,.14),transparent 70%),
+    radial-gradient(46% 46% at 88% 28%,rgba(47,128,237,.20),transparent 70%);
+  filter:blur(8px);
+}
+#kk-home .hero__beams{
+  position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.55;
+  background:
+    linear-gradient(115deg,transparent 40%,rgba(47,128,237,.14) 48%,transparent 56%),
+    linear-gradient(75deg,transparent 60%,rgba(163,230,53,.10) 68%,transparent 76%);
+  mix-blend-mode:screen;
+}
+#kk-home .hero__inner{position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center}
+#kk-home .hero__title{margin-top:1.2rem;font-weight:700;letter-spacing:-.03em}
+#kk-home .hero__title-top{display:block;font-size:clamp(2.2rem,6.2vw,4.6rem);line-height:1.02;color:var(--txt)}
+#kk-home .hero__title-serif{
+  display:block;font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-style:normal;
+  color:#fff;font-size:clamp(3.6rem,12vw,8.6rem);line-height:.9;letter-spacing:-.04em;margin-top:.06em;
+}
+#kk-home .hero__sub{margin-top:1.4rem;max-width:620px;color:var(--txt-soft);font-size:1.1rem}
+#kk-home .hero__actions{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+#kk-home .hero__video{margin-top:3.5rem;width:100%;max-width:1040px;perspective:1500px}
+#kk-home .hero__video .ph--video{transform-origin:center 22%;will-change:transform;transform-style:preserve-3d}
+
+#kk-home /* TRUSTED (marquee) */
+.trusted{padding:48px 0 30px}
+#kk-home .trusted__label{text-align:center;font-size:.78rem;letter-spacing:.12em;color:var(--txt-mut);font-weight:600}
+#kk-home .trusted__row{
+  margin-top:28px;overflow:hidden;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+          mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+}
+#kk-home .trusted__track{
+  display:flex;align-items:center;gap:clamp(2rem,5vw,3.5rem);width:max-content;
+  animation:marquee 30s linear infinite;
+}
+#kk-home .trusted__row:hover .trusted__track{animation-play-state:paused}
+#kk-home @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+#kk-home .trusted__logo{color:#8797a8;font-size:1.25rem;font-weight:600;opacity:.85;transition:opacity .3s,color .3s;white-space:nowrap}
+#kk-home .trusted__logo:hover{opacity:1;color:var(--ice)}
+
+#kk-home /* ABOUT */
+.about{padding:90px 0}
+#kk-home .about__inner{display:flex;flex-direction:column;align-items:center;gap:1.4rem}
+#kk-home .about .section-title{margin-top:.6rem}
+#kk-home .about__cta{margin-top:1rem}
+
+#kk-home /* STATS */
+.stats{padding:40px 0 90px}
+#kk-home .stats__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2.2rem}
+#kk-home .stat__num{
+  display:block;font-size:clamp(3rem,6vw,5rem);font-weight:700;line-height:1;letter-spacing:-.03em;
+  background:linear-gradient(180deg,#fff 0%,rgba(217,225,232,.28) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+#kk-home .stat__desc{margin-top:1rem;color:var(--txt-soft);font-size:.98rem;max-width:18rem}
+
+#kk-home /* BENTO */
+.learn{padding:90px 0}
+#kk-home .bento{margin-top:3.4rem;display:grid;gap:1.2rem;grid-template-columns:repeat(3,1fr)}
+#kk-home .card{
+  position:relative;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius-lg);padding:28px;overflow:hidden;
+  transition:transform .4s var(--ease),border-color .4s var(--ease);will-change:transform;
+}
+#kk-home .card::after{
+  content:"";position:absolute;left:50%;bottom:-40%;width:120%;height:70%;transform:translateX(-50%);
+  background:radial-gradient(50% 60% at 50% 100%,rgba(47,128,237,.18),transparent 70%);pointer-events:none;
+}
+#kk-home .card:hover{border-color:var(--line-2);transform:translateY(-4px)}
+#kk-home .card__icon{
+  width:42px;height:42px;border-radius:11px;display:grid;place-items:center;
+  background:var(--surface-3);border:1px solid var(--line);color:var(--txt-soft);font-size:1.15rem;
+}
+#kk-home .card__media{margin:18px 0 6px}
+#kk-home .card--feature{display:flex;flex-direction:column}
+#kk-home .card--feature .card__title{margin-top:auto;padding-top:22px}
+#kk-home .card__title{font-size:1.4rem;font-weight:600;letter-spacing:-.01em;line-height:1.15}
+#kk-home .card__text{margin-top:.7rem;color:var(--txt-soft);font-size:.96rem}
+#kk-home .bento .card:nth-child(1){grid-column:span 1;grid-row:span 1}
+#kk-home .bento .card--wide{grid-column:span 2}
+#kk-home .learn__cta{margin-top:3rem;display:flex;flex-direction:column;align-items:center;gap:1.6rem}
+
+#kk-home /* MENTOR */
+.mentor{padding:90px 0}
+#kk-home .mentor .section-title{margin-bottom:3.5rem}
+#kk-home .mentor__row{display:grid;grid-template-columns:minmax(280px,420px) 1fr;gap:clamp(2rem,5vw,5rem);align-items:center;margin-bottom:5rem}
+#kk-home .mentor__row--reverse{grid-template-columns:1fr minmax(280px,420px)}
+#kk-home .mentor__row--reverse .mentor__photo{order:2}
+#kk-home .mentor__row--reverse .mentor__body{order:1}
+#kk-home .mentor__role{color:var(--txt-mut);font-size:1.05rem}
+#kk-home .mentor__name{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;letter-spacing:-.02em;margin:.4rem 0 1.2rem}
+#kk-home .mentor__bio{font-size:1.08rem;line-height:1.6;max-width:42rem}
+#kk-home .mentor__bio .reveal-word{color:var(--txt-dim);transition:color .25s var(--ease)}
+#kk-home .mentor .pill{margin-top:1.6rem}
+
+#kk-home /* CURRICULUM */
+.curriculum{padding:90px 0}
+#kk-home .curriculum__grid{margin-top:3.4rem;display:grid;grid-template-columns:1fr .85fr;gap:2.5rem;align-items:start}
+#kk-home .modules__head{margin-bottom:1.6rem}
+#kk-home .modules__title{font-size:1.7rem;font-weight:700}
+#kk-home .modules__meta{color:var(--txt-mut);margin-top:.4rem;font-size:.95rem}
+
+#kk-home .accordion{display:flex;flex-direction:column;gap:1rem}
+#kk-home .acc-item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:border-color .3s var(--ease)}
+#kk-home .acc-item.open{border-color:var(--line-2)}
+#kk-home .acc-trigger{width:100%;display:grid;grid-template-columns:1fr auto;align-items:center;gap:.3rem .8rem;padding:22px 24px;text-align:left}
+#kk-home .acc-meta{grid-column:1/2;color:var(--txt-mut);font-size:.85rem;margin-bottom:.35rem}
+#kk-home .acc-q{grid-column:1/2;font-size:1.18rem;font-weight:600;line-height:1.25}
+#kk-home .acc-chev{grid-column:2/3;grid-row:1/3;font-size:1.3rem;color:var(--txt-soft);transition:transform .35s var(--ease)}
+#kk-home .acc-item.open .acc-chev{transform:rotate(180deg)}
+#kk-home .acc-panel{overflow:hidden;height:0;transition:height .4s var(--ease)}
+#kk-home .acc-panel p{padding:0 24px 22px;color:var(--txt-soft);font-size:1rem;line-height:1.55}
+
+#kk-home .pricing__sticky{position:sticky;top:90px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px}
+#kk-home .pricing__badge{display:inline-flex;align-items:center;gap:.5em;font-size:.85rem;color:var(--txt-soft)}
+#kk-home .pricing__badge em{font-style:normal;font-weight:700;color:var(--txt)}
+#kk-home .dot{width:9px;height:9px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(163,230,53,.18)}
+#kk-home .dot--brand{background:var(--lime)}
+#kk-home .pricing__title{font-size:1.7rem;font-weight:700;line-height:1.12;margin:1rem 0 .8rem;letter-spacing:-.01em}
+#kk-home .pricing__desc{color:var(--txt-soft);font-size:.98rem}
+#kk-home .pricing__hr{border:none;height:1px;background:var(--line);margin:1.5rem 0}
+#kk-home .pricing__row{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+#kk-home .pricing__label{color:var(--txt-mut);font-size:.9rem}
+#kk-home .pricing__price{font-size:2.4rem;font-weight:700;letter-spacing:-.02em;margin:.2rem 0}
+#kk-home .pricing__strike{color:var(--txt-mut);font-size:.85rem}
+#kk-home .pricing__rate{display:flex;flex-direction:column;align-items:flex-end;gap:.6rem;text-align:right}
+#kk-home .pricing__incl{font-weight:600;margin-bottom:1rem}
+#kk-home .checklist{display:flex;flex-direction:column;gap:.85rem;margin-bottom:1.8rem}
+#kk-home .checklist li{display:flex;align-items:flex-start;gap:.6em;color:var(--txt-soft);font-size:.98rem}
+#kk-home .check{color:var(--green);font-weight:700;flex:none}
+
+#kk-home /* AUDIENCE */
+.audience{padding:90px 0}
+#kk-home .audience__inner{display:flex;flex-direction:column;align-items:center}
+#kk-home .audience__list{margin-top:2.6rem;display:grid;grid-template-columns:repeat(2,auto);gap:1rem 3rem;justify-content:center}
+#kk-home .audience__list li{display:flex;align-items:center;gap:.6em;color:var(--txt-soft);font-size:1.05rem}
+#kk-home .audience__cta{margin-top:2.4rem}
+
+#kk-home /* REVIEWS (dual horizontal marquee) */
+.reviews{padding:90px 0 120px}
+#kk-home .reviews__marquee{
+  margin-top:3.4rem;display:flex;flex-direction:column;gap:1.4rem;overflow:hidden;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+          mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+}
+#kk-home .reviews__row{overflow:hidden}
+#kk-home .reviews__track{display:flex;gap:1.4rem;width:max-content;animation:marquee 70s linear infinite}
+#kk-home .reviews__track--rev{animation-direction:reverse}
+#kk-home .reviews__marquee:hover .reviews__track{animation-play-state:paused}
+#kk-home .review{
+  width:380px;flex:none;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius-lg);padding:30px 32px;display:flex;flex-direction:column;
+}
+#kk-home .review__quote{font-size:3rem;line-height:.4;color:var(--accent-2);font-weight:800;font-family:Georgia,serif;height:.5em}
+#kk-home .review .rating__stars--sm{margin:1rem 0 1rem;color:#5f6f80}
+#kk-home .review__title{font-size:1.35rem;font-weight:600;letter-spacing:-.01em;line-height:1.2}
+#kk-home .review__text{margin-top:1rem;color:var(--txt-soft);font-size:.96rem;flex:1}
+#kk-home .review__author{margin-top:1.6rem;display:flex;align-items:center;gap:.8em}
+#kk-home .review__author strong{display:block;font-weight:600;font-size:.98rem}
+#kk-home .review__author em{font-style:normal;color:var(--txt-mut);font-size:.86rem}
+
+#kk-home /* COMPARE (rail) */
+.compare{padding:90px 0}
+#kk-home .compare__grid{margin-top:3.4rem;display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;position:relative}
+#kk-home .compare__head{font-size:1.5rem;font-weight:700;margin-bottom:1.6rem}
+#kk-home .compare__list{display:flex;flex-direction:column;gap:1.1rem}
+#kk-home .compare__list li{display:flex;align-items:flex-start;gap:.7em;color:var(--txt-soft);font-size:1.02rem}
+#kk-home .x{color:var(--red);font-weight:700;flex:none}
+#kk-home .compare__col--after{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px}
+#kk-home .compare__after-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem}
+#kk-home .compare__brand{display:inline-flex;align-items:center;gap:.5em;color:var(--lime);font-weight:600}
+#kk-home .compare__growth{text-align:right}
+#kk-home .compare__growth-num{font-size:2.2rem;font-weight:700;letter-spacing:-.02em}
+#kk-home .compare__col--after .compare__after-head{margin-bottom:.5rem}
+#kk-home .compare__col--after .compare__growth{margin-left:auto}
+#kk-home .compare__growth .avatars{margin-top:.6rem}
+
+#kk-home /* REGISTER (rail) */
+.register{padding:90px 0}
+#kk-home .register__grid{margin-top:3.4rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;position:relative}
+#kk-home .register__h{font-size:1.6rem;font-weight:700}
+#kk-home .register__lead{color:var(--txt-soft);margin:.5rem 0 2rem}
+#kk-home .register__sub{color:var(--txt-mut);font-size:.9rem;margin-bottom:1rem}
+#kk-home .register__details{display:flex;flex-direction:column;gap:1.1rem}
+#kk-home .register__details li{display:flex;align-items:center;gap:.9em;font-size:1.05rem}
+#kk-home .register__details strong{font-weight:600}
+#kk-home .rico{width:42px;height:42px;border-radius:50%;background:var(--accent);display:grid;place-items:center;flex:none;font-size:1.1rem}
+#kk-home .register__note{color:var(--txt-soft);font-size:.95rem;margin-top:1rem}
+#kk-home .register__note a{color:var(--accent-2)}
+
+#kk-home .register__card{background:var(--ice);color:var(--navy);border-radius:var(--radius-lg);padding:34px}
+#kk-home .register__badge{display:inline-flex;align-items:center;gap:.5em;font-size:.85rem;color:#4a5a6c;margin-bottom:1.4rem}
+#kk-home .register__badge em{font-style:normal;font-weight:700;color:var(--navy)}
+#kk-home .register__form-title{font-size:1.7rem;font-weight:700}
+#kk-home .register__form-sub{color:#5b6875;margin:.4rem 0 1.8rem;font-size:.95rem}
+#kk-home .field{display:block;margin-bottom:1.1rem}
+#kk-home .field span{display:block;font-size:.9rem;font-weight:600;margin-bottom:.5rem}
+#kk-home .field input{
+  width:100%;padding:.95em 1.1em;border-radius:10px;border:1px solid #b9c6d1;
+  background:#fff;color:var(--navy);font-family:inherit;font-size:.98rem;
+  transition:border-color .25s var(--ease),box-shadow .25s var(--ease);
+}
+#kk-home .field input::placeholder{color:#8496a5}
+#kk-home .field input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(47,128,237,.2)}
+#kk-home .register__card .btn--primary{margin-top:.5rem}
+#kk-home .form__msg{margin-top:1rem;color:#2f7d3f;font-weight:600;font-size:.95rem}
+
+#kk-home /* FAQ */
+.faq{padding:90px 0}
+#kk-home .faq .section-title{margin-bottom:3.4rem}
+#kk-home .accordion--faq{max-width:880px;margin-inline:auto;gap:0}
+#kk-home .accordion--faq .acc-item{background:transparent;border:none;border-bottom:1px solid var(--line);border-radius:0}
+#kk-home .accordion--faq .acc-trigger{padding:26px 6px}
+#kk-home .accordion--faq .acc-q{font-size:1.25rem}
+#kk-home .accordion--faq .acc-panel p{padding:0 6px 26px}
+
+#kk-home /* FINAL CTA */
+.finalcta{min-height:90vh;display:flex;align-items:center;overflow:hidden;padding:120px 0}
+#kk-home .finalcta__bg{filter:saturate(1.05)}
+#kk-home .finalcta__overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,var(--bg) 6%,rgba(6,14,26,.86) 32%,rgba(6,14,26,.35) 60%,rgba(6,14,26,.1) 100%);
+}
+#kk-home .finalcta__inner{position:relative;z-index:2;max-width:var(--container)}
+#kk-home .finalcta__title{font-size:clamp(2.4rem,6vw,5rem);font-weight:700;letter-spacing:-.03em;line-height:1;margin:1.4rem 0}
+#kk-home .finalcta__sub{max-width:36rem;color:var(--txt-soft);font-size:1.1rem}
+#kk-home .finalcta__actions{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
+#kk-home .finalcta__note{display:inline-flex;align-items:center;gap:.5em;margin-top:1.6rem;font-size:.9rem;color:var(--txt-soft)}
+#kk-home .finalcta__note em{font-style:normal;font-weight:700;color:var(--txt)}
+
+#kk-home /* FOOTER */
+.footer{padding:60px 0 40px;border-top:1px solid var(--line)}
+#kk-home .footer__top{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
+#kk-home .footer__links{display:flex;gap:1.8rem;color:var(--txt-soft)}
+#kk-home .footer__links a:hover{color:var(--txt)}
+#kk-home .footer__social{display:flex;gap:.6rem}
+#kk-home .social{width:38px;height:38px;border-radius:50%;background:var(--surface-3);display:grid;place-items:center;border:1px solid var(--line);transition:background .3s var(--ease)}
+#kk-home .social:hover{background:var(--accent);color:#fff}
+#kk-home .footer__bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;color:var(--txt-mut);font-size:.92rem;margin-top:1.5rem}
+#kk-home .footer__made strong{color:var(--txt-soft);font-weight:600}
+#kk-home .footer__copy{display:flex;align-items:center;gap:1rem}
+#kk-home .to-top{width:38px;height:38px;border-radius:50%;background:var(--surface-3);border:1px solid var(--line);display:grid;place-items:center;transition:background .3s var(--ease),transform .3s var(--ease)}
+#kk-home .to-top:hover{background:var(--accent);color:#fff;transform:translateY(-3px)}
+
+#kk-home /* RESPONSIVE */
+@media (max-width:1024px){
+  .stats__grid{grid-template-columns:repeat(2,1fr);gap:2.6rem}
+  .curriculum__grid{grid-template-columns:1fr;gap:3rem}
+  .pricing__sticky{position:static}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .bento .card--wide{grid-column:span 2}
+}
+#kk-home @media (max-width:768px){
+  :root{--pad:18px}
+  .nav__links{
+    position:fixed;top:0;right:0;height:100vh;width:74%;max-width:320px;
+    flex-direction:column;justify-content:center;gap:1.6rem;padding:2rem;
+    background:rgba(6,14,26,.96);backdrop-filter:blur(16px);
+    transform:translateX(100%);transition:transform .45s var(--ease);z-index:880;
+  }
+  .nav__links.open{transform:none}
+  .nav__link{font-size:1.3rem}
+  .nav__burger{display:flex;z-index:881}
+  .nav__cta{display:none}
+  .mentor__row,.mentor__row--reverse{grid-template-columns:1fr;gap:1.6rem}
+  .mentor__row--reverse .mentor__photo{order:0}
+  .mentor__row--reverse .mentor__body{order:0}
+  .mentor__photo{max-width:380px}
+  .compare__grid{grid-template-columns:1fr}
+  .register__grid{grid-template-columns:1fr;gap:2rem}
+  .audience__list{grid-template-columns:1fr;gap:.9rem;justify-content:start;text-align:left}
+  .finalcta__overlay{background:linear-gradient(180deg,rgba(6,14,26,.55),rgba(6,14,26,.92))}
+  .story-rail{display:none}
+  .review{width:80vw}
+}
+#kk-home @media (max-width:560px){
+  .stats__grid{grid-template-columns:1fr;gap:2.4rem}
+  .bento{grid-template-columns:1fr}
+  .bento .card--wide{grid-column:span 1}
+  .hero__actions,.finalcta__actions{flex-direction:column;width:100%}
+  .hero__actions .btn,.finalcta__actions .btn{justify-content:center}
+}
+
+#kk-home @media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition-duration:.01ms !important}
+  [data-reveal]{opacity:1;transform:none}
+  .trusted__track,.reviews__track{animation:none;transform:none}
+  body{cursor:auto}
+  .cursor{display:none}
+}
+
+#kk-home /* =========================================================
+   KARAKTER — componenti aggiuntivi (v3 contenuti)
+   ========================================================= */
+.nav__logo-img{height:30px;width:auto;display:block}
+#kk-home .footer .nav__logo-img{height:26px}
+
+#kk-home /* badge */
+.badge{display:inline-flex;align-items:center;gap:.5em;padding:.45em .9em;border:1px solid var(--line-2);border-radius:999px;font-size:.85rem;color:var(--txt-soft);background:rgba(217,225,232,.04)}
+#kk-home .badge__dot{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(163,230,53,.18)}
+#kk-home .hero .badge{margin-bottom:.4rem}
+#kk-home .about .badge{margin-bottom:1.2rem}
+
+#kk-home /* Google-style avatars (iniziali colorate) */
+.g-av{width:34px;height:34px;border-radius:50%;display:inline-grid;place-items:center;color:#fff;font-weight:700;font-size:.72rem;letter-spacing:.02em;background:var(--c,#4285F4);border:2px solid var(--bg);margin-left:-10px}
+#kk-home .avatars .g-av:first-child{margin-left:0}
+#kk-home .avatars--sm .g-av{width:28px;height:28px;font-size:.62rem}
+#kk-home .g-av--lg{width:44px;height:44px;font-size:.86rem;margin-left:0;border:none}
+#kk-home .rating__stars--google{color:#F4B400;letter-spacing:1px}
+
+#kk-home /* product card link */
+.card__link{margin-top:1.1rem;color:var(--accent-2);font-weight:600;font-size:.92rem;align-self:flex-start;transition:color .25s var(--ease)}
+#kk-home .card__link:hover{color:#fff}
+#kk-home .card--feature .card__link{margin-top:1.1rem}
+
+#kk-home /* method timeline */
+.method{padding:90px 0}
+#kk-home .method__timeline{position:relative;max-width:940px;margin-top:3.4rem;display:flex;flex-direction:column;gap:2.4rem}
+#kk-home .method__step{position:relative;width:calc(50% - 2.6rem);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px 28px}
+#kk-home .method__step--l{align-self:flex-start}
+#kk-home .method__step--r{align-self:flex-end}
+#kk-home .method__n{font-family:"Instrument Serif",Georgia,serif;font-size:2.1rem;color:var(--accent-2);line-height:1}
+#kk-home .method__title{font-size:1.5rem;font-weight:700;margin:.25rem 0 .55rem;letter-spacing:-.01em}
+#kk-home .method__step p{color:var(--txt-soft);font-size:.98rem}
+
+#kk-home /* 12 tratti */
+.tratti{padding:90px 0}
+#kk-home .tratti__grid{margin-top:3rem;display:flex;flex-wrap:wrap;gap:.9rem;justify-content:center;max-width:820px;margin-inline:auto}
+#kk-home .tratto{display:inline-flex;align-items:center;gap:.5em;padding:.7em 1.15em;border:1px solid var(--line-2);border-radius:999px;background:var(--surface);font-size:1.02rem;font-weight:500;transition:transform .25s var(--ease),border-color .25s var(--ease),background .25s var(--ease)}
+#kk-home .tratto:hover{transform:translateY(-3px);border-color:var(--accent);background:var(--surface-2)}
+#kk-home .tratti__cta{margin-top:2.8rem;display:flex;flex-direction:column;align-items:center;gap:.7rem}
+#kk-home .tratti__note{color:var(--txt-mut);font-size:.82rem}
+
+#kk-home /* select field (form) */
+.field__select{width:100%;padding:.95em 1.1em;border-radius:10px;border:1px solid #b9c6d1;background:#fff;color:var(--navy);font-family:inherit;font-size:.98rem;transition:border-color .25s var(--ease),box-shadow .25s var(--ease)}
+#kk-home .field__select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(47,128,237,.2)}
+
+#kk-home /* hero optional video background */
+.hero__bgmedia{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.5}
+
+#kk-home @media (max-width:768px){
+  .method__timeline{gap:1.3rem;max-width:100%}
+  .method__step{width:100% !important;align-self:stretch !important}
+}
+
+#kk-home /* =========================================================
+   KARAKTER v4 — hero 1 riga, #kk-home card vive, #kk-home compare, #kk-home urgency
+   ========================================================= */
+.serif-it{font-style:italic}
+#kk-home .hero__title-top{white-space:nowrap;font-size:clamp(1.5rem,4.6vw,3.4rem)}
+#kk-home .hl-blue{color:var(--azzurro);font-weight:700}
+#kk-home .hl-lime{color:var(--lime);font-weight:700}
+#kk-home p strong, #kk-home .section-sub strong, #kk-home .stat__desc strong, #kk-home .card__text strong, #kk-home .method__step strong, #kk-home .checklist strong, #kk-home .audience__list strong{color:var(--txt);font-weight:700}
+#kk-home .register__card strong, #kk-home .loc-box__meta strong{color:var(--navy)}
+
+#kk-home /* about 2-col + left headings */
+.about{padding:90px 0}
+#kk-home .about__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+#kk-home .section-title--left{text-align:left}
+#kk-home .section-sub--left{text-align:left;margin-left:0}
+#kk-home .about__text .badge{margin-bottom:1.2rem}
+#kk-home .about__cta{margin-top:1.6rem}
+#kk-home .ph--tall{aspect-ratio:4/5;width:100%;border-radius:var(--radius-lg)}
+#kk-home .ph--step{aspect-ratio:16/9;margin-top:1.2rem;border-radius:14px}
+#kk-home .ph--map{aspect-ratio:16/7;border-radius:14px;margin-bottom:.8rem}
+
+#kk-home /* location box */
+.loc-box{margin-top:1.4rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+#kk-home .loc-box__meta{display:flex;flex-direction:column;gap:.15rem;font-size:.92rem;color:var(--txt-soft)}
+
+#kk-home /* SVG icons */
+.rico svg{width:20px;height:20px;color:#fff}
+#kk-home .tratto .ic{width:20px;height:20px;color:var(--accent-2)}
+#kk-home .social svg{width:18px;height:18px}
+#kk-home .card__icon svg{width:22px;height:22px}
+
+#kk-home /* tratti icon spacing */
+.tratto{gap:.55em}
+
+#kk-home /* product cards — visual life */
+.card__viz{margin:16px 0 4px;height:104px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2);position:relative;overflow:hidden}
+#kk-home .card__viz--badge span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:2px solid var(--accent);border-radius:50%;opacity:.55;animation:pulseRing 2.6s ease-out infinite}
+#kk-home .card__viz--badge span:nth-child(1){width:34px;height:34px}
+#kk-home .card__viz--badge span:nth-child(2){width:60px;height:60px;animation-delay:.5s;border-color:var(--accent-2)}
+#kk-home .card__viz--badge span:nth-child(3){width:88px;height:88px;animation-delay:1s}
+#kk-home @keyframes pulseRing{0%{opacity:.15;transform:translate(-50%,-50%) scale(.9)}50%{opacity:.7}100%{opacity:.15;transform:translate(-50%,-50%) scale(1.05)}}
+#kk-home .card__viz--radar{background:radial-gradient(circle at 50% 50%,rgba(47,128,237,.18),transparent 62%)}
+#kk-home .card__viz--radar::before{content:"";position:absolute;inset:0;background:conic-gradient(from 0deg,transparent 0deg,rgba(163,230,53,.35) 40deg,transparent 80deg);animation:spin 3.5s linear infinite}
+#kk-home .card__viz--radar::after{content:"";position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:var(--accent-2);transform:translate(-50%,-50%);box-shadow:0 0 12px var(--accent-2)}
+#kk-home @keyframes spin{to{transform:rotate(360deg)}}
+#kk-home .card__viz--bubbles{display:flex;align-items:center;justify-content:center;gap:10px}
+#kk-home .card__viz--bubbles i{width:12px;height:12px;border-radius:50%;background:var(--accent);animation:bob 1.2s ease-in-out infinite}
+#kk-home .card__viz--bubbles i:nth-child(2){background:var(--accent-2);animation-delay:.2s}
+#kk-home .card__viz--bubbles i:nth-child(3){animation-delay:.4s}
+#kk-home @keyframes bob{0%,100%{transform:translateY(4px);opacity:.6}50%{transform:translateY(-4px);opacity:1}}
+
+#kk-home /* border-loop illumination */
+.bento .card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.6px;background:var(--grad);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .6s var(--ease);pointer-events:none;z-index:4}
+#kk-home .bento .card.is-lit::before{opacity:1}
+#kk-home .bento .card.is-lit{box-shadow:0 0 46px -14px rgba(47,128,237,.55)}
+
+#kk-home /* master card — light theme */
+.card--master{background:var(--ice);color:var(--navy);box-shadow:0 30px 70px -30px rgba(47,128,237,.55)}
+#kk-home .card--master::after{background:radial-gradient(50% 60% at 50% 100%,rgba(47,128,237,.16),transparent 70%)}
+#kk-home .card--master .card__title{color:var(--navy);margin-top:1rem;padding-top:0;font-size:1.7rem}
+#kk-home .card--master .card__text{color:#3c4a5b}
+#kk-home .card--master strong{color:var(--navy)}
+#kk-home .card__logo{height:34px;width:auto;display:block}
+#kk-home .card__flag{display:inline-block;margin-top:1rem;padding:.32em .85em;border-radius:999px;background:var(--azzurro);color:#fff;font-size:.76rem;font-weight:700;letter-spacing:.02em}
+#kk-home .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.1rem 0 1.4rem}
+#kk-home .chip{padding:.42em .85em;border-radius:999px;background:rgba(11,31,58,.06);border:1px solid rgba(11,31,58,.14);color:var(--navy);font-size:.82rem;font-weight:600}
+#kk-home .card--master .btn--primary{align-self:flex-start}
+
+#kk-home /* master urgency + countdown */
+.pricing__badge--live em{color:var(--lime);font-style:normal;font-weight:700}
+#kk-home .urgency{margin-top:1.3rem}
+#kk-home .urgency__label{font-size:.9rem;color:var(--txt-soft);margin-bottom:.6rem}
+#kk-home .countdown{display:flex;gap:.5rem}
+#kk-home .cd{flex:1;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:.6rem .3rem;text-align:center}
+#kk-home .cd span{display:block;font-size:1.5rem;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;line-height:1}
+#kk-home .cd small{font-size:.64rem;color:var(--txt-mut);text-transform:uppercase;letter-spacing:.06em}
+#kk-home .urgency__chip{display:inline-block;margin-top:.9rem;padding:.35em .85em;border-radius:999px;background:rgba(224,87,63,.14);border:1px solid rgba(224,87,63,.42);color:#ff8a76;font-size:.8rem;font-weight:700}
+
+#kk-home /* compare — before/after alive */
+.compare__col{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px 32px;position:relative}
+#kk-home .compare__col--before{border-color:rgba(224,87,63,.38);background:linear-gradient(180deg,rgba(224,87,63,.07),transparent 55%)}
+#kk-home .compare__col--after{border-color:rgba(47,128,237,.55);background:linear-gradient(180deg,rgba(47,128,237,.12),transparent 55%);box-shadow:0 0 60px -22px rgba(47,128,237,.6)}
+#kk-home .compare__tag{display:inline-block;padding:.32em .85em;border-radius:999px;font-size:.78rem;font-weight:700;margin-bottom:1rem}
+#kk-home .compare__tag--before{background:rgba(224,87,63,.16);color:#ff8a76}
+#kk-home .compare__tag--after{background:rgba(163,230,53,.16);color:var(--lime)}
+#kk-home .compare__after-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.4rem}
+#kk-home .compare__growth{text-align:right}
+#kk-home .compare__list li{align-items:center;gap:.7em}
+#kk-home .mk{width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;font-size:.72rem;font-weight:800;flex:none}
+#kk-home .mk--x{background:rgba(224,87,63,.18);color:#ff8a76}
+#kk-home .mk--v{background:rgba(163,230,53,.18);color:var(--lime)}
+
+#kk-home /* reviews — seamless loop with 3 copies */
+@keyframes reviews-marq{from{transform:translateX(0)}to{transform:translateX(-33.333%)}}
+#kk-home .reviews__track{animation:reviews-marq 60s linear infinite}
+#kk-home .reviews__track--rev{animation-direction:reverse}
+
+#kk-home @media (max-width:900px){
+  .about__grid{grid-template-columns:1fr;gap:2rem}
+  .about__media{order:-1;max-width:420px}
+  .section-title--left,.section-sub--left{text-align:center}
+  .about__text{display:flex;flex-direction:column;align-items:center}
+}
+#kk-home @media (max-width:600px){
+  .hero__title-top{white-space:normal}
+  .countdown{gap:.35rem}
+  .cd span{font-size:1.2rem}
+}
+#kk-home @media (prefers-reduced-motion:reduce){
+  .card__viz--badge span,.card__viz--radar::before,.card__viz--bubbles i{animation:none}
+}
+
+#kk-home /* =========================================================
+   KARAKTER v5 — tratti emoji anim, #kk-home K-Lab card, #kk-home master light card, #kk-home maps
+   ========================================================= */
+/* tratti: emoji + float animato su tutti */
+.tratto{animation:tFloat 3.4s ease-in-out infinite;animation-delay:calc(var(--i,0)*.14s)}
+#kk-home @keyframes tFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+#kk-home .tratto:hover{animation-play-state:paused;transform:translateY(-4px) scale(1.04);border-color:var(--accent);background:var(--surface-2)}
+
+#kk-home /* Master card viz — barre animate */
+.card__viz--bars{display:flex;align-items:flex-end;justify-content:center;gap:9px;padding:18px}
+#kk-home .card__viz--bars i{width:12px;border-radius:4px 4px 2px 2px;background:var(--grad-soft);transform-origin:bottom;animation:barGrow 1.9s ease-in-out infinite}
+#kk-home .card__viz--bars i:nth-child(1){height:34%}
+#kk-home .card__viz--bars i:nth-child(2){height:66%;animation-delay:.2s}
+#kk-home .card__viz--bars i:nth-child(3){height:48%;animation-delay:.4s}
+#kk-home .card__viz--bars i:nth-child(4){height:82%;animation-delay:.6s}
+#kk-home @keyframes barGrow{0%,100%{transform:scaleY(.6);opacity:.7}50%{transform:scaleY(1);opacity:1}}
+
+#kk-home /* K-Lab card — immagine di sfondo che sfuma + play sfumato + CTA bloccata */
+.card--klab{position:relative;overflow:hidden;min-height:360px;display:flex;flex-direction:column;justify-content:flex-end}
+#kk-home .card--klab .card__bg{position:absolute;inset:0;z-index:0;background:linear-gradient(135deg,#12395f,#0d1c33)}
+#kk-home .card--klab .card__bg::before{content:"Immagine K-Lab · da sostituire";position:absolute;top:16px;left:0;right:0;text-align:center;color:rgba(217,225,232,.32);font-size:.72rem;letter-spacing:.04em}
+#kk-home .card--klab .card__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--surface) 12%,rgba(13,28,51,.55) 48%,transparent 100%)}
+#kk-home .card--klab .card__klab-body{position:relative;z-index:2}
+#kk-home .play-btn--fade{top:34%;opacity:.5;animation:fadePulse 2.6s ease-in-out infinite;z-index:3}
+#kk-home @keyframes fadePulse{0%,100%{opacity:.28}50%{opacity:.7}}
+#kk-home .klab-ed{display:flex;flex-direction:column;gap:.5rem;margin:1rem 0 1.2rem;font-size:.9rem;color:var(--txt-soft)}
+#kk-home .klab-ed li{display:flex;align-items:center;gap:.55em}
+#kk-home .klab-ed em{font-style:normal;color:var(--txt-mut)}
+#kk-home .klab-ed strong{color:var(--lime)}
+#kk-home .klab-dot{width:8px;height:8px;border-radius:50%;background:var(--txt-mut);flex:none}
+#kk-home .klab-dot--done{background:var(--lime)}
+#kk-home .btn--disabled{background:rgba(217,225,232,.08);color:var(--txt-mut);border:1px solid var(--line-2);cursor:not-allowed;pointer-events:none;align-self:flex-start;box-shadow:none;font-weight:600}
+
+#kk-home /* Master info card (accanto ai moduli) — tema light con logo */
+.pricing__logo{height:30px;width:auto;display:block;margin-bottom:1.2rem}
+#kk-home .pricing__sticky--light{background:var(--ice);color:var(--navy);border-color:rgba(11,31,58,.12)}
+#kk-home .pricing__sticky--light .pricing__title{color:var(--navy)}
+#kk-home .pricing__sticky--light .pricing__desc, #kk-home .pricing__sticky--light .urgency__label{color:#3c4a5b}
+#kk-home .pricing__sticky--light .pricing__badge{color:#4a5a6c}
+#kk-home .pricing__sticky--light .pricing__hr{background:rgba(11,31,58,.12)}
+#kk-home .pricing__sticky--light .pricing__incl{color:var(--navy)}
+#kk-home .pricing__sticky--light .checklist li{color:#3c4a5b}
+#kk-home .pricing__sticky--light .checklist strong, #kk-home .pricing__sticky--light strong{color:var(--navy)}
+#kk-home .pricing__sticky--light .check{color:#1f9d55}
+#kk-home .pricing__sticky--light .cd{background:#fff;border-color:rgba(11,31,58,.12)}
+#kk-home .pricing__sticky--light .cd span{color:var(--navy)}
+#kk-home .pricing__sticky--light .cd small{color:#6c7a88}
+#kk-home .pricing__sticky--light .pricing__badge--live em{color:#1f9d55}
+#kk-home .pricing__sticky--light .accent--italic{color:var(--azzurro)}
+#kk-home .pricing__sticky--light .dot{background:var(--azzurro);box-shadow:0 0 0 4px rgba(47,128,237,.18)}
+#kk-home .pricing__sticky--light .urgency__chip{background:rgba(224,87,63,.12);color:#c0432c;border-color:rgba(224,87,63,.4)}
+
+#kk-home /* Google Maps embed */
+.loc-map{width:100%;aspect-ratio:16/7;border:0;border-radius:14px;margin-bottom:.8rem;display:block;filter:grayscale(.15)}
+
+#kk-home @media (prefers-reduced-motion:reduce){
+  .tratto,.card__viz--bars i,.play-btn--fade{animation:none}
+}
+
+#kk-home /* =========================================================
+   KARAKTER v6 — metodo sticky v1, #kk-home thumbnail percorsi, #kk-home radar fix, #kk-home CTA soft, #kk-home bordo 1px, #kk-home chip loghi partner, #kk-home sfondo K-Lab
+   ========================================================= */
+/* METHOD — sticky storytelling (ripreso dal sito v1, #kk-home font adattati) */
+.method{position:relative;height:300vh;padding:0;background:var(--bg)}
+#kk-home .method__pin{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+#kk-home .method__bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(47,128,237,.12) 0%,transparent 60%);transition:background 1s var(--ease)}
+#kk-home .method__glow{position:absolute;top:50%;left:50%;width:800px;height:800px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(47,128,237,.3) 0%,transparent 60%);filter:blur(60px);transition:background 1.2s var(--ease)}
+#kk-home .method[data-active="2"] .method__glow{background:radial-gradient(circle,rgba(47,128,237,.4) 0%,rgba(163,230,53,.15) 50%,transparent 70%)}
+#kk-home .method[data-active="3"] .method__glow{background:radial-gradient(circle,rgba(163,230,53,.4) 0%,transparent 60%)}
+#kk-home .method__header{position:relative;z-index:2;padding:40px var(--pad) 20px;max-width:var(--container);margin:0 auto;width:100%}
+#kk-home .method__title{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:400;line-height:1.12;letter-spacing:-.02em}
+#kk-home .method__stage{position:relative;z-index:2;flex:1;max-width:var(--container);margin:0 auto;width:100%;padding:20px var(--pad);display:grid;place-items:center}
+#kk-home .step{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) translateY(40px);width:calc(100% - var(--pad)*2);max-width:var(--container);display:grid;grid-template-columns:auto 1fr 280px;gap:48px;align-items:center;opacity:0;transition:opacity .7s var(--ease),transform .9s var(--ease);pointer-events:none}
+#kk-home .step.is-active{opacity:1;transform:translate(-50%,-50%) translateY(0);pointer-events:auto}
+#kk-home .step__num{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(4rem,12vw,9rem);font-weight:400;line-height:.9;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.9}
+#kk-home .step__title{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:400;line-height:1;letter-spacing:-.02em;margin-bottom:20px}
+#kk-home .step__txt{font-size:1.05rem;color:var(--txt-soft);line-height:1.6;max-width:500px;margin-bottom:24px}
+#kk-home .step__tags{display:flex;flex-wrap:wrap;gap:8px}
+#kk-home .step__tags li{padding:6px 14px;border:1px solid var(--line-2);border-radius:100px;font-size:12px;letter-spacing:.04em;color:var(--txt-soft)}
+#kk-home .step__svg{width:100%;height:auto}
+#kk-home .step__pulse circle{animation:stepPulse 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+#kk-home .step__pulse circle:nth-child(2){animation-delay:.3s}
+#kk-home .step__pulse circle:nth-child(3){animation-delay:.6s}
+#kk-home .step__pulse circle:nth-child(4){animation-delay:.9s}
+#kk-home .step__pulse circle:nth-child(5){animation-delay:1.2s}
+#kk-home .step__pulse circle:nth-child(6){animation-delay:1.5s}
+#kk-home @keyframes stepPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.5)}}
+#kk-home .step__line{stroke-dasharray:400;stroke-dashoffset:400}
+#kk-home .step.is-active .step__line{animation:drawLine 1.5s var(--ease) forwards}
+#kk-home @keyframes drawLine{to{stroke-dashoffset:0}}
+#kk-home .method__progress{position:relative;z-index:2;padding:0 var(--pad) 40px;max-width:var(--container);margin:0 auto;width:100%}
+#kk-home .method__progress-track{height:2px;background:var(--line);border-radius:2px;position:relative;overflow:hidden;margin-bottom:16px}
+#kk-home .method__progress-fill{position:absolute;top:0;left:0;bottom:0;width:0%;background:var(--grad-soft);transition:width .6s var(--ease)}
+#kk-home .method__progress-labels{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt-mut)}
+#kk-home .method__progress-labels span.is-active{color:var(--txt)}
+#kk-home .kicker{display:inline-flex;align-items:center;gap:.6em;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--txt-mut);font-weight:600;margin-bottom:.8rem}
+#kk-home .kicker::before{content:"";width:22px;height:1px;background:currentColor}
+#kk-home .kicker--light{color:var(--ice)}
+#kk-home @media (max-width:900px){.step{grid-template-columns:1fr;gap:20px}.step__visual{display:none}}
+
+#kk-home /* percorsi — thumbnail immagine 16:9 */
+.ph--thumb{aspect-ratio:16/9;width:100%;background-size:cover;background-position:center;background-color:var(--surface-2);border-radius:var(--radius-sm);margin-bottom:2px}
+#kk-home .ph--thumb::before, #kk-home .ph--thumb::after{display:none}
+
+#kk-home /* percorsi — radar quiz (fix) */
+.card__viz--radar{position:relative;overflow:hidden}
+#kk-home .card__viz--radar::before{content:"";position:absolute;top:50%;left:50%;width:92px;height:92px;transform:translate(-50%,-50%);border-radius:50%;border:1px solid var(--line-2);background:radial-gradient(circle at center,#A3E635 0 3px,transparent 4px),repeating-radial-gradient(circle at center,transparent 0 14px,rgba(217,225,232,.08) 14px 15px)}
+#kk-home .card__viz--radar::after{content:"";position:absolute;top:50%;left:50%;width:92px;height:92px;transform:translate(-50%,-50%);border-radius:50%;background:conic-gradient(from 0deg,rgba(163,230,53,.55),transparent 75deg);-webkit-mask:radial-gradient(circle,#000 49%,transparent 50%);mask:radial-gradient(circle,#000 49%,transparent 50%);animation:radarSpin 3s linear infinite}
+#kk-home @keyframes radarSpin{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+#kk-home /* percorsi — CTA soft (non accent, #kk-home trasparenza leggera) */
+.card__link{display:inline-flex;align-items:center;gap:.4em;margin-top:1.2rem;align-self:flex-start;padding:.6em 1.05em;border-radius:9px;background:rgba(217,225,232,.06);border:1px solid var(--line-2);color:var(--txt-soft);font-weight:600;font-size:.88rem;transition:background .25s var(--ease),border-color .25s var(--ease),color .25s var(--ease)}
+#kk-home .card__link:hover{background:rgba(217,225,232,.12);color:var(--txt);border-color:rgba(217,225,232,.3)}
+
+#kk-home /* bordo animato a 1px */
+.bento .card::before{padding:1px}
+
+#kk-home /* loghi partner — chip bianche (gestiscono qualsiasi logo) */
+.trusted__logo{background:#fff;border-radius:10px;padding:.5rem 1rem;height:60px;display:grid;place-items:center;flex:none;white-space:normal}
+#kk-home .trusted__logo img{max-height:38px;max-width:150px;width:auto;object-fit:contain}
+
+#kk-home /* K-Lab — sfondo immagine (metti klab.jpg nella cartella) */
+.card--klab .card__bg{background-image:url('https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/klab.png');background-size:cover;background-position:center;background-color:#0d1c33}
+#kk-home .card--klab .card__bg::before{display:none}
+
+#kk-home /* v7 — headline una riga, #kk-home K-Lab wide bento, #kk-home sfondo klab.png */
+.hero__title-serif{white-space:nowrap;font-size:clamp(1.9rem,6.6vw,6.4rem)}
+#kk-home .card--klab .card__bg{background-image:url('https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/klab.png')}
+#kk-home @media (max-width:560px){
+  .hero__title-serif{white-space:normal;font-size:clamp(2.2rem,11vw,3.6rem)}
+}
+
+#kk-home /* v8 — headline seconda riga: dimensione grande ripristinata + box allargato (una riga) */
+.hero__title{width:100vw;max-width:100vw;padding-inline:20px}
+#kk-home .hero__title-serif{white-space:nowrap;font-size:clamp(2.4rem,8.5vw,8.6rem)}
+#kk-home @media (max-width:560px){
+  .hero__title-serif{white-space:normal;font-size:clamp(2.4rem,12vw,4rem)}
+}
+
+#kk-home /* v9 — Reiss chart animato (facsimile output, #kk-home branded) */
+.reiss-chart{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px 22px}
+#kk-home .reiss-chart__head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.35rem}
+#kk-home .reiss-chart__head b{font-family:"Instrument Serif",Georgia,serif;font-size:1.2rem;font-weight:400;color:var(--txt)}
+#kk-home .reiss-chart__brand{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-mut);white-space:nowrap}
+#kk-home .reiss-chart__scale{display:flex;justify-content:space-between;font-size:.7rem;color:var(--txt-dim);margin:0 0 .9rem;padding-left:102px}
+#kk-home .rr{display:grid;grid-template-columns:92px 1fr;align-items:center;gap:10px;margin-bottom:9px}
+#kk-home .rr__l{font-size:.8rem;color:var(--txt-soft);text-align:right;line-height:1.1}
+#kk-home .rr__t{position:relative;height:15px;background:rgba(217,225,232,.045);border-radius:4px}
+#kk-home .rr__t::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--line-2)}
+#kk-home .rr__b{position:absolute;top:2px;bottom:2px;width:0;border-radius:3px;transition:width .9s var(--ease);transition-delay:var(--d,0s)}
+#kk-home .rr__b--p{left:50%;background:var(--grad-soft);box-shadow:0 0 10px rgba(163,230,53,.25)}
+#kk-home .rr__b--n{right:50%;background:linear-gradient(90deg,rgba(217,225,232,.15),rgba(217,225,232,.45))}
+#kk-home .reiss-chart.in .rr__b{width:calc(var(--v) * 48%)}
+#kk-home @media (max-width:900px){.reiss-chart{max-width:460px;margin:0 auto}}
+
+#kk-home /* v10 — foto fondatori, #kk-home video bg CTA, #kk-home radar fix definitivo */
+.mentor-img{aspect-ratio:4/5;width:100%;border-radius:var(--radius);background-size:cover;background-position:top center;background-color:var(--surface-2);border:1px solid var(--line)}
+#kk-home .finalcta__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;border:0;border-radius:0}
+#kk-home .card__viz--radar::before{content:"";position:absolute;inset:auto;top:50%;left:50%;right:auto;bottom:auto;width:92px;height:92px;transform:translate(-50%,-50%);border-radius:50%;border:1px solid var(--line-2);background:radial-gradient(circle at center,#A3E635 0 3px,transparent 4px),repeating-radial-gradient(circle at center,transparent 0 14px,rgba(217,225,232,.08) 14px 15px);animation:none}
+#kk-home .card__viz--radar::after{content:"";position:absolute;inset:auto;top:50%;left:50%;right:auto;bottom:auto;width:92px;height:92px;transform:translate(-50%,-50%);border-radius:50%;background:conic-gradient(from 0deg,rgba(163,230,53,.6),transparent 78deg);-webkit-mask:radial-gradient(circle,#000 49%,transparent 50%);mask:radial-gradient(circle,#000 49%,transparent 50%);animation:radarSpin 3s linear infinite}
+
+#kk-home /* v11 — griglia blu animata dietro i 12 Tratti */
+.tratti{overflow:hidden}
+#kk-home .tratti::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(47,128,237,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(47,128,237,.14) 1px,transparent 1px);
+  background-size:46px 46px;
+  -webkit-mask:radial-gradient(ellipse 62% 60% at 50% 45%,#000,transparent 76%);
+          mask:radial-gradient(ellipse 62% 60% at 50% 45%,#000,transparent 76%);
+  opacity:.45;animation:gridDrift 20s linear infinite;
+}
+#kk-home @keyframes gridDrift{from{background-position:0 0,0 0}to{background-position:46px 46px,46px 46px}}
+#kk-home .tratti .container{position:relative;z-index:1}
+#kk-home @media (prefers-reduced-motion:reduce){.tratti::before{animation:none}}
+
+#kk-home /* v12 — barre Reiss fluide in loop, #kk-home render metodo in movimento, #kk-home grid tratti, #kk-home countdown flip */
+/* Reiss: oscillazione continua e smooth (onda sfalsata via --d) */
+.rr__b--p{transform-origin:left center}
+#kk-home .rr__b--n{transform-origin:right center}
+#kk-home .reiss-chart.in .rr__b{width:calc(var(--v) * 48%);animation:barOsc 2.8s ease-in-out infinite;animation-delay:var(--d,0s)}
+#kk-home @keyframes barOsc{0%,100%{transform:scaleX(.32)}50%{transform:scaleX(1)}}
+
+#kk-home /* Metodo: render laterali sempre in movimento */
+.step__svg{overflow:visible}
+#kk-home .method .step__pulse{transform-box:fill-box;transform-origin:center;animation:kOrbit 22s linear infinite}
+#kk-home .method .step__network{transform-box:fill-box;transform-origin:center;animation:kOrbit 34s linear infinite reverse}
+#kk-home .method .step__growth{transform-box:fill-box;transform-origin:center}
+#kk-home .step.is-active .step__line{animation:kDraw 4.5s ease-in-out infinite}
+#kk-home @keyframes kOrbit{to{transform:rotate(360deg)}}
+#kk-home @keyframes kDraw{0%{stroke-dashoffset:400}45%,55%{stroke-dashoffset:0}100%{stroke-dashoffset:-400}}
+
+#kk-home /* 12 Tratti: grid overlay piu' percepibile */
+.tratti::before{
+  background-image:linear-gradient(rgba(47,128,237,.44) 1px,transparent 1px),linear-gradient(90deg,rgba(47,128,237,.44) 1px,transparent 1px);
+  opacity:.9;
+  -webkit-mask:radial-gradient(ellipse 72% 68% at 50% 45%,#000,transparent 82%);
+          mask:radial-gradient(ellipse 72% 68% at 50% 45%,#000,transparent 82%);
+}
+
+#kk-home /* Countdown: effetto flip a "calendario" */
+.cd{position:relative;perspective:260px}
+#kk-home .cd::after{content:"";position:absolute;left:10%;right:10%;top:calc(50% - 9px);height:1px;background:rgba(11,31,58,.18);z-index:2}
+#kk-home .cd span{display:block;transform-origin:center;backface-visibility:hidden}
+#kk-home .cd span.flip{animation:cdFlip .5s cubic-bezier(.3,.7,.3,1)}
+#kk-home @keyframes cdFlip{0%{transform:rotateX(90deg);opacity:.25}60%{opacity:1}100%{transform:rotateX(0);opacity:1}}
+
+#kk-home /* v13 — countdown: animazione "odometer" (slide-up) al posto del flip */
+.cd{perspective:none;overflow:hidden}
+#kk-home .cd::after{display:none}
+#kk-home .cd span{display:block;transform-origin:center;backface-visibility:visible}
+#kk-home .cd span.flip{animation:cdRoll .45s cubic-bezier(.22,.61,.36,1)}
+#kk-home @keyframes cdRoll{0%{transform:translateY(48%);opacity:0}100%{transform:translateY(0);opacity:1}}
+
+#kk-home /* v14 — hero: mesh gradient animato (drift + breathe) */
+.hero__glow{background-size:200% 200%;animation:heroMesh 20s ease-in-out infinite alternate;will-change:background-position}
+#kk-home @keyframes heroMesh{
+  0%{background-position:0% 0%}
+  50%{background-position:100% 45%}
+  100%{background-position:35% 100%}
+}
+#kk-home .hero__beams{background-size:220% 220%;animation:heroBeams 14s ease-in-out infinite alternate;will-change:background-position,opacity}
+#kk-home @keyframes heroBeams{
+  0%{opacity:.35;background-position:0% 0%}
+  100%{opacity:.7;background-position:100% 30%}
+}
+#kk-home @media (prefers-reduced-motion:reduce){
+  .hero__glow,.hero__beams{animation:none}
+}
+
+#kk-home /* v15 — card Quiz: sfondo card1.png, #kk-home testo+bottone in basso, #kk-home no radar/check */
+.card--quiz{
+  background-image:url('https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/card1.png');
+  background-size:cover;background-position:top center;background-repeat:no-repeat;
+  background-color:#eef1f4;
+  position:relative;overflow:hidden;min-height:360px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+#kk-home .card--quiz::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:62%;z-index:1;pointer-events:none;
+  background:linear-gradient(to top,rgba(238,241,244,.96),rgba(238,241,244,.6) 42%,transparent);
+}
+#kk-home .card--quiz > *{position:relative;z-index:2}
+#kk-home .card--quiz .card__title{color:var(--navy);margin-top:0;padding-top:0}
+#kk-home .card--quiz .card__text{color:#3c4a5b}
+#kk-home .card--quiz .card__text strong, #kk-home .card--quiz .card__text b{color:var(--navy)}
+#kk-home .card--quiz .card__link{background:var(--azzurro);color:#fff;border:1px solid var(--azzurro)}
+#kk-home .card--quiz .card__link:hover{background:var(--accent-hover);color:#fff;border-color:var(--accent-hover)}
+
+#kk-home /* v16 — card Quiz: immagine in flusso (proporzione costante a ogni risoluzione) */
+.card--quiz{padding:0;overflow:hidden;position:relative;display:block;align-self:start;min-height:0;background:none}
+#kk-home .card--quiz::after{display:none}
+#kk-home .quizcard__img{display:block;width:100%;height:auto}
+#kk-home .quizcard__body{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;padding:22px 24px;
+  background:linear-gradient(to top,rgba(238,241,244,.97),rgba(238,241,244,.55) 45%,transparent);
+}
+#kk-home .quizcard__body .card__title{color:var(--navy);margin:0 0 .45rem;padding-top:0}
+#kk-home .quizcard__body .card__text{color:#3c4a5b;margin:0 0 1rem}
+#kk-home .quizcard__body .card__text strong, #kk-home .quizcard__body .card__text b{color:var(--navy)}
+#kk-home .quizcard__body .card__link{margin-top:0;align-self:flex-start;background:var(--azzurro);color:#fff;border:1px solid var(--azzurro)}
+#kk-home .quizcard__body .card__link:hover{background:var(--accent-hover);color:#fff;border-color:var(--accent-hover)}
+
+#kk-home /* =========================================================
+   v17 — AGGIUSTAMENTI MOBILE (<=768px)
+   ========================================================= */
+@media (max-width:768px){
+  /* hero: parte piu' in alto, meno margine */
+  .hero{min-height:auto;padding:88px 0 44px}
+  /* headline: prima riga piu' piccola, seconda piu' grande */
+  .hero__title-top{white-space:normal;font-size:clamp(1.15rem,4.8vw,1.55rem)}
+  .hero__title-serif{white-space:normal;font-size:clamp(3rem,15vw,4.6rem)}
+  .hide-mobile{display:none}
+
+  /* statistiche 2 x 2 */
+  .stats__grid{grid-template-columns:repeat(2,1fr);gap:1.8rem 1.2rem}
+
+  /* metodo: numeri leggibili (no gradiente spento) + titoli piu' grandi */
+  .step__num{background:none !important;-webkit-text-fill-color:#A3E635;color:#A3E635;opacity:1}
+  .step__title{font-size:clamp(3rem,11vw,3.6rem)}
+
+  /* fondatori: via lo spazio vuoto dopo l'ultima riga */
+  .mentor{padding:52px 0}
+  .mentor__row{margin-bottom:2rem}
+  .mentor__row:last-child{margin-bottom:0}
+
+  /* master: card bianca info PRIMA dei moduli */
+  .curriculum__grid .pricing{order:-1}
+
+  /* margini verticali sezioni ridotti ovunque */
+  .about,.stats,.method,.learn,.tratti,.curriculum,.reviews,.compare,.register,.faq{padding-top:54px;padding-bottom:54px}
+  .finalcta{padding:64px 0}
+  .trusted{padding:34px 0 20px}
+
+  /* BENTO: card-stack (impilate, sticky, con sliver in alto) */
+  .bento{display:block}
+  .bento .card,.bento .card--wide{grid-column:auto;position:sticky;margin:0 0 20px;box-shadow:0 -12px 34px -12px rgba(0,0,0,.55)}
+  .bento .card:nth-child(1){top:64px}
+  .bento .card:nth-child(2){top:76px}
+  .bento .card:nth-child(3){top:88px}
+  .bento .card:nth-child(4){top:100px}
+  .bento .card:nth-child(5){top:112px}
+  .card--quiz{align-self:auto}
+}
+
+#kk-home /* =========================================================
+   v18 — FIX compare list: marker hanging, #kk-home testo inline pulito
+   (prima ogni <strong>/<b> diventava un flex item separato
+    e non andava a capo col testo -> righe "sminchiate")
+   ========================================================= */
+.compare__list li{
+  display:block;position:relative;padding-left:2.1rem;
+  align-items:initial;gap:0;line-height:1.5;
+}
+#kk-home .compare__list li .mk{position:absolute;left:0;top:.12em}
+#kk-home .compare__list li strong, #kk-home .compare__list li b{
+  font-size:inherit;letter-spacing:inherit;white-space:normal;
+}
+
+#kk-home /* v19 — embed in iframe (Elementor): niente doppia scrollbar.
+   Lo scroll interno resta attivo (serve a GSAP/ScrollTrigger), #kk-home sparisce solo la barra. */
+html.is-embedded{scrollbar-width:none;-ms-overflow-style:none}
+html.is-embedded::-webkit-scrollbar, html.is-embedded body::-webkit-scrollbar{width:0;height:0;display:none}
+html.is-embedded, html.is-embedded body{overflow-x:hidden}
+
+#kk-home /* v18 — logo ICF piccolo nell'etichetta hero */
+.badge--icf{padding-left:.4em}
+#kk-home .badge__logo{width:22px;height:22px;object-fit:contain;display:block;flex:none}
+
+
+/* ═══ Difese Elementor/WordPress (aggiunte in build 3) ═══ */
+html{scroll-behavior:auto!important}
+body{background:#060E1A!important}
+#kk-home{overflow-x:clip}
+#kk-home h1,#kk-home h2,#kk-home h3,#kk-home h4,#kk-home h5,#kk-home p,#kk-home span,#kk-home li,#kk-home a,#kk-home blockquote,#kk-home label,#kk-home button{color:inherit;font-family:inherit}
+#kk-home.js-on,#kk-home.js-on *{cursor:none}
+@media (pointer: coarse){ #kk-home.js-on,#kk-home.js-on *{cursor:auto} }
+#kk-home .cursor{display:none}
+#kk-home.js-on .cursor{display:block}
+#kk-home [data-reveal]{opacity:1;transform:none}
+#kk-home.js-on [data-reveal]{opacity:0;transform:translateY(26px)}
+#kk-home [data-reveal].in,#kk-home.js-on [data-reveal].in{opacity:1;transform:none}
+#kk-home:not(.js-on) .step{opacity:1;position:relative;top:auto;left:auto;transform:none;margin:28px auto;pointer-events:auto}
+
+</style>
+
+<div id="kk-home">
+
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#hero" class="nav__logo" data-cursor><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/karakter-logo-bianco.svg" alt="Karakter Coaching School" class="nav__logo-img" /></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#metodo" class="nav__link" data-nav>Il Metodo</a>
+      <a href="#percorsi" class="nav__link" data-nav>Percorsi</a>
+      <a href="#reiss" class="nav__link" data-nav>Reiss</a>
+      <a href="#tratti" class="nav__link" data-nav>I 12 Tratti</a>
+      <a href="#reviews" class="nav__link" data-nav>Recensioni</a>
+      <a href="#faq" class="nav__link" data-nav>FAQ</a>
+    </nav>
+    <a href="#form" class="btn btn--light nav__cta" data-cursor>Richiesta informazioni <span class="btn__chev">›</span></a>
+    <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<!-- VIDEO BG opzionale: sostituisci .hero__glow con <video class="hero__bgmedia" autoplay muted loop playsinline poster="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/poster.jpg"><source src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/hero.mp4" type="video/mp4"></video> -->
+<section class="hero" id="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="hero__beams" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="badge badge--icf reveal" data-reveal><img class="badge__logo" src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/icf-logo.png" alt="ICF" loading="lazy" /> Scuola accreditata ICF Level 2</div>
+    <h1 class="hero__title">
+      <span class="hero__title-top" data-reveal><span class="accent">La scuola di coaching</span> che parte da te</span>
+      <span class="hero__title-serif" data-reveal>Ogni persona è un <em class="serif-it">Karakter</em></span>
+    </h1>
+    <p class="hero__sub reveal" data-reveal>
+      Formiamo <strong>coach professionisti certificati ICF</strong> partendo dalla scienza delle motivazioni: il <b class="hl-blue">Reiss Motivation Profile</b>.<span class="hide-mobile"> Scopri, comprendi e fai crescere il tuo carattere, e quello degli altri.</span>
+    </p>
+    <div class="hero__actions reveal" data-reveal>
+      <a href="#form" class="btn btn--primary" data-cursor>Richiesta informazioni <span class="btn__chev">›</span></a>
+      <a href="https://www.karaktercoaching.it/scopri-il-tuo-karakter/" class="btn btn--ghost" target="_blank" rel="noopener" data-cursor>Scopri il tuo Karakter · Quiz gratuito <span class="btn__chev">›</span></a>
+    </div>
+    <div class="hero__video" data-hero-video>
+      <div class="ph ph--video" data-hero-media style="background-image:url('https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/hero.jpg');background-size:cover;background-position:center">
+        <button class="play-btn" aria-label="Play" data-cursor><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTED -->
+<section class="trusted">
+  <div class="container">
+    <p class="trusted__label reveal" data-reveal>ACCREDITATA E RICONOSCIUTA · PARTNER E CERTIFICAZIONI</p>
+    <div class="trusted__row reveal" data-reveal>
+      <div class="trusted__track"><div class="trusted__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/icf.jpg" alt="ICF" loading="lazy" /></div><div class="trusted__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/rmp.jpg" alt="Reiss Motivation Profile certified partner" loading="lazy" /></div><div class="trusted__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/unimilano.png" alt="Università" loading="lazy" /></div><div class="trusted__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/asi.svg" alt="ASI" loading="lazy" /></div><div class="trusted__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/saef.jpg" alt="SAEF" loading="lazy" /></div><div class="trusted__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/uaw.png" alt="UAW" loading="lazy" /></div><div class="trusted__logo"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/domus.jpg" alt="Domus de Luna" loading="lazy" /></div><div class="trusted__logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/icf.jpg" alt="ICF" loading="lazy" /></div><div class="trusted__logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/rmp.jpg" alt="Reiss Motivation Profile certified partner" loading="lazy" /></div><div class="trusted__logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/unimilano.png" alt="Università" loading="lazy" /></div><div class="trusted__logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/asi.svg" alt="ASI" loading="lazy" /></div><div class="trusted__logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/saef.jpg" alt="SAEF" loading="lazy" /></div><div class="trusted__logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/uaw.png" alt="UAW" loading="lazy" /></div><div class="trusted__logo" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/loghi/domus.jpg" alt="Domus de Luna" loading="lazy" /></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REISS / WHY -->
+<section class="about" id="reiss">
+  <div class="container about__grid">
+    <div class="about__text">
+      <div class="badge reveal" data-reveal><span class="badge__dot"></span> Unico in Italia dentro un percorso ICF</div>
+      <h2 class="section-title section-title--left" data-split>Non partiamo dal metodo.<br /><span class="accent accent--italic">Partiamo dalle motivazioni.</span></h2>
+      <p class="section-sub section-sub--left reveal" data-reveal>
+        Il <b class="hl-blue">Reiss Motivation Profile</b> misura le <strong>16 motivazioni fondamentali</strong> che guidano ogni persona, non 4 categorie semplificate. È lo strumento scientifico che integriamo nel Master: capire <strong>cosa muove davvero</strong> te e i tuoi clienti è ciò che rende un coach <b class="hl-lime">efficace</b>.
+      </p>
+      <div class="about__cta reveal" data-reveal><a href="#form" class="btn btn--primary" data-cursor>Richiesta informazioni <span class="btn__chev">›</span></a></div>
+    </div>
+    <div class="about__media reveal" data-reveal>
+      <div class="reiss-chart" data-reveal aria-label="Facsimile del profilo Reiss Motivation Profile">
+        <div class="reiss-chart__head"><b>Il tuo profilo motivazionale</b><span class="reiss-chart__brand">Karakter · Reiss</span></div>
+        <div class="reiss-chart__scale"><span>-2</span><span>0</span><span>+2</span></div>
+        <div class="rr"><span class="rr__l">Potere</span><span class="rr__t"><i class="rr__b rr__b--p" style="--v:.85;--d:0.00s"></i></span></div><div class="rr"><span class="rr__l">Indipendenza</span><span class="rr__t"><i class="rr__b rr__b--n" style="--v:.18;--d:0.06s"></i></span></div><div class="rr"><span class="rr__l">Curiosità</span><span class="rr__t"><i class="rr__b rr__b--n" style="--v:.38;--d:0.12s"></i></span></div><div class="rr"><span class="rr__l">Ordine</span><span class="rr__t"><i class="rr__b rr__b--p" style="--v:.5;--d:0.18s"></i></span></div><div class="rr"><span class="rr__l">Onore</span><span class="rr__t"><i class="rr__b rr__b--p" style="--v:.62;--d:0.24s"></i></span></div><div class="rr"><span class="rr__l">Contatto sociale</span><span class="rr__t"><i class="rr__b rr__b--n" style="--v:.85;--d:0.30s"></i></span></div><div class="rr"><span class="rr__l">Famiglia</span><span class="rr__t"><i class="rr__b rr__b--n" style="--v:.8;--d:0.36s"></i></span></div><div class="rr"><span class="rr__l">Status</span><span class="rr__t"><i class="rr__b rr__b--n" style="--v:.4;--d:0.42s"></i></span></div><div class="rr"><span class="rr__l">Vendetta</span><span class="rr__t"><i class="rr__b rr__b--p" style="--v:.72;--d:0.48s"></i></span></div><div class="rr"><span class="rr__l">Tranquillità</span><span class="rr__t"><i class="rr__b rr__b--n" style="--v:.68;--d:0.54s"></i></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container stats__grid">
+    <div class="stat reveal" data-reveal><span class="stat__num" data-count="500" data-suffix="+">0+</span><p class="stat__desc">Coach professionisti <strong>formati dal 2011</strong></p></div>
+    <div class="stat reveal" data-reveal><span class="stat__num" data-count="14" data-suffix=" anni">0 anni</span><p class="stat__desc">Di scuola di coaching a Roma, accreditata <strong>ICF</strong></p></div>
+    <div class="stat reveal" data-reveal><span class="stat__num" data-count="16" data-suffix="">0</span><p class="stat__desc">Le <strong>motivazioni</strong> misurate dal Reiss Motivation Profile</p></div>
+    <div class="stat reveal" data-reveal><span class="stat__num" data-count="3000" data-suffix="+">0+</span><p class="stat__desc">Persone accompagnate tra <strong>percorsi, test e coaching</strong></p></div>
+  </div>
+</section>
+
+<!-- METODO -->
+<section class="method" id="metodo">
+  <div class="method__pin">
+    <div class="method__bg" aria-hidden="true"><div class="method__glow" id="methodGlow"></div></div>
+    <div class="method__header">
+      <span class="kicker kicker--light">Il Metodo Karakter</span>
+      <h2 class="method__title">Tre passaggi che<br />cambiano una persona.</h2>
+    </div>
+    <div class="method__stage">
+      <div class="step is-active" data-step="1">
+        <div class="step__num">01</div>
+        <div class="step__content">
+          <h3 class="step__title">Scopri</h3>
+          <p class="step__txt">Si parte da una mappa. Il Test Reiss Motivation Profile fotografa le 16 motivazioni che ti muovono, quelle che spesso non sai nemmeno di avere. Da qui parte tutto.</p>
+          <ul class="step__tags"><li>Reiss Motivation Profile</li><li>Self-Awareness</li><li>Mappa motivazionale</li></ul>
+        </div>
+        <div class="step__visual"><svg viewBox="0 0 200 200" class="step__svg">
+          <circle cx="100" cy="100" r="80" stroke="rgba(217,225,232,0.1)" stroke-width="1" fill="none"/>
+          <circle cx="100" cy="100" r="60" stroke="rgba(217,225,232,0.15)" stroke-width="1" fill="none"/>
+          <circle cx="100" cy="100" r="40" stroke="rgba(217,225,232,0.2)" stroke-width="1" fill="none"/>
+          <g class="step__pulse"><circle cx="100" cy="20" r="3" fill="#A3E635"/><circle cx="170" cy="60" r="3" fill="#A3E635"/><circle cx="170" cy="140" r="3" fill="#A3E635"/><circle cx="100" cy="180" r="3" fill="#A3E635"/><circle cx="30" cy="140" r="3" fill="#A3E635"/><circle cx="30" cy="60" r="3" fill="#A3E635"/></g>
+        </svg></div>
+      </div>
+      <div class="step" data-step="2">
+        <div class="step__num">02</div>
+        <div class="step__content">
+          <h3 class="step__title">Comprendi</h3>
+          <p class="step__txt">Il coaching diventa un linguaggio. 170 ore tra teoria ICF, pratica supervisionata e laboratori. Impari ad ascoltare prima te stesso, poi gli altri.</p>
+          <ul class="step__tags"><li>ICF Level 2 / 144h ACSTH</li><li>Reiss integrato</li><li>Supervisione 1:1</li></ul>
+        </div>
+        <div class="step__visual"><svg viewBox="0 0 200 200" class="step__svg"><g class="step__network">
+          <line x1="50" y1="50" x2="150" y2="100" stroke="rgba(47,128,237,0.6)" stroke-width="1"/>
+          <line x1="150" y1="100" x2="50" y2="150" stroke="rgba(47,128,237,0.6)" stroke-width="1"/>
+          <line x1="50" y1="50" x2="50" y2="150" stroke="rgba(47,128,237,0.6)" stroke-width="1"/>
+          <line x1="150" y1="100" x2="100" y2="40" stroke="rgba(163,230,53,0.6)" stroke-width="1"/>
+          <line x1="50" y1="150" x2="100" y2="170" stroke="rgba(163,230,53,0.6)" stroke-width="1"/>
+          <circle cx="50" cy="50" r="6" fill="#2F80ED"/><circle cx="150" cy="100" r="6" fill="#A3E635"/><circle cx="50" cy="150" r="6" fill="#2F80ED"/><circle cx="100" cy="40" r="5" fill="#A3E635"/><circle cx="100" cy="170" r="5" fill="#2F80ED"/>
+        </g></svg></div>
+      </div>
+      <div class="step" data-step="3">
+        <div class="step__num">03</div>
+        <div class="step__content">
+          <h3 class="step__title">Fai Crescere</h3>
+          <p class="step__txt">Esci con un mestiere. Diventi coach professionista certificato ICF, con strumenti, metodo, network e soprattutto il tuo Karakter: la firma che porti in ogni sessione.</p>
+          <ul class="step__tags"><li>Certificazione ICF</li><li>Reiss Master</li><li>Professione coach</li></ul>
+        </div>
+        <div class="step__visual"><svg viewBox="0 0 200 200" class="step__svg"><g class="step__growth">
+          <path d="M 30 170 Q 70 170 80 130 T 130 80 T 170 30" stroke="url(#gradStep3)" stroke-width="2" fill="none" stroke-linecap="round" class="step__line"/>
+          <defs><linearGradient id="gradStep3" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#2F80ED"/><stop offset="100%" stop-color="#A3E635"/></linearGradient></defs>
+          <circle cx="170" cy="30" r="10" fill="#A3E635"/><circle cx="170" cy="30" r="20" fill="#A3E635" opacity="0.15"/>
+        </g></svg></div>
+      </div>
+    </div>
+    <div class="method__progress" aria-hidden="true">
+      <div class="method__progress-track"><div class="method__progress-fill" id="methodProgress"></div></div>
+      <div class="method__progress-labels"><span data-step-label="1">Scopri</span><span data-step-label="2">Comprendi</span><span data-step-label="3">Fai Crescere</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PERCORSI -->
+<section class="learn" id="percorsi">
+  <div class="container">
+    <h2 class="section-title" data-split>I nostri <span class="accent accent--italic">percorsi</span></h2>
+    <p class="section-sub reveal" data-reveal>Dal primo test gratuito alla <strong>certificazione professionale</strong>: un ecosistema per capirti, formarti e crescere.</p>
+    <div class="bento" id="bento">
+      <article class="card card--feature reveal" data-reveal data-tilt>
+        <div class="ph ph--thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/reiss.png')"></div>
+        <h3 class="card__title">Test Reiss Motivation Profile</h3>
+        <p class="card__text">Scopri le tue <strong>16 motivazioni</strong> fondamentali con restituzione individuale di un'ora.</p>
+        <a href="#form" class="card__link" data-cursor>Richiesta informazioni ›</a>
+      </article>
+
+      <article class="card card--feature reveal" data-reveal data-tilt>
+        <div class="ph ph--thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/master.png')"></div>
+        <h3 class="card__title">Master K-Coach Professionisti</h3>
+        <p class="card__text">Diventa <strong>Coach certificato ICF Level 2</strong>. 170 ore, Reiss incluso, con pratica supervisionata.</p>
+        <a href="#form" class="card__link" data-cursor>Scopri il percorso ›</a>
+      </article>
+
+      <article class="card card--feature reveal" data-reveal data-tilt>
+        <div class="ph ph--thumb" style="background-image:url('https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/reissmaster.png')"></div>
+        <h3 class="card__title">Reiss Master · Certificazione RMP</h3>
+        <p class="card__text">Abilitati a <strong>somministrare e restituire</strong> il Reiss Motivation Profile come Reiss Profile Master.</p>
+        <a href="#form" class="card__link" data-cursor>Richiesta informazioni ›</a>
+      </article>
+
+      <article class="card card--feature card--quiz reveal" data-reveal data-tilt>
+        <img class="quizcard__img" src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/card2.png" alt="Scopri il tuo Karakter" loading="lazy" />
+        <div class="quizcard__body">
+          <h3 class="card__title">Quiz gratuito</h3>
+          <p class="card__text">24 domande, <strong>5 minuti</strong>: scopri i tuoi <b>3 Tratti dominanti</b> tra i 12 Tratti.</p>
+          <a href="https://www.karaktercoaching.it/scopri-il-tuo-karakter/" class="card__link" target="_blank" rel="noopener" data-cursor>Fai il quiz ›</a>
+        </div>
+      </article>
+
+      <article class="card card--feature card--klab card--wide reveal" data-reveal data-tilt>
+        <div class="card__bg" aria-hidden="true"></div>
+        <div class="card__klab-body">
+          <div class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3v6L4 19a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1L15 9V3"/><path d="M8 3h8"/></svg></div>
+          <h3 class="card__title">K-Lab · Il laboratorio</h3>
+          <p class="card__text">Il format esperienziale gratuito: le competenze chiave per trasformare le tue capacità in una professione.</p>
+          <ul class="klab-ed">
+            <li><span class="klab-dot klab-dot--done"></span> 1ª edizione · 3-4 giugno 2026 · <em>conclusa</em></li>
+            <li><span class="klab-dot"></span> 2ª edizione · <strong>prossimamente</strong></li>
+          </ul>
+          <span class="btn btn--disabled" aria-disabled="true">Posti non ancora prenotabili</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 12 TRATTI -->
+<section class="tratti" id="tratti">
+  <div class="container">
+    <h2 class="section-title" data-split>I 12 Tratti <span class="accent accent--italic">Karakter</span></h2>
+    <p class="section-sub reveal" data-reveal>Dodici modi di stare al mondo. Il quiz gratuito ti restituisce i tuoi <strong>3 Tratti dominanti</strong> in 5 minuti.</p>
+    <div class="tratti__grid reveal" data-reveal>
+      <span class="tratto" style="--i:0">🧭 Bussola</span>
+      <span class="tratto" style="--i:1">🔥 Fuoco</span>
+      <span class="tratto" style="--i:2">🗺️ Mappa</span>
+      <span class="tratto" style="--i:3">🧵 Filo</span>
+      <span class="tratto" style="--i:4">🌱 Radice</span>
+      <span class="tratto" style="--i:5">🌊 Onda</span>
+      <span class="tratto" style="--i:6">🛡️ Scudo</span>
+      <span class="tratto" style="--i:7">🎭 Palco</span>
+      <span class="tratto" style="--i:8">🌉 Ponte</span>
+      <span class="tratto" style="--i:9">🥁 Ritmo</span>
+      <span class="tratto" style="--i:10">🔎 Lente</span>
+      <span class="tratto" style="--i:11">🌬️ Vento</span>
+    </div>
+    <div class="tratti__cta reveal" data-reveal>
+      <a href="https://www.karaktercoaching.it/scopri-il-tuo-karakter/" class="btn btn--primary" target="_blank" rel="noopener" data-cursor>Fai il quiz gratuito <span class="btn__chev">›</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FONDATORI -->
+<section class="mentor" id="meet-your-mentor">
+  <div class="container">
+    <h2 class="section-title" data-split>I Fondatori di <span class="accent serif-it" style="font-style:italic">Karakter</span></h2>
+    <article class="mentor__row reveal" data-reveal>
+      <div class="mentor__photo"><div class="mentor-img" style="background-image:url('https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/marco.png')"></div></div>
+      <div class="mentor__body">
+        <span class="mentor__role">Fondatore · ICF PCC · Program Owner</span>
+        <h3 class="mentor__name">Marco Angeletti</h3>
+        <p class="mentor__bio" data-reveal-text>Coach professionista ICF PCC e fondatore di Karakter, Marco guida il Master K-Coach dal 2011. Ha portato in Italia l'integrazione del Reiss Motivation Profile nella formazione dei coach, convinto che una professione seria parta dalla profondità scientifica e dalla consapevolezza di sé.</p>
+        <a href="https://www.linkedin.com/in/marco-angeletti/" class="pill" target="_blank" rel="noopener" data-cursor><span class="pill__icon">in</span> LinkedIn</a>
+      </div>
+    </article>
+    <article class="mentor__row mentor__row--reverse reveal" data-reveal>
+      <div class="mentor__photo"><div class="mentor-img" style="background-image:url('https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/alessandra.png')"></div></div>
+      <div class="mentor__body">
+        <span class="mentor__role">Co-fondatrice · Coach &amp; Formatrice</span>
+        <h3 class="mentor__name">Alessandra Abbattista</h3>
+        <p class="mentor__bio" data-reveal-text>Co-fondatrice di Karakter, Alessandra accompagna allievi e aziende nei percorsi di crescita. Formatrice e coach, porta nel Master un approccio caldo e rigoroso allo stesso tempo: ogni Karakter conta, e la formazione più vera è quella che parte dalle persone.</p>
+        <a href="https://www.linkedin.com/in/alessandraabbattista/" class="pill" target="_blank" rel="noopener" data-cursor><span class="pill__icon">in</span> LinkedIn</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- MASTER PROGRAMMA -->
+<section class="curriculum" id="master">
+  <div class="container">
+    <h2 class="section-title" data-split>Master K-Coach<br /><span class="accent accent--italic">il percorso</span></h2>
+    <p class="section-sub reveal" data-reveal><strong>170 ore</strong> per diventare coach certificato ICF Level 2, con il <b class="hl-blue">Reiss Motivation Profile</b> integrato.</p>
+    <div class="curriculum__grid">
+      <div class="modules reveal" data-reveal>
+        <div class="modules__head"><h3 class="modules__title">Come è strutturato il percorso</h3><p class="modules__meta">6 tappe · 170 ore · ICF Level 2 (144h ACSTH)</p></div>
+        <div class="accordion" data-accordion>
+          <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-meta">Tappa 1 · 28h</span><span class="acc-q">Fondamenti del coaching e competenze ICF</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Cos'è il coaching, il codice etico e le competenze chiave ICF su cui si costruisce la professione.</p></div></div>
+          <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-meta">Tappa 2 · 28h</span><span class="acc-q">Il modello Karakter e i 12 Tratti</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Il sistema Scopri, Comprendi, Fai Crescere e la lettura del carattere attraverso i 12 Tratti.</p></div></div>
+          <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-meta">Tappa 3 · 30h</span><span class="acc-q">Reiss Motivation Profile: le 16 motivazioni</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Lo strumento scientifico che misura ciò che muove le persone, e come restituirlo in sessione.</p></div></div>
+          <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-meta">Tappa 4 · 30h</span><span class="acc-q">La sessione di coaching e l'arte delle domande</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Struttura di una sessione efficace, ascolto profondo e domande che aprono strade.</p></div></div>
+          <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-meta">Tappa 5 · 28h</span><span class="acc-q">Deontologia, mentoring e supervisione</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Mentoring ICF, supervisione tra pari e postura etica del coach professionista.</p></div></div>
+          <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-meta">Tappa 6 · 26h</span><span class="acc-q">Pratica supervisionata e certificazione</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Ore di pratica, valutazione e accompagnamento verso la certificazione ICF.</p></div></div>
+        </div>
+      </div>
+      <aside class="pricing reveal" data-reveal>
+        <div class="pricing__sticky pricing__sticky--light">
+          <img class="pricing__logo" src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/karakter-logo-gradient.svg" alt="Karakter Coaching School" />
+          <span class="pricing__badge pricing__badge--live"><span class="dot"></span> Prossima edizione: <em>Ottobre 2026</em></span>
+          <h3 class="pricing__title">Master K-Coach <span class="accent accent--italic">Professionisti</span></h3>
+          <p class="pricing__desc">Il percorso completo per trasformare le tue capacità in una <strong>professione certificata</strong>.</p>
+          <div class="urgency">
+            <p class="urgency__label">Iscrizioni aperte · chiusura il 30 luglio</p>
+            <div class="countdown" id="countdown" data-deadline="2026-07-30T23:59:59">
+              <div class="cd"><span data-d>00</span><small>giorni</small></div>
+              <div class="cd"><span data-h>00</span><small>ore</small></div>
+              <div class="cd"><span data-m>00</span><small>min</small></div>
+              <div class="cd"><span data-s>00</span><small>sec</small></div>
+            </div>
+            <span class="urgency__chip">Posti limitati</span>
+          </div>
+          <hr class="pricing__hr" />
+          <p class="pricing__incl">Cosa include:</p>
+          <ul class="checklist">
+            <li><span class="check">✓</span> Accreditamento <strong>ICF Level 2</strong> (144h ACSTH)</li>
+            <li><span class="check">✓</span> 170 ore tra teoria, pratica e supervisione</li>
+            <li><span class="check">✓</span> <strong>Test Reiss</strong> Motivation Profile incluso</li>
+            <li><span class="check">✓</span> Lezioni in presenza a Roma e online</li>
+            <li><span class="check">✓</span> Community e aggiornamento continuo</li>
+          </ul>
+          <a href="#form" class="btn btn--primary btn--block" data-cursor>Richiesta informazioni <span class="btn__chev">›</span></a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- RECENSIONI -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <h2 class="section-title" data-split>Le storie di chi<br /><span class="accent accent--italic">ha scelto Karakter</span></h2>
+    <p class="section-sub reveal" data-reveal>Oltre <strong>3.000 persone</strong> tra allievi del Master, profili Reiss e percorsi di coaching. Recensioni verificate su Google.</p>
+  </div>
+  <div class="reviews__marquee">
+    <div class="reviews__row"><div class="reviews__track" data-rowset><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Ho trovato la mia professione."</h3><p class="review__text">Il Master mi ha dato un metodo serio e la certificazione ICF. Oggi lavoro come coach a tempo pieno.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#4285F4">GF</span><span><strong>Giulia Ferrari</strong><em>Coach ICF</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Il Reiss ha cambiato come guido il team."</h3><p class="review__text">Capire le 16 motivazioni delle persone che gestisco è stato illuminante. Strumento scientifico, non slogan.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#0F9D58">MD</span><span><strong>Marco De Santis</strong><em>HR Manager</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Serio, mai motivazionale."</h3><p class="review__text">Cercavo una scuola rigorosa e umana insieme. Karakter è esattamente questo: profondità e calore.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#DB4437">EB</span><span><strong>Elena Bruni</strong><em>Life Coach</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Ho capito cosa mi muove davvero."</h3><p class="review__text">Il profilo Reiss e la restituzione mi hanno dato una chiarezza che nessun test superficiale mi aveva dato.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#AB47BC">DR</span><span><strong>Davide Riva</strong><em>Imprenditore</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"La scuola più rigorosa che potessi scegliere."</h3><p class="review__text">Docenti presenti, pratica vera, supervisione costante. Mi sono sentita accompagnata fino alla certificazione.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#FF7043">SC</span><span><strong>Sara Colombo</strong><em>Coach & Formatrice</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Ho trovato la mia professione."</h3><p class="review__text">Il Master mi ha dato un metodo serio e la certificazione ICF. Oggi lavoro come coach a tempo pieno.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#4285F4">GF</span><span><strong>Giulia Ferrari</strong><em>Coach ICF</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Il Reiss ha cambiato come guido il team."</h3><p class="review__text">Capire le 16 motivazioni delle persone che gestisco è stato illuminante. Strumento scientifico, non slogan.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#0F9D58">MD</span><span><strong>Marco De Santis</strong><em>HR Manager</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Serio, mai motivazionale."</h3><p class="review__text">Cercavo una scuola rigorosa e umana insieme. Karakter è esattamente questo: profondità e calore.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#DB4437">EB</span><span><strong>Elena Bruni</strong><em>Life Coach</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Ho capito cosa mi muove davvero."</h3><p class="review__text">Il profilo Reiss e la restituzione mi hanno dato una chiarezza che nessun test superficiale mi aveva dato.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#AB47BC">DR</span><span><strong>Davide Riva</strong><em>Imprenditore</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"La scuola più rigorosa che potessi scegliere."</h3><p class="review__text">Docenti presenti, pratica vera, supervisione costante. Mi sono sentita accompagnata fino alla certificazione.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#FF7043">SC</span><span><strong>Sara Colombo</strong><em>Coach & Formatrice</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Ho trovato la mia professione."</h3><p class="review__text">Il Master mi ha dato un metodo serio e la certificazione ICF. Oggi lavoro come coach a tempo pieno.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#4285F4">GF</span><span><strong>Giulia Ferrari</strong><em>Coach ICF</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Il Reiss ha cambiato come guido il team."</h3><p class="review__text">Capire le 16 motivazioni delle persone che gestisco è stato illuminante. Strumento scientifico, non slogan.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#0F9D58">MD</span><span><strong>Marco De Santis</strong><em>HR Manager</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Serio, mai motivazionale."</h3><p class="review__text">Cercavo una scuola rigorosa e umana insieme. Karakter è esattamente questo: profondità e calore.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#DB4437">EB</span><span><strong>Elena Bruni</strong><em>Life Coach</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Ho capito cosa mi muove davvero."</h3><p class="review__text">Il profilo Reiss e la restituzione mi hanno dato una chiarezza che nessun test superficiale mi aveva dato.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#AB47BC">DR</span><span><strong>Davide Riva</strong><em>Imprenditore</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"La scuola più rigorosa che potessi scegliere."</h3><p class="review__text">Docenti presenti, pratica vera, supervisione costante. Mi sono sentita accompagnata fino alla certificazione.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#FF7043">SC</span><span><strong>Sara Colombo</strong><em>Coach & Formatrice</em></span></div></article></div></div>
+    <div class="reviews__row"><div class="reviews__track reviews__track--rev" data-rowset><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Finalmente uno strumento scientifico."</h3><p class="review__text">Il Reiss Motivation Profile ha portato metodo dove prima usavo solo intuito. Ora è parte del mio lavoro.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#00ACC1">LM</span><span><strong>Luca Marchetti</strong><em>Team Leader</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Integra perfettamente il mio lavoro."</h3><p class="review__text">Da psicologa cercavo rigore. Il modello Karakter e il Reiss si sono incastrati con la mia pratica.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#5C6BC0">CG</span><span><strong>Chiara Greco</strong><em>Psicologa</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Percorso trasformativo e concreto."</h3><p class="review__text">Non un corso motivazionale, ma una vera formazione professionale. Ne è valsa ogni ora.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#EC407A">AC</span><span><strong>Andrea Conti</strong><em>Consulente</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Il quiz mi ha aperto gli occhi."</h3><p class="review__text">Sono partita dal quiz gratuito dei 12 Tratti, poi il Reiss, poi il Master. Un percorso naturale.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#F4B400">VR</span><span><strong>Valentina Rossi</strong><em>Allieva Master</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Roma o online, sempre presenti."</h3><p class="review__text">Ho seguito parte online e parte in sede: qualità identica, docenti sempre disponibili.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#0F9D58">FP</span><span><strong>Francesco Pinna</strong><em>Coach aziendale</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Finalmente uno strumento scientifico."</h3><p class="review__text">Il Reiss Motivation Profile ha portato metodo dove prima usavo solo intuito. Ora è parte del mio lavoro.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#00ACC1">LM</span><span><strong>Luca Marchetti</strong><em>Team Leader</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Integra perfettamente il mio lavoro."</h3><p class="review__text">Da psicologa cercavo rigore. Il modello Karakter e il Reiss si sono incastrati con la mia pratica.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#5C6BC0">CG</span><span><strong>Chiara Greco</strong><em>Psicologa</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Percorso trasformativo e concreto."</h3><p class="review__text">Non un corso motivazionale, ma una vera formazione professionale. Ne è valsa ogni ora.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#EC407A">AC</span><span><strong>Andrea Conti</strong><em>Consulente</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Il quiz mi ha aperto gli occhi."</h3><p class="review__text">Sono partita dal quiz gratuito dei 12 Tratti, poi il Reiss, poi il Master. Un percorso naturale.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#F4B400">VR</span><span><strong>Valentina Rossi</strong><em>Allieva Master</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Roma o online, sempre presenti."</h3><p class="review__text">Ho seguito parte online e parte in sede: qualità identica, docenti sempre disponibili.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#0F9D58">FP</span><span><strong>Francesco Pinna</strong><em>Coach aziendale</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Finalmente uno strumento scientifico."</h3><p class="review__text">Il Reiss Motivation Profile ha portato metodo dove prima usavo solo intuito. Ora è parte del mio lavoro.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#00ACC1">LM</span><span><strong>Luca Marchetti</strong><em>Team Leader</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Integra perfettamente il mio lavoro."</h3><p class="review__text">Da psicologa cercavo rigore. Il modello Karakter e il Reiss si sono incastrati con la mia pratica.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#5C6BC0">CG</span><span><strong>Chiara Greco</strong><em>Psicologa</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Percorso trasformativo e concreto."</h3><p class="review__text">Non un corso motivazionale, ma una vera formazione professionale. Ne è valsa ogni ora.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#EC407A">AC</span><span><strong>Andrea Conti</strong><em>Consulente</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Il quiz mi ha aperto gli occhi."</h3><p class="review__text">Sono partita dal quiz gratuito dei 12 Tratti, poi il Reiss, poi il Master. Un percorso naturale.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#F4B400">VR</span><span><strong>Valentina Rossi</strong><em>Allieva Master</em></span></div></article><article class="review"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><h3 class="review__title">"Roma o online, sempre presenti."</h3><p class="review__text">Ho seguito parte online e parte in sede: qualità identica, docenti sempre disponibili.</p><div class="review__author"><span class="g-av g-av--lg" style="--c:#0F9D58">FP</span><span><strong>Francesco Pinna</strong><em>Coach aziendale</em></span></div></article></div></div>
+  </div>
+</section>
+
+<!-- PRIMA / DOPO -->
+<section class="compare">
+  <div class="container">
+    <h2 class="section-title" data-split>Prima e dopo <span class="accent accent--italic">Karakter</span></h2>
+    <p class="section-sub reveal" data-reveal>Cosa cambia quando smetti di improvvisare e parti da un <strong>metodo scientifico</strong> e da una <b class="hl-blue">certificazione riconosciuta</b>.</p>
+    <div class="compare__grid" data-story>
+      <div class="story-rail" aria-hidden="true"><span class="story-rail__track"></span><span class="story-rail__fill"></span><span class="story-rail__dot" style="top:6%"></span><span class="story-rail__dot" style="top:50%"></span><span class="story-rail__dot" style="top:94%"></span></div>
+      <div class="compare__col compare__col--before reveal" data-reveal>
+        <span class="compare__tag compare__tag--before">Prima</span>
+        <h3 class="compare__head">Senza un metodo</h3>
+        <ul class="compare__list compare__list--bad">
+          <li><span class="mk mk--x">✕</span> Strumenti generici e "motivazionali"</li>
+          <li><span class="mk mk--x">✕</span> Nessuna certificazione riconosciuta</li>
+          <li><span class="mk mk--x">✕</span> Intuito senza una struttura</li>
+          <li><span class="mk mk--x">✕</span> Difficoltà a trasformare la passione in professione</li>
+        </ul>
+      </div>
+      <div class="compare__col compare__col--after reveal" data-reveal>
+        <div class="compare__after-head">
+          <span class="compare__tag compare__tag--after">Dopo</span>
+          <div class="compare__growth">
+            <span class="rating__stars rating__stars--green" aria-hidden="true">★★★★★</span>
+            <div class="compare__growth-num">500+</div>
+            <span class="rating__text">coach accompagnati</span>
+          </div>
+        </div>
+        <h3 class="compare__head">Con il metodo Karakter</h3>
+        <ul class="compare__list compare__list--good">
+          <li><span class="mk mk--v">✓</span> Certificazione <strong>ICF Level 2</strong> riconosciuta</li>
+          <li><span class="mk mk--v">✓</span> Reiss Motivation Profile: 16 motivazioni misurate</li>
+          <li><span class="mk mk--v">✓</span> Un metodo chiaro: Scopri, Comprendi, Fai Crescere</li>
+          <li><span class="mk mk--v">✓</span> Una vera <b class="hl-lime">professione</b>, con community e supervisione</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO FORM -->
+<section class="register" id="info">
+  <div class="container">
+    <h2 class="section-title" data-split>Richiesta<br /><span class="accent accent--italic">informazioni</span></h2>
+    <p class="section-sub reveal" data-reveal>Raccontaci cosa ti interessa: ti ricontattiamo con il <strong>calendario delle edizioni</strong> e tutti i dettagli.</p>
+    <div class="register__grid" data-story>
+      <div class="story-rail" aria-hidden="true"><span class="story-rail__track"></span><span class="story-rail__fill"></span><span class="story-rail__dot" style="top:6%"></span><span class="story-rail__dot" style="top:50%"></span><span class="story-rail__dot" style="top:94%"></span></div>
+      <div class="register__info reveal" data-reveal>
+        <h3 class="register__h">Parliamo del tuo percorso.</h3>
+        <p class="register__lead">Compila il form: ti rispondiamo <strong>entro 24-48h</strong>.</p>
+        <ul class="register__details">
+          <li><span class="rico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span> <span><strong>Sede:</strong> Roma, Viale G. Rossini</span></li>
+          <li><span class="rico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span> <span><strong>Formato:</strong> in presenza e online</span></li>
+          <li><span class="rico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11v4c0 1.5 3 3 6 3s6-1.5 6-3v-4"/></svg></span> <span><strong>Accreditamento:</strong> ICF Level 2</span></li>
+          <li><span class="rico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span> <span><strong>Risposta:</strong> entro 24-48 ore</span></li>
+        </ul>
+        <div class="loc-box">
+          <iframe class="loc-map" title="Sede Karakter Coaching School, Roma" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Viale%20Gioacchino%20Rossini%2C%20Roma&output=embed"></iframe>
+          <div class="loc-box__meta"><strong>Karakter Coaching School</strong><span>Viale G. Rossini, Roma · e online</span></div>
+        </div>
+        <p class="register__note">Preferisci scriverci? <a href="mailto:info@karakter.it" data-cursor>info@karakter.it</a></p>
+      </div>
+      <div class="register__card reveal" data-reveal id="form">
+        <span class="register__badge"><span class="dot"></span> Ti ricontattiamo <em>entro 24-48h</em></span>
+        <h3 class="register__form-title">Richiedi informazioni</h3>
+        <p class="register__form-sub">Compila i campi: pensiamo a tutto noi.</p>
+        <form class="form" id="regForm" novalidate>
+          <label class="field"><span>Nome e cognome</span><input type="text" name="name" placeholder="Il tuo nome" required /></label>
+          <label class="field"><span>Email</span><input type="email" name="email" placeholder="La tua email" required /></label>
+          <label class="field"><span>Telefono</span><input type="tel" name="phone" placeholder="Il tuo numero" /></label>
+          <label class="field"><span>Interesse</span>
+            <select name="interest" class="field__select" required>
+              <option value="" selected disabled>Cosa ti interessa?</option>
+              <option>Master K-Coach Professionisti</option>
+              <option>Test Reiss Motivation Profile</option>
+              <option>Reiss Master · Certificazione RMP</option>
+              <option>Coaching (individuale / aziendale)</option>
+              <option>Altro</option>
+            </select>
+          </label>
+          <label class="field"><span>Messaggio (facoltativo)</span><input type="text" name="message" placeholder="Raccontaci in una riga" /></label>
+          <button type="submit" class="btn btn--primary btn--block" data-cursor>Invia richiesta <span class="btn__chev">›</span></button>
+          <p class="form__msg" id="formMsg" hidden>Grazie! Abbiamo ricevuto la tua richiesta, ti ricontattiamo presto. (demo, nessun dato inviato)</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <h2 class="section-title" data-split>Domande<br /><span class="accent accent--italic">frequenti</span></h2>
+    <div class="accordion accordion--faq" data-accordion>
+      <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-q">Serve esperienza per iscriversi al Master?</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>No. Il Master accompagna dai fondamenti fino alla certificazione: serve motivazione, non esperienza pregressa.</p></div></div>
+      <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-q">Il Master è riconosciuto?</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Sì. È accreditato ICF Level 2 (144 ore ACSTH), lo standard internazionale del coaching professionale.</p></div></div>
+      <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-q">Cos'è il Reiss Motivation Profile?</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>È il test scientifico che misura le 16 motivazioni fondamentali della persona. Karakter è tra le poche realtà in Italia a integrarlo nel percorso.</p></div></div>
+      <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-q">Devo essere a Roma per frequentare?</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>No. Le lezioni si svolgono in presenza a Roma e online, con la stessa qualità didattica.</p></div></div>
+      <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-q">Che differenza c'è tra il quiz e il Test Reiss?</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Il quiz "Scopri il tuo Karakter" è gratuito e ti dà i tuoi 3 Tratti dominanti. Il Reiss è il test professionale che misura le 16 motivazioni, con restituzione individuale.</p></div></div>
+      <div class="acc-item"><button class="acc-trigger" data-cursor><span class="acc-q">Come si diventa Reiss Master?</span><span class="acc-chev" aria-hidden="true">⌄</span></button><div class="acc-panel"><p>Con la certificazione RMP che abilita a somministrare e restituire il Reiss Motivation Profile. Richiedi informazioni per il percorso dedicato.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="finalcta">
+  <video class="finalcta__bg" autoplay muted loop playsinline preload="auto" id="finalVideo"><source src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/reiss-bg.mp4" type="video/mp4"></video>
+  <div class="finalcta__overlay" aria-hidden="true"></div>
+  <div class="container finalcta__inner">
+    <div class="rating reveal" data-reveal>
+      <span class="avatars" aria-hidden="true">
+        <span class="g-av" style="--c:#4285F4">GF</span><span class="g-av" style="--c:#DB4437">MD</span><span class="g-av" style="--c:#0F9D58">EB</span><span class="g-av" style="--c:#AB47BC">DR</span><span class="g-av" style="--c:#FF7043">SC</span>
+      </span>
+      <span class="rating__col"><span class="rating__stars rating__stars--google" aria-hidden="true">★★★★★</span><span class="rating__text">500+ coach formati dal 2011</span></span>
+    </div>
+    <h2 class="finalcta__title" data-split>Ogni persona è un Karakter.<br /><span class="muted-italic">Qual è il tuo?</span></h2>
+    <p class="finalcta__sub reveal" data-reveal>Inizia dal <strong>quiz gratuito</strong> o richiedi informazioni sul Master K-Coach e sul Reiss Motivation Profile.</p>
+    <div class="finalcta__actions reveal" data-reveal>
+      <a href="#form" class="btn btn--primary" data-cursor>Richiesta informazioni <span class="btn__chev">›</span></a>
+      <a href="https://www.karaktercoaching.it/scopri-il-tuo-karakter/" class="btn btn--ghost" target="_blank" rel="noopener" data-cursor>Fai il quiz gratuito <span class="btn__chev">›</span></a>
+    </div>
+    <span class="finalcta__note reveal" data-reveal><span class="dot"></span> Roma · Viale G. Rossini · e online</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__top">
+      <a href="#hero" class="nav__logo" data-cursor><img src="https://cdn.jsdelivr.net/gh/Haise02/scopri-il-tuo-karakter@main/skillfunnel-clone/karakter-logo-bianco.svg" alt="Karakter Coaching School" class="nav__logo-img" /></a>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#percorsi" data-cursor>Percorsi</a><a href="#reiss" data-cursor>Reiss</a><a href="#master" data-cursor>Master</a><a href="#form" data-cursor>Contatti</a>
+      </nav>
+      <div class="footer__social">
+        <a href="#" class="social" aria-label="Instagram" data-cursor><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" class="social" aria-label="LinkedIn" data-cursor><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 13v4"/></svg></a>
+        <a href="#" class="social" aria-label="Facebook" data-cursor><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 8h2V5h-2a3 3 0 0 0-3 3v2H9v3h2v6h3v-6h2l1-3h-3V8a1 1 0 0 1 1-1z"/></svg></a>
+      </div>
+    </div>
+    <hr class="pricing__hr" />
+    <div class="footer__bottom">
+      <span class="footer__made">Karakter Coaching School · Roma · P.IVA in aggiornamento</span>
+      <div class="footer__copy"><span>© 2026 Karakter Coaching School. Tutti i diritti riservati.</span><button class="to-top" id="toTop" aria-label="Torna su" data-cursor>↑</button></div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+</body
+</div>
+
+<script>
+/* =========================================================
+   SKILLFUNNEL - Clone  •  app.js  •  v2 (Karakter)
+   GSAP + ScrollTrigger + Lenis + SplitType
+   Adds: hero 3D scroll reveal, scroll-stacking reviews,
+   storytelling scroll rails, frame-by-frame canvas scrub.
+   ========================================================= */
+(function () {
+  "use strict";
+
+  var _home = document.getElementById("kk-home");
+  if (_home) _home.classList.add("js-on");
+
+  /* 0. EMBED DETECTION: se siamo dentro un iframe (Elementor), nascondi la
+     scrollbar interna per evitare la doppia barra di scorrimento. */
+  try {
+    if (window.self !== window.top) {
+      document.documentElement.classList.add("is-embedded");
+    }
+  } catch (e) {
+    document.documentElement.classList.add("is-embedded");
+  }
+
+  var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var isTouch = window.matchMedia("(pointer: coarse)").matches;
+  var hasGSAP = typeof gsap !== "undefined";
+  var hasST = hasGSAP && typeof ScrollTrigger !== "undefined";
+  if (hasST) gsap.registerPlugin(ScrollTrigger);
+
+  /* 1. LENIS SMOOTH SCROLL */
+  var lenis = null;
+  if (typeof Lenis !== "undefined" && !prefersReduced) {
+    lenis = new Lenis({
+      duration: 1.1,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      smoothWheel: true
+    });
+    var raf = function (time) { lenis.raf(time); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+    if (hasST) {
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    }
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var id = a.getAttribute("href");
+      if (id === "#" || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      closeMenu();
+      if (lenis) lenis.scrollTo(target, { offset: -70 });
+      else target.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+
+  /* 2. NAV scrolled + progress + scrollspy + menu */
+  var nav = document.getElementById("nav");
+  var onScrollNav = function () {
+    var y = window.scrollY || document.documentElement.scrollTop;
+    nav.classList.toggle("scrolled", y > 40);
+    var sp = document.getElementById("scrollProgress");
+    if (sp) {
+      var hh = document.documentElement.scrollHeight - window.innerHeight;
+      sp.style.width = (hh > 0 ? (y / hh) * 100 : 0) + "%";
+    }
+  };
+  window.addEventListener("scroll", onScrollNav, { passive: true });
+  onScrollNav();
+
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll("[data-nav]"));
+  var spyTargets = navLinks
+    .map(function (l) { return document.querySelector(l.getAttribute("href")); })
+    .filter(Boolean);
+  if ("IntersectionObserver" in window && spyTargets.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          var id = "#" + en.target.id;
+          navLinks.forEach(function (l) {
+            l.classList.toggle("active", l.getAttribute("href") === id);
+          });
+        }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+    spyTargets.forEach(function (t) { spy.observe(t); });
+  }
+
+  var burger = document.getElementById("burger");
+  var menu = document.querySelector(".nav__links");
+  function closeMenu() {
+    if (menu) menu.classList.remove("open");
+    if (burger) burger.classList.remove("open");
+  }
+  if (burger && menu) {
+    burger.addEventListener("click", function () {
+      menu.classList.toggle("open");
+      burger.classList.toggle("open");
+    });
+  }
+
+  /* 3. HEADLINE SPLIT REVEAL */
+  var splitTargets = document.querySelectorAll("[data-split]");
+  if (hasST && typeof SplitType !== "undefined" && !prefersReduced) {
+    splitTargets.forEach(function (el) {
+      var split = new SplitType(el, { types: "words,chars", tagName: "span" });
+      gsap.set(el, { opacity: 1 });
+      gsap.from(split.chars, {
+        scrollTrigger: { trigger: el, start: "top 85%" },
+        yPercent: 120, opacity: 0, filter: "blur(8px)",
+        duration: 0.8, ease: "power3.out", stagger: 0.014
+      });
+    });
+  } else {
+    splitTargets.forEach(function (el) { el.style.opacity = 1; });
+  }
+
+  /* 4. GENERIC REVEAL + staggered groups */
+  var reveals = document.querySelectorAll("[data-reveal]");
+  if (hasST && !prefersReduced) {
+    reveals.forEach(function (el) {
+      ScrollTrigger.create({
+        trigger: el, start: "top 88%", once: true,
+        onEnter: function () { el.classList.add("in"); }
+      });
+    });
+    document.querySelectorAll(".bento, .stats__grid").forEach(function (grid) {
+      var items = grid.querySelectorAll("[data-reveal]");
+      ScrollTrigger.create({
+        trigger: grid, start: "top 82%", once: true,
+        onEnter: function () {
+          items.forEach(function (it, i) {
+            setTimeout(function () { it.classList.add("in"); }, i * 90);
+          });
+        }
+      });
+    });
+  } else {
+    reveals.forEach(function (el) { el.classList.add("in"); });
+  }
+
+  /* 5. MENTOR BIO TEXT-HIGHLIGHT SCRUB */
+  var bios = document.querySelectorAll("[data-reveal-text]");
+  if (hasST && !prefersReduced) {
+    var hasSplit = typeof SplitType !== "undefined";
+    bios.forEach(function (el) {
+      if (hasSplit) {
+        var split = new SplitType(el, { types: "words", tagName: "span" });
+        split.words.forEach(function (w) { w.classList.add("reveal-word"); });
+        gsap.to(split.words, {
+          color: "#eef3f7", ease: "none", stagger: 0.5,
+          scrollTrigger: { trigger: el, start: "top 80%", end: "bottom 55%", scrub: true }
+        });
+      } else {
+        /* fallback: se SplitType non carica, illumina comunque il paragrafo intero */
+        gsap.fromTo(el, { color: "#44566d" }, {
+          color: "#eef3f7", ease: "none",
+          scrollTrigger: { trigger: el, start: "top 80%", end: "bottom 55%", scrub: true }
+        });
+      }
+    });
+  }
+
+  /* 6. HERO VIDEO - 3D reveal: pinnato e dritto quando e' centrato */
+  var heroMedia = document.querySelector("[data-hero-media]");
+  var heroVideo = document.querySelector(".hero__video");
+  if (heroMedia && heroVideo && hasST && !prefersReduced && !isTouch) {
+    /* A) PROSPETTIVA 3D: parte dal primo scroll (scrub sulla hero) */
+    gsap.set(heroMedia, { transformPerspective: 1500, rotateX: 40, scale: 1.12 });
+    gsap.to(heroMedia, {
+      rotateX: 0, scale: 1, ease: "none",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "+=420", scrub: 0.6 }
+    });
+  } else if (heroMedia && hasGSAP) {
+    gsap.set(heroMedia, { rotateX: 0, scale: 1 });
+  }
+
+  /* 7. SCROLL-STACKING REVIEWS */
+  var stack = document.querySelector("[data-stack]");
+  if (stack && hasST && !prefersReduced && !isTouch) {
+    var cards = Array.prototype.slice.call(stack.querySelectorAll(".review"));
+    var baseTop = 110;
+    cards.forEach(function (card, i) {
+      card.style.top = (baseTop + i * 16) + "px";
+      card.style.zIndex = i + 1;
+      if (i < cards.length - 1) {
+        gsap.to(card, {
+          scale: 0.9, filter: "brightness(0.6)", ease: "none",
+          scrollTrigger: {
+            trigger: cards[i + 1],
+            start: "top bottom",
+            end: "top " + (baseTop + i * 16) + "px",
+            scrub: true
+          }
+        });
+      }
+    });
+  }
+
+  /* 8. STORYTELLING SCROLL RAILS */
+  document.querySelectorAll("[data-story]").forEach(function (sec) {
+    var fill = sec.querySelector(".story-rail__fill");
+    var dots = Array.prototype.slice.call(sec.querySelectorAll(".story-rail__dot"));
+    if (!fill) return;
+    if (prefersReduced || !hasST) {
+      fill.style.transform = "scaleY(1)";
+      dots.forEach(function (d) { d.classList.add("active"); });
+      return;
+    }
+    gsap.to(fill, {
+      scaleY: 1, ease: "none",
+      scrollTrigger: {
+        trigger: sec, start: "top 70%", end: "bottom 65%", scrub: true,
+        onUpdate: function (self) {
+          var pr = self.progress;
+          dots.forEach(function (d) {
+            var dp = (parseFloat(d.style.top) || 0) / 100;
+            d.classList.toggle("active", pr >= dp - 0.02);
+          });
+        }
+      }
+    });
+  });
+
+  /* 9. FRAME-BY-FRAME CANVAS SCRUB */
+  document.querySelectorAll("[data-frames]").forEach(function (canvas) {
+    var ctx = canvas.getContext("2d");
+    var TOTAL = parseInt(canvas.dataset.total,10) || 48;
+    var COLS = parseInt(canvas.dataset.cols,10) || 4;
+    var ROWS = parseInt(canvas.dataset.rows,10) || 3;
+    var CELLS = COLS * ROWS;
+    var LABEL = canvas.dataset.label || "Elementi";
+    var lastFrame = 0;
+
+    function roundRect(c, x, y, w, h, r) {
+      r = Math.min(r, w / 2, h / 2);
+      c.beginPath();
+      c.moveTo(x + r, y);
+      c.arcTo(x + w, y, x + w, y + h, r);
+      c.arcTo(x + w, y + h, x, y + h, r);
+      c.arcTo(x, y + h, x, y, r);
+      c.arcTo(x, y, x + w, y, r);
+      c.closePath();
+    }
+
+    function draw(frame) {
+      lastFrame = frame;
+      var rect = canvas.getBoundingClientRect();
+      var w = rect.width, h = rect.height, p = frame / TOTAL;
+      ctx.clearRect(0, 0, w, h);
+      var bg = ctx.createLinearGradient(0, 0, w, h);
+      bg.addColorStop(0, "#0d1c33");
+      bg.addColorStop(1, "#112446");
+      ctx.fillStyle = bg;
+      roundRect(ctx, 0, 0, w, h, 12);
+      ctx.fill();
+
+      var pad = 26, gap = 14;
+      var cw = (w - pad * 2 - gap * (COLS - 1)) / COLS;
+      var ch = (h - pad * 2 - gap * (ROWS - 1)) / ROWS;
+      var shown = p * CELLS;
+      for (var i = 0; i < CELLS; i++) {
+        var col = i % COLS, row = Math.floor(i / COLS);
+        var x = pad + col * (cw + gap);
+        var y = pad + row * (ch + gap);
+        var local = Math.max(0, Math.min(1, shown - i));
+        ctx.fillStyle = "rgba(217,225,232,0.05)";
+        roundRect(ctx, x, y, cw, ch, 8);
+        ctx.fill();
+        if (local > 0) {
+          ctx.save();
+          ctx.globalAlpha = local;
+          var g = ctx.createLinearGradient(x, y, x + cw, y + ch);
+          g.addColorStop(0, "#2F80ED");
+          g.addColorStop(1, "#A3E635");
+          ctx.fillStyle = g;
+          var sc = 0.6 + 0.4 * local;
+          var dw = cw * sc, dh = ch * sc;
+          roundRect(ctx, x + (cw - dw) / 2, y + (ch - dh) / 2, dw, dh, 8);
+          ctx.fill();
+          ctx.globalAlpha = local * 0.85;
+          ctx.fillStyle = "rgba(6,14,26,0.55)";
+          var lx = x + (cw - dw) / 2 + 8;
+          var ly = y + (ch - dh) / 2;
+          ctx.fillRect(lx, ly + 8, dw - 16, 4);
+          ctx.fillRect(lx, ly + 18, (dw - 16) * 0.6, 4);
+          ctx.restore();
+        }
+      }
+      var sy = pad + p * (h - pad * 2);
+      ctx.strokeStyle = "rgba(163,230,53,0.5)";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(pad, sy);
+      ctx.lineTo(w - pad, sy);
+      ctx.stroke();
+      ctx.fillStyle = "rgba(217,225,232,0.7)";
+      ctx.font = "600 12px 'Hanken Grotesk', sans-serif";
+      var fnum = String(Math.round(frame));
+      if (fnum.length < 2) fnum = "0" + fnum;
+      var label = LABEL + " " + fnum + " / " + TOTAL;
+      ctx.fillText(label, pad, h - 12);
+    }
+
+    function resize() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var rect = canvas.getBoundingClientRect();
+      canvas.width = Math.max(1, rect.width * dpr);
+      canvas.height = Math.max(1, rect.height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      draw(lastFrame);
+    }
+
+    resize();
+    window.addEventListener("resize", function () {
+      clearTimeout(canvas._rt);
+      canvas._rt = setTimeout(resize, 150);
+    });
+
+    if (hasST && !prefersReduced) {
+      ScrollTrigger.create({
+        trigger: canvas.closest(".card") || canvas,
+        start: "top 85%", end: "bottom 25%", scrub: true,
+        onUpdate: function (self) { draw(self.progress * TOTAL); }
+      });
+    } else {
+      draw(TOTAL);
+    }
+  });
+
+  /* 10. COUNT-UP STATS */
+  document.querySelectorAll("[data-count]").forEach(function (el) {
+    var end = parseFloat(el.dataset.count);
+    var suffix = el.dataset.suffix || "";
+    var run = function () {
+      if (prefersReduced || !hasGSAP) { el.textContent = end + suffix; return; }
+      var obj = { v: 0 };
+      gsap.to(obj, {
+        v: end, duration: 1.6, ease: "power2.out",
+        onUpdate: function () { el.textContent = Math.round(obj.v) + suffix; }
+      });
+    };
+    if (hasST) ScrollTrigger.create({ trigger: el, start: "top 88%", once: true, onEnter: run });
+    else run();
+  });
+
+  /* 11. ACCORDIONS */
+  document.querySelectorAll("[data-accordion]").forEach(function (acc) {
+    var items = acc.querySelectorAll(".acc-item");
+    items.forEach(function (item) {
+      var trigger = item.querySelector(".acc-trigger");
+      var panel = item.querySelector(".acc-panel");
+      trigger.addEventListener("click", function () {
+        var isOpen = item.classList.contains("open");
+        items.forEach(function (other) {
+          if (other !== item) {
+            other.classList.remove("open");
+            other.querySelector(".acc-panel").style.height = "0px";
+          }
+        });
+        if (isOpen) {
+          item.classList.remove("open");
+          panel.style.height = "0px";
+        } else {
+          item.classList.add("open");
+          panel.style.height = panel.scrollHeight + "px";
+        }
+        if (hasST) setTimeout(function () { ScrollTrigger.refresh(); }, 420);
+      });
+    });
+  });
+
+  /* 12. TILT */
+  if (!isTouch && !prefersReduced) {
+    document.querySelectorAll("[data-tilt]").forEach(function (el) {
+      var strength = 6;
+      el.addEventListener("mousemove", function (e) {
+        var r = el.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = "perspective(900px) rotateY(" + (px * strength) + "deg) rotateX(" + (-py * strength) + "deg) translateY(-4px)";
+      });
+      el.addEventListener("mouseleave", function () { el.style.transform = ""; });
+    });
+  }
+
+  /* 13. CUSTOM CURSOR */
+  var cursor = document.getElementById("cursor");
+  if (cursor && !isTouch && !prefersReduced) {
+    var cx = window.innerWidth / 2, cy = window.innerHeight / 2, tx = cx, ty = cy;
+    window.addEventListener("mousemove", function (e) { tx = e.clientX; ty = e.clientY; });
+    var loop = function () {
+      cx += (tx - cx) * 0.18;
+      cy += (ty - cy) * 0.18;
+      cursor.style.transform = "translate(" + cx + "px," + cy + "px) translate(-50%,-50%)";
+      requestAnimationFrame(loop);
+    };
+    loop();
+    document.querySelectorAll("a,button,[data-cursor],.acc-trigger,input").forEach(function (el) {
+      el.addEventListener("mouseenter", function () { cursor.classList.add("is-hover"); });
+      el.addEventListener("mouseleave", function () { cursor.classList.remove("is-hover"); });
+    });
+  }
+
+  /* 14. PARALLAX (hero glow + CTA bg) */
+  if (hasST && !prefersReduced) {
+    var glow = document.querySelector(".hero__glow");
+    if (glow) gsap.to(glow, {
+      yPercent: 18, ease: "none",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
+    });
+    /* niente transform sul <video>: lo congelerebbe al primo frame su alcuni browser */
+    var ctaImg = document.querySelector(".finalcta__bg.ph--bg");
+    if (ctaImg) gsap.fromTo(ctaImg, { scale: 1.18 }, {
+      scale: 1, ease: "none",
+      scrollTrigger: { trigger: ".finalcta", start: "top bottom", end: "bottom top", scrub: true }
+    });
+  }
+
+  /* 15. FORM (demo) + BACK TO TOP */
+  var form = document.getElementById("regForm");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var msg = document.getElementById("formMsg");
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      if (msg) msg.hidden = false;
+      form.querySelectorAll("input").forEach(function (i) { i.value = ""; });
+    });
+  }
+  var toTop = document.getElementById("toTop");
+  if (toTop) toTop.addEventListener("click", function () {
+    if (lenis) lenis.scrollTo(0);
+    else window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  /* 16. PRODUCT CARDS - border illumination loop */
+  var bento = document.getElementById("bento");
+  if (bento && !prefersReduced) {
+    var lcards = Array.prototype.slice.call(bento.querySelectorAll(".card"));
+    if (lcards.length) {
+      var li = 0;
+      var lit = function () {
+        lcards.forEach(function (c) { c.classList.remove("is-lit"); });
+        lcards[li].classList.add("is-lit");
+        li = (li + 1) % lcards.length;
+      };
+      lit();
+      setInterval(lit, 2000);
+    }
+  }
+
+  /* 17. COUNTDOWN */
+  var cd = document.getElementById("countdown");
+  if (cd) {
+    var deadline = new Date(cd.dataset.deadline || "2026-07-30T23:59:59").getTime();
+    var pad2 = function (n) { return (n < 10 ? "0" : "") + n; };
+    var tick = function () {
+      var diff = deadline - Date.now(); if (diff < 0) diff = 0;
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor(diff / 3600000) % 24;
+      var m = Math.floor(diff / 60000) % 60;
+      var sec = Math.floor(diff / 1000) % 60;
+      var setv = function (k, v) {
+        var el = cd.querySelector("[data-" + k + "]");
+        if (!el) return;
+        var nv = pad2(v);
+        if (el.textContent !== nv) {
+          el.textContent = nv;
+          el.classList.remove("flip"); void el.offsetWidth; el.classList.add("flip");
+        }
+      };
+      setv("d", d); setv("h", h); setv("m", m); setv("s", sec);
+    };
+    tick(); setInterval(tick, 1000);
+  }
+
+  /* 18. METHOD STICKY STORYTELLING (3 step) */
+  (function () {
+    if (!hasST) return;
+    var section = document.querySelector(".method");
+    if (!section) return;
+    var steps = Array.prototype.slice.call(section.querySelectorAll(".step"));
+    var progressFill = document.getElementById("methodProgress");
+    var labels = document.querySelectorAll("[data-step-label]");
+    if (!steps.length) return;
+    function setActive(idx) {
+      steps.forEach(function (st, i) { st.classList.toggle("is-active", i === idx); });
+      labels.forEach(function (l, i) { l.classList.toggle("is-active", i === idx); });
+      section.setAttribute("data-active", idx + 1);
+      if (progressFill) progressFill.style.width = ((idx + 1) / steps.length) * 100 + "%";
+    }
+    ScrollTrigger.create({
+      trigger: section, start: "top top", end: "bottom bottom", scrub: true,
+      onUpdate: function (self) {
+        var idx = Math.min(steps.length - 1, Math.floor(self.progress * steps.length));
+        setActive(idx);
+      }
+    });
+    setActive(0);
+  })();
+
+  /* 20. FINAL CTA VIDEO - autoplay robusto (IO + interazione) */
+  (function () {
+    var fv = document.getElementById("finalVideo");
+    if (!fv) return;
+    fv.muted = true; fv.defaultMuted = true; fv.setAttribute("muted", "");
+    fv.playsInline = true;
+    var tryPlay = function () { var p = fv.play(); if (p && p.catch) p.catch(function () {}); };
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) tryPlay(); });
+      }, { threshold: 0.15 }).observe(fv);
+    }
+    ["canplay", "loadeddata"].forEach(function (ev) { fv.addEventListener(ev, tryPlay); });
+    ["pointerdown", "scroll", "touchstart", "keydown"].forEach(function (ev) {
+      window.addEventListener(ev, tryPlay, { once: true, passive: true });
+    });
+    tryPlay();
+  })();
+
+  window.addEventListener("load", function () { if (hasST) ScrollTrigger.refresh(); });
+})();
+
+</script>
